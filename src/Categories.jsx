@@ -9,6 +9,8 @@ class Categories extends React.Component {
 
     this.state = {
       categories: [],
+      showAllCategories: true,
+      singleCategoryToShow: {id: 0, name: ""},
       errorMsg: ""
     }
   }
@@ -24,15 +26,25 @@ class Categories extends React.Component {
     });
   }
 
+  _showSpecificCategory(categoryId, categoryName) {
+    this.setState({showAllCategories: !this.state.showAllCategories}); 
+    this.setState({singleCategoryToShow: {id: categoryId, name: categoryName}}); 
+  }
+
   componentWillMount() {
     this._getCategories();
   }
   
   render() {
     let categoryList = [];
-    categoryList = this.state.categories.map(category =>
-      { return ( <Category key={category.id.toString()} id={category.id} name={category.name} site={this.props.site} /> ); }
-    );
+    if(this.state.showAllCategories) {
+      categoryList = this.state.categories.map(category =>
+        { return ( <Category key={category.id.toString()} id={category.id} name={category.name} site={this.props.site} clickCategory={this._showSpecificCategory.bind(this)} showAllPosts={false} /> ); }
+      );
+    }
+    else {
+      categoryList = <Category key={this.state.singleCategoryToShow.id.toString()} id={this.state.singleCategoryToShow.id} name={this.state.singleCategoryToShow.name} site={this.props.site} clickCategory = {this._showSpecificCategory.bind(this)} showAllPosts={true} />;
+    }
     return (
       <div className="category-list">
         {categoryList} 
