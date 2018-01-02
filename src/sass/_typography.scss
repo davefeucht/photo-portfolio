@@ -2,8 +2,27 @@
   color: #FFFFFF;
 }
 
-.category-title {
+@mixin title($clickable) {
+  @if $clickable {
+    cursor: pointer;
+  }
   margin-left: 2%;
+}
+
+.category-title {
+  font-size: 120%;
+  font-weight: bold;
+  @include title(false);
+}
+
+.category-title-clickable {
+  font-size: 120%;
+  font-weight: bold;
+  @include title(true);
+}
+
+.category-subtitle {
+  @include title(true)
 }
 
 .post-title-single {
