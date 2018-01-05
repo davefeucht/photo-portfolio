@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-import Posts from './Posts.jsx';
-import Post from './Post.jsx';
+import React from "react";
+import axios from "axios";
+import Posts from "./Posts.jsx";
+import Post from "./Post.jsx";
+import PropTypes from "prop-types";
 
 class Category extends React.Component {
   constructor(props) {
@@ -11,24 +11,24 @@ class Category extends React.Component {
     this.state = {
       categoryPost: {},
       errorMsg: ""
-    }
+    };
   }
 
   _getCategoryPost(categoryId) {
-    let getCategoryPostURI = 'http://' + this.props.site + '/wp-json/wp/v2/posts?categories=' + categoryId;
+    let getCategoryPostURI = "http://" + this.props.site + "/wp-json/wp/v2/posts?categories=" + categoryId;
     axios.get(getCategoryPostURI)
-    .then(res => {
-      if(res.data[0] !== undefined) {
-        const categoryPost = res.data[0];
-        this.setState({categoryPost});
-      }
-    }, error => {
-      const errorMsg = 'Did not work: ' + (error.response ? error.response : error);
-      this.setState({ errorMsg });
-    });
+      .then(res => {
+        if(res.data[0] !== undefined) {
+          const categoryPost = res.data[0];
+          this.setState({categoryPost});
+        }
+      }, error => {
+        const errorMsg = "Did not work: " + (error.response ? error.response : error);
+        this.setState({ errorMsg });
+      });
   }
 
-  _openCategory(categoryId) {
+  _openCategory() {
     this.setState({showAllPosts: !this.state.showAllPosts}); 
     this.props.clickCategory(this.props.id, this.props.name);
   }
@@ -63,5 +63,13 @@ class Category extends React.Component {
   }
 
 }
+
+Category.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  site: PropTypes.string,
+  showAllPosts: PropTypes.bool,
+  clickCategory: PropTypes.func
+};
 
 export default Category;

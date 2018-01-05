@@ -1,3 +1,33 @@
+@mixin header-footer($area) {
+  color: #FFFFFF;
+  grid-area: $area;
+  background: rgba(0,0,0,.75); 
+}
+
+.photo-portfolio {
+  display: grid;
+  grid-template-areas: "header" "content" "footer"
+}
+
 .site-header {
-  background: rgba(0, 0, 0, .75);
+  @include header-footer(header);
+}
+
+.category-list {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: auto;
+}
+
+.post-list {
+  grid-row: 1;
+  grid-column: 1 / span 3;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: auto;
+}
+
+.site-footer {
+  @include header-footer(footer);
+  padding: 5px;
 }
