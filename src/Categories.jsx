@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-import Category from './Category.jsx';
+import React from "react";
+import axios from "axios";
+import Category from "./Category.jsx";
+import Posts from "./Posts.jsx";
+import PropTypes from "prop-types";
 
 class Categories extends React.Component {
   constructor(props) {
@@ -12,18 +13,18 @@ class Categories extends React.Component {
       showAllCategories: true,
       singleCategoryToShow: {id: 0, name: ""},
       errorMsg: ""
-    }
+    };
   }
 
   _getCategories() {
-    axios.get('http://' + this.props.site + '/wp-json/wp/v2/categories?exclude=1')
-    .then(res => {
-      const categories = res.data;
-      this.setState({ categories });
-    }, error => {
-      const errorMsg = 'Did not work: ' + (error.response ? error.response : error);
-      this.setState({ errorMsg });
-    });
+    axios.get("http://" + this.props.site + "/wp-json/wp/v2/categories?exclude=1")
+      .then(res => {
+        const categories = res.data;
+        this.setState({ categories });
+      }, error => {
+        const errorMsg = "Did not work: " + (error.response ? error.response : error);
+        this.setState({ errorMsg });
+      });
   }
 
   _showSpecificCategory(categoryId, categoryName) {
@@ -39,11 +40,11 @@ class Categories extends React.Component {
     let categoryList = [];
     if(this.state.showAllCategories) {
       categoryList = this.state.categories.map(category =>
-        { return ( <Category key={category.id.toString()} id={category.id} name={category.name} site={this.props.site} clickCategory={this._showSpecificCategory.bind(this)} showAllPosts={false} /> ); }
+      { return ( <Category key={category.id.toString()} id={category.id} name={category.name} site={this.props.site} clickCategory={this._showSpecificCategory.bind(this)} showAllPosts={false} /> ); }
       );
     }
     else {
-      categoryList = <Category key={this.state.singleCategoryToShow.id.toString()} id={this.state.singleCategoryToShow.id} name={this.state.singleCategoryToShow.name} site={this.props.site} clickCategory = {this._showSpecificCategory.bind(this)} showAllPosts={true} />;
+      categoryList = <Posts category={this.state.singleCategoryToShow.id} site={this.props.site} />;
     }
     return (
       <div className="category-list">
@@ -53,5 +54,9 @@ class Categories extends React.Component {
     );
   }
 }
+
+Categories.propTypes = {
+  site: PropTypes.string
+};
 
 export default Categories;

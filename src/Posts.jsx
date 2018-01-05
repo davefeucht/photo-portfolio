@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-import Post from './Post.jsx';
+import React from "react";
+import axios from "axios";
+import Post from "./Post.jsx";
+import PropTypes from "prop-types";
 
 class Posts extends React.Component {
   constructor(props) {
@@ -13,34 +13,41 @@ class Posts extends React.Component {
       categoryData: {},
       singlePostToShow: 0,
       errorMsg: ""
-    }
+    };
   }
 
   _getPosts() {
-    axios.get(`http://` + this.props.site + `/wp-json/wp/v2/posts?categories=` + this.props.category)
-    .then(res => {
-      const posts = res.data;
-      this.setState({ posts });
-    }, error => {
-      const errorMsg = 'Did not work: ' + (error.response ? error.response : error);
-      this.setState({ errorMsg });
-    });
+    axios.get("http://" + this.props.site + "/wp-json/wp/v2/posts?categories=" + this.props.category)
+      .then(res => {
+        const posts = res.data;
+        this.setState({ posts });
+      }, error => {
+        const errorMsg = "Did not work: " + (error.response ? error.response : error);
+        this.setState({ errorMsg });
+      });
   }
 
   _getPostsCategory() {
-    axios.get(`http://` + this.props.site + `/wp-json/wp/v2/categories/` + this.props.category)
-    .then(res => {
-      const categoryData = res.data;
-      this.setState({ categoryData });
-    }, error => {
-      const errorMsg = 'Did not work: ' + (error.response ? error.response : error);
-      this.setState({ errorMsg });
-    });
+    axios.get("http://" + this.props.site + "/wp-json/wp/v2/categories/" + this.props.category)
+      .then(res => {
+        const categoryData = res.data;
+        this.setState({ categoryData });
+      }, error => {
+        const errorMsg = "Did not work: " + (error.response ? error.response : error);
+        this.setState({ errorMsg });
+      });
   }
   
-  _showAllPosts() {
+  _showSinglePost(postId) {
+    const showAllPosts = false;
+    const singlePostToShow = postId;
+    this.setState({ showAllPosts });
+    this.setState({ singlePostToShow });
+  }
+
+  _showAllPosts(postId) {
     const showAllPosts = true;
-    const singlePostToShow = 0;
+    const singlePostToShow = postId;
     this.setState({ showAllPosts });
     this.setState({ singlePostToShow }); 
   }
@@ -52,28 +59,31 @@ class Posts extends React.Component {
 
   render() {
     let postList = [];
-    let categoryHeader = "";
     if(this.state.showAllPosts) {
       postList = this.state.posts.map(post =>
-        { return ( <Post key={post.id.toString()} category={this.props.category} categoryName={this.state.categoryData.name} title={post.title.rendered} id={post.id} image={post.featured_media} context="thumbnail" site={this.props.site} /> ); }
+      { return ( <Post key={post.id.toString()} category={this.props.category} categoryName={this.state.categoryData.name} title={post.title.rendered} id={post.id} image={post.featured_media} context="thumbnail" site={this.props.site} clickImage={this._showSinglePost.bind(this)} /> ); }
       );
-      categoryHeader = <h2 className="category-title">{this.state.categoryData.name}</h2>;
     }
     else {
       this.state.posts.forEach(post => {
         if(post.id == this.state.singlePostToShow) {
-          postList[0] = <Post key={this.state.singlePostToShow.toString()} id={this.state.singlePostToShow} category={this.props.category} categoryName={this.state.categoryData.name} title={post.title.rendered} image={post.featured_media} context="full-image" site={this.props.site} />;
+          postList[0] = <Post key={this.state.singlePostToShow.toString()} id={this.state.singlePostToShow} category={this.props.category} categoryName={this.state.categoryData.name} title={post.title.rendered} image={post.featured_media} context="full-image" site={this.props.site} clickImage={this._showAllPosts.bind(this)} />;
         }
       });
     }
     
     return (
-      <div>
+      <div className="post-list"> 
         {postList} 
         <div>{this.state.errorMsg}</div>
       </div>
     );
   }
 }
+
+Posts.propTypes = {
+  category: PropTypes.number,
+  site: PropTypes.string
+};
 
 export default Posts;

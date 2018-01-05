@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
 
 
 class TitleBar extends React.Component {
@@ -17,4 +16,4 @@ class TitleBar extends React.Component {
   }
 }
 
-export default TitleBar
+export default TitleBar;
