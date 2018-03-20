@@ -3,9 +3,10 @@
 * 
 *  Author: Dave Feucht
 *  Version: 1.0
-*  Description: Front-end web application for a WordPress backend photography portfolio site. This is a personal
-*   project to learn React, CSS grid layout, to get familiar with the WordPress REST API, and to get familiar with 
-*   github. It combines my interest in coding and photography, and will serve as a portfolio for both once finished. 
-*   Hopefully this can also be put out into the community for others to use. 
+*  Description: Front-end web application for a WordPress backend photography portfolio site. 
+*   This is a personal project to learn React, CSS grid layout, to get familiar with the 
+*   WordPress REST API, and to get familiar with github. It combines my interest in coding 
+*   and photography, and will serve as a portfolio for both once finished. Hopefully this can 
+*   also be put out into the community for others to use. 
 *
 ****************************/
