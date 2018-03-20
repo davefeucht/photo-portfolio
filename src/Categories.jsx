@@ -31,6 +31,10 @@ class Categories extends React.Component {
     this.setState({showAllCategories: !this.state.showAllCategories}); 
     this.setState({singleCategoryToShow: {id: categoryId, name: categoryName}}); 
   }
+  
+  _showAllCategories() {
+    this.setState({showAllCategories: true});
+  }
 
   componentWillMount() {
     this._getCategories();
@@ -44,12 +48,11 @@ class Categories extends React.Component {
       );
     }
     else {
-      categoryList = <Posts category={this.state.singleCategoryToShow.id} site={this.props.site} />;
+      categoryList = <Posts category={this.state.singleCategoryToShow.id} site={this.props.site} clickCategory={this._showAllCategories.bind(this)} />;
     }
     return (
       <div className="category-list">
         {categoryList} 
-        <div>{this.state.errorMsg}</div>
       </div>
     );
   }

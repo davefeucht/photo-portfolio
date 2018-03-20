@@ -19,12 +19,19 @@
   grid-template-rows: auto;
 }
 
+.posts {
+  grid-column-start: span 3;
+}
+
 .post-list {
   grid-row: 1;
-  grid-column: 1 / span 3;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: auto;
+}
+
+.post {
+  height: 20%; 
 }
 
 .site-footer {

@@ -7,8 +7,8 @@ class Post extends React.Component {
     super(props);
 
     this.state = {
-      thumbnail: "",
-      fullImage: "",
+      thumbnailUrl: "",
+      fullImageUrl: "",
       showFullImage: false,
       inList: true,
       errorMsg: ""
@@ -18,10 +18,14 @@ class Post extends React.Component {
   _getPostImage() {
     axios.get("http://" + this.props.site + "/wp-json/wp/v2/media/" + this.props.image + "/")
       .then(res => {
-        const thumbnail = res.data.media_details.sizes.medium.source_url;
-        const fullImage = res.data.media_details.sizes.full.source_url;
-        this.setState({ thumbnail });
-        this.setState({ fullImage });
+        let thumbnailImage = new Image();
+        let fullImage = new Image();
+        const thumbnailUrl = res.data.media_details.sizes.thumbnail.source_url;
+        const fullImageUrl = res.data.media_details.sizes.full.source_url;
+        this.setState({ thumbnailUrl });
+        this.setState({ fullImageUrl });
+        thumbnailImage.src = thumbnailUrl;
+        fullImage.src = fullImageUrl;
       }, error => {
         const errorMsg = "Did not work: " + (error.response ? error.response : error);
         this.setState({ errorMsg });
@@ -46,19 +50,19 @@ class Post extends React.Component {
     if(this.props.context == "thumbnail") {
       title = <div className="post-title-multiple"><a href="#" onClick={this._toggleDisplay.bind(this)}>{this.props.title}</a></div>;
       if(this.state.showFullImage) {
-        imgTag = <div className="post-image"><img src={this.state.fullImage} /></div>;
+        imgTag = <div className="post-image"><img src={this.state.fullImageUrl} /></div>;
       }
       else {
-        imgTag = <div className="post-image"><img src={this.state.thumbnail} /></div>;
+        imgTag = <div className="post-image"><img src={this.state.thumbnailUrl} /></div>;
       }
     }
     else if(this.props.context == "category-image") {
       title = "";
-      imgTag = <div className="post-image"><img src={this.state.thumbnail} /></div>;
+      imgTag = <div className="post-image"><img src={this.state.thumbnailUrl} /></div>;
     }
     else {
       title = <div className="post-title-single"><a href="#" onClick={this._toggleDisplay.bind(this)}>{this.props.title}</a></div>;
-      imgTag = <div className="post-image"><img src={this.state.fullImage} /></div>;
+      imgTag = <div className="post-image"><img src={this.state.fullImageUrl} /></div>;
     }
 
     return(

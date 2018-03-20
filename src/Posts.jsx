@@ -52,6 +52,10 @@ class Posts extends React.Component {
     this.setState({ singlePostToShow }); 
   }
 
+  _showAllCategories() {
+    this.props.clickCategory();
+  }
+
   componentWillMount() {
     this._getPosts();
     this._getPostsCategory();
@@ -59,6 +63,8 @@ class Posts extends React.Component {
 
   render() {
     let postList = [];
+    let categoryTitle = <div className="category-title">{this.state.categoryData.name}</div>;
+    let categorySubtitle = <div onClick={this._showAllCategories.bind(this)} className="category-subtitle">Back to Categories</div>;
     if(this.state.showAllPosts) {
       postList = this.state.posts.map(post =>
       { return ( <Post key={post.id.toString()} category={this.props.category} categoryName={this.state.categoryData.name} title={post.title.rendered} id={post.id} image={post.featured_media} context="thumbnail" site={this.props.site} clickImage={this._showSinglePost.bind(this)} /> ); }
@@ -73,9 +79,14 @@ class Posts extends React.Component {
     }
     
     return (
-      <div className="post-list"> 
-        {postList} 
-        <div>{this.state.errorMsg}</div>
+      <div className="posts"> 
+        <div>
+          {categoryTitle}
+          {categorySubtitle}
+        </div>
+        <div className="post-list">
+          {postList} 
+        </div>
       </div>
     );
   }
@@ -83,7 +94,8 @@ class Posts extends React.Component {
 
 Posts.propTypes = {
   category: PropTypes.number,
-  site: PropTypes.string
+  site: PropTypes.string,
+  clickCategory: PropTypes.func
 };
 
 export default Posts;
