@@ -1,3 +1,8 @@
+/*******************
+* Top level PhotoPortfolio component. Sets up the base site URL and 
+* loads the list of categories.
+*******************/
+
 import React from "react";
 import TitleBar from "./TitleBar.jsx";
 import Categories from "./Categories.jsx";

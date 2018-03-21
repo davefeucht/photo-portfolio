@@ -1,3 +1,13 @@
+/*****************
+* Category component displays the posts for a particular category.
+* Props:
+*  id: PropTypes.number,
+*  name: PropTypes.string,
+*  site: PropTypes.string,
+*  showAllPosts: PropTypes.bool,
+*  clickCategory: PropTypes.func
+*****************/
+
 import React from "react";
 import axios from "axios";
 import Posts from "./Posts.jsx";

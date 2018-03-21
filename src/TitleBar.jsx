@@ -1,3 +1,7 @@
+/*****************
+* TitleBar component implements the title bar of the application
+*****************/
+
 import React from "react";
 
 
