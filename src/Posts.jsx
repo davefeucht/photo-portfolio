@@ -24,6 +24,7 @@ class Posts extends React.Component {
     };
   }
 
+  //Function to get all posts for a given category
   _getPosts() {
     axios.get("http://" + this.props.site + "/wp-json/wp/v2/posts?categories=" + this.props.category)
       .then(res => {
@@ -35,6 +36,7 @@ class Posts extends React.Component {
       });
   }
 
+  //Function to get data about the category in which these posts are found
   _getPostsCategory() {
     axios.get("http://" + this.props.site + "/wp-json/wp/v2/categories/" + this.props.category)
       .then(res => {
@@ -46,6 +48,7 @@ class Posts extends React.Component {
       });
   }
   
+  //Function to show a single post when clicked
   _showSinglePost(postId) {
     const showAllPosts = false;
     const singlePostToShow = postId;
@@ -53,6 +56,7 @@ class Posts extends React.Component {
     this.setState({ singlePostToShow });
   }
 
+  //Function to show all posts in the category
   _showAllPosts(postId) {
     const showAllPosts = true;
     const singlePostToShow = postId;
@@ -60,10 +64,12 @@ class Posts extends React.Component {
     this.setState({ singlePostToShow }); 
   }
 
+  //Function to show all the categories - onClick of 'Back To Categories' text
   _showAllCategories() {
     this.props.clickCategory();
   }
 
+  //When the component is about to mount, get the posts for the category and get the category info
   componentWillMount() {
     this._getPosts();
     this._getPostsCategory();
@@ -73,11 +79,15 @@ class Posts extends React.Component {
     let postList = [];
     let categoryTitle = <div className="category-title">{this.state.categoryData.name}</div>;
     let categorySubtitle = <div onClick={this._showAllCategories.bind(this)} className="category-subtitle">Back to Categories</div>;
+    
+    //If we are showing all posts, then map the list of posts to a list of Post components
     if(this.state.showAllPosts) {
       postList = this.state.posts.map(post =>
       { return ( <Post key={post.id.toString()} category={this.props.category} categoryName={this.state.categoryData.name} title={post.title.rendered} id={post.id} image={post.featured_media} context="thumbnail" site={this.props.site} clickImage={this._showSinglePost.bind(this)} /> ); }
       );
     }
+    
+    //Otherwise, display the single post which matches the 'singlePostToShow'
     else {
       this.state.posts.forEach(post => {
         if(post.id == this.state.singlePostToShow) {

@@ -61,11 +61,13 @@ class Categories extends React.Component {
       //Then we take the category list and map it into a list of Category components to be displayed
       categoryList = this.state.categories.map(category =>
       { 
+        //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component
         return ( <Category key={category.id.toString()} id={category.id} name={category.name} site={this.props.site} clickCategory={this._showSpecificCategory.bind(this)} showAllPosts={false} /> ); }
       );
     }
     //Otherwise, we display a Posts component which displays the list of posts for a particular category
     else {
+      //Display the Posts component and pass along the showAllCategories function as a prop, so that we can call it from the Posts component
       categoryList = <Posts category={this.state.singleCategoryToShow.id} site={this.props.site} clickCategory={this._showAllCategories.bind(this)} />;
     }
     return (
@@ -76,6 +78,7 @@ class Categories extends React.Component {
   }
 }
 
+//Set up propTypes for type checking of arguments
 Categories.propTypes = {
   site: PropTypes.string
 };
