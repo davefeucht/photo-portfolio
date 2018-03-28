@@ -1,6 +1,6 @@
 /*******************
 * Top level PhotoPortfolio component. Sets up the base site URL and 
-* loads the list of categories.
+* loads the title bar and list of categories.
 *******************/
 
 import React from "react";
@@ -9,13 +9,11 @@ import Categories from "./Categories.jsx";
 
 class PhotoPortfolio extends React.Component {
   constructor(props) {
+    //Call React.Component constructor with the props passed to the PhotoPortfolio component
     super(props);
 
+    //Set up the base site url
     this.site_url = "dev.throughapinhole.com";
-
-    this.state = {
-      singleCategoryToShow: 0
-    };
 
   }
 
