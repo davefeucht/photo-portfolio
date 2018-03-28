@@ -19,19 +19,19 @@ class Category extends React.Component {
     super(props);
 
     this.state = {
-      categoryPosts: {},
+      categoryPost: {},
       errorMsg: ""
     };
   }
 
-  //Function to get all posts for a category
-  _getCategoryPosts(categoryId) {
+  //Function to get the 'main' post for the category
+  _getCategoryPost(categoryId) {
     let getCategoryPostURI = "http://" + this.props.site + "/wp-json/wp/v2/posts?categories=" + categoryId;
     axios.get(getCategoryPostURI)
       .then(res => {
         if(res.data[0] !== undefined) {
-          const categoryPosts = res.data[0];
-          this.setState({categoryPosts});
+          const categoryPost = res.data[0];
+          this.setState({categoryPost});
         }
       }, error => {
         const errorMsg = "Could not get posts for this category: " + (error.response ? error.response : error);
@@ -44,9 +44,9 @@ class Category extends React.Component {
     this.props.clickCategory(this.props.id, this.props.name);
   }
 
-  //When the component is about to mount, get the list of posts for the category
+  //When the component is about to mount, get the main post for the category
   componentWillMount() {
-    this._getCategoryPosts(this.props.id);
+    this._getCategoryPost(this.props.id);
   }
 
   render() {
@@ -59,15 +59,14 @@ class Category extends React.Component {
       categoryTitle = <div className="category-title">{this.props.name}</div>;
       categorySubtitle = <div className="category-subtitle">Back to Categories</div>; 
       postBody = <Posts site={this.props.site} category={this.props.id} />;
-      
     }
     
     //Otherwise display the single post that was clicked
     else {
       //If posts could be retrieved, display the single post which was clicked
-      if(!(Object.keys(this.state.categoryPosts).length === 0 && this.state.categoryPosts.constructor === Object)) {
+      if(!(Object.keys(this.state.categoryPost).length === 0 && this.state.categoryPost.constructor === Object)) {
 
-        postBody = <Post key={this.state.categoryPosts.id.toString()} category={this.props.id} categoryName={this.props.name} title={this.state.categoryPosts.title.rendered} id={this.state.categoryPosts.id} image={this.state.categoryPosts.featured_media} context="category-image" site={this.props.site} />;
+        postBody = <Post key={this.state.categoryPost.id.toString()} category={this.props.id} categoryName={this.props.name} title={this.state.categoryPost.title.rendered} id={this.state.categoryPost.id} image={this.state.categoryPost.featured_media} context="category-image" site={this.props.site} />;
       }
     }
     return ( 
