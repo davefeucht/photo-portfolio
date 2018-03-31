@@ -1,3 +1,5 @@
+//Set up styling for basic building-block pieces of the UI
+
 @mixin header-footer($area) {
   color: #FFFFFF;
   grid-area: $area;
