@@ -3,7 +3,7 @@
 /****************************
 *  React Photo Portfolio
 *  Author: Dave Feucht
-*  Version: 1.0
+*  Version: 0.1
 *  Description: Front-end web application for a WordPress backend photography portfolio site. 
 ****************************/
 
