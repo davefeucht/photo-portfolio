@@ -33,3 +33,7 @@ also eventually be put out into the community for others to use.
 -sass/_building_blocks.scss: styles related to basic building blocks of the application
 
 -sass/_typography.scss: styles related to typography
+
+Project can be built using the npm (package.json) and webpack (webpack.config.js) config files 
+included in the repository. See package.json for external requirements such as babel and
+node-sass.
