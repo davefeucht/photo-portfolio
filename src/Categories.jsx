@@ -58,6 +58,9 @@ class Categories extends React.Component {
     let categoryList = [];
     //If we are showing all the categories
     if(this.state.showAllCategories) {
+      //Set the number of columns to show
+      document.documentElement.style.setProperty("--number-of-columns", this.state.categories.length);      
+
       //Then we take the category list and map it into a list of Category components to be displayed
       categoryList = this.state.categories.map(category =>
       { 

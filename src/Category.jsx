@@ -51,13 +51,10 @@ class Category extends React.Component {
 
   render() {
     let postBody = "";
-    let categoryTitle = <div className="category-title-clickable">{this.props.name}</div>;
-    let categorySubtitle = "";
 
     //If we are displaying all posts, display the Posts component
     if(this.props.showAllPosts) {
-      categoryTitle = <div className="category-title">{this.props.name}</div>;
-      categorySubtitle = <div className="category-subtitle">Back to Categories</div>; 
+      //categoryTitle = <div className="category-title">{this.props.name}</div>;
       postBody = <Posts site={this.props.site} category={this.props.id} />;
     }
     
@@ -71,10 +68,6 @@ class Category extends React.Component {
     }
     return ( 
       <div className="category" onClick={this._openCategory.bind(this)}>
-        <div>
-          {categoryTitle}
-          {categorySubtitle}
-        </div>
         {postBody}
       </div>
     );
