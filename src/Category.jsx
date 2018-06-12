@@ -19,6 +19,7 @@ class Category extends React.Component {
     super(props);
 
     this.state = {
+      categoryClasses: ["category"],
       categoryPost: {},
       errorMsg: ""
     };
@@ -44,6 +45,20 @@ class Category extends React.Component {
     this.props.clickCategory(this.props.id, this.props.name);
   }
 
+  _highlightCategory() {
+    if(!this.state.categoryClasses.includes("hovered")) {
+      const categoryClasses = this.state.categoryClasses.concat(["hovered"]);
+      this.setState({categoryClasses});
+    }
+  }
+
+  _unHighlightCategory() {
+    if(this.state.categoryClasses.includes("hovered")) {
+      const categoryClasses = this.state.categoryClasses.filter(element => element !== "hovered");
+      this.setState({categoryClasses});
+    }
+  }
+
   //When the component is about to mount, get the main post for the category
   componentWillMount() {
     this._getCategoryPost(this.props.id);
@@ -63,11 +78,11 @@ class Category extends React.Component {
       //If posts could be retrieved, display the single post which was clicked
       if(!(Object.keys(this.state.categoryPost).length === 0 && this.state.categoryPost.constructor === Object)) {
 
-        postBody = <Post key={this.state.categoryPost.id.toString()} category={this.props.id} categoryName={this.props.name} title={this.state.categoryPost.title.rendered} id={this.state.categoryPost.id} image={this.state.categoryPost.featured_media} context="category-image" site={this.props.site} />;
+        postBody = <Post key={this.state.categoryPost.id.toString()} category={this.props.id} categoryName={this.props.name} title={this.state.categoryPost.title.rendered} id={this.state.categoryPost.id} image={this.state.categoryPost.featured_media} context="category-image" site={this.props.site} clickImage={this._openCategory.bind(this)} />;
       }
     }
     return ( 
-      <div className="category" onClick={this._openCategory.bind(this)}>
+      <div className={this.state.categoryClasses.join(" ")} onClick={this._openCategory.bind(this)} onMouseOver={this._highlightCategory.bind(this)} onMouseOut={this._unHighlightCategory.bind(this)}>
         {postBody}
       </div>
     );

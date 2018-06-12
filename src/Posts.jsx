@@ -9,6 +9,7 @@
 import React from "react";
 import axios from "axios";
 import Post from "./Post.jsx";
+import PostThumbnail from "./PostThumbnail.jsx";
 import PropTypes from "prop-types";
 
 class Posts extends React.Component {
@@ -79,11 +80,11 @@ class Posts extends React.Component {
     let postList = [];
     let categoryTitle = <div className="category-title">{this.state.categoryData.name}</div>;
     let categorySubtitle = <div onClick={this._showAllCategories.bind(this)} className="category-subtitle">Back to Categories</div>;
-    
-    //If we are showing all posts, then map the list of posts to a list of Post components
+
+    //If we are showing all posts, then map the list of posts to a list of PostThumbnail components
     if(this.state.showAllPosts) {
       postList = this.state.posts.map(post =>
-      { return ( <Post key={post.id.toString()} category={this.props.category} categoryName={this.state.categoryData.name} title={post.title.rendered} id={post.id} image={post.featured_media} context="thumbnail" site={this.props.site} clickImage={this._showSinglePost.bind(this)} /> ); }
+      { return ( <PostThumbnail key={post.id.toString()} id={post.id} image={post.featured_media} site={this.props.site} clickImage={this._showSinglePost.bind(this)}/> ); }
       );
     }
     

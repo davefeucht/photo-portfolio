@@ -13,7 +13,7 @@ class PhotoPortfolio extends React.Component {
     super(props);
 
     //Set up the base site url
-    this.site_url = "dev.throughapinhole.com";
+    this.site_url = "throughapinhole.com";
 
   }
 

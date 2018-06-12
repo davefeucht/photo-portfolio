@@ -3,6 +3,11 @@
   --number-of-columns: 2;
 }
 
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
 @mixin header-footer($area) {
   color: #FFFFFF;
   grid-area: $area;
@@ -32,22 +37,38 @@
 
 .category {
   height: 100%;
+  transition: all 0.07s linear;
+}
+
+.category.hovered {
+  grid-auto-column: 1.2fr;
 }
 
 .posts {
-  grid-column-start: span 3;
+  grid-column: 1 / calc(var(--number-of-columns) + 1);
 }
 
 .post-list {
   height: 100%;
   grid-row: 1;
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: auto;
+  grid-gap: 5px;
 }
 
 .post {
   height: 100%; 
+  cursor: pointer;
+}
+
+.post-thumbnail {
+  height: 100%; 
+  cursor: pointer;
+}
+
+.post.single-post {
+  grid-column: 1 / var(--number-of-columns);
 }
 
 .site-footer {
