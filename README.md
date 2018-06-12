@@ -20,11 +20,13 @@ also eventually be put out into the community for others to use.
 
 -src/TitleBar.jsx: sets up the titlebar of the application
 
--src/Catebories.jsx: displays a list of categories with a thumbnail for each category
+-src/Categories.jsx: displays a list of categories with a thumbnail for each category
 
 -src/Category.jsx: displays photos in a category with a thumbnail for each photo
 
 -src/Posts.jsx: displays a list of posts/photos from a particular cateogory
+
+-src/PostThumbnail.jsx: displays a post as a thumbnail image
 
 -src/Post.jsx: displays a single post/photo
 
@@ -35,5 +37,4 @@ also eventually be put out into the community for others to use.
 -sass/_typography.scss: styles related to typography
 
 Project can be built using the npm (package.json) and webpack (webpack.config.js) config files 
-included in the repository. See package.json for external requirements such as babel and
-node-sass.
+included in the repository. See package.json for external requirements such as babel and node-sass.
