@@ -6,10 +6,10 @@
 import React from "react";
 import TitleBar from "./TitleBar.jsx";
 import Categories from "./Categories.jsx";
+import Footer from "./Footer.jsx";
 
-class PhotoPortfolio extends React.Component {
+export default class PhotoPortfolio extends React.Component {
   constructor(props) {
-    //Call React.Component constructor with the props passed to the PhotoPortfolio component
     super(props);
 
     //Set up the base site url
@@ -25,12 +25,8 @@ class PhotoPortfolio extends React.Component {
         <div className="content">
           <Categories site={this.site_url} />
         </div>
-        <div className="site-footer">
-          Copyright @2018 Dave Feucht   
-        </div>
+        <Footer />
       </div>
     );
   }
 }
-
-export default PhotoPortfolio;

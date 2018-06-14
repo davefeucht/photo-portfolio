@@ -12,9 +12,15 @@ import Post from "./Post.jsx";
 import PostThumbnail from "./PostThumbnail.jsx";
 import PropTypes from "prop-types";
 
-class Posts extends React.Component {
+export default class Posts extends React.Component {
   constructor(props) {
     super(props);
+
+    this.propTypes = {
+      category: PropTypes.number,
+      site: PropTypes.string,
+      clickCategory: PropTypes.func
+    };
 
     this.state = {
       posts: [],
@@ -110,11 +116,3 @@ class Posts extends React.Component {
     );
   }
 }
-
-Posts.propTypes = {
-  category: PropTypes.number,
-  site: PropTypes.string,
-  clickCategory: PropTypes.func
-};
-
-export default Posts;

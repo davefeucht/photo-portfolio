@@ -2,9 +2,18 @@ import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-class Post extends React.Component {
+export default class Post extends React.Component {
   constructor(props) {
     super(props);
+
+    this.propTypes = {
+      id: PropTypes.number,
+      title: PropTypes.string,
+      image: PropTypes.number,
+      context: PropTypes.string,
+      site: PropTypes.string,
+      clickImage: PropTypes.func
+    };
 
     this.state = {
       thumbnailUrl: "",
@@ -55,14 +64,3 @@ class Post extends React.Component {
   }  
 
 }
-
-Post.propTypes = {
-  id: PropTypes.number,
-  title: PropTypes.string,
-  image: PropTypes.number,
-  context: PropTypes.string,
-  site: PropTypes.string,
-  clickImage: PropTypes.func
-};
-
-export default Post;

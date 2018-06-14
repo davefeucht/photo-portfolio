@@ -2,9 +2,17 @@ import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-class PostThumbnail extends React.Component {
+export default class PostThumbnail extends React.Component {
   constructor(props) {
     super(props);
+
+    this.propTypes = {
+      id: PropTypes.number,
+      image: PropTypes.number,
+      site: PropTypes.string,
+      clickImage: PropTypes.func
+    };
+
     this.state = {
       thumbnailUrl: ""
     };
@@ -41,12 +49,3 @@ class PostThumbnail extends React.Component {
     );
   }
 }
-
-PostThumbnail.propTypes = {
-  id: PropTypes.number,
-  image: PropTypes.number,
-  site: PropTypes.string,
-  clickImage: PropTypes.func
-};
-
-export default PostThumbnail;

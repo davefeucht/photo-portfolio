@@ -5,11 +5,7 @@
 import React from "react";
 
 
-class TitleBar extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
+export default class TitleBar extends React.Component {
 
   render () {
     return (
@@ -19,5 +15,3 @@ class TitleBar extends React.Component {
     );
   }
 }
-
-export default TitleBar;

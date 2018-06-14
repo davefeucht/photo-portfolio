@@ -14,7 +14,7 @@ import Posts from "./Posts.jsx";
 import Post from "./Post.jsx";
 import PropTypes from "prop-types";
 
-class Category extends React.Component {
+export default class Category extends React.Component {
   constructor(props) {
     super(props);
 
@@ -34,7 +34,8 @@ class Category extends React.Component {
           const categoryPost = res.data[0];
           this.setState({categoryPost});
         }
-      }, error => {
+      })
+      .catch(error => {
         const errorMsg = "Could not get posts for this category: " + (error.response ? error.response : error);
         this.setState({ errorMsg });
       });
@@ -90,7 +91,6 @@ class Category extends React.Component {
 
 }
 
-//Set up propTypes for type checking
 Category.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
@@ -98,5 +98,3 @@ Category.propTypes = {
   showAllPosts: PropTypes.bool,
   clickCategory: PropTypes.func
 };
-
-export default Category;

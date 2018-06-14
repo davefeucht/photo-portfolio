@@ -11,9 +11,13 @@ import Category from "./Category.jsx";
 import Posts from "./Posts.jsx";
 import PropTypes from "prop-types";
 
-class Categories extends React.Component {
+export default class Categories extends React.Component {
   constructor(props) {
     super(props);
+
+    this.propTypes = {
+      site: PropTypes.string
+    };
 
     //Set up state variables for list of categories, whether to show all categories, and if not, which
     //single category to show.
@@ -28,11 +32,12 @@ class Categories extends React.Component {
 
   //Method to get all existing categories
   _getCategories() {
-    axios.get("http://" + this.props.site + "/wp-json/wp/v2/categories?exclude=1")
+    axios.get("http://" + this.props.site + "/wp-json/wp/v2/categories?exclude=175")
       .then(res => {
         const categories = res.data;
         this.setState({ categories });
-      }, error => {
+      })
+      .catch(error => {
         const errorMsg = "Did not work: " + (error.response ? error.response : error);
         this.setState({ errorMsg });
       });
@@ -40,7 +45,7 @@ class Categories extends React.Component {
 
   //Method to display a single category when one is clicked on.
   _showSpecificCategory(categoryId, categoryName) {
-    this.setState({showAllCategories: !this.state.showAllCategories}); 
+    this.setState({showAllCategories: false}); 
     this.setState({singleCategoryToShow: {id: categoryId, name: categoryName}}); 
   }
   
@@ -58,7 +63,7 @@ class Categories extends React.Component {
     let categoryList = [];
     //If we are showing all the categories
     if(this.state.showAllCategories) {
-      //Set the number of columns to show
+      //Set the CSS variable number of columns to show
       document.documentElement.style.setProperty("--number-of-columns", this.state.categories.length);      
 
       //Then we take the category list and map it into a list of Category components to be displayed
@@ -80,10 +85,3 @@ class Categories extends React.Component {
     );
   }
 }
-
-//Set up propTypes for type checking of arguments
-Categories.propTypes = {
-  site: PropTypes.string
-};
-
-export default Categories;
