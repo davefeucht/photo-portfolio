@@ -3,29 +3,26 @@
   "version": "0.1.0",
   "description": "Photography portfolio frontend",
   "main": "index.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "ajv": "^5.5.2",
     "axios": "^0.17.1",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "css-loader": "^0.28.7",
-    "cypress": "^1.2.0",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
-  },
-  "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^4.14.0",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-react": "^7.7.0",
-    "node-sass": "^4.7.2",
-    "prop-types": "^15.6.0",
-    "sass-loader": "^6.0.6",
-    "webpack": "^3.10.0"
+    "css-loader": "^0.28.11",
+    "eslint-plugin-babel": "^5.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "node-sass": "^4.9.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "sass-loader": "^6.0.7",
+    "webpack": "^3.12.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
