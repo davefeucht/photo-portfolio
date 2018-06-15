@@ -13,23 +13,19 @@ import PostThumbnail from "./PostThumbnail.jsx";
 import PropTypes from "prop-types";
 
 export default class Posts extends React.Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    category: PropTypes.number,
+    site: PropTypes.string,
+    clickCategory: PropTypes.func
+  };
 
-    this.propTypes = {
-      category: PropTypes.number,
-      site: PropTypes.string,
-      clickCategory: PropTypes.func
-    };
-
-    this.state = {
-      posts: [],
-      showAllPosts: true,
-      categoryData: {},
-      singlePostToShow: 0,
-      errorMsg: ""
-    };
-  }
+  state = {
+    posts: [],
+    showAllPosts: true,
+    categoryData: {},
+    singlePostToShow: 0,
+    errorMsg: ""
+  };
 
   //Function to get all posts for a given category
   _getPosts() {
@@ -84,8 +80,6 @@ export default class Posts extends React.Component {
 
   render() {
     let postList = [];
-    let categoryTitle = <div className="category-title">{this.state.categoryData.name}</div>;
-    let categorySubtitle = <div onClick={this._showAllCategories.bind(this)} className="category-subtitle">Back to Categories</div>;
 
     //If we are showing all posts, then map the list of posts to a list of PostThumbnail components
     if(this.state.showAllPosts) {
@@ -105,10 +99,6 @@ export default class Posts extends React.Component {
     
     return (
       <div className="posts"> 
-        <div>
-          {categoryTitle}
-          {categorySubtitle}
-        </div>
         <div className="post-list">
           {postList} 
         </div>

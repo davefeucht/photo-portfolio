@@ -3,26 +3,22 @@ import axios from "axios";
 import PropTypes from "prop-types";
 
 export default class Post extends React.Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    id: PropTypes.number,
+    title: PropTypes.string,
+    image: PropTypes.number,
+    context: PropTypes.string,
+    site: PropTypes.string,
+    clickImage: PropTypes.func
+  };
 
-    this.propTypes = {
-      id: PropTypes.number,
-      title: PropTypes.string,
-      image: PropTypes.number,
-      context: PropTypes.string,
-      site: PropTypes.string,
-      clickImage: PropTypes.func
-    };
-
-    this.state = {
-      thumbnailUrl: "",
-      fullImageUrl: "",
-      showFullImage: false,
-      inList: true,
-      errorMsg: ""
-    };
-  }
+  state = {
+    thumbnailUrl: "",
+    fullImageUrl: "",
+    showFullImage: false,
+    inList: true,
+    errorMsg: ""
+  };
 
   _getPostImage() {
     axios.get("http://" + this.props.site + "/wp-json/wp/v2/media/" + this.props.image + "/")
@@ -60,7 +56,5 @@ export default class Post extends React.Component {
       <div className={classList} style={divStyle} onClick={this._showAllPosts.bind(this)}>
       </div>
     );
-
   }  
-
 }

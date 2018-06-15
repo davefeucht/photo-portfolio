@@ -8,27 +8,26 @@
 import React from "react";
 import axios from "axios";
 import Category from "./Category.jsx";
-import Posts from "./Posts.jsx";
+import CategoryThumbnail from "./CategoryThumbnail.jsx";
 import PropTypes from "prop-types";
 
 export default class Categories extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.propTypes = {
-      site: PropTypes.string
-    };
+  static propTypes = {
+    site: PropTypes.string
+  };
 
-    //Set up state variables for list of categories, whether to show all categories, and if not, which
-    //single category to show.
-    //NOTE: Take list of categories out of state and store in a member variable.
-    this.state = {
-      categories: [],
-      showAllCategories: true,
-      singleCategoryToShow: {id: 0, name: ""},
-      errorMsg: ""
-    };
-  }
+  /* Add Default Props */
+
+  //Set up state variables for list of categories, whether to show all categories, and if not, which
+  //single category to show.
+  //NOTE: Take list of categories out of state and store in a member variable.
+  state = {
+    categories: [],
+    showAllCategories: true,
+    singleCategoryToShow: {id: 0, name: ""},
+    errorMsg: ""
+  };
 
   //Method to get all existing categories
   _getCategories() {
@@ -70,13 +69,13 @@ export default class Categories extends React.Component {
       categoryList = this.state.categories.map(category =>
       { 
         //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component
-        return ( <Category key={category.id.toString()} id={category.id} name={category.name} site={this.props.site} clickCategory={this._showSpecificCategory.bind(this)} showAllPosts={false} /> ); }
+        return ( <CategoryThumbnail key={category.id.toString()} id={category.id} name={category.name} site={this.props.site} clickCategory={this._showSpecificCategory.bind(this)} /> ); }
       );
     }
     //Otherwise, we display a Posts component which displays the list of posts for a particular category
     else {
       //Display the Posts component and pass along the showAllCategories function as a prop, so that we can call it from the Posts component
-      categoryList = <Posts category={this.state.singleCategoryToShow.id} site={this.props.site} clickCategory={this._showAllCategories.bind(this)} />;
+      categoryList = <Category key={this.state.singleCategoryToShow.id.toString()} id={this.state.singleCategoryToShow.id} name={this.state.singleCategoryToShow.name} site={this.props.site} clickCategory={this._showAllCategories.bind(this)} />; 
     }
     return (
       <div className="category-list">

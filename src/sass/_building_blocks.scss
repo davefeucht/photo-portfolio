@@ -35,16 +35,21 @@ body {
   height: 100%;
 }
 
-.category {
+.category-thumbnail {
   height: 100%;
   transition: all 0.07s linear;
 }
 
-.category.hovered {
+.category-thumbnail.hovered {
   grid-auto-column: 1.2fr;
 }
 
+.category {
+  grid-column: 1 / calc(var(--number-of-columns) + 1);
+}
+
 .posts {
+  height: 100%;
   grid-column: 1 / calc(var(--number-of-columns) + 1);
 }
 

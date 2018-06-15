@@ -9,13 +9,8 @@ import Categories from "./Categories.jsx";
 import Footer from "./Footer.jsx";
 
 export default class PhotoPortfolio extends React.Component {
-  constructor(props) {
-    super(props);
 
-    //Set up the base site url
-    this.site_url = "throughapinhole.com";
-
-  }
+  static site_url = "throughapinhole.com";
 
   render () {
 
@@ -23,7 +18,7 @@ export default class PhotoPortfolio extends React.Component {
       <div className="app">
         <TitleBar />
         <div className="content">
-          <Categories site={this.site_url} />
+          <Categories site={PhotoPortfolio.site_url} />
         </div>
         <Footer />
       </div>
