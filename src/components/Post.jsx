@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import FullPost from "./styledComponents/FullPost.jsx";
 
 export default class Post extends React.Component {
   static propTypes = {
@@ -50,11 +51,11 @@ export default class Post extends React.Component {
   render() {
     
     let divStyle = {backgroundImage: "url(" + this.state.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "auto 100%"};
-    let classList = "post single-post";
+    let classList = "post";
 
     return(
-      <div className={classList} style={divStyle} onClick={this._showAllPosts.bind(this)}>
-      </div>
+      <FullPost className={classList} style={divStyle} onClick={this._showAllPosts.bind(this)}>
+      </FullPost>
     );
   }  
 }

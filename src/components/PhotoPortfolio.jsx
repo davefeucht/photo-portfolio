@@ -4,6 +4,7 @@
 *******************/
 
 import React from "react";
+import App from "./styledComponents/App.jsx";
 import TitleBar from "./TitleBar.jsx";
 import Categories from "./Categories.jsx";
 import Footer from "./Footer.jsx";
@@ -15,13 +16,13 @@ export default class PhotoPortfolio extends React.Component {
   render () {
 
     return (
-      <div className="app">
+      <App>
         <TitleBar />
         <div className="content">
           <Categories site={PhotoPortfolio.site_url} />
         </div>
         <Footer />
-      </div>
+      </App>
     );
   }
 }
