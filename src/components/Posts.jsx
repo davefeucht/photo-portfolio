@@ -10,6 +10,7 @@ import React from "react";
 import axios from "axios";
 import Post from "./Post.jsx";
 import PostThumbnail from "./PostThumbnail.jsx";
+import PostList from "./styledComponents/PostList.jsx";
 import PropTypes from "prop-types";
 
 export default class Posts extends React.Component {
@@ -98,11 +99,9 @@ export default class Posts extends React.Component {
     }
     
     return (
-      <div className="posts"> 
-        <div className="post-list">
-          {postList} 
-        </div>
-      </div>
+      <PostList>
+        {postList} 
+      </PostList>
     );
   }
 }

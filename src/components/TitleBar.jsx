@@ -3,14 +3,16 @@
 *****************/
 
 import React from "react";
+import StyledTitleBar from "./styledComponents/StyledTitleBar.jsx";
+import SiteTitle from "./styledComponents/SiteTitle.jsx";
 
 export default class TitleBar extends React.Component {
 
   render () {
     return (
-      <div className="site-header">
-        <h1 className="site-title">Through A Pinhole</h1>
-      </div>
+      <StyledTitleBar>
+        <SiteTitle>Through A Pinhole</SiteTitle>
+      </StyledTitleBar>
     );
   }
 }

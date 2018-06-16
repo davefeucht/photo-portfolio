@@ -10,7 +10,7 @@
 import React from "react";
 import axios from "axios";
 import Posts from "./Posts.jsx";
-import Post from "./Post.jsx";
+import CategoryHeader from "./CategoryHeader.jsx";
 import PropTypes from "prop-types";
 
 export default class Category extends React.Component {
@@ -44,25 +44,15 @@ export default class Category extends React.Component {
       });
   }
 
-  //Function to open a specific category when it is clicked
-  _closeCategory() {
-    this.props.clickCategory(this.props.id, this.props.name);
-  }
-
   //When the component is about to mount, get the main post for the category
   componentWillMount() {
     this._getCategoryPost(this.props.id);
   }
 
   render() {
-    let categoryTitle = <div className="category-title">{this.props.name}</div>;
-    let categorySubtitle = <div onClick={this._closeCategory.bind(this)} className="category-subtitle">Back to Categories</div>;
     return ( 
       <div className={this.state.categoryClasses.join(" ")} >
-        <div>
-          {categoryTitle}
-          {categorySubtitle}
-        </div>
+        <CategoryHeader id={this.props.id} name={this.props.name} clickCategory={this.props.clickCategory.bind(this)} />
         <Posts site={this.props.site} category={this.props.id} />
       </div>
     );

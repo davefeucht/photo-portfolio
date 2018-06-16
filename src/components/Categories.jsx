@@ -8,6 +8,7 @@
 import React from "react";
 import axios from "axios";
 import Category from "./Category.jsx";
+import CategoryList from "./styledComponents/CategoryList.jsx";
 import CategoryThumbnail from "./CategoryThumbnail.jsx";
 import PropTypes from "prop-types";
 
@@ -78,9 +79,9 @@ export default class Categories extends React.Component {
       categoryList = <Category key={this.state.singleCategoryToShow.id.toString()} id={this.state.singleCategoryToShow.id} name={this.state.singleCategoryToShow.name} site={this.props.site} clickCategory={this._showAllCategories.bind(this)} />; 
     }
     return (
-      <div className="category-list">
+      <CategoryList>
         {categoryList} 
-      </div>
+      </CategoryList>
     );
   }
 }

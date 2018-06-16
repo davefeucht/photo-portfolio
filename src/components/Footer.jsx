@@ -3,15 +3,15 @@
 *****************/
 
 import React from "react";
-
+import StyledFooter from "./styledComponents/StyledFooter.jsx";
 
 export default class Footer extends React.Component {
 
   render () {
     return (
-      <div className="site-footer">
+      <StyledFooter>
         Copyright @2018 Dave Feucht  
-      </div>
+      </StyledFooter>
     );
   }
 }

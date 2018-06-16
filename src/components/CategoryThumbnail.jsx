@@ -55,7 +55,6 @@ export default class CategoryThumbnail extends React.Component {
   }
 
   _openCategory() {
-    console.log(this.props.id, this.props.name);
     this.props.clickCategory(this.props.id, this.props.name)
   }
 
