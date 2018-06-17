@@ -1,8 +1,8 @@
 {
-  "name": "photoportfolio",
-  "version": "0.1.0",
-  "description": "Photography portfolio frontend",
-  "main": "index.js",
+  "name": "photo-portfolio",
+  "version": "0.2.0",
+  "description": "React Photo Portfolio",
+  "main": "index.html",
   "dependencies": {},
   "devDependencies": {
     "ajv": "^6.5.1",
@@ -36,6 +36,6 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/davefeucht/photo-portfolio.git"
   }
 }

@@ -3,7 +3,7 @@
 /****************************
 *  React Photo Portfolio
 *  Author: Dave Feucht
-*  Version: 0.1
+*  Version: 0.2
 *  Description: Front-end web application for a WordPress backend photography portfolio site. 
 ****************************/
 
@@ -22,7 +22,11 @@ also eventually be put out into the community for others to use.
 
 -src/Categories.jsx: displays a list of categories with a thumbnail for each category
 
--src/Category.jsx: displays photos in a category with a thumbnail for each photo
+-src/CategoryThumbnail.jsx: displays a thumbnail image from the featured post of a category
+
+-src/Category.jsx: displays a category 
+
+-src/CategoryHeader.jsx: displays the category title and subtitle
 
 -src/Posts.jsx: displays a list of posts/photos from a particular cateogory
 
@@ -30,11 +34,11 @@ also eventually be put out into the community for others to use.
 
 -src/Post.jsx: displays a single post/photo
 
+-src/Footer.jsx: displays the application footer
+
 -sass/main.scss: main sass file which includes the partials
 
--sass/_building_blocks.scss: styles related to basic building blocks of the application
-
--sass/_typography.scss: styles related to typography
+-sass/_building_blocks.scss: global styling elements for things outside of components, such as the <body> tag
 
 Project can be built using the npm (package.json) and webpack (webpack.config.js) config files 
 included in the repository. See package.json for external requirements such as babel and node-sass.
