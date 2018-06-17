@@ -10,6 +10,7 @@
 import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import StyledCategoryThumbnail from "./styledComponents/StyledCategoryThumbnail.jsx";
 
 export default class CategoryThumbnail extends React.Component {
 
@@ -27,9 +28,10 @@ export default class CategoryThumbnail extends React.Component {
     errorMsg: ""
   };
 
-  //Function to get the 'main' post for the category
+  //Function to get the 'main' post image URL for the category
   _getCategoryImage(categoryId) {
-    this._getCategoryPost(categoryId)
+    const getCategoryPostURI = `http://${this.props.site}/wp-json/wp/v2/posts?categories=${categoryId}`;
+    axios.get(getCategoryPostURI) 
       .then((response) => {
         if(response.data[0] !== undefined) {
           const getCategoryImage = `http://${this.props.site}/wp-json/wp/v2/media/${response.data[0].featured_media}/`; 
@@ -44,18 +46,14 @@ export default class CategoryThumbnail extends React.Component {
             })
         }
       })
-      .catch(
-
-      )
-  }
-
-  _getCategoryPost(categoryId) {
-    const getCategoryPostURI = "http://" + this.props.site + "/wp-json/wp/v2/posts?categories=" + categoryId;
-    return axios.get(getCategoryPostURI);
+      .catch(error => {
+        const errorMsg = "Could not get featured post for this category: " + (error.response ? error.response : error);
+        this.setState({ errorMsg });
+      })
   }
 
   _openCategory() {
-    this.props.clickCategory(this.props.id, this.props.name)
+    this.props.clickCategory(this.props.id, this.props.name);
   }
 
   _highlightCategory() {
@@ -81,8 +79,8 @@ export default class CategoryThumbnail extends React.Component {
     const divStyle = {backgroundImage: "url(" + this.state.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "auto 100%"};
 
     return ( 
-      <div style={divStyle} className={this.state.categoryClasses.join(" ")} onClick={this._openCategory.bind(this)} onMouseOver={this._highlightCategory.bind(this)} onMouseOut={this._unHighlightCategory.bind(this)}>
-      </div>
+      <StyledCategoryThumbnail style={divStyle} className={this.state.categoryClasses.join(" ")} onClick={this._openCategory.bind(this)} onMouseOver={this._highlightCategory.bind(this)} onMouseOut={this._unHighlightCategory.bind(this)}>
+      </StyledCategoryThumbnail>
     );
   }
 }

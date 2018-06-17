@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 const CategoryList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(var(--number-of-columns), 1fr);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
   height: 100%;
 `;
 

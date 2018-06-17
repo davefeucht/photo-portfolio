@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const FullPost = styled('div')`
-  grid-column: 1 / var(--number-of-columns);
+  cursor: pointer;
+  grid-column: 1 / 6;
+  grid-row: 1/3;
 `;
 
 export default FullPost;

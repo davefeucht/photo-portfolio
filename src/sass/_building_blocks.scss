@@ -1,37 +1,5 @@
 //Set up styling for basic building-block pieces of the UI
-:root {
-  --number-of-columns: 2;
-}
-
 body {
   margin: 0;
   overflow: hidden;
-}
-
-.category-thumbnail {
-  height: 100%;
-  transition: all 0.07s linear;
-}
-
-.category-thumbnail.hovered {
-  grid-auto-column: 1.2fr;
-}
-
-.category {
-  grid-column: 1 / calc(var(--number-of-columns) + 1);
-}
-
-.posts {
-  height: 100%;
-  grid-column: 1 / calc(var(--number-of-columns) + 1);
-}
-
-.post {
-  height: 100%; 
-  cursor: pointer;
-}
-
-.post-thumbnail {
-  height: 100%; 
-  cursor: pointer;
 }

@@ -11,6 +11,7 @@ import React from "react";
 import axios from "axios";
 import Posts from "./Posts.jsx";
 import CategoryHeader from "./CategoryHeader.jsx";
+import StyledCategory from "./styledComponents/StyledCategory.jsx";
 import PropTypes from "prop-types";
 
 export default class Category extends React.Component {
@@ -23,7 +24,6 @@ export default class Category extends React.Component {
   };
 
   state = {
-    categoryClasses: ["category"],
     categoryPost: {},
     errorMsg: ""
   };
@@ -51,10 +51,10 @@ export default class Category extends React.Component {
 
   render() {
     return ( 
-      <div className={this.state.categoryClasses.join(" ")} >
+      <StyledCategory>
         <CategoryHeader id={this.props.id} name={this.props.name} clickCategory={this.props.clickCategory.bind(this)} />
         <Posts site={this.props.site} category={this.props.id} />
-      </div>
+      </StyledCategory>
     );
   }
 }
