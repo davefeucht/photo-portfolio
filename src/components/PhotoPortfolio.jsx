@@ -4,6 +4,7 @@
 *******************/
 
 import React from "react";
+import axios from "axios";
 import App from "./styledComponents/App.jsx";
 import TitleBar from "./TitleBar.jsx";
 import MainContent from "./styledComponents/MainContent.jsx";
@@ -16,8 +17,23 @@ export default class PhotoPortfolio extends React.Component {
   static site_url = "throughapinhole.com";
 
   state = {
+    siteName: "",
     showAllCategories: true,
     singleCategoryToShow: {id: 0, name: ""},
+  }
+
+  _getSiteInformation() {
+    const getSiteInformationURI = `http://${PhotoPortfolio.site_url}/wp-json/`;
+
+    axios.get(getSiteInformationURI)
+      .then(response => {
+        console.dir(response);
+        const siteName = response.data.name;
+        this.setState({siteName});
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
   }
 
   //Method to display a single category when one is clicked on.
@@ -31,6 +47,10 @@ export default class PhotoPortfolio extends React.Component {
     this.setState({showAllCategories: true});
   }
 
+  componentWillMount() {
+    this._getSiteInformation();
+  }
+
   render () {
     let contentToDisplay = <Categories site={PhotoPortfolio.site_url} showSingleCategory={this._showSpecificCategory.bind(this)} />
 
@@ -41,7 +61,7 @@ export default class PhotoPortfolio extends React.Component {
     return (
 
       <App>
-        <TitleBar />
+        <TitleBar siteName={this.state.siteName} />
         <MainContent>
           {contentToDisplay}
         </MainContent>
