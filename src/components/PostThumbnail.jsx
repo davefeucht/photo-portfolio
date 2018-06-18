@@ -20,7 +20,8 @@ export default class PostThumbnail extends React.Component {
   };
 
   _getPostThumbnail() {
-    axios.get("http://" + this.props.site + "/wp-json/wp/v2/media/" + this.props.image + "/")
+    const getPostThumbnailURI = `https://${this.props.site}/wp-json/wp/v2/media/${this.props.image}`;
+    axios.get(getPostThumbnailURI)
       .then(res => {
         let thumbnailImage = new Image();
         const thumbnailUrl = res.data.media_details.sizes.medium.source_url;

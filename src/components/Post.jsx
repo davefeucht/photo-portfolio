@@ -26,7 +26,8 @@ export default class Post extends React.Component {
   };
 
   _getPostImage() {
-    axios.get("http://" + this.props.site + "/wp-json/wp/v2/media/" + this.props.image + "/")
+    const getPostImageURI = `https://${this.props.site}/wp-json/wp/v2/media/${this.props.image}`; 
+    axios.get(getPostImageURI)
       .then(res => {
         let thumbnailImage = new Image();
         let fullImage = new Image();

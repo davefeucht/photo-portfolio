@@ -26,7 +26,7 @@ export default class CategoryThumbnail extends React.Component {
   //Function to get a random post image URL for the category
   _getCategoryImage(categoryId) {
     //Define the request string to get the posts for this category
-    const getCategoryPostURI = `http://${this.props.site}/wp-json/wp/v2/posts?categories=${categoryId}`;
+    const getCategoryPostURI = `https://${this.props.site}/wp-json/wp/v2/posts?categories=${categoryId}`;
     //Make the request
     axios.get(getCategoryPostURI) 
       .then((response) => {
@@ -37,7 +37,7 @@ export default class CategoryThumbnail extends React.Component {
         //If this post does exist in the returned results
         if(response.data[randomPost] !== undefined) {
           //Define the request string to get the featured media for the random post
-          const getCategoryImage = `http://${this.props.site}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
+          const getCategoryImage = `https://${this.props.site}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
           //Make the request
           axios.get(getCategoryImage)
             .then(response => {

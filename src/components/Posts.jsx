@@ -26,7 +26,8 @@ export default class Posts extends React.Component {
 
   //Function to get all posts for a given category
   _getPosts() {
-    axios.get("http://" + this.props.site + "/wp-json/wp/v2/posts?categories=" + this.props.category)
+    const getPostsURI = `https://${this.props.site}/wp-json/wp/v2/posts?categories=${this.props.category}`;
+    axios.get(getPostsURI)
       .then(res => {
         const posts = res.data;
         this.setState({ posts });

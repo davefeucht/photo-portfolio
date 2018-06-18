@@ -25,7 +25,7 @@ export default class Category extends React.Component {
 
   //Function to get the 'main' post for the category
   _getCategoryPost(categoryId) {
-    let getCategoryPostURI = "http://" + this.props.site + "/wp-json/wp/v2/posts?categories=" + categoryId;
+    let getCategoryPostURI = `https://${this.props.site}/wp-json/wp/v2/posts?categories=${categoryId}`;
     axios.get(getCategoryPostURI)
       .then(res => {
         if(res.data[0] !== undefined) {

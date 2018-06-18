@@ -23,7 +23,7 @@ export default class PhotoPortfolio extends React.Component {
   }
 
   _getSiteInformation() {
-    const getSiteInformationURI = `http://${PhotoPortfolio.site_url}/wp-json/`;
+    const getSiteInformationURI = `https://${PhotoPortfolio.site_url}/wp-json/`;
 
     axios.get(getSiteInformationURI)
       .then(response => {
