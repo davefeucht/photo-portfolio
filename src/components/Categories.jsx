@@ -30,7 +30,8 @@ export default class Categories extends React.Component {
 
   //Method to get all existing categories
   _getCategories() {
-    axios.get("http://" + this.props.site + "/wp-json/wp/v2/categories?exclude=175")
+    const getCategoriesRequest = `http://${this.props.site}/wp-json/wp/v2/categories?exclude=175`;
+    axios.get(getCategoriesRequest)
       .then(res => {
         const categories = res.data;
         this.setState({ categories });

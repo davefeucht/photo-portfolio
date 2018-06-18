@@ -28,16 +28,34 @@ export default class CategoryThumbnail extends React.Component {
     errorMsg: ""
   };
 
-  //Function to get the 'main' post image URL for the category
+  //Function to get a random post image URL for the category
   _getCategoryImage(categoryId) {
+    //Define the request string to get the posts for this category
     const getCategoryPostURI = `http://${this.props.site}/wp-json/wp/v2/posts?categories=${categoryId}`;
+    //Make the request
     axios.get(getCategoryPostURI) 
       .then((response) => {
-        if(response.data[0] !== undefined) {
-          const getCategoryImage = `http://${this.props.site}/wp-json/wp/v2/media/${response.data[0].featured_media}/`; 
+        //Determine a random post from the ones returned
+        const numberOfPosts = response.data.length;
+        const randomPost = Math.floor((Math.random() * (numberOfPosts + 1)));
+
+        //If this post does exist in the returned results
+        if(response.data[randomPost] !== undefined) {
+          //Define the request string to get the featured media for the random post
+          const getCategoryImage = `http://${this.props.site}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
+          //Make the request
           axios.get(getCategoryImage)
             .then(response => {
-              const fullImageUrl = response.data.media_details.sizes.large.source_url;
+              let fullImageUrl = "";
+
+              //If the large size image exists, use it
+              if(response.data.media_details.sizes.large) {
+                fullImageUrl = response.data.media_details.sizes.large.source_url;
+              }
+              //Otherwise use the medium size version
+              else {
+                fullImageUrl = response.data.media_details.sizes.medium.source_url;
+              }
               this.setState({fullImageUrl});
             })
             .catch(error => {
@@ -52,6 +70,7 @@ export default class CategoryThumbnail extends React.Component {
       })
   }
 
+  //Function to open the category using the function passed in from the parent component
   _openCategory() {
     this.props.clickCategory(this.props.id, this.props.name);
   }
@@ -70,7 +89,7 @@ export default class CategoryThumbnail extends React.Component {
     }
   }
 
-  //When the component is about to mount, get the main post for the category
+  //When the component is about to mount, get the random post for the category
   componentWillMount() {
     this._getCategoryImage(this.props.id);
   }

@@ -27,7 +27,6 @@ export default class PhotoPortfolio extends React.Component {
 
     axios.get(getSiteInformationURI)
       .then(response => {
-        console.dir(response);
         const siteName = response.data.name;
         this.setState({siteName});
       })
