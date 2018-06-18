@@ -5,7 +5,7 @@ const PostList = styled.div`
   grid-area: category-content;
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 50% 50%; 
+  grid-template-rows: 1fr 1fr; 
   grid-gap: 5px;
 `;
 
