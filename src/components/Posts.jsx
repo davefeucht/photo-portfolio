@@ -1,9 +1,5 @@
 /*****************
 * Posts component displays a list of Posts
-* Props:
-*  category: PropTypes.number,
-*  site: PropTypes.string,
-*  clickCategory: PropTypes.func
 *****************/
 
 import React from "react";

@@ -1,8 +1,6 @@
 /*****************
 * Categories component displays a list of existing photo categories 
 * and makes them clickable to display just a single category.
-* Props:
-*  site: PropTypes.string
 *****************/
 
 import React from "react";

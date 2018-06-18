@@ -1,3 +1,7 @@
+/****************
+* PostThumbnail component displays the thumbnail image for a Post
+****************/
+
 import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";

@@ -1,10 +1,5 @@
 /*****************
 * Category component displays the posts for a particular category.
-* Props:
-*  id: PropTypes.number,
-*  name: PropTypes.string,
-*  site: PropTypes.string,
-*  clickCategory: PropTypes.func
 *****************/
 
 import React from "react";

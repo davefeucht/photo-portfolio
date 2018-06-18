@@ -1,5 +1,5 @@
 /*****************
-* CategoryTitle component implements the title bar of a Category
+* CategoryHeader component implements the title bar of a Category
 *****************/
 
 import React from "react";
