@@ -19,18 +19,22 @@ export default class PostThumbnail extends React.Component {
     thumbnailUrl: ""
   };
 
+  _isMounted = false;
+
   _getPostThumbnail() {
     const getPostThumbnailURI = `https://${this.props.site}/wp-json/wp/v2/media/${this.props.image}`;
-    axios.get(getPostThumbnailURI)
-      .then(res => {
-        let thumbnailImage = new Image();
-        const thumbnailUrl = res.data.media_details.sizes.medium.source_url;
-        this.setState({ thumbnailUrl });
-        thumbnailImage.src = thumbnailUrl;
-      }, error => {
-        const errorMsg = "Did not work: " + (error.response ? error.response : error);
-        this.setState({ errorMsg });
-      });
+    if(this._isMounted) {
+      axios.get(getPostThumbnailURI)
+        .then(res => {
+          let thumbnailImage = new Image();
+          const thumbnailUrl = res.data.media_details.sizes.medium.source_url;
+          this.setState({ thumbnailUrl });
+          thumbnailImage.src = thumbnailUrl;
+        }, error => {
+          const errorMsg = "Did not work: " + (error.response ? error.response : error);
+          this.setState({ errorMsg });
+        });
+    }
   } 
 
   _showFullPost(event) {
@@ -39,7 +43,12 @@ export default class PostThumbnail extends React.Component {
   }
 
   componentWillMount() {
+    this._isMounted = true;
     this._getPostThumbnail();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {

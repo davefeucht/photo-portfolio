@@ -26,18 +26,22 @@ export default class Categories extends React.Component {
     errorMsg: ""
   };
 
+  _isMounted = false;
+
   //Method to get all existing categories
   _getCategories() {
     const getCategoriesRequest = `https://${this.props.site}/wp-json/wp/v2/categories?exclude=175`;
-    axios.get(getCategoriesRequest)
-      .then(res => {
-        const categories = res.data;
-        this.setState({ categories });
-      })
-      .catch(error => {
-        const errorMsg = "Did not work: " + (error.response ? error.response : error);
-        this.setState({ errorMsg });
-      });
+    if(this._isMounted) {
+      axios.get(getCategoriesRequest)
+        .then(res => {
+          const categories = res.data;
+          this.setState({ categories });
+        })
+        .catch(error => {
+          const errorMsg = "Did not work: " + (error.response ? error.response : error);
+          this.setState({ errorMsg });
+        });
+    }
   }
 
   _showSpecificCategory(categoryId, categoryName) {
@@ -46,7 +50,12 @@ export default class Categories extends React.Component {
 
   //Just before the component is added to the DOM, get the list of categories.
   componentWillMount() {
+    this._isMounted = true;
     this._getCategories();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
   
   render() {
