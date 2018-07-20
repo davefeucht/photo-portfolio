@@ -4,22 +4,18 @@
 
 import React from "react";
 import {render} from "react-dom";
+import {Provider} from "react-redux";
 import {createStore} from "redux";
 import PhotoPortfolio from "./PhotoPortfolio.jsx";
-import photoPortfolio from "../reducers/reducers.js";
+import photoPortfolioState from "../reducers/reducers.js";
 import "../sass/main.scss";
-import {toggleShowAllPosts, VisibilityFilters} from "../actions/actions.js";
 
-const store = createStore(photoPortfolio);
-
-console.log(store.getState());
-
-const unsubscribe = store.subscribe(() => {
-  console.log(store.getState());
-});
-
-store.dispatch(toggleShowAllPosts(VisibilityFilters.SHOW_SINGLE));
-store.dispatch(toggleShowAllPosts(VisibilityFilters.SHOW_ALL));
+const store = createStore(photoPortfolioState); 
 
 //Render the PhotoPortfolio component in the 'photo-portfolio' container on the page.
-render(<PhotoPortfolio />, document.getElementById("photo-portfolio"));
+render(
+  <Provider store={store}>
+    <PhotoPortfolio />
+  </Provider>,
+  document.getElementById("photo-portfolio")
+);

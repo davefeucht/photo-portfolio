@@ -8,14 +8,16 @@ import Posts from "./Posts.jsx";
 import CategoryHeader from "./CategoryHeader.jsx";
 import StyledCategory from "./styledComponents/StyledCategory.jsx";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {toggleShowAllCategories} from "../actions/actions.js";
 
-export default class Category extends React.Component {
+class Category extends React.Component {
 
   static propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
-    site: PropTypes.string,
-    clickCategory: PropTypes.func
+    site: PropTypes.string
   };
 
   state = {
@@ -45,11 +47,30 @@ export default class Category extends React.Component {
   }
 
   render() {
+
     return ( 
       <StyledCategory>
-        <CategoryHeader id={this.props.id} name={this.props.name} clickCategory={this.props.clickCategory.bind(this)} />
+        <CategoryHeader id={this.props.id} name={this.props.name} clickCategory={this.props.toggleShowAllCategories.bind(this)} />
         <Posts site={this.props.site} category={this.props.id} />
       </StyledCategory>
     );
   }
 }
+
+const mapStateToProps = state => {
+  console.dir(state);
+  return {
+    siteUrl: state.setupApplication.siteUrl, 
+    siteName: state.setupApplication.siteName, 
+    showAllCategories: state.visibilityFilter.showAllCategories, 
+    singleCategoryToShow: state.visibilityFilter.singleCategoryToShow
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleShowAllCategories: bindActionCreators(toggleShowAllCategories, dispatch),
+  }; 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Category);

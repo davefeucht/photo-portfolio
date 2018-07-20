@@ -11,24 +11,19 @@ import MainContent from "./styledComponents/MainContent.jsx";
 import Categories from "./Categories.jsx";
 import Category from "./Category.jsx";
 import Footer from "./Footer.jsx";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {toggleShowAllCategories, setSiteName, setSingleCategoryToShow} from "../actions/actions.js";
 
-export default class PhotoPortfolio extends React.Component {
-
-  static site_url = "throughapinhole.com";
-
-  state = {
-    siteName: "",
-    showAllCategories: true,
-    singleCategoryToShow: {id: 0, name: ""},
-  }
+class PhotoPortfolio extends React.Component {
 
   _getSiteInformation() {
-    const getSiteInformationURI = `https://${PhotoPortfolio.site_url}/wp-json/`;
+    const getSiteInformationURI = `https://${this.props.siteUrl}/wp-json/`;
 
     axios.get(getSiteInformationURI)
       .then(response => {
         const siteName = response.data.name;
-        this.setState({siteName});
+        this.props.setSiteName(siteName);
       })
       .catch(error => {
         console.log(error.message);
@@ -37,13 +32,13 @@ export default class PhotoPortfolio extends React.Component {
 
   //Method to display a single category when one is clicked on.
   _showSpecificCategory(categoryId, categoryName) {
-    this.setState({showAllCategories: false}); 
-    this.setState({singleCategoryToShow: {id: categoryId, name: categoryName}}); 
+    this.props.toggleShowAllCategories(false);
+    this.props.setSingleCategoryToShow({categoryId, categoryName})
   }
   
   //Method to display all existing categories.
   _showAllCategories() {
-    this.setState({showAllCategories: true});
+    this.props.toggleShowAllCategories(true);
   }
 
   componentWillMount() {
@@ -51,16 +46,21 @@ export default class PhotoPortfolio extends React.Component {
   }
 
   render () {
-    let contentToDisplay = <Categories site={PhotoPortfolio.site_url} showSingleCategory={this._showSpecificCategory.bind(this)} />
+    let contentToDisplay = <Categories site={this.props.siteUrl} showSingleCategory={this._showSpecificCategory.bind(this)} />
 
-    if(!this.state.showAllCategories) {
-      contentToDisplay = <Category key={this.state.singleCategoryToShow.id.toString()} id={this.state.singleCategoryToShow.id} name={this.state.singleCategoryToShow.name} site={PhotoPortfolio.site_url} clickCategory={this._showAllCategories.bind(this)} />; 
+    if(!this.props.showAllCategories) {
+      contentToDisplay = <Category 
+        key={this.props.singleCategoryToShow.categoryId.toString()} 
+        id={this.props.singleCategoryToShow.categoryId} 
+        name={this.props.singleCategoryToShow.categoryName} 
+        site={this.props.siteUrl} 
+      />; 
     }
 
     return (
 
       <App>
-        <TitleBar siteName={this.state.siteName} />
+        <TitleBar siteName={this.props.siteName} />
         <MainContent>
           {contentToDisplay}
         </MainContent>
@@ -69,3 +69,23 @@ export default class PhotoPortfolio extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  console.dir(state);
+  return {
+    siteUrl: state.setupApplication.siteUrl, 
+    siteName: state.setupApplication.siteName, 
+    showAllCategories: state.visibilityFilter.showAllCategories, 
+    singleCategoryToShow: state.visibilityFilter.singleCategoryToShow
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleShowAllCategories: bindActionCreators(toggleShowAllCategories, dispatch),
+    setSiteName: bindActionCreators(setSiteName, dispatch),
+    setSingleCategoryToShow: bindActionCreators(setSingleCategoryToShow, dispatch)
+  }; 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PhotoPortfolio);
