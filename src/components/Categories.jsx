@@ -8,40 +8,28 @@ import axios from "axios";
 import CategoryList from "./styledComponents/CategoryList.jsx";
 import CategoryThumbnail from "./CategoryThumbnail.jsx";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {setCategoryList} from "../actions/actions.js";
 
-export default class Categories extends React.Component {
+class Categories extends React.Component {
 
   static propTypes = {
-    site: PropTypes.string,
-    showSingleCategory: PropTypes.func
+    siteUrl: PropTypes.string,
+    categoryList: PropTypes.array
   };
-
-  /* Add Default Props */
-
-  //Set up state variables for list of categories, whether to show all categories, and if not, which
-  //single category to show.
-  //NOTE: Take list of categories out of state and store in a member variable.
-  state = {
-    categories: [],
-    errorMsg: ""
-  };
-
-  _isMounted = false;
 
   //Method to get all existing categories
   _getCategories() {
-    const getCategoriesRequest = `https://${this.props.site}/wp-json/wp/v2/categories?exclude=175`;
-    if(this._isMounted) {
-      axios.get(getCategoriesRequest)
-        .then(res => {
-          const categories = res.data;
-          this.setState({ categories });
-        })
-        .catch(error => {
-          const errorMsg = "Did not work: " + (error.response ? error.response : error);
-          this.setState({ errorMsg });
-        });
-    }
+    const getCategoriesRequest = `https://${this.props.siteUrl}/wp-json/wp/v2/categories?exclude=175`;
+    axios.get(getCategoriesRequest)
+      .then(res => {
+        const categories = res.data;
+        this.props.setCategoryList(categories);
+      })
+      .catch(error => {
+        const errorMsg = "Did not work: " + (error.response ? error.response : error);
+      });
   }
 
   _showSpecificCategory(categoryId, categoryName) {
@@ -61,10 +49,10 @@ export default class Categories extends React.Component {
   render() {
     let categoryList = [];
 
-    categoryList = this.state.categories.map(category =>
+    categoryList = this.props.categoryList.map(category =>
     { 
       //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component
-      return ( <CategoryThumbnail key={category.id.toString()} id={category.id} name={category.name} site={this.props.site} clickCategory={this._showSpecificCategory.bind(this)} /> ); }
+      return ( <CategoryThumbnail key={category.id.toString()} id={category.id} name={category.name} clickCategory={this._showSpecificCategory.bind(this)} /> ); }
     );
 
     return (
@@ -74,3 +62,18 @@ export default class Categories extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    siteUrl: state.applicationState.siteUrl, 
+    categoryList: state.applicationState.categoryList
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setCategoryList: bindActionCreators(setCategoryList, dispatch)
+  }; 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

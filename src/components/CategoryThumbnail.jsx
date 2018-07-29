@@ -6,13 +6,16 @@ import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import StyledCategoryThumbnail from "./styledComponents/StyledCategoryThumbnail.jsx";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {setCategoryList} from "../actions/actions.js";
 
-export default class CategoryThumbnail extends React.Component {
+class CategoryThumbnail extends React.Component {
 
   static propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
-    site: PropTypes.string,
+    siteUrl: PropTypes.string,
     clickCategory: PropTypes.func
   };
 
@@ -26,7 +29,7 @@ export default class CategoryThumbnail extends React.Component {
   //Function to get a random post image URL for the category
   _getCategoryImage(categoryId) {
     //Define the request string to get the posts for this category
-    const getCategoryPostURI = `https://${this.props.site}/wp-json/wp/v2/posts?categories=${categoryId}`;
+    const getCategoryPostURI = `https://${this.props.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
     //Make the request
     axios.get(getCategoryPostURI) 
       .then((response) => {
@@ -37,7 +40,7 @@ export default class CategoryThumbnail extends React.Component {
         //If this post does exist in the returned results
         if(response.data[randomPost] !== undefined) {
           //Define the request string to get the featured media for the random post
-          const getCategoryImage = `https://${this.props.site}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
+          const getCategoryImage = `https://${this.props.siteUrl}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
           //Make the request
           axios.get(getCategoryImage)
             .then(response => {
@@ -98,3 +101,17 @@ export default class CategoryThumbnail extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    siteUrl: state.applicationState.siteUrl
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setCategoryList: bindActionCreators(setCategoryList, dispatch)
+  }; 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryThumbnail);

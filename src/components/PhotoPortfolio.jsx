@@ -13,7 +13,7 @@ import Category from "./Category.jsx";
 import Footer from "./Footer.jsx";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {toggleShowAllCategories, setSiteName, setSingleCategoryToShow} from "../actions/actions.js";
+import {setShowAllCategories, setSiteName, setSingleCategoryToShow} from "../actions/actions.js";
 
 class PhotoPortfolio extends React.Component {
 
@@ -32,13 +32,13 @@ class PhotoPortfolio extends React.Component {
 
   //Method to display a single category when one is clicked on.
   _showSpecificCategory(categoryId, categoryName) {
-    this.props.toggleShowAllCategories(false);
+    this.props.setShowAllCategories(false);
     this.props.setSingleCategoryToShow({categoryId, categoryName})
   }
   
   //Method to display all existing categories.
   _showAllCategories() {
-    this.props.toggleShowAllCategories(true);
+    this.props.setShowAllCategories(true);
   }
 
   componentWillMount() {
@@ -46,7 +46,7 @@ class PhotoPortfolio extends React.Component {
   }
 
   render () {
-    let contentToDisplay = <Categories site={this.props.siteUrl} showSingleCategory={this._showSpecificCategory.bind(this)} />
+    let contentToDisplay = <Categories showSingleCategory={this._showSpecificCategory.bind(this)} />
 
     if(!this.props.showAllCategories) {
       contentToDisplay = <Category 
@@ -71,10 +71,9 @@ class PhotoPortfolio extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.dir(state);
   return {
-    siteUrl: state.setupApplication.siteUrl, 
-    siteName: state.setupApplication.siteName, 
+    siteUrl: state.applicationState.siteUrl, 
+    siteName: state.applicationState.siteName, 
     showAllCategories: state.visibilityFilter.showAllCategories, 
     singleCategoryToShow: state.visibilityFilter.singleCategoryToShow
   };
@@ -82,7 +81,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleShowAllCategories: bindActionCreators(toggleShowAllCategories, dispatch),
+    setShowAllCategories: bindActionCreators(setShowAllCategories, dispatch),
     setSiteName: bindActionCreators(setSiteName, dispatch),
     setSingleCategoryToShow: bindActionCreators(setSingleCategoryToShow, dispatch)
   }; 

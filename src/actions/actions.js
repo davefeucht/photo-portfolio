@@ -1,7 +1,8 @@
-export const TOGGLE_SHOWALLPOSTS = "TOGGLE_SHOWALLPOSTS";
-export const TOGGLE_SHOWALLCATEGORIES = "TOGGLE_SHOWALLCATEGORIES";
+export const SET_SHOWALLPOSTS = "TOGGLE_SHOWALLPOSTS";
+export const SET_SHOWALLCATEGORIES = "TOGGLE_SHOWALLCATEGORIES";
 export const SET_SITE_NAME = "SET_SITE_NAME";
 export const SET_CATEGORY_TO_SHOW = "SET_CATEGORY_TO_SHOW";
+export const SET_CATEGORY_LIST = "SET_CATEGORY_LIST";
  
 export const VisibilityFilters = {
   SHOW_ALL: true,
@@ -15,16 +16,16 @@ export const setSiteName = siteName => {
   }
 }
 
-export const toggleShowAllPosts = showStatus => {
+export const setShowAllPosts = showStatus => {
   return {
-    type: TOGGLE_SHOWALLPOSTS,
+    type: SET_SHOWALLPOSTS,
     showAll: showStatus
   }
 }
 
-export const toggleShowAllCategories = showStatus => {
+export const setShowAllCategories = showStatus => {
   return {
-    type: TOGGLE_SHOWALLCATEGORIES,
+    type: SET_SHOWALLCATEGORIES,
     showAll: showStatus
   }
 }
@@ -33,5 +34,12 @@ export const setSingleCategoryToShow = category => {
   return {
     type: SET_CATEGORY_TO_SHOW,
     category: category
+  }
+}
+
+export const setCategoryList = categoryList => {
+  return {
+    type: SET_CATEGORY_LIST,
+    categoryList: categoryList
   }
 }

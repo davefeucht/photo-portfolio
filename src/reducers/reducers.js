@@ -1,21 +1,26 @@
 import { combineReducers } from "redux";
-import { VisibilityFilters, TOGGLE_SHOWALLPOSTS, TOGGLE_SHOWALLCATEGORIES, SET_SITE_NAME, SET_CATEGORY_TO_SHOW } from "../actions/actions.js";
+import { VisibilityFilters, SET_SHOWALLPOSTS, SET_SHOWALLCATEGORIES, SET_SITE_NAME, SET_CATEGORY_TO_SHOW, SET_CATEGORY_LIST } from "../actions/actions.js";
 
 const initialState = {
   siteName: "",
   siteUrl: "throughapinhole.com",
+  categoryList: [],
   showAllCategories: VisibilityFilters.SHOW_ALL,
   showAllPosts: VisibilityFilters.SHOW_ALL,
   singleCategoryToShow: {id: 1, name: ""},
   onClickCategory: {}
 };
 
-function setupApplication (state = initialState, action) {
+function applicationState (state = initialState, action) {
   switch(action.type) {
     case SET_SITE_NAME:
       return Object.assign({}, state, {
         siteName: action.siteName
       });
+    case SET_CATEGORY_LIST:
+      return Object.assign({}, state, {
+        categoryList: action.categoryList
+      })
     default:
       return state;
   }
@@ -23,11 +28,11 @@ function setupApplication (state = initialState, action) {
 
 function visibilityFilter (state = initialState, action) {
   switch(action.type) {
-    case TOGGLE_SHOWALLPOSTS:
+    case SET_SHOWALLPOSTS:
       return Object.assign({}, state, {
         showAllPosts: action.showAll
       });
-    case TOGGLE_SHOWALLCATEGORIES:
+    case SET_SHOWALLCATEGORIES:
       return Object.assign({}, state, {
         showAllCategories: action.showAll
       });
@@ -41,7 +46,7 @@ function visibilityFilter (state = initialState, action) {
 }
 
 const photoPortfolioState = combineReducers({
-  setupApplication,
+  applicationState,
   visibilityFilter 
 });
 
