@@ -9,6 +9,10 @@ module.exports = {
   entry: {
     app: path.join(__dirname, "src/components", "Index.jsx")
   },
+  devtool: "inline-source-map",
+  devServer: {
+    contentBase: "./build"
+  },
   output: {
     path: path.resolve(__dirname, "build/js"),
     filename: "index.js"
