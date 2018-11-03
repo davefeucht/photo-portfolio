@@ -3,7 +3,6 @@
 *****************/
 
 import React from "react";
-import axios from "axios";
 import Posts from "./Posts.jsx";
 import CategoryHeader from "./CategoryHeader.jsx";
 import StyledCategory from "./styledComponents/StyledCategory.jsx";
@@ -15,9 +14,9 @@ import {setShowAllCategories} from "../actions/actions.js";
 class Category extends React.Component {
 
   static propTypes = {
-    id: PropTypes.number,
-    name: PropTypes.string,
-    site: PropTypes.string
+    categoryId: PropTypes.number,
+    categoryName: PropTypes.string,
+    siteUrl: PropTypes.string
   };
 
   render() {
@@ -34,9 +33,8 @@ class Category extends React.Component {
 const mapStateToProps = state => {
   return {
     siteUrl: state.applicationState.siteUrl, 
-    siteName: state.applicationState.siteName, 
-    showAllCategories: state.visibilityFilter.showAllCategories, 
-    singleCategoryToShow: state.visibilityFilter.singleCategoryToShow
+    categoryId: state.visibilityFilter.singleCategoryToShow.id,
+    categoryName: state.visibilityFilter.singleCategoryToShow.name
   };
 }
 

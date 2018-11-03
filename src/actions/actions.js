@@ -43,3 +43,10 @@ export const setCategoryList = categoryList => {
     categoryList: categoryList
   }
 }
+
+export const setCategoryPosts = postList => {
+  return {
+    type: SET_CATEGORY_POSTS,
+    postList: postList
+  }
+}

@@ -8,20 +8,20 @@ import Post from "./Post.jsx";
 import PostThumbnail from "./PostThumbnail.jsx";
 import PostList from "./styledComponents/PostList.jsx";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {setShowAllPosts} from "../actions/actions.js";
 
-export default class Posts extends React.Component {
+class Posts extends React.Component {
   static propTypes = {
-    category: PropTypes.number,
-    site: PropTypes.string,
-    clickCategory: PropTypes.func
+    postCategory: PropTypes.number,
+    siteUrl: PropTypes.string
   };
 
   state = {
-    posts: [],
     showAllPosts: true,
     categoryData: {},
-    singlePostToShow: 0,
-    errorMsg: ""
+    singlePostToShow: 0
   };
 
   //Function to get all posts for a given category
@@ -30,10 +30,7 @@ export default class Posts extends React.Component {
     axios.get(getPostsURI)
       .then(res => {
         const posts = res.data;
-        this.setState({ posts });
-      }, error => {
-        const errorMsg = "Did not work: " + (error.response ? error.response : error);
-        this.setState({ errorMsg });
+        this.props.setCategoryPosts(posts);
       });
   }
 
@@ -102,3 +99,19 @@ export default class Posts extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    postCategory: state.applicationState.singleCategoryToShow, 
+    siteUrl: state.applicationState.siteUrl
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setCategoryPosts: bindActionCreators(setCategoryPosts, dispatch),
+    setShowAllPosts: bindActionCreators(setShowAllPosts, dispatch)
+  }; 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

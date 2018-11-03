@@ -8,6 +8,7 @@ const initialState = {
   showAllCategories: VisibilityFilters.SHOW_ALL,
   showAllPosts: VisibilityFilters.SHOW_ALL,
   singleCategoryToShow: {id: 1, name: ""},
+  currentCategoryPosts: [],
   onClickCategory: {}
 };
 
@@ -20,6 +21,10 @@ function applicationState (state = initialState, action) {
     case SET_CATEGORY_LIST:
       return Object.assign({}, state, {
         categoryList: action.categoryList
+      })
+    case SET_CATEGORY_POSTS:
+      return Object.assign({}, state, {
+        currentCategoryPosts: action.postList
       })
     default:
       return state;
