@@ -51,7 +51,7 @@ class PhotoPortfolio extends React.Component {
     if(!this.props.showAllCategories) {
       contentToDisplay = <Category 
         key={this.props.singleCategoryToShow.categoryId.toString()} 
-        id={this.props.singleCategoryToShow.categoryId} 
+        categoryId={this.props.singleCategoryToShow.categoryId} 
         name={this.props.singleCategoryToShow.categoryName} 
         site={this.props.siteUrl} 
       />; 

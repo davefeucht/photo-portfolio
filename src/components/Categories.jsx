@@ -48,7 +48,6 @@ class Categories extends React.Component {
   
   render() {
     let categoryList = [];
-
     categoryList = this.props.categoryList.map(category =>
     { 
       //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component

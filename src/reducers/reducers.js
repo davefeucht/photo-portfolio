@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { VisibilityFilters, SET_SHOWALLPOSTS, SET_SHOWALLCATEGORIES, SET_SITE_NAME, SET_CATEGORY_TO_SHOW, SET_CATEGORY_LIST } from "../actions/actions.js";
+import { VisibilityFilters, SET_SHOWALLPOSTS, SET_SHOWALLCATEGORIES, SET_SITE_NAME, SET_CATEGORY_TO_SHOW, SET_POST_TO_SHOW, SET_CATEGORY_LIST, SET_CATEGORY_POSTS, SET_CATEGORY_DATA } from "../actions/actions.js";
 
 const initialState = {
   siteName: "",
@@ -7,8 +7,10 @@ const initialState = {
   categoryList: [],
   showAllCategories: VisibilityFilters.SHOW_ALL,
   showAllPosts: VisibilityFilters.SHOW_ALL,
-  singleCategoryToShow: {id: 1, name: ""},
+  singleCategoryToShow: {categoryId: 1, name: ""},
+  singlePostToShow: {postId: 1, name: ""},
   currentCategoryPosts: [],
+  currentCategoryData: {},
   onClickCategory: {}
 };
 
@@ -25,6 +27,10 @@ function applicationState (state = initialState, action) {
     case SET_CATEGORY_POSTS:
       return Object.assign({}, state, {
         currentCategoryPosts: action.postList
+      })
+    case SET_CATEGORY_DATA:
+      return Object.assign({}, state, {
+        currentCategoryData: action.categoryData
       })
     default:
       return state;
@@ -44,6 +50,10 @@ function visibilityFilter (state = initialState, action) {
     case SET_CATEGORY_TO_SHOW:
       return Object.assign({}, state, {
         singleCategoryToShow: action.category
+      });
+    case SET_POST_TO_SHOW:
+      return Object.assign({}, state, {
+        singlePostToShow: action.post
       });
     default:
       return state;

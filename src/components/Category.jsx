@@ -23,8 +23,8 @@ class Category extends React.Component {
 
     return ( 
       <StyledCategory>
-        <CategoryHeader id={this.props.id} name={this.props.name} clickCategory={this.props.setShowAllCategories.bind(this)} />
-        <Posts site={this.props.site} category={this.props.id} />
+        <CategoryHeader categoryId={this.props.categoryId} categoryName={this.props.categoryName} clickCategory={this.props.setShowAllCategories.bind(this)} />
+        <Posts site={this.props.siteUrl} category={this.props.categoryId} />
       </StyledCategory>
     );
   }
@@ -33,8 +33,8 @@ class Category extends React.Component {
 const mapStateToProps = state => {
   return {
     siteUrl: state.applicationState.siteUrl, 
-    categoryId: state.visibilityFilter.singleCategoryToShow.id,
-    categoryName: state.visibilityFilter.singleCategoryToShow.name
+    categoryId: state.visibilityFilter.singleCategoryToShow.categoryId,
+    categoryName: state.visibilityFilter.singleCategoryToShow.categoryName
   };
 }
 

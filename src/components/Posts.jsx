@@ -10,23 +10,21 @@ import PostList from "./styledComponents/PostList.jsx";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {setShowAllPosts} from "../actions/actions.js";
+import {setCategoryPosts, setCategoryData, setShowAllPosts, setSinglePostToShow} from "../actions/actions.js";
 
 class Posts extends React.Component {
   static propTypes = {
     postCategory: PropTypes.number,
-    siteUrl: PropTypes.string
-  };
-
-  state = {
-    showAllPosts: true,
-    categoryData: {},
-    singlePostToShow: 0
+    siteUrl: PropTypes.string,
+    categoryData: PropTypes.object,
+    categoryPosts: PropTypes.array,
+    showAllPosts: PropTypes.bool,
+    singlePostToShow: PropTypes.number
   };
 
   //Function to get all posts for a given category
   _getPosts() {
-    const getPostsURI = `https://${this.props.site}/wp-json/wp/v2/posts?categories=${this.props.category}`;
+    const getPostsURI = `https://${this.props.siteUrl}/wp-json/wp/v2/posts?categories=${this.props.postCategory}`;
     axios.get(getPostsURI)
       .then(res => {
         const posts = res.data;
@@ -36,30 +34,29 @@ class Posts extends React.Component {
 
   //Function to get data about the category in which these posts are found
   _getPostsCategory() {
-    axios.get("http://" + this.props.site + "/wp-json/wp/v2/categories/" + this.props.category)
+    const getPostsCategoryURI = `https://${this.props.siteUrl}/wp-json/wp/v2/categories/${this.props.postCategory}`; 
+    axios.get(getPostsCategoryURI)
       .then(res => {
         const categoryData = res.data;
-        this.setState({ categoryData });
-      }, error => {
-        const errorMsg = "Did not work: " + (error.response ? error.response : error);
-        this.setState({ errorMsg });
+        this.props.setCategoryData(categoryData);
       });
   }
   
   //Function to show a single post when clicked
   _showSinglePost(postId) {
+    console.log(postId);
     const showAllPosts = false;
-    const singlePostToShow = postId;
-    this.setState({ showAllPosts });
-    this.setState({ singlePostToShow });
+    const name = "";
+    this.props.setShowAllPosts(showAllPosts);
+    this.props.setSinglePostToShow({postId, name});
   }
 
   //Function to show all posts in the category
   _showAllPosts(postId) {
     const showAllPosts = true;
-    const singlePostToShow = postId;
-    this.setState({ showAllPosts });
-    this.setState({ singlePostToShow }); 
+    const name = "";
+    this.props.setShowAllPosts(showAllPosts);
+    this.props.setSinglePostToShow({postId, name}); 
   }
 
   //Function to show all the categories - onClick of 'Back To Categories' text
@@ -77,17 +74,17 @@ class Posts extends React.Component {
     let postList = [];
 
     //If we are showing all posts, then map the list of posts to a list of PostThumbnail components
-    if(this.state.showAllPosts) {
-      postList = this.state.posts.map(post =>
-      { return ( <PostThumbnail key={post.id.toString()} id={post.id} image={post.featured_media} site={this.props.site} clickImage={this._showSinglePost.bind(this)}/> ); }
+    if(this.props.showAllPosts) {
+      postList = this.props.categoryPosts.map(post =>
+      { return ( <PostThumbnail key={post.id.toString()} id={post.id} image={post.featured_media} site={this.props.siteUrl} clickImage={this._showSinglePost.bind(this)}/> ); }
       );
     }
     
     //Otherwise, display the single post which matches the 'singlePostToShow'
     else {
-      this.state.posts.forEach(post => {
-        if(post.id == this.state.singlePostToShow) {
-          postList[0] = <Post key={this.state.singlePostToShow.toString()} id={this.state.singlePostToShow} category={this.props.category} categoryName={this.state.categoryData.name} title={post.title.rendered} image={post.featured_media} context="full-image" site={this.props.site} clickImage={this._showAllPosts.bind(this)} />;
+      this.props.categoryPosts.forEach(post => {
+        if(post.id == this.props.singlePostToShow) {
+          postList[0] = <Post key={this.props.singlePostToShow.toString()} id={this.props.singlePostToShow} category={this.props.postCategory} categoryName={this.props.categoryData.name} title={post.title.rendered} image={post.featured_media} context="full-image" site={this.props.siteUrl} clickImage={this._showAllPosts.bind(this)} />;
         }
       });
     }
@@ -102,15 +99,21 @@ class Posts extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    postCategory: state.applicationState.singleCategoryToShow, 
-    siteUrl: state.applicationState.siteUrl
+    postCategory: state.visibilityFilter.singleCategoryToShow.categoryId, 
+    siteUrl: state.applicationState.siteUrl,
+    categoryData: state.applicationState.currentCategoryData,
+    categoryPosts: state.applicationState.currentCategoryPosts,
+    showAllPosts: state.visibilityFilter.showAllPosts,
+    singlePostToShow: state.visibilityFilter.singlePostToShow.postId
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     setCategoryPosts: bindActionCreators(setCategoryPosts, dispatch),
-    setShowAllPosts: bindActionCreators(setShowAllPosts, dispatch)
+    setCategoryData: bindActionCreators(setCategoryData, dispatch),
+    setShowAllPosts: bindActionCreators(setShowAllPosts, dispatch),
+    setSinglePostToShow: bindActionCreators(setSinglePostToShow, dispatch)
   }; 
 }
 

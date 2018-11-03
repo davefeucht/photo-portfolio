@@ -5,6 +5,7 @@ var path = require("path");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
+  mode: "development",
   target: "web",
   entry: {
     app: path.join(__dirname, "src/components", "Index.jsx")
