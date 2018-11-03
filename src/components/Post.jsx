@@ -25,8 +25,8 @@ export default class Post extends React.Component {
     errorMsg: ""
   };
 
-  _getPostImage() {
-    const getPostImageURI = `https://${this.props.site}/wp-json/wp/v2/media/${this.props.image}`; 
+  _getPostImage(image_resource) {
+    const getPostImageURI = `https://${this.props.site}/wp-json/wp/v2/media/${image_resource}`; 
     axios.get(getPostImageURI)
       .then(res => {
         let thumbnailImage = new Image();
@@ -43,6 +43,14 @@ export default class Post extends React.Component {
       });
   } 
 
+  _getNextPostImage() {
+
+  }
+
+  _getPreviousPostImage() {
+
+  }
+
   _showAllPosts(event) {
     event.preventDefault();
     this.props.clickImage(this.props.id);
@@ -50,7 +58,7 @@ export default class Post extends React.Component {
   }
 
   componentWillMount() {
-    this._getPostImage();
+    this._getPostImage(this.props.image);
   }
 
   render() {
