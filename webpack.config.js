@@ -12,7 +12,8 @@ module.exports = {
   },
   devtool: "inline-source-map",
   devServer: {
-    contentBase: "./build"
+    contentBase: "./build/",
+    compress: true
   },
   output: {
     path: path.resolve(__dirname, "build/js"),
