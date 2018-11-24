@@ -3,11 +3,11 @@
 /****************************
 *  React Photo Portfolio
 *  Author: Dave Feucht
-*  Version: 0.2
+*  Version: 0.3
 *  Description: Front-end web application for a WordPress backend photography portfolio site. 
 ****************************/
 
-This is a personal project to learn React, CSS grid layout, to get familiar with the 
+This is a personal project to learn React, Redux, CSS grid layout, to get familiar with the 
 WordPress REST API, and to get familiar with github. It combines my interest in coding 
 and photography, and will serve as a portfolio for both once finished. Hopefully this can 
 also eventually be put out into the community for others to use. 

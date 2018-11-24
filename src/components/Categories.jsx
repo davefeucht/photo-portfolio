@@ -48,11 +48,10 @@ class Categories extends React.Component {
   
   render() {
     let categoryList = [];
-
-    categoryList = this.props.categoryList.map(category =>
+    categoryList = this.props.categoryList.map((category, index) =>
     { 
       //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component
-      return ( <CategoryThumbnail key={category.id.toString()} id={category.id} name={category.name} clickCategory={this._showSpecificCategory.bind(this)} /> ); }
+      return ( <CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} clickCategory={this._showSpecificCategory.bind(this)} /> ); }
     );
 
     return (

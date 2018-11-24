@@ -3,7 +3,6 @@
 *****************/
 
 import React from "react";
-import axios from "axios";
 import Posts from "./Posts.jsx";
 import CategoryHeader from "./CategoryHeader.jsx";
 import StyledCategory from "./styledComponents/StyledCategory.jsx";
@@ -15,17 +14,17 @@ import {setShowAllCategories} from "../actions/actions.js";
 class Category extends React.Component {
 
   static propTypes = {
-    id: PropTypes.number,
-    name: PropTypes.string,
-    site: PropTypes.string
+    categoryId: PropTypes.number,
+    categoryName: PropTypes.string,
+    siteUrl: PropTypes.string
   };
 
   render() {
 
     return ( 
       <StyledCategory>
-        <CategoryHeader id={this.props.id} name={this.props.name} clickCategory={this.props.setShowAllCategories.bind(this)} />
-        <Posts site={this.props.site} category={this.props.id} />
+        <CategoryHeader categoryId={this.props.categoryId} categoryName={this.props.categoryName} clickCategory={this.props.setShowAllCategories.bind(this)} />
+        <Posts site={this.props.siteUrl} category={this.props.categoryId} />
       </StyledCategory>
     );
   }
@@ -34,9 +33,8 @@ class Category extends React.Component {
 const mapStateToProps = state => {
   return {
     siteUrl: state.applicationState.siteUrl, 
-    siteName: state.applicationState.siteName, 
-    showAllCategories: state.visibilityFilter.showAllCategories, 
-    singleCategoryToShow: state.visibilityFilter.singleCategoryToShow
+    categoryId: state.visibilityFilter.singleCategoryToShow.categoryId,
+    categoryName: state.visibilityFilter.singleCategoryToShow.categoryName
   };
 }
 
