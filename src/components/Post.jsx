@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import FullPost from "./styledComponents/FullPost.jsx";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {setPostUrls} from "../actions/actions.js";
+import {setFullImageUrl} from "../actions/actions.js";
 
 class Post extends React.Component {
   static propTypes = {
@@ -28,7 +28,7 @@ class Post extends React.Component {
         let fullImage = new Image();
         const thumbnailUrl = res.data.media_details.sizes.thumbnail.source_url;
         const fullImageUrl = res.data.media_details.sizes.full.source_url;
-        this.props.setPostUrls({ thumbnail_image: thumbnailUrl, full_image: fullImageUrl });
+        this.props.setFullImageUrl(fullImageUrl);
         thumbnailImage.src = thumbnailUrl;
         fullImage.src = fullImageUrl;
       });
@@ -66,7 +66,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPostUrls: bindActionCreators(setPostUrls, dispatch)
+    setFullImageUrl: bindActionCreators(setFullImageUrl, dispatch)
   }; 
 }
 

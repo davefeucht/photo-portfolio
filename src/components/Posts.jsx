@@ -74,8 +74,8 @@ class Posts extends React.Component {
 
     //If we are showing all posts, then map the list of posts to a list of PostThumbnail components
     if(this.props.showAllPosts) {
-      postList = this.props.categoryPosts.map(post =>
-      { return ( <PostThumbnail key={post.id.toString()} id={post.id} image={post.featured_media} site={this.props.siteUrl} clickImage={this._showSinglePost.bind(this)}/> ); }
+      postList = this.props.categoryPosts.map((post, index) =>
+      { return ( <PostThumbnail key={post.id.toString()} id={post.id} index={index} image={post.featured_media} site={this.props.siteUrl} clickImage={this._showSinglePost.bind(this)}/> ); }
       );
     }
     

@@ -7,7 +7,8 @@ export const SET_CATEGORY_LIST = "SET_CATEGORY_LIST";
 export const SET_CATEGORY_DATA = "SET_CATEGORY_DATA";
 export const SET_CATEGORY_POSTS = "SET_CATEGORY_POSTS";
 export const SET_SINGLE_POST = "SET_SINGLE_POST";
-export const SET_POST_URLS = "SET_POST_URLS";
+export const SET_FULLIMAGE_URL = "SET_FULLIMAGE_URL";
+export const SET_THUMBNAILIMAGE_URL = "SET_THUMBNAILIMAGE_URL";
  
 export const VisibilityFilters = {
   SHOW_ALL: true,
@@ -70,9 +71,17 @@ export const setCategoryData = categoryData => {
   }
 }
 
-export const setPostUrls = postUrls => {
+export const setFullImageUrl = imageUrl => {
   return {
-    type: SET_POST_URLS,
-    image_urls: postUrls
+    type: SET_FULLIMAGE_URL,
+    image_url: imageUrl
+  }
+}
+
+export const setThumbnailImageUrl = imageData => {
+  return {
+    type: SET_THUMBNAILIMAGE_URL,
+    post_index: imageData.post_index,
+    image_url: imageData.image_url
   }
 }
