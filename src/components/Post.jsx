@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import FullPost from "./styledComponents/FullPost.jsx";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {setCategoryPosts, setCategoryData, setShowAllPosts, setSinglePostToShow, setPostUrls} from "../actions/actions.js";
+import {setPostUrls} from "../actions/actions.js";
 
 class Post extends React.Component {
   static propTypes = {
