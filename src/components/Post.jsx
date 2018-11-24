@@ -6,8 +6,11 @@ import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import FullPost from "./styledComponents/FullPost.jsx";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {setCategoryPosts, setCategoryData, setShowAllPosts, setSinglePostToShow, setPostUrls} from "../actions/actions.js";
 
-export default class Post extends React.Component {
+class Post extends React.Component {
   static propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
@@ -17,36 +20,23 @@ export default class Post extends React.Component {
     clickImage: PropTypes.func
   };
 
-  state = {
-    thumbnailUrl: "",
-    fullImageUrl: "",
-    showFullImage: false,
-    inList: true,
-    errorMsg: ""
-  };
-
   _getPostImage() {
-    const getPostImageURI = `https://${this.props.site}/wp-json/wp/v2/media/${this.props.image}`; 
+    const getPostImageURI = `https://${this.props.siteUrl}/wp-json/wp/v2/media/${this.props.image}`; 
     axios.get(getPostImageURI)
       .then(res => {
         let thumbnailImage = new Image();
         let fullImage = new Image();
         const thumbnailUrl = res.data.media_details.sizes.thumbnail.source_url;
         const fullImageUrl = res.data.media_details.sizes.full.source_url;
-        this.setState({ thumbnailUrl });
-        this.setState({ fullImageUrl });
+        this.props.setPostUrls({ thumbnail_image: thumbnailUrl, full_image: fullImageUrl });
         thumbnailImage.src = thumbnailUrl;
         fullImage.src = fullImageUrl;
-      }, error => {
-        const errorMsg = "Did not work: " + (error.response ? error.response : error);
-        this.setState({ errorMsg });
       });
   } 
 
   _showAllPosts(event) {
     event.preventDefault();
     this.props.clickImage(this.props.id);
-    this.setState({showFullImage: !this.state.showFullImage}); 
   }
 
   componentWillMount() {
@@ -55,7 +45,7 @@ export default class Post extends React.Component {
 
   render() {
     
-    let divStyle = {backgroundImage: "url(" + this.state.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "contain"};
+    let divStyle = {backgroundImage: "url(" + this.props.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "contain"};
     let classList = "post";
 
     return(
@@ -64,3 +54,20 @@ export default class Post extends React.Component {
     );
   }  
 }
+
+const mapStateToProps = state => {
+  return {
+    thumbnailImageUrl: state.applicationState.singlePostToShow.thumbnail_image,
+    fullImageUrl: state.applicationState.singlePostToShow.full_image,
+    siteUrl: state.applicationState.siteUrl,
+    showAllPosts: state.visibilityFilter.showAllPosts
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setPostUrls: bindActionCreators(setPostUrls, dispatch)
+  }; 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

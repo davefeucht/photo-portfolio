@@ -44,7 +44,6 @@ class Posts extends React.Component {
   
   //Function to show a single post when clicked
   _showSinglePost(postId) {
-    console.log(postId);
     const showAllPosts = false;
     const name = "";
     this.props.setShowAllPosts(showAllPosts);

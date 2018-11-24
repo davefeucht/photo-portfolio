@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { VisibilityFilters, SET_SHOWALLPOSTS, SET_SHOWALLCATEGORIES, SET_SITE_NAME, SET_CATEGORY_TO_SHOW, SET_POST_TO_SHOW, SET_CATEGORY_LIST, SET_CATEGORY_POSTS, SET_CATEGORY_DATA } from "../actions/actions.js";
+import { VisibilityFilters, SET_SHOWALLPOSTS, SET_SHOWALLCATEGORIES, SET_SITE_NAME, SET_CATEGORY_TO_SHOW, SET_POST_TO_SHOW, SET_CATEGORY_LIST, SET_CATEGORY_POSTS, SET_CATEGORY_DATA, SET_POST_URLS } from "../actions/actions.js";
 
 const initialState = {
   siteName: "",
@@ -8,7 +8,7 @@ const initialState = {
   showAllCategories: VisibilityFilters.SHOW_ALL,
   showAllPosts: VisibilityFilters.SHOW_ALL,
   singleCategoryToShow: {categoryId: 1, name: ""},
-  singlePostToShow: {postId: 1, name: ""},
+  singlePostToShow: {postId: 1, name: "", thumbnail_image: "", full_image: ""},
   currentCategoryPosts: [],
   currentCategoryData: {},
   onClickCategory: {}
@@ -31,6 +31,10 @@ function applicationState (state = initialState, action) {
     case SET_CATEGORY_DATA:
       return Object.assign({}, state, {
         currentCategoryData: action.categoryData
+      })
+    case SET_POST_URLS:
+      return Object.assign({}, state, {
+        singlePostToShow: {postId: state.singlePostToShow.postId, name: state.singlePostToShow.name, thumbnail_image: action.image_urls.thumbnail_image, full_image: action.image_urls.full_image}
       })
     default:
       return state;

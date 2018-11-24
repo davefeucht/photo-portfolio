@@ -7,6 +7,7 @@ export const SET_CATEGORY_LIST = "SET_CATEGORY_LIST";
 export const SET_CATEGORY_DATA = "SET_CATEGORY_DATA";
 export const SET_CATEGORY_POSTS = "SET_CATEGORY_POSTS";
 export const SET_SINGLE_POST = "SET_SINGLE_POST";
+export const SET_POST_URLS = "SET_POST_URLS";
  
 export const VisibilityFilters = {
   SHOW_ALL: true,
@@ -66,5 +67,12 @@ export const setCategoryData = categoryData => {
   return {
     type: SET_CATEGORY_DATA,
     categoryData: categoryData
+  }
+}
+
+export const setPostUrls = postUrls => {
+  return {
+    type: SET_POST_URLS,
+    image_urls: postUrls
   }
 }
