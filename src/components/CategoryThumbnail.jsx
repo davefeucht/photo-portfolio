@@ -19,6 +19,7 @@ class CategoryThumbnail extends React.Component {
     clickCategory: PropTypes.func
   };
 
+  //TODO: Set these properties as properties of each category in categoryList in applicationState
   state = {
     categoryClasses: ["category-thumbnail"],
     categoryImage: 0,
