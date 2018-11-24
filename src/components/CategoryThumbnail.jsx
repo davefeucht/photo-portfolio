@@ -8,23 +8,16 @@ import PropTypes from "prop-types";
 import StyledCategoryThumbnail from "./styledComponents/StyledCategoryThumbnail.jsx";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {setCategoryList} from "../actions/actions.js";
+import {setCategoryList, setCategoryThumbnail} from "../actions/actions.js";
 
 class CategoryThumbnail extends React.Component {
 
   static propTypes = {
     id: PropTypes.number,
+    index: PropTypes.number,
     name: PropTypes.string,
     siteUrl: PropTypes.string,
     clickCategory: PropTypes.func
-  };
-
-  //TODO: Set these properties as properties of each category in categoryList in applicationState
-  state = {
-    categoryClasses: ["category-thumbnail"],
-    categoryImage: 0,
-    fullImageUrl: "",
-    errorMsg: ""
   };
 
   //Function to get a random post image URL for the category
@@ -55,17 +48,9 @@ class CategoryThumbnail extends React.Component {
               else {
                 fullImageUrl = response.data.media_details.sizes.medium.source_url;
               }
-              this.setState({fullImageUrl});
-            })
-            .catch(error => {
-              const errorMsg = "Could not get image for this category: " + (error.response ? error.response : error);
-              this.setState({ errorMsg });
+              this.props.setCategoryThumbnail({category_index: this.props.index, image_url: fullImageUrl});
             })
         }
-      })
-      .catch(error => {
-        const errorMsg = "Could not get featured post for this category: " + (error.response ? error.response : error);
-        this.setState({ errorMsg });
       })
   }
 
@@ -75,17 +60,21 @@ class CategoryThumbnail extends React.Component {
   }
 
   _highlightCategory() {
+    /*
     if(!this.state.categoryClasses.includes("hovered")) {
       const categoryClasses = this.state.categoryClasses.concat(["hovered"]);
       this.setState({categoryClasses});
     }
+    */
   }
 
   _unHighlightCategory() {
+    /*
     if(this.state.categoryClasses.includes("hovered")) {
       const categoryClasses = this.state.categoryClasses.filter(element => element !== "hovered");
       this.setState({categoryClasses});
     }
+    */
   }
 
   //When the component is about to mount, get the random post for the category
@@ -94,10 +83,10 @@ class CategoryThumbnail extends React.Component {
   }
 
   render() {
-    const divStyle = {backgroundImage: "url(" + this.state.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "auto 100%"};
+    const divStyle = {backgroundImage: "url(" + (this.props.categoryList[this.props.index].thumbnail_image ? this.props.categoryList[this.props.index].thumbnail_image : "")+ ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "auto 100%"};
 
     return ( 
-      <StyledCategoryThumbnail style={divStyle} className={this.state.categoryClasses.join(" ")} onClick={this._openCategory.bind(this)} onMouseOver={this._highlightCategory.bind(this)} onMouseOut={this._unHighlightCategory.bind(this)}>
+      <StyledCategoryThumbnail style={divStyle} className="category-thumbnail" /*{this.state.categoryClasses.join(" ")}*/ onClick={this._openCategory.bind(this)} onMouseOver={this._highlightCategory.bind(this)} onMouseOut={this._unHighlightCategory.bind(this)}>
       </StyledCategoryThumbnail>
     );
   }
@@ -105,13 +94,14 @@ class CategoryThumbnail extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    siteUrl: state.applicationState.siteUrl
+    siteUrl: state.applicationState.siteUrl,
+    categoryList: state.applicationState.categoryList
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCategoryList: bindActionCreators(setCategoryList, dispatch)
+    setCategoryThumbnail: bindActionCreators(setCategoryThumbnail, dispatch)
   }; 
 }
 

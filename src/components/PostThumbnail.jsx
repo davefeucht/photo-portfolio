@@ -13,6 +13,7 @@ import {setThumbnailImageUrl} from "../actions/actions.js";
 class PostThumbnail extends React.Component {
   static propTypes = {
     id: PropTypes.number,
+    index: PropTypes.number,
     image: PropTypes.number,
     siteUrl: PropTypes.string,
     clickImage: PropTypes.func
@@ -39,7 +40,7 @@ class PostThumbnail extends React.Component {
   }
 
   render() {
-    const divStyle = {backgroundImage: "url(" + this.props.categoryPosts[this.props.index].thumbnail_image + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover"};
+    const divStyle = {backgroundImage: "url(" + (this.props.categoryPosts[this.props.index].thumbnail_image ? this.props.categoryPosts[this.props.index].thumbnail_image : "") + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover"};
 
     return(
       <StyledPostThumbnail style={divStyle} onClick={this._showFullPost.bind(this)} />

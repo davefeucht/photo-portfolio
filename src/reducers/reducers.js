@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { VisibilityFilters, SET_SHOWALLPOSTS, SET_SHOWALLCATEGORIES, SET_SITE_NAME, SET_CATEGORY_TO_SHOW, SET_POST_TO_SHOW, SET_CATEGORY_LIST, SET_CATEGORY_POSTS, SET_CATEGORY_DATA, SET_FULLIMAGE_URL, SET_THUMBNAILIMAGE_URL } from "../actions/actions.js";
+import { VisibilityFilters, SET_SHOWALLPOSTS, SET_SHOWALLCATEGORIES, SET_SITE_NAME, SET_CATEGORY_TO_SHOW, SET_POST_TO_SHOW, SET_CATEGORY_LIST, SET_CATEGORY_THUMBNAIL, SET_CATEGORY_POSTS, SET_CATEGORY_DATA, SET_FULLIMAGE_URL, SET_THUMBNAILIMAGE_URL } from "../actions/actions.js";
 
 const initialState = {
   siteName: "",
@@ -23,6 +23,12 @@ function applicationState (state = initialState, action) {
     case SET_CATEGORY_LIST:
       return Object.assign({}, state, {
         categoryList: action.categoryList
+      })
+    case SET_CATEGORY_THUMBNAIL:
+      let temp_category_list = state.categoryList.slice();
+      temp_category_list[action.category_index].thumbnail_image = action.image_url;
+      return Object.assign({}, state, {
+        categoryList: temp_category_list
       })
     case SET_CATEGORY_POSTS:
       return Object.assign({}, state, {

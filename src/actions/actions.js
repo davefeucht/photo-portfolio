@@ -4,6 +4,7 @@ export const SET_SITE_NAME = "SET_SITE_NAME";
 export const SET_CATEGORY_TO_SHOW = "SET_CATEGORY_TO_SHOW";
 export const SET_POST_TO_SHOW = "SET_POST_TO_SHOW";
 export const SET_CATEGORY_LIST = "SET_CATEGORY_LIST";
+export const SET_CATEGORY_THUMBNAIL = "SET_CATEGORY_THUMBNAIL";
 export const SET_CATEGORY_DATA = "SET_CATEGORY_DATA";
 export const SET_CATEGORY_POSTS = "SET_CATEGORY_POSTS";
 export const SET_SINGLE_POST = "SET_SINGLE_POST";
@@ -54,6 +55,14 @@ export const setCategoryList = categoryList => {
   return {
     type: SET_CATEGORY_LIST,
     categoryList: categoryList
+  }
+}
+
+export const setCategoryThumbnail = categoryData => {
+  return {
+    type: SET_CATEGORY_THUMBNAIL,
+    category_index: categoryData.category_index,
+    image_url: categoryData.image_url
   }
 }
 
