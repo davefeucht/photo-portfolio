@@ -5,14 +5,15 @@ var path = require("path");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  "mode": "development",
+  mode: "development",
   target: "web",
   entry: {
     app: path.join(__dirname, "src/components", "Index.jsx")
   },
   devtool: "inline-source-map",
   devServer: {
-    contentBase: "./build"
+    contentBase: "./build/",
+    compress: true
   },
   output: {
     path: path.resolve(__dirname, "build/js"),
