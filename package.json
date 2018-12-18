@@ -3,11 +3,18 @@
   "version": "0.3.0",
   "description": "React Photo Portfolio",
   "main": "index.html",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.17.1",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "styled-components": "^3.4.10",
+    "prop-types": "^15.6.2",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1"
+  },
   "devDependencies": {
     "ajv": "^6.5.4",
     "ajv-keywords": "^3.2.0",
-    "axios": "^0.17.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -20,17 +27,11 @@
     "eslint-plugin-babel": "^5.2.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "node-sass": "^4.9.4",
-    "prop-types": "^15.6.2",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-redux": "^5.1.0",
-    "redux": "^4.0.1",
-    "redux-devtools-extension": "^2.13.5",
     "sass-loader": "^6.0.7",
-    "styled-components": "^3.4.10",
     "webpack": "^4.24.0",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.1.10",
+    "redux-devtools-extension": "^2.13.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
