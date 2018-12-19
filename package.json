@@ -16,6 +16,7 @@
     "ajv": "^6.5.4",
     "ajv-keywords": "^3.2.0",
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
@@ -26,15 +27,17 @@
     "eslint": "^4.19.1",
     "eslint-plugin-babel": "^5.2.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jest": "^23.6.0",
     "node-sass": "^4.9.4",
+    "react-test-renderer": "^16.6.3",
+    "redux-devtools-extension": "^2.13.5",
     "sass-loader": "^6.0.7",
     "webpack": "^4.24.0",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
-    "redux-devtools-extension": "^2.13.5"
+    "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --updateSnapshot",
     "dev": "webpack -d --watch",
     "build": "webpack -p && cp src/index.html build/index.html",
     "start": "webpack-dev-server --open"
