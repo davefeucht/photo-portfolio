@@ -37,7 +37,7 @@
     "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --updateSnapshot",
     "dev": "webpack -d --watch",
     "build": "webpack -p && cp src/index.html build/index.html",
     "start": "webpack-dev-server --open"
