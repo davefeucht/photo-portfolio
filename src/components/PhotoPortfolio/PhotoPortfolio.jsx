@@ -34,7 +34,7 @@ const PhotoPortfolio = observer((props) => {
   
   _getSiteInformation();
 
-  let contentToDisplay = <Categories showSingleCategory={_showSpecificCategory.bind(this)} />
+  let contentToDisplay = <Categories stateStore={props.stateStore} showSingleCategory={_showSpecificCategory.bind(this)} />
   
   if(!props.stateStore.showAllCategories) {
     contentToDisplay = <Category 

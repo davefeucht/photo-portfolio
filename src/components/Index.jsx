@@ -17,8 +17,6 @@ const store = createStore(photoPortfolioState, /* preloadedState, */ devToolsEnh
 
 //Render the PhotoPortfolio component in the 'photo-portfolio' container on the page.
 render(
-  <Provider store={store}>
-    <PhotoPortfolio stateStore={mobxStore}/>
-  </Provider>,
+  <PhotoPortfolio stateStore={mobxStore}/>,
   document.getElementById("photo-portfolio")
 );
