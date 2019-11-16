@@ -10,7 +10,7 @@ const TitleBar = observer((props) => {
     return (
       <div className='title-bar'>
         <div>
-          <h1>{props.stateStore.siteName}</h1>
+          <h1>{props.siteName}</h1>
         </div>
       </div>
     );

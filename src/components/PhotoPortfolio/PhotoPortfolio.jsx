@@ -5,51 +5,45 @@
 
 import React from "react";
 import { observer } from 'mobx-react';
-import axios from "axios";
 import TitleBar from "../TitleBar/TitleBar.jsx";
-import Categories from "../Categories.jsx";
+import Categories from "../Categories/Categories.jsx";
 import Category from "../Category.jsx";
 import Footer from "../Footer/Footer.jsx";
 import './PhotoPortfolio.css';
 
-const PhotoPortfolio = observer((props) => {
-  const _getSiteInformation = () => {
-    const getSiteInformationURI = `https://${props.stateStore.siteUrl}/wp-json/`;
-
-    axios.get(getSiteInformationURI)
-      .then(response => {
-        const siteName = response.data.name;
-        props.stateStore.setSiteName(siteName);
-      })
-      .catch(error => {
-        console.log(error.message);
-      })
-  }
+const PhotoPortfolio = observer(({ stateStore }) => {
+  stateStore.fetchSiteData();
 
   //Method to display a single category when one is clicked on.
   const _showSpecificCategory = (categoryId, categoryName) => {
-    props.stateStore.setShowAllCategories(false);
-    props.stateStore.setVisibleCategory({categoryId, categoryName})
+    stateStore.setShowAllCategories(false);
+    stateStore.setVisibleCategory({categoryId, categoryName})
   }
-  
-  _getSiteInformation();
 
-  let contentToDisplay = <Categories stateStore={props.stateStore} showSingleCategory={_showSpecificCategory.bind(this)} />
+  let contentToDisplay = <Categories stateStore={stateStore} showSingleCategory={_showSpecificCategory.bind(this)} />
   
-  if(!props.stateStore.showAllCategories) {
+  if(!stateStore.showAllCategories) {
     contentToDisplay = <Category 
-      key={props.stateStore.singleCategoryToShow.categoryId.toString()} 
-      categoryId={props.stateStore.singleCategoryToShow.categoryId} 
-      name={props.stateStore.singleCategoryToShow.categoryName} 
-      site={props.stateStore.siteUrl} 
+      key={stateStore.singleCategoryToShow.categoryId.toString()} 
+      categoryId={stateStore.singleCategoryToShow.categoryId} 
+      name={stateStore.singleCategoryToShow.categoryName} 
+      site={stateStore.siteUrl} 
     />; 
   }
   
   return (
     <div className="app">
-      <TitleBar stateStore={props.stateStore} />
+      <TitleBar siteName={stateStore.siteName} />
       <div className="photo-portfolio">
-        {contentToDisplay}
+        {stateStore.showAllCategories ? 
+          <Categories stateStore={stateStore} /> : 
+          <Category 
+            key={stateStore.singleCategoryToShow.categoryId.toString()} 
+            categoryId={stateStore.singleCategoryToShow.categoryId} 
+            name={stateStore.singleCategoryToShow.categoryName} 
+            site={stateStore.siteUrl} 
+          />
+        }
       </div>
       <Footer />
     </div>
