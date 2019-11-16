@@ -1,0 +1,10 @@
+.photo-portfolio {
+  grid-area: content;
+}
+
+.app {
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "header" "content" "footer";
+  grid-template-rows: 3rem auto 2rem;
+}
