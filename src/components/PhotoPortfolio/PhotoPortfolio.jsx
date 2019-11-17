@@ -5,35 +5,33 @@
 
 import React from "react";
 import { observer } from 'mobx-react';
+import axios from 'axios';
 import TitleBar from "../TitleBar/TitleBar.jsx";
 import Categories from "../Categories/Categories.jsx";
 import Category from "../Category.jsx";
 import Footer from "../Footer/Footer.jsx";
 import './PhotoPortfolio.css';
+import { runInAction } from "mobx";
 
 const PhotoPortfolio = observer(({ stateStore }) => {
-  stateStore.fetchSiteData();
+  const _fetchSiteData = () => {
+    const getSiteInformationURI = `https://${stateStore.siteUrl}/wp-json/`;
 
-  //Method to display a single category when one is clicked on.
-  const _showSpecificCategory = (categoryId, categoryName) => {
-    stateStore.setShowAllCategories(false);
-    stateStore.setVisibleCategory({categoryId, categoryName})
-  }
+    axios.get(getSiteInformationURI)
+      .then(response => {
+        stateStore.setSiteName(response.data.name);
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+  };
 
-  let contentToDisplay = <Categories stateStore={stateStore} showSingleCategory={_showSpecificCategory.bind(this)} />
-  
-  if(!stateStore.showAllCategories) {
-    contentToDisplay = <Category 
-      key={stateStore.singleCategoryToShow.categoryId.toString()} 
-      categoryId={stateStore.singleCategoryToShow.categoryId} 
-      name={stateStore.singleCategoryToShow.categoryName} 
-      site={stateStore.siteUrl} 
-    />; 
-  }
-  
+  _fetchSiteData();
+  //stateStore.setSiteName("Cheesecake");
+
   return (
     <div className="app">
-      <TitleBar siteName={stateStore.siteName} />
+      <TitleBar stateStore={stateStore} />
       <div className="photo-portfolio">
         {stateStore.showAllCategories ? 
           <Categories stateStore={stateStore} /> : 
@@ -52,4 +50,4 @@ const PhotoPortfolio = observer(({ stateStore }) => {
 
 PhotoPortfolio.displayName = 'PhotoPortfolio';
 
-export default (PhotoPortfolio);
+export default PhotoPortfolio;

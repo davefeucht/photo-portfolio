@@ -1,5 +1,4 @@
 import { observable, action, configure } from 'mobx';
-import axios from 'axios';
 
 configure({ enforceActions: 'observed' });
 
@@ -16,18 +15,6 @@ export default class stateStore {
 
   @action setSiteName = (name) => {
     this.siteName = name;
-  }
-
-  fetchSiteData = () => {
-    const getSiteInformationURI = `https://${this.siteUrl}/wp-json/`;
-
-    axios.get(getSiteInformationURI)
-      .then(response => {
-        this.setSiteName(response.data.name);
-      })
-      .catch(error => {
-        console.log(error.message);
-      })
   }
 
   @action setShowAllCategories = (value) => {

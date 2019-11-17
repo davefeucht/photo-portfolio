@@ -27,12 +27,8 @@ const Categories = observer((props) => {
   const _mapCategoryList = () => {
       return props.stateStore.categoryList.map((category, index) => { 
         //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component
-        return ( <CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} clickCategory={_showSpecificCategory.bind(this)} /> ); }
+        return ( <CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} clickCategory={props.stateStore.setVisibleCategory({categoryId, categoryName}).bind(this)} /> ); }
       );
-  }
-
-  const _showSpecificCategory = (categoryId, categoryName) => {
-    props.showSingleCategory(categoryId, categoryName);
   }
 
   _getCategories();
