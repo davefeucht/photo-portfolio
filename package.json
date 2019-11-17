@@ -23,13 +23,13 @@
     "@babel/preset-react": "^7.7.0",
     "ajv": "^6.5.4",
     "ajv-keywords": "^3.2.0",
-    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-plugin-babel": "^5.2.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "jest": "^23.6.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
     "node-sass": "^4.9.4",
     "react-test-renderer": "^16.6.3",
     "redux-devtools-extension": "^2.13.5",
@@ -44,6 +44,16 @@
     "dev": "webpack -d --watch",
     "build": "webpack -p && cp src/index.html build/index.html",
     "start": "webpack-dev-server --open"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^.+\\.css$": "identity-obj-proxy",
+      "^.+\\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js"
+    }
   },
   "author": "Dave Feucht",
   "license": "ISC",

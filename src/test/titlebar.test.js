@@ -1,5 +1,5 @@
 import React from 'react';
-import TitleBar from '../components/TitleBar';
+import TitleBar from '../components/TitleBar/TitleBar';
 import renderer from 'react-test-renderer';
 
 test('Titlebar displays', () => {
