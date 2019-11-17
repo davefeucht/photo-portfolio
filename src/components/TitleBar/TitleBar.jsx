@@ -6,11 +6,11 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import './TitleBar.css';
 
-const TitleBar = observer((props) => {
+const TitleBar = observer(({ stateStore }) => {
     return (
       <div className='title-bar'>
         <div>
-          <h1>{props.stateStore.siteName}</h1>
+          <h1>{stateStore.siteName}</h1>
         </div>
       </div>
     );
