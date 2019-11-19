@@ -4,6 +4,7 @@
 *******************/
 
 import React from "react";
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import axios from 'axios';
 import TitleBar from "../TitleBar/TitleBar.jsx";
@@ -19,19 +20,18 @@ const PhotoPortfolio = observer(({ stateStore }) => {
 
     axios.get(getSiteInformationURI)
       .then(response => {
-        stateStore.setSiteName(response.data.name);
+        stateStore.setSiteName(response.name);
       })
       .catch(error => {
         console.log(error.message);
-      })
+      });
   };
 
   _fetchSiteData();
-  //stateStore.setSiteName("Cheesecake");
 
   return (
     <div className="app">
-      <TitleBar stateStore={stateStore} />
+      <TitleBar siteName={stateStore.siteName} />
       <div className="photo-portfolio">
         {stateStore.showAllCategories ? 
           <Categories stateStore={stateStore} /> : 
