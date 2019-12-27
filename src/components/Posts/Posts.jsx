@@ -6,7 +6,7 @@ import React from 'react';
 import axios from 'axios';
 import { observer } from 'mobx-react';
 import Post from '../Post/Post.jsx';
-import PostThumbnail from '../PostThumbnail.jsx';
+import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
 import './Posts.css';
 
 const Posts = observer(( { props }) => {
