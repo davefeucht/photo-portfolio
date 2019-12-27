@@ -4,7 +4,7 @@
 
 import React from "react";
 import { observer } from 'mobx-react';
-import Posts from "../Posts.jsx";
+import Posts from "../Posts/Posts.jsx";
 import CategoryHeader from "../CategoryHeader/CategoryHeader.jsx";
 import './Category.css';
 
