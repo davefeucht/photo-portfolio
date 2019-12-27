@@ -9,9 +9,7 @@
     "mobx-react": "^6.1.4",
     "prop-types": "^15.6.2",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "redux": "^4.0.1",
-    "styled-components": "^3.4.10"
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -31,7 +29,6 @@
     "jest": "^24.9.0",
     "node-sass": "^4.9.4",
     "react-test-renderer": "^16.6.3",
-    "redux-devtools-extension": "^2.13.5",
     "sass-loader": "^6.0.7",
     "style-loader": "^1.0.0",
     "webpack": "^4.24.0",

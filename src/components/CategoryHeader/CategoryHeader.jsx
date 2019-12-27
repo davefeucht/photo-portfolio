@@ -4,7 +4,6 @@
 
 import React from "react";
 import { observer } from "mobx-react";
-import CategoryTitle from "../styledComponents/CategoryTitle.jsx";
 import './CategoryHeader.css';
 
 const CategoryHeader = observer(( { props }) => {
@@ -16,8 +15,8 @@ const CategoryHeader = observer(( { props }) => {
 
   return (
     <div>
-      <CategoryTitle>{props.categoryName}</CategoryTitle>
-      <CategorySubtitle onClick={_closeCategory.bind(this)}>Back to Categories</CategorySubtitle>
+      <div className="title">{props.categoryName}</div>
+      <div className="subtitle" onClick={_closeCategory.bind(this)}>Back to Categories</div>
     </div>
   );
 });

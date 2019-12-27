@@ -3,3 +3,13 @@ div {
   padding: 5px;
   color: #FFFFFF;
 }
+
+.title {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-left: 5px;
+  cursor: pointer;
+}
