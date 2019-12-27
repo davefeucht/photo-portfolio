@@ -33,4 +33,6 @@ const PostThumbnail = observer(({ props }) => {
   );
 });
 
+PostThumbnail.displayName = 'PostThumbnail';
+
 export default PostThumbnail;

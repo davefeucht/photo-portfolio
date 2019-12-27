@@ -38,4 +38,6 @@ const Post = observer(({ props }) => {
   );
 });
 
+Post.displayName = 'Post';
+
 export default Post;

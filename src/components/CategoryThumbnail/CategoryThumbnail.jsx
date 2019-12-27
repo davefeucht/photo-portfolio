@@ -76,4 +76,6 @@ const CategoryThumbnail = observer(( {props }) => {
   );
 });
 
+CategoryThumbnail.displayName = 'CategoryThumbnail';
+
 export default CategoryThumbnail;

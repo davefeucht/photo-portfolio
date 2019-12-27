@@ -21,4 +21,6 @@ const CategoryHeader = observer(( { props }) => {
   );
 });
 
+CategoryHeader.displayName = 'CategoryHeader';
+
 export default CategoryHeader;

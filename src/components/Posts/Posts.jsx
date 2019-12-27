@@ -83,4 +83,6 @@ const Posts = observer(( { props }) => {
   );
 });
 
+Posts.displayName = 'Posts';
+
 export default Posts;
