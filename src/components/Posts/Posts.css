@@ -1,4 +1,4 @@
-div {
+.posts {
   height: 100%;
   grid-area: category-content;
   display: grid;

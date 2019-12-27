@@ -75,9 +75,11 @@ const Posts = observer(( { props }) => {
   }
     
   return (
-    <PostList>
-      {postList} 
-    </PostList>
+    <div className="posts">
+      <PostList>
+        {postList} 
+      </PostList>
+    </div>
   );
 });
 

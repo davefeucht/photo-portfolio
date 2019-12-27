@@ -1,4 +1,4 @@
-div {
+.category {
   min-height: 100%;
   display: grid;
   grid-template-columns: 100%;

@@ -1,15 +1,15 @@
-div {
+.category-header {
   background: rgba(0, 0, 0, 0.8);
   padding: 5px;
   color: #FFFFFF;
 }
 
-.title {
+.category-header > .title {
   font-size: 120%;
   font-weight: bold;
 }
 
-.subtitle {
+.category-header > .subtitle {
   margin-left: 5px;
   cursor: pointer;
 }

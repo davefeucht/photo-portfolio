@@ -11,7 +11,7 @@ import './Category.css';
 const Category = observer(( { props }) => {
 
   return ( 
-    <div>
+    <div className="category">
       <CategoryHeader categoryId={props.categoryId} categoryName={props.categoryName} clickCategory={props.setShowAllCategories.bind(this)} />
       <Posts site={props.siteUrl} category={props.categoryId} />
     </div>

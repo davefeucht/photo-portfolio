@@ -14,7 +14,7 @@ const CategoryHeader = observer(( { props }) => {
   }
 
   return (
-    <div>
+    <div className="category-header">
       <div className="title">{props.categoryName}</div>
       <div className="subtitle" onClick={_closeCategory.bind(this)}>Back to Categories</div>
     </div>

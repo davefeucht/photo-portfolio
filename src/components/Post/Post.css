@@ -1,4 +1,4 @@
-div {
+.post {
   cursor: pointer;
   grid-column: 1 / 6;
   grid-row: 1/3;

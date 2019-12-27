@@ -29,7 +29,7 @@ const PostThumbnail = observer(({ props }) => {
   const divStyle = {backgroundImage: "url(" + (props.categoryPosts[props.index].thumbnail_image ? props.categoryPosts[props.index].thumbnail_image : "") + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover"};
 
   return(
-    <div style={divStyle} onClick={_showFullPost.bind(this)}></div>
+    <div className="post-thumbnail" style={divStyle} onClick={_showFullPost.bind(this)}></div>
   );
 });
 
