@@ -6,7 +6,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import axios from "axios";
-import CategoryThumbnail from "../CategoryThumbnail.jsx";
+import CategoryThumbnail from "../CategoryThumbnail/CategoryThumbnail.jsx";
 import './Categories.css';
 
 const Categories = observer((props) => {

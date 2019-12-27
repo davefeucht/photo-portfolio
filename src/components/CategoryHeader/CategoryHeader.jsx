@@ -4,7 +4,6 @@
 
 import React from "react";
 import { observer } from "mobx-react";
-import StyledCategoryHeader from "../styledComponents/StyledCategoryHeader.jsx";
 import CategoryTitle from "../styledComponents/CategoryTitle.jsx";
 import './CategoryHeader.css';
 
