@@ -12,7 +12,6 @@ import Categories from "../Categories/Categories.jsx";
 import Category from "../Category.jsx";
 import Footer from "../Footer/Footer.jsx";
 import './PhotoPortfolio.css';
-import { runInAction } from "mobx";
 
 const PhotoPortfolio = observer(({ stateStore }) => {
   const _fetchSiteData = () => {
@@ -20,10 +19,12 @@ const PhotoPortfolio = observer(({ stateStore }) => {
 
     axios.get(getSiteInformationURI)
       .then(response => {
-        stateStore.setSiteName(response.name);
+        action(() => {
+          stateStore.setSiteName(response.name);
+        })
       })
       .catch(error => {
-        console.log(error.message);
+        console.warn(error.message);
       });
   };
 
