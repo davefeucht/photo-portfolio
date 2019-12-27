@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import axios from 'axios';
 import TitleBar from "../TitleBar/TitleBar.jsx";
 import Categories from "../Categories/Categories.jsx";
-import Category from "../Category.jsx";
+import Category from "../Category/Category.jsx";
 import Footer from "../Footer/Footer.jsx";
 import './PhotoPortfolio.css';
 
