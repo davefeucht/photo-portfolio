@@ -2,9 +2,9 @@
 * CategoryThumbnail component displays the post image for a particular category.
 *****************/
 
-import React from "react";
-import axios from "axios";
-import observer from 'mobx-react';
+import React from 'react';
+import axios from 'axios';
+import { observer } from 'mobx-react';
 import './CategoryThumbnail.css';
 
 const CategoryThumbnail = observer(( {props }) => {
