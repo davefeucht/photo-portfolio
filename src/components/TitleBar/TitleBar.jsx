@@ -4,9 +4,9 @@
 
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import './TitleBar.css';
-import { runInAction } from 'mobx';
 
 const TitleBar = observer(({ stateStore }) => {
   useEffect(() => {
