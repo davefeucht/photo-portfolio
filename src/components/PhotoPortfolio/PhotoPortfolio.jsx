@@ -16,13 +16,13 @@ const PhotoPortfolio = observer(({ stateStore }) => {
     <div className="app">
       <TitleBar stateStore={stateStore} />
       <div className="photo-portfolio">
-        {stateStore.showAllCategories ? 
+        {stateStore.visibilityFlags.showAllCategories ? 
           <Categories stateStore={stateStore} /> : 
           <Category 
             key={stateStore.singleCategoryToShow.categoryId.toString()} 
             categoryId={stateStore.singleCategoryToShow.categoryId} 
             name={stateStore.singleCategoryToShow.categoryName} 
-            site={stateStore.siteUrl} 
+            site={stateStore.siteInfo.siteUrl} 
           />
         }
       </div>

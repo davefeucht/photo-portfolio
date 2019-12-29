@@ -3,26 +3,37 @@ import { observable, action, configure } from 'mobx';
 configure({ enforceActions: 'observed' });
 
 export default class stateStore {
-  @observable siteName = null;
-  @observable siteUrl = 'throughapinhole.com';
-  @observable showAllCategories = true;
-  @observable showAllPosts = true;
-  @observable visibleCategory = {categoryId: 1, name: ''};
-  @observable visiblePost = {postId: 1, name: '', full_image: ''};
+  siteInfo = observable.object({
+    siteName: null,
+    siteUrl: 'throughapinhole.com'
+  });
+  visibleCategory = observable.object({
+    categoryId: 1,
+    name: null
+  });
+  visiblePost = observable.object({
+    postId: 1,
+    name: null,
+    full_image: null
+  });
+  visibilityFlags = observable.object({
+    showAllCategories: true,
+    showAllPosts: true
+  })
   categoryList = observable.array([]);
   currentCategoryPosts = observable.array([]);
   currentCategoryData = observable.object({});
 
   @action setSiteName = (name) => {
-    this.siteName = name;
+    this.siteInfo.siteName = name;
   }
 
   @action setShowAllCategories = (value) => {
-    this.showAllCategories = value;
+    this.visibilityFlags.showAllCategories = value;
   }
 
   @action setShowAllPosts = (value) => {
-    this.showAllPosts = value;
+    this.visibilityFlags.showAllPosts = value;
   }
 
   @action setVisibleCategory = (categoryId) => {

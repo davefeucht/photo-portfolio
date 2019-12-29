@@ -13,7 +13,7 @@ const Categories = observer((props) => {
 
   //Method to get all existing categories
   const _getCategories = () => {
-    const getCategoriesRequest = `https://${props.stateStore.siteUrl}/wp-json/wp/v2/categories?exclude=175`;
+    const getCategoriesRequest = `https://${props.stateStore.siteInfo.siteUrl}/wp-json/wp/v2/categories?exclude=175`;
     axios.get(getCategoriesRequest)
       .then(res => {
         const categories = res.data;

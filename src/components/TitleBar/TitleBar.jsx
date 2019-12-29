@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { observer } from 'mobx-react';
 import './TitleBar.css';
+import { runInAction } from 'mobx';
 
 const TitleBar = observer(({ stateStore }) => {
   useEffect(() => {
@@ -13,11 +14,13 @@ const TitleBar = observer(({ stateStore }) => {
   });
 
   const _fetchSiteData = () => {
-    const getSiteInformationURI = `https://${stateStore.siteUrl}/wp-json/`;
+    const getSiteInformationURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/`;
 
     axios.get(getSiteInformationURI)
       .then((response) => {
-        stateStore.setSiteName(response.data.name);
+        runInAction(() => {
+          stateStore.setSiteName(response.data.name);
+        })
       })
       .catch(error => {
         console.warn(error.message);
@@ -27,7 +30,7 @@ const TitleBar = observer(({ stateStore }) => {
   return (
     <div className='title-bar'>
       <div>
-        <h1>{stateStore.siteName}</h1>
+        <h1>{stateStore.siteInfo.siteName}</h1>
       </div>
     </div>
   );
