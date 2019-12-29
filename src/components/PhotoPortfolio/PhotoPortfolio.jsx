@@ -11,13 +11,13 @@ import Category from "../Category/Category.jsx";
 import Footer from "../Footer/Footer.jsx";
 import './PhotoPortfolio.css';
 
-const PhotoPortfolio = observer(({ stateStore }) => {
+const PhotoPortfolio = observer(({ stateStore, api }) => {
   return (
     <div className="app">
-      <TitleBar stateStore={stateStore} />
+      <TitleBar stateStore={stateStore} api={api}/>
       <div className="photo-portfolio">
         {stateStore.visibilityFlags.showAllCategories ? 
-          <Categories stateStore={stateStore} /> : 
+          <Categories stateStore={stateStore} api={api}/> : 
           <Category 
             key={stateStore.singleCategoryToShow.categoryId.toString()} 
             categoryId={stateStore.singleCategoryToShow.categoryId} 

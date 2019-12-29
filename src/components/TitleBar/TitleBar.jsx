@@ -3,29 +3,13 @@
 *****************/
 
 import React, { useEffect } from 'react';
-import axios from 'axios';
-import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import './TitleBar.css';
 
-const TitleBar = observer(({ stateStore }) => {
+const TitleBar = observer(({ stateStore, api }) => {
   useEffect(() => {
-    _fetchSiteData();
+    api.getSiteInfo();
   });
-
-  const _fetchSiteData = () => {
-    const getSiteInformationURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/`;
-
-    axios.get(getSiteInformationURI)
-      .then((response) => {
-        runInAction(() => {
-          stateStore.setSiteName(response.data.name);
-        })
-      })
-      .catch(error => {
-        console.warn(error.message);
-      });
-  };
 
   return (
     <div className='title-bar'>

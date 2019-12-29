@@ -3,35 +3,26 @@
 * and makes them clickable to display just a single category.
 *****************/
 
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import axios from "axios";
 import CategoryThumbnail from "../CategoryThumbnail/CategoryThumbnail.jsx";
 import './Categories.css';
 
-const Categories = observer((props) => {
+const Categories = observer(({ stateStore, api }) => {
 
-  //Method to get all existing categories
-  const _getCategories = () => {
-    const getCategoriesRequest = `https://${props.stateStore.siteInfo.siteUrl}/wp-json/wp/v2/categories?exclude=175`;
-    axios.get(getCategoriesRequest)
-      .then(res => {
-        const categories = res.data;
-        props.stateStore.setCategoryList(categories);
-      })
-      .catch(error => {
-        const errorMsg = "Did not work: " + (error.response ? error.response : error);
-      });
-  }
+  useEffect(() => {
+    api.getCategories();
+  })
 
   const _mapCategoryList = () => {
-      return props.stateStore.categoryList.map((category, index) => { 
+      return stateStore.categoryList.map((category, index) => { 
+        const categoryID = category.id;
+        const categoryName = category.name;
         //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component
-        return ( <CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} clickCategory={props.stateStore.setVisibleCategory({categoryId, categoryName}).bind(this)} /> ); }
+        return ( <CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} clickCategory={stateStore.setVisibleCategory({categoryID, categoryName})} /> ); }
       );
   }
-
-  _getCategories();
   
   return (
     <div className="category-list">

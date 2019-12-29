@@ -45,7 +45,9 @@ export default class stateStore {
   }
 
   @action setCategoryList = (categories) => {
-    this.categoryList = categories;
+    categories.forEach((category, index) => {
+      this.categoryList[index] = category;
+    })
   }
 
   @action setCategoryPosts = (posts) => {
