@@ -7,12 +7,12 @@ import axios from 'axios';
 import { observer } from 'mobx-react';
 import './CategoryThumbnail.css';
 
-const CategoryThumbnail = observer(( {props }) => {
+const CategoryThumbnail = observer(({ id, index, name, stateStore, clickCategory }) => {
 
   //Function to get a random post image URL for the category
   const _getCategoryImage = (categoryId) => {
     //Define the request string to get the posts for this category
-    const getCategoryPostURI = `https://${props.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
+    const getCategoryPostURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${id}`;
     //Make the request
     axios.get(getCategoryPostURI) 
       .then((response) => {
@@ -23,7 +23,7 @@ const CategoryThumbnail = observer(( {props }) => {
         //If this post does exist in the returned results
         if(response.data[randomPost] !== undefined) {
           //Define the request string to get the featured media for the random post
-          const getCategoryImage = `https://${props.siteUrl}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
+          const getCategoryImage = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
           //Make the request
           axios.get(getCategoryImage)
             .then(response => {
@@ -37,7 +37,8 @@ const CategoryThumbnail = observer(( {props }) => {
               else {
                 fullImageUrl = response.data.media_details.sizes.medium.source_url;
               }
-              this.props.setCategoryThumbnail({category_index: props.index, image_url: fullImageUrl});
+              //TODO: Make this do something again
+              //setCategoryThumbnail({category_index: props.index, image_url: fullImageUrl});
             })
         }
       })
@@ -45,7 +46,7 @@ const CategoryThumbnail = observer(( {props }) => {
 
   //Function to open the category using the function passed in from the parent component
   const _openCategory = () => {
-    this.props.clickCategory(props.id, props.name);
+    clickCategory(id, name);
   }
 
   const _highlightCategory = () => {
@@ -66,9 +67,9 @@ const CategoryThumbnail = observer(( {props }) => {
     */
   }
 
-  this._getCategoryImage(this.props.id);
+  _getCategoryImage(id);
 
-  const divStyle = {backgroundImage: "url(" + (props.categoryList[props.index].thumbnail_image ? props.categoryList[props.index].thumbnail_image : "")+ ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "auto 100%"};
+  const divStyle = {backgroundImage: "url(" + (stateStore.categoryList[index].thumbnail_image ? stateStore.categoryList[index].thumbnail_image : "")+ ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "auto 100%"};
 
   return ( 
     <div style={divStyle} className="category-thumbnail" onClick={_openCategory.bind(this)} onMouseOver={_highlightCategory.bind(this)} onMouseOut={_unHighlightCategory.bind(this)}>
