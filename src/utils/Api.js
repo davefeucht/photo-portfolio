@@ -34,4 +34,41 @@ export default class API {
         console.warn(error.message);
       });
   }
+
+  //Function to get a random post image URL for the category
+  getCategoryImage(categoryId, index) {
+    //Define the request string to get the posts for this category
+    const getCategoryPostURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
+    //Make the request
+    axios.get(getCategoryPostURI) 
+      .then((response) => {
+        //Determine a random post from the ones returned
+        const numberOfPosts = response.data.length;
+        const randomPost = Math.floor((Math.random() * (numberOfPosts + 1)));
+
+        //If this post does exist in the returned results
+        if(response.data[randomPost] !== undefined) {
+          //Define the request string to get the featured media for the random post
+          const getCategoryImage = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
+          //Make the request
+          axios.get(getCategoryImage)
+            .then(response => {
+              runInAction(() => {
+                let fullImageUrl = '';
+
+                //If the large size image exists, use it
+                if(response.data.media_details.sizes.large) {
+                  fullImageUrl = response.data.media_details.sizes.large.source_url;
+                }
+                //Otherwise use the medium size version
+                else {
+                  fullImageUrl = response.data.media_details.sizes.medium.source_url;
+                }
+                
+                this._stateStore.categoryList[index].thumbnail_image = fullImageUrl;
+              })
+            })
+        }
+      })
+  }
 }

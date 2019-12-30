@@ -2,48 +2,13 @@
 * CategoryThumbnail component displays the post image for a particular category.
 *****************/
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { observer } from 'mobx-react';
 import './CategoryThumbnail.css';
+import API from '../../utils/Api';
 
-const CategoryThumbnail = observer(({ id, index, name, stateStore, clickCategory }) => {
-
-  //Function to get a random post image URL for the category
-  const _getCategoryImage = (categoryId) => {
-    //Define the request string to get the posts for this category
-    const getCategoryPostURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${id}`;
-    //Make the request
-    axios.get(getCategoryPostURI) 
-      .then((response) => {
-        //Determine a random post from the ones returned
-        const numberOfPosts = response.data.length;
-        const randomPost = Math.floor((Math.random() * (numberOfPosts + 1)));
-
-        //If this post does exist in the returned results
-        if(response.data[randomPost] !== undefined) {
-          //Define the request string to get the featured media for the random post
-          const getCategoryImage = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
-          //Make the request
-          axios.get(getCategoryImage)
-            .then(response => {
-              let fullImageUrl = "";
-
-              //If the large size image exists, use it
-              if(response.data.media_details.sizes.large) {
-                fullImageUrl = response.data.media_details.sizes.large.source_url;
-              }
-              //Otherwise use the medium size version
-              else {
-                fullImageUrl = response.data.media_details.sizes.medium.source_url;
-              }
-              //TODO: Make this do something again
-              //setCategoryThumbnail({category_index: props.index, image_url: fullImageUrl});
-            })
-        }
-      })
-  }
-
+const CategoryThumbnail = observer(({ id, index, name, stateStore, api, clickCategory }) => {
   //Function to open the category using the function passed in from the parent component
   const _openCategory = () => {
     clickCategory(id, name);
@@ -67,7 +32,9 @@ const CategoryThumbnail = observer(({ id, index, name, stateStore, clickCategory
     */
   }
 
-  _getCategoryImage(id);
+  if (!stateStore.categoryList[index].thumbnail_image) {
+    api.getCategoryImage(id, index);
+  }
 
   const divStyle = {backgroundImage: "url(" + (stateStore.categoryList[index].thumbnail_image ? stateStore.categoryList[index].thumbnail_image : "")+ ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "auto 100%"};
 
