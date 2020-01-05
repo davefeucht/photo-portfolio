@@ -14,24 +14,6 @@ const CategoryThumbnail = observer(({ id, index, name, stateStore, api, clickCat
     clickCategory(id, name);
   }
 
-  const _highlightCategory = () => {
-    /*
-    if(!this.state.categoryClasses.includes("hovered")) {
-      const categoryClasses = this.state.categoryClasses.concat(["hovered"]);
-      this.setState({categoryClasses});
-    }
-    */
-  }
-
-  const _unHighlightCategory = () => {
-    /*
-    if(this.state.categoryClasses.includes("hovered")) {
-      const categoryClasses = this.state.categoryClasses.filter(element => element !== "hovered");
-      this.setState({categoryClasses});
-    }
-    */
-  }
-
   if (!stateStore.categoryList[index].thumbnail_image) {
     api.getCategoryImage(id, index);
   }
@@ -39,7 +21,7 @@ const CategoryThumbnail = observer(({ id, index, name, stateStore, api, clickCat
   const divStyle = {backgroundImage: "url(" + (stateStore.categoryList[index].thumbnail_image ? stateStore.categoryList[index].thumbnail_image : "")+ ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "auto 100%"};
 
   return ( 
-    <div style={divStyle} className="category-thumbnail" onClick={_openCategory.bind(this)} onMouseOver={_highlightCategory.bind(this)} onMouseOut={_unHighlightCategory.bind(this)}>
+    <div style={divStyle} className="category-thumbnail" onClick={_openCategory.bind(this)}>
     </div>
   );
 });
