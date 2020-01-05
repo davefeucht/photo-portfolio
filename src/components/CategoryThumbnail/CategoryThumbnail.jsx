@@ -2,16 +2,18 @@
 * CategoryThumbnail component displays the post image for a particular category.
 *****************/
 
-import React, { useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { observer } from 'mobx-react';
 import './CategoryThumbnail.css';
-import API from '../../utils/Api';
+import { runInAction } from 'mobx';
 
-const CategoryThumbnail = observer(({ id, index, name, stateStore, api, clickCategory }) => {
+const CategoryThumbnail = observer(({ id, index, name, stateStore, api }) => {
   //Function to open the category using the function passed in from the parent component
   const _openCategory = () => {
-    clickCategory(id, name);
+    runInAction(() => {
+      stateStore.setVisibleCategory(id, name);
+      stateStore.setShowAllCategories(false);
+    });
   }
 
   if (!stateStore.categoryList[index].thumbnail_image) {

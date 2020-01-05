@@ -23,10 +23,11 @@ const PhotoPortfolio = observer(({ stateStore, api }) => {
         {stateStore.visibilityFlags.showAllCategories ? 
           <Categories stateStore={stateStore} api={api}/> : 
           <Category 
-            key={stateStore.singleCategoryToShow.categoryId.toString()} 
-            categoryId={stateStore.singleCategoryToShow.categoryId} 
-            name={stateStore.singleCategoryToShow.categoryName} 
-            site={stateStore.siteInfo.siteUrl} 
+            key={stateStore.visibleCategory.categoryId.toString()} 
+            stateStore={stateStore}
+            categoryId={stateStore.visibleCategory.categoryId} 
+            name={stateStore.visibleCategory.categoryName}
+            api={api}
           />
         }
       </div>

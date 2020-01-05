@@ -37,11 +37,11 @@ export default class stateStore {
   }
 
   @action setVisibleCategory = (categoryId) => {
-    this.visibleCategory = categoryId;
+    this.visibleCategory.categoryId = categoryId;
   }
   
   @action setVisiblePost = (postId) => {
-    this.visibleCategory = postId;
+    this.visiblePost.postId = postId;
   }
 
   @action setCategoryList = (categories) => {
