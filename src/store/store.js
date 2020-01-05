@@ -7,19 +7,23 @@ export default class stateStore {
     siteName: null,
     siteUrl: 'throughapinhole.com'
   });
+  
   visibleCategory = observable.object({
     categoryId: 1,
     name: null
   });
+
   visiblePost = observable.object({
     postId: 1,
     name: null,
     full_image: null
   });
+
   visibilityFlags = observable.object({
     showAllCategories: true,
     showAllPosts: true
   })
+
   categoryList = observable.array([]);
   currentCategoryPosts = observable.array([]);
   currentCategoryData = observable.object({});

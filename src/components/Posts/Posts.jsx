@@ -26,11 +26,6 @@ const Posts = observer(({ stateStore, categoryId, categoryName, api }) => {
     //props.setSinglePostToShow({postId, name}); 
   }
 
-  api.getPosts(categoryId);
-  api.getCategoryInfo(categoryId);
-
-  //TODO: add getPostThumbnail for each post after getPosts is completed
-
   let postList = [];
 
   //If we are showing all posts, then map the list of posts to a list of PostThumbnail components

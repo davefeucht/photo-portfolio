@@ -3,7 +3,6 @@
 ****************/
 
 import React from "react";
-import axios from "axios";
 import { observer } from 'mobx-react';
 import './PostThumbnail.css';
 

@@ -5,6 +5,19 @@ export default class API {
   constructor(stateStore) {
     this._stateStore = stateStore;
   }
+  
+  _getPostThumbnail(featuredImage, index) {
+    const getPostThumbnailURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${featuredImage}`;
+    axios.get(getPostThumbnailURI)
+      .then(res => {
+        runInAction(() => {
+          let thumbnailImage = new Image();
+          const thumbnailUrl = res.data.media_details.sizes.medium.source_url;
+          this._stateStore.setThumbnailImageUrl({post_index: index, image_url: thumbnailUrl});
+          thumbnailImage.src = thumbnailUrl;
+        })
+      });
+  }
 
   getSiteInfo() {
     const getSiteInformationURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/`;
@@ -80,6 +93,11 @@ export default class API {
           const posts = res.data;
           this._stateStore.setCategoryPosts(posts);
         });
+      })
+      .then(() => {
+        this._stateStore.currentCategoryPosts.forEach((post, index) => {
+          this._getPostThumbnail(post.featured_media, index);
+        })
       });
   }
 
@@ -91,19 +109,6 @@ export default class API {
           const categoryData = res.data;
           this._stateStore.setCategoryData(categoryData);
         });
-      });
-  }
-
-  getPostThumbnail(featuredImage, index) {
-    const getPostThumbnailURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${featuredImage}`;
-    axios.get(getPostThumbnailURI)
-      .then(res => {
-        runInAction(() => {
-          let thumbnailImage = new Image();
-          const thumbnailUrl = res.data.media_details.sizes.medium.source_url;
-          this._stateStore.setThumbnailImageUrl({post_index: index, image_url: thumbnailUrl});
-          thumbnailImage.src = thumbnailUrl;
-        })
       });
   }
 }
