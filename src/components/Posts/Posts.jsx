@@ -26,21 +26,17 @@ const Posts = observer(({ stateStore, categoryId, categoryName, api }) => {
     //props.setSinglePostToShow({postId, name}); 
   }
 
-  //Function to show all the categories - onClick of 'Back To Categories' text
-  const _showAllCategories = () => {
-    //props.clickCategory();
-  }
-
-  //When the component is about to mount, get the posts for the category and get the category info
   api.getPosts(categoryId);
   api.getCategoryInfo(categoryId);
+
+  //TODO: add getPostThumbnail for each post after getPosts is completed
 
   let postList = [];
 
   //If we are showing all posts, then map the list of posts to a list of PostThumbnail components
   if(stateStore.visibilityFlags.showAllPosts) {
     postList = stateStore.currentCategoryPosts.map((post, index) => { 
-      return ( <PostThumbnail key={post.id.toString()} id={post.id} index={index} image={post.featured_media} clickImage={_showSinglePost.bind(this)}/> ); 
+      return ( <PostThumbnail key={post.id.toString()} stateStore={stateStore} id={post.id} index={index} image={post.featured_media} api={api}/> ); 
     });
   }
     
@@ -55,9 +51,7 @@ const Posts = observer(({ stateStore, categoryId, categoryName, api }) => {
     
   return (
     <div className="posts">
-      <div>
         {postList} 
-      </div>
     </div>
   );
 });

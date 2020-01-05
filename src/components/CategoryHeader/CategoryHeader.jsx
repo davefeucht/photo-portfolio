@@ -3,9 +3,9 @@
 *****************/
 
 import React from "react";
+import { runInAction } from "mobx";
 import { observer } from "mobx-react";
 import './CategoryHeader.css';
-import { runInAction } from "mobx";
 
 const CategoryHeader = observer(({ stateStore, categoryId, categoryName }) => {
 

@@ -51,11 +51,17 @@ export default class stateStore {
   }
 
   @action setCategoryPosts = (posts) => {
-    this.categoryPosts = posts;
+    posts.forEach((post, index) => {
+      this.currentCategoryPosts[index] = post;
+    })
   }
 
   @action setCategoryData = (categoryData) => {
     this.currentCategoryData = categoryData;
+  }
+
+  @action setThumbnailImageUrl = (imageData) => {
+    this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
   }
 
 }

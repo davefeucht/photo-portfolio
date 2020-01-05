@@ -3,9 +3,9 @@
 *****************/
 
 import React from 'react';
+import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import './CategoryThumbnail.css';
-import { runInAction } from 'mobx';
 
 const CategoryThumbnail = observer(({ id, index, name, stateStore, api }) => {
   //Function to open the category using the function passed in from the parent component
