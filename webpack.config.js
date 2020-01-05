@@ -26,15 +26,16 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader",
         query: {
-          presets: ["env", "react"],
-          plugins: ["transform-class-properties"]
+          presets: ["@babel/preset-env", "@babel/preset-react"],
+          plugins: [
+            ["@babel/plugin-proposal-decorators", {"decoratorsBeforeExport": true}],
+            "@babel/plugin-proposal-class-properties"
+          ]
         }
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: "css-loader" 
-        })
+        loader: "style-loader!css-loader"
       },
       {
         test: /\.scss$/,

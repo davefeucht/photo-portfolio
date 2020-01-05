@@ -2,21 +2,18 @@
 * Index component which includes the PhotoPortfolio component
 ****************/
 
-import React from "react";
-import {render} from "react-dom";
-import {Provider} from "react-redux";
-import {createStore} from "redux";
-import {devToolsEnhancer} from 'redux-devtools-extension';
-import PhotoPortfolio from "./PhotoPortfolio.jsx";
-import photoPortfolioState from "../reducers/reducers.js";
-import "../sass/main.scss";
+import React from 'react';
+import { render } from 'react-dom';
+import PhotoPortfolio from './PhotoPortfolio/PhotoPortfolio.jsx';
+import stateStore from '../store/store';
+import API from '../utils/Api';
+import '../sass/main.scss';
 
-const store = createStore(photoPortfolioState, /* preloadedState, */ devToolsEnhancer());
+const store = new stateStore();
+const api = new API(store);
 
 //Render the PhotoPortfolio component in the 'photo-portfolio' container on the page.
 render(
-  <Provider store={store}>
-    <PhotoPortfolio />
-  </Provider>,
+  <PhotoPortfolio stateStore={store} api={api}/>,
   document.getElementById("photo-portfolio")
 );
