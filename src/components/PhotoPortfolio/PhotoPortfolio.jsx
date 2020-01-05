@@ -3,7 +3,7 @@
 * loads the title bar and list of categories.
 *******************/
 
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from 'mobx-react';
 import TitleBar from "../TitleBar/TitleBar.jsx";
 import Categories from "../Categories/Categories.jsx";
@@ -12,6 +12,10 @@ import Footer from "../Footer/Footer.jsx";
 import './PhotoPortfolio.css';
 
 const PhotoPortfolio = observer(({ stateStore, api }) => {
+  useEffect(() => {
+    api.getCategories();
+  })
+
   return (
     <div className="app">
       <TitleBar stateStore={stateStore} api={api}/>

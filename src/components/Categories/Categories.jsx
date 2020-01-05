@@ -3,16 +3,11 @@
 * and makes them clickable to display just a single category.
 *****************/
 
-import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import CategoryThumbnail from "../CategoryThumbnail/CategoryThumbnail.jsx";
 import './Categories.css';
 
 const Categories = observer(({ stateStore, api }) => {
-
-  useEffect(() => {
-    api.getCategories();
-  })
 
   const _mapCategoryList = () => {
       return stateStore.categoryList.map((category, index) => { 
