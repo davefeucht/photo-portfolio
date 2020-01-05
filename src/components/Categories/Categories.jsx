@@ -3,6 +3,7 @@
 * and makes them clickable to display just a single category.
 *****************/
 
+import React from 'react';
 import { observer } from "mobx-react";
 import CategoryThumbnail from "../CategoryThumbnail/CategoryThumbnail.jsx";
 import './Categories.css';
@@ -14,7 +15,7 @@ const Categories = observer(({ stateStore, api }) => {
         const categoryID = category.id;
         const categoryName = category.name;
         //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component
-        return ( <CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} stateStore={stateStore} api={api} clickCategory={stateStore.setVisibleCategory({categoryID, categoryName})} /> ); }
+        return ( <CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} stateStore={stateStore} api={api} /> ); }
       );
   }
   

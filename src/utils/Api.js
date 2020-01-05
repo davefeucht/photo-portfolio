@@ -71,4 +71,22 @@ export default class API {
         }
       })
   }
+
+  getPosts(categoryId) {
+    const getPostsURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
+    axios.get(getPostsURI)
+      .then(res => {
+        const posts = res.data;
+        this._stateStore.setCategoryPosts(posts);
+      });
+  }
+
+  getCategoryInfo(categoryId) {
+    const getPostsCategoryURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/categories/${categoryId}`; 
+    axios.get(getPostsCategoryURI)
+      .then(res => {
+        const categoryData = res.data;
+        this._stateStore.setCategoryData(categoryData);
+      });
+  }
 }

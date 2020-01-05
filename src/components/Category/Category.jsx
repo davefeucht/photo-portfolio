@@ -8,12 +8,12 @@ import Posts from "../Posts/Posts.jsx";
 import CategoryHeader from "../CategoryHeader/CategoryHeader.jsx";
 import './Category.css';
 
-const Category = observer(( { props }) => {
+const Category = observer(( { stateStore, categoryId, categoryName, api }) => {
 
   return ( 
     <div className="category">
-      <CategoryHeader categoryId={props.categoryId} categoryName={props.categoryName} clickCategory={props.setShowAllCategories.bind(this)} />
-      <Posts site={props.siteUrl} category={props.categoryId} />
+      <CategoryHeader categoryId={categoryId} categoryName={categoryName} />
+      <Posts stateStore={stateStore} categoryId={categoryId} categoryName={categoryName} api={api} />
     </div>
   );
 });
