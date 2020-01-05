@@ -3,6 +3,7 @@
 * and makes them clickable to display just a single category.
 *****************/
 
+import React from 'react';
 import { observer } from "mobx-react";
 import CategoryThumbnail from "../CategoryThumbnail/CategoryThumbnail.jsx";
 import './Categories.css';
