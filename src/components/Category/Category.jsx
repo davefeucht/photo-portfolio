@@ -12,7 +12,7 @@ const Category = observer(( { stateStore, categoryId, categoryName, api }) => {
 
   return ( 
     <div className="category">
-      <CategoryHeader categoryId={categoryId} categoryName={categoryName} />
+      <CategoryHeader stateStore={stateStore} categoryId={categoryId} categoryName={categoryName} />
       <Posts stateStore={stateStore} categoryId={categoryId} categoryName={categoryName} api={api} />
     </div>
   );

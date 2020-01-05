@@ -5,12 +5,15 @@
 import React from "react";
 import { observer } from "mobx-react";
 import './CategoryHeader.css';
+import { runInAction } from "mobx";
 
-const CategoryHeader = observer(({ categoryId, categoryName }) => {
+const CategoryHeader = observer(({ stateStore, categoryId, categoryName }) => {
 
   //Function to close the category when it is clicked
   const _closeCategory = () => {
-    //props.clickCategory(props.categoryId, props.categoryName);
+    runInAction(() => {
+      stateStore.setShowAllCategories(true); 
+    });
   }
 
   return (
