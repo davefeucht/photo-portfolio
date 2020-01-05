@@ -10,7 +10,7 @@ export default class stateStore {
   
   visibleCategory = observable.object({
     categoryId: 1,
-    name: null
+    categoryName: null
   });
 
   visiblePost = observable.object({
@@ -40,8 +40,9 @@ export default class stateStore {
     this.visibilityFlags.showAllPosts = value;
   }
 
-  @action setVisibleCategory = (categoryId) => {
+  @action setVisibleCategory = (categoryId, categoryName) => {
     this.visibleCategory.categoryId = categoryId;
+    this.visibleCategory.categoryName = categoryName;
   }
   
   @action setVisiblePost = (postId) => {
@@ -49,12 +50,14 @@ export default class stateStore {
   }
 
   @action setCategoryList = (categories) => {
+    this.categoryList.length = 0;
     categories.forEach((category, index) => {
       this.categoryList[index] = category;
     })
   }
 
   @action setCategoryPosts = (posts) => {
+    this.currentCategoryPosts.length = 0;
     posts.forEach((post, index) => {
       this.currentCategoryPosts[index] = post;
     })

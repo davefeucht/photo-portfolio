@@ -12,8 +12,6 @@ const Categories = observer(({ stateStore, api }) => {
 
   const _mapCategoryList = () => {
       return stateStore.categoryList.map((category, index) => { 
-        const categoryID = category.id;
-        const categoryName = category.name;
         //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component
         return ( <CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} stateStore={stateStore} api={api} /> ); }
       );

@@ -7,7 +7,7 @@ import { runInAction } from "mobx";
 import { observer } from "mobx-react";
 import './CategoryHeader.css';
 
-const CategoryHeader = observer(({ stateStore, categoryId, categoryName }) => {
+const CategoryHeader = observer(({ stateStore, categoryName }) => {
 
   //Function to close the category when it is clicked
   const _closeCategory = () => {

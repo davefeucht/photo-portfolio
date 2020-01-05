@@ -26,7 +26,7 @@ const PhotoPortfolio = observer(({ stateStore, api }) => {
             key={stateStore.visibleCategory.categoryId.toString()} 
             stateStore={stateStore}
             categoryId={stateStore.visibleCategory.categoryId} 
-            name={stateStore.visibleCategory.categoryName}
+            categoryName={stateStore.visibleCategory.categoryName}
             api={api}
           />
         }
