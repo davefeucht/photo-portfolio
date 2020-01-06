@@ -9,29 +9,12 @@ import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
 import './Posts.css';
 
 const Posts = observer(({ stateStore, categoryId, categoryName, api }) => {
-
-  //Function to show a single post when clicked
-  const _showSinglePost = (postId) => {
-    const showAllPosts = false;
-    const name = "";
-    //props.setShowAllPosts(showAllPosts);
-    //props.setSinglePostToShow({postId, name});
-  }
-
-  //Function to show all posts in the category
-  const _showAllPosts = (postId) => {
-    const showAllPosts = true;
-    const name = "";
-    //props.setShowAllPosts(showAllPosts);
-    //props.setSinglePostToShow({postId, name}); 
-  }
-
   let postList = [];
 
   //If we are showing all posts, then map the list of posts to a list of PostThumbnail components
   if(stateStore.visibilityFlags.showAllPosts) {
     postList = stateStore.currentCategoryPosts.map((post, index) => { 
-      return ( <PostThumbnail key={post.id.toString()} stateStore={stateStore} id={post.id} index={index} image={post.featured_media} api={api}/> ); 
+      return ( <PostThumbnail key={post.id.toString()} stateStore={stateStore} id={post.id} title={post.title.rendered} index={index} image={post.featured_media} api={api}/> ); 
     });
   }
     
@@ -39,7 +22,8 @@ const Posts = observer(({ stateStore, categoryId, categoryName, api }) => {
   else {
     stateStore.currentCategoryPosts.forEach(post => {
       if(post.id == stateStore.visiblePost.postId) {
-        postList[0] = <Post key={stateStore.visiblePost.postId.toString()} id={stateStore.visiblePost.postId} category={categoryId} categoryName={categoryName} title={post.title.rendered} image={post.featured_media} context="full-image" clickImage={_showAllPosts.bind(this)} />;
+        api.getPostImage(post.featured_media);
+        postList[0] = <Post key={stateStore.visiblePost.postId.toString()} stateStore={stateStore} id={stateStore.visiblePost.postId} category={categoryId} categoryName={categoryName} title={post.title.rendered} image={post.featured_media} api={api} context="full-image"/>;
       }
     });
   }

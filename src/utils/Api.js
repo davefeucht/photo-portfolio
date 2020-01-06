@@ -111,4 +111,20 @@ export default class API {
         });
       });
   }
+
+  getPostImage(image) {
+    const getPostImageURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${image}`; 
+    axios.get(getPostImageURI)
+      .then(res => {
+        runInAction(() => {
+          let thumbnailImage = new Image();
+          let fullImage = new Image();
+          const thumbnailUrl = res.data.media_details.sizes.thumbnail.source_url;
+          const fullImageUrl = res.data.media_details.sizes.full.source_url;
+          this._stateStore.setVisiblePostImage(fullImageUrl);
+          thumbnailImage.src = thumbnailUrl;
+          fullImage.src = fullImageUrl;
+        })
+      });
+  }
 }
