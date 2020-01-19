@@ -3,6 +3,8 @@ import { observable, action, configure } from 'mobx';
 configure({ enforceActions: 'observed' });
 
 export default class stateStore {
+  @observable applicationRoot = null;
+
   siteInfo = observable.object({
     siteName: null,
     siteUrl: 'throughapinhole.com'
@@ -27,6 +29,10 @@ export default class stateStore {
   categoryList = observable.array([]);
   currentCategoryPosts = observable.array([]);
   currentCategoryData = observable.object({});
+
+  @action setApplicationRoot = element => {
+    this.applicationRoot = element;
+  }
 
   @action setSiteName = (name) => {
     this.siteInfo.siteName = name;
