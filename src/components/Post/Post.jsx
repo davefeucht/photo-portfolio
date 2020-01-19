@@ -9,15 +9,18 @@ import { observer } from 'mobx-react';
 import './Post.css';
 
 const Post = observer(({ stateStore, id, category, categoryName, title, image, api, context }) => {
-  const _showAllPosts = () => {
+  const _closeModal = () => {
     runInAction(() => {
       stateStore.setShowModal(false);
     })
   }
     
-  const divStyle = {backgroundImage: "url(" + stateStore.visiblePost.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "contain"};
+  const modalStyle = {position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.8)', zIndex: 10};
+  const divStyle = {width: '80%', height: '80%', backgroundImage: "url(" + stateStore.visiblePost.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "contain"};
   const classList = "post";
-  const div = <div className={classList} style={divStyle} onClick={_showAllPosts.bind(this)}></div>;
+  const div = <div style={modalStyle} onClick={_closeModal.bind(this)}>
+                <div className={classList} style={divStyle} onClick={_closeModal.bind(this)}></div>;
+              </div>
 
   return(
     ReactDOM.createPortal(
