@@ -10,9 +10,12 @@ import './Category.css';
 
 const Category = observer(( { stateStore, categoryId, categoryName, api }) => {
 
+  api.getPosts(categoryId);
+  api.getCategoryInfo(categoryId);
+
   return ( 
     <div className="category">
-      <CategoryHeader categoryId={categoryId} categoryName={categoryName} />
+      <CategoryHeader stateStore={stateStore} categoryId={categoryId} categoryName={categoryName} />
       <Posts stateStore={stateStore} categoryId={categoryId} categoryName={categoryName} api={api} />
     </div>
   );

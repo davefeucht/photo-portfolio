@@ -3,33 +3,18 @@
 ****************/
 
 import React from "react";
-import axios from "axios";
+import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import './Post.css';
 
-const Post = observer(({ props }) => {
-  const _getPostImage = () => {
-    const getPostImageURI = `https://${props.siteUrl}/wp-json/wp/v2/media/${this.props.image}`; 
-    axios.get(getPostImageURI)
-      .then(res => {
-        let thumbnailImage = new Image();
-        let fullImage = new Image();
-        const thumbnailUrl = res.data.media_details.sizes.thumbnail.source_url;
-        const fullImageUrl = res.data.media_details.sizes.full.source_url;
-        props.setFullImageUrl(fullImageUrl);
-        thumbnailImage.src = thumbnailUrl;
-        fullImage.src = fullImageUrl;
-      });
-  } 
-
-  const _showAllPosts = (event) => {
-    event.preventDefault();
-    props.clickImage(this.props.id);
+const Post = observer(({ stateStore, id, category, categoryName, title, image, api, context }) => {
+  const _showAllPosts = () => {
+    runInAction(() => {
+      stateStore.setShowAllPosts(true);
+    })
   }
     
- _getPostImage();
-
-  let divStyle = {backgroundImage: "url(" + props.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "contain"};
+  let divStyle = {backgroundImage: "url(" + stateStore.visiblePost.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "contain"};
   let classList = "post";
 
   return(

@@ -7,19 +7,23 @@ export default class stateStore {
     siteName: null,
     siteUrl: 'throughapinhole.com'
   });
+  
   visibleCategory = observable.object({
     categoryId: 1,
-    name: null
+    categoryName: null
   });
+
   visiblePost = observable.object({
     postId: 1,
-    name: null,
-    full_image: null
+    postName: null,
+    fullImageUrl: null
   });
+
   visibilityFlags = observable.object({
     showAllCategories: true,
     showAllPosts: true
   })
+
   categoryList = observable.array([]);
   currentCategoryPosts = observable.array([]);
   currentCategoryData = observable.object({});
@@ -36,26 +40,40 @@ export default class stateStore {
     this.visibilityFlags.showAllPosts = value;
   }
 
-  @action setVisibleCategory = (categoryId) => {
+  @action setVisibleCategory = (categoryId, categoryName) => {
     this.visibleCategory.categoryId = categoryId;
+    this.visibleCategory.categoryName = categoryName;
   }
   
-  @action setVisiblePost = (postId) => {
+  @action setVisiblePost = (postId, postName) => {
     this.visiblePost.postId = postId;
+    this.visiblePost.postName = postName;
+  }
+
+  @action setVisiblePostImage = (fullImageUrl) => {
+    this.visiblePost.fullImageUrl = fullImageUrl;
   }
 
   @action setCategoryList = (categories) => {
+    this.categoryList.length = 0;
     categories.forEach((category, index) => {
       this.categoryList[index] = category;
     })
   }
 
   @action setCategoryPosts = (posts) => {
-    this.categoryPosts = posts;
+    this.currentCategoryPosts.length = 0;
+    posts.forEach((post, index) => {
+      this.currentCategoryPosts[index] = post;
+    })
   }
 
   @action setCategoryData = (categoryData) => {
     this.currentCategoryData = categoryData;
+  }
+
+  @action setThumbnailImageUrl = (imageData) => {
+    this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
   }
 
 }
