@@ -4,6 +4,7 @@ configure({ enforceActions: 'observed' });
 
 export default class stateStore {
   @observable applicationRoot = null;
+  @observable modalDiv = null;
 
   siteInfo = observable.object({
     siteName: null,
@@ -32,6 +33,10 @@ export default class stateStore {
 
   @action setApplicationRoot = element => {
     this.applicationRoot = element;
+  }
+
+  @action setModalDiv = element => {
+    this.modalDiv = element;
   }
 
   @action setSiteName = (name) => {

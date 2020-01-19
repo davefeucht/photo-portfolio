@@ -13,6 +13,7 @@ const store = new stateStore();
 const api = new API(store);
 
 store.setApplicationRoot(document.getElementById("photo-portfolio"));
+store.setModalDiv(document.getElementById("modal"));
 
 //Render the PhotoPortfolio component in the 'photo-portfolio' container on the page.
 render(
