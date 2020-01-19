@@ -3,6 +3,7 @@
 ****************/
 
 import React from "react";
+import ReactDOM from "react-dom";
 import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import './Post.css';
@@ -10,16 +11,19 @@ import './Post.css';
 const Post = observer(({ stateStore, id, category, categoryName, title, image, api, context }) => {
   const _showAllPosts = () => {
     runInAction(() => {
-      stateStore.setShowAllPosts(true);
+      stateStore.setShowModal(false);
     })
   }
     
-  let divStyle = {backgroundImage: "url(" + stateStore.visiblePost.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "contain"};
-  let classList = "post";
+  const divStyle = {backgroundImage: "url(" + stateStore.visiblePost.fullImageUrl + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "contain"};
+  const classList = "post";
+  const div = <div className={classList} style={divStyle} onClick={_showAllPosts.bind(this)}></div>;
 
   return(
-    <div className={classList} style={divStyle} onClick={_showAllPosts.bind(this)}>
-    </div>
+    ReactDOM.createPortal(
+      div,
+      stateStore.modalDiv
+    )
   );
 });
 

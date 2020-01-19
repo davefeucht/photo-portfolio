@@ -18,14 +18,14 @@ export default class stateStore {
 
   visiblePost = observable.object({
     postId: 1,
-    postName: null,
+    postTitle: null,
     fullImageUrl: null
   });
 
   visibilityFlags = observable.object({
     showAllCategories: true,
-    showAllPosts: true
-  })
+    showModal: false
+  });
 
   categoryList = observable.array([]);
   currentCategoryPosts = observable.array([]);
@@ -47,8 +47,8 @@ export default class stateStore {
     this.visibilityFlags.showAllCategories = value;
   }
 
-  @action setShowAllPosts = (value) => {
-    this.visibilityFlags.showAllPosts = value;
+  @action setShowModal = (value) => {
+    this.visibilityFlags.showModal = value;
   }
 
   @action setVisibleCategory = (categoryId, categoryName) => {
@@ -56,9 +56,9 @@ export default class stateStore {
     this.visibleCategory.categoryName = categoryName;
   }
   
-  @action setVisiblePost = (postId, postName) => {
+  @action setVisiblePost = (postId, postTitle) => {
     this.visiblePost.postId = postId;
-    this.visiblePost.postName = postName;
+    this.visiblePost.postTitle = postTitle;
   }
 
   @action setVisiblePostImage = (fullImageUrl) => {
