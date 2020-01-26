@@ -2,9 +2,12 @@
   position: absolute;
   width: 80%;
   height: 80%;
-  cursor: pointer;
-  grid-column: 1 / 6;
-  grid-row: 1/3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  border: solid 1px #999999;
 }
 
 .post-background {
