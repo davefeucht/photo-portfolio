@@ -2,12 +2,11 @@
 * PostImage component displays the image for a Post
 ****************/
 
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from 'mobx-react';
 import './PostImage.css';
 
-const PostImage = observer(({ stateStore, id, title, index, image, api }) => {
-
+const PostImage = observer(({ stateStore, title }) => {
   const imageStyle = {backgroundImage: "url(" + stateStore.visiblePost.fullImageUrl + ")" };
 
   return(

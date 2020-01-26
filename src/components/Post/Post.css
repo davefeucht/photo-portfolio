@@ -1,13 +1,14 @@
 .post {
   position: absolute;
-  width: 80%;
-  height: 80%;
+  max-width: 80%;
+  max-height: 80%;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
-  margin: auto;
   border: solid 1px #999999;
+  background-color: #606060;
+  display: grid;
+  grid-template-areas: "header" "content" "footer";
+  grid-template-rows: 3rem auto 2rem;
 }
 
 .post-background {

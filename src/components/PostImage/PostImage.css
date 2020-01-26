@@ -1,7 +1,11 @@
 .post-image {
   width: 100%;
   height: 100%;
-  background-repeat: "no-repeat"; 
-  background-position: "center center"; 
-  background-size: "contain"
+  background-repeat: no-repeat; 
+  background-position: center center; 
+  background-size: contain auto;
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
 }
