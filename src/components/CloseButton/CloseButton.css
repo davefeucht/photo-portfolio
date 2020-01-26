@@ -1,0 +1,13 @@
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #000000;
+  border: 1px solid #999999;
+}
+
+.close-button-content {
+  position: absolute;
+  margin: auto;
+}
