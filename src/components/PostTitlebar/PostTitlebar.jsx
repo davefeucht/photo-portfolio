@@ -9,7 +9,8 @@ import './PostTitlebar.css';
 
 const PostTitlebar = observer(({ title, closeFunction }) => {
   return(
-    <div className="post-titlebar">{title}
+    <div className="post-titlebar">
+      <div className="title">{title}</div>
       <CloseButton closeFunction={closeFunction}></CloseButton>
     </div>
   )

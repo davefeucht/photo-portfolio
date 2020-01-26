@@ -8,11 +8,12 @@ import './CloseButton.css';
 
 const CloseButton = observer(({ closeFunction }) => {
   useEffect(() => {
-    console.log(document.querySelector('.close-button').clientHeight);
     document.querySelector('.close-button').style.width = `${document.querySelector('.close-button').clientHeight}px`;
   })
   return(
-    <div className="close-button" onClick={closeFunction.bind(this)}>X</div>
+    <div className="close-button" onClick={closeFunction.bind(this)}>
+      <div className="close-button-content"><img src="./images/close-icon.png" width="30px" height="30px" /></div>
+    </div>
   )
 });
 

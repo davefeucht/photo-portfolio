@@ -17,7 +17,7 @@ const Post = observer(({ stateStore, id, category, categoryName, title, image, a
     })
   }
     
-  const div = <div className="post-background" onClick={_closeModal.bind(this)}>
+  const div = <div className="post-background">
                 <div className="post">
                   <PostTitlebar title={title} closeFunction={_closeModal}></PostTitlebar>
                   <PostImage stateStore={stateStore}></PostImage>
