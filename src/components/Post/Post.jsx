@@ -8,9 +8,10 @@ import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import PostTitlebar from '../PostTitlebar/PostTitlebar.jsx';
 import PostImage from '../PostImage/PostImage.jsx';
+import PostFooter from '../PostFooter/PostFooter.jsx';
 import './Post.css';
 
-const Post = observer(({ stateStore, id, category, categoryName, title, image, api, context }) => {
+const Post = observer(({ stateStore, title, tags }) => {
 
   const getPostRect = (imageWidth, imageHeight) => {
       const aspectRatio = imageWidth / imageHeight;
@@ -36,13 +37,18 @@ const Post = observer(({ stateStore, id, category, categoryName, title, image, a
   }
 
   const setPostRect = (image) => {
-    console.log(image);
     const postElement = document.querySelector('.post');
     const rect = getPostRect(image.width, image.height);
     postElement.style.width = rect.width;
     postElement.style.height = rect.height;
     postElement.style.left = rect.left;
     postElement.style.top = rect.top;
+  }
+
+  const _closeModal = () => {
+    runInAction(() => {
+      stateStore.setShowModal(false);
+    })
   }
 
   useEffect(() => {
@@ -56,17 +62,12 @@ const Post = observer(({ stateStore, id, category, categoryName, title, image, a
       window.removeEventListener("resize", setPostRect);
     }
   }, [stateStore.visiblePost.fullImageUrl]);
-  
-  const _closeModal = () => {
-    runInAction(() => {
-      stateStore.setShowModal(false);
-    })
-  }
     
   const div = <div className="post-background">
                 <div className="post">
                   <PostTitlebar title={title} closeFunction={_closeModal}></PostTitlebar>
                   <PostImage stateStore={stateStore}></PostImage>
+                  <PostFooter tags={tags}></PostFooter>
                 </div>
               </div>
 
