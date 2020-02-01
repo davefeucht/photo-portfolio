@@ -12,14 +12,49 @@ import './Post.css';
 
 const Post = observer(({ stateStore, id, category, categoryName, title, image, api, context }) => {
 
+  const getPostRect = (imageWidth, imageHeight) => {
+      const aspectRatio = imageWidth / imageHeight;
+      const screenWidth = stateStore.applicationRoot.clientWidth;
+      const screenHeight = stateStore.applicationRoot.clientHeight;
+      const rect = {};
+      let width = 0;
+      let height = 0;
+      width = screenWidth * 0.8;
+      height = width / aspectRatio;
+      
+      if (height > screenHeight) {
+        height = screenHeight * 0.8;
+        width = height * aspectRatio;
+      }
+
+      rect.width = `${width}px`;
+      rect.height = `${height}px`;
+      rect.left = `${(screenWidth - width) / 2}px`;
+      rect.top = `${(screenHeight - height) / 2}px`;
+
+      return rect;
+  }
+
+  const setPostRect = (image) => {
+    console.log(image);
+    const postElement = document.querySelector('.post');
+    const rect = getPostRect(image.width, image.height);
+    postElement.style.width = rect.width;
+    postElement.style.height = rect.height;
+    postElement.style.left = rect.left;
+    postElement.style.top = rect.top;
+  }
+
   useEffect(() => {
     const image = document.createElement('img');
     image.onload = () => {
-      const postElement = document.querySelector('.post');
-      postElement.style.height = `${image.height}px`
-      postElement.style.width = `${image.width}px`
+      setPostRect(image);
     }
     image.src = stateStore.visiblePost.fullImageUrl;
+    window.addEventListener("resize", setPostRect.bind(this, image));
+    return () => {
+      window.removeEventListener("resize", setPostRect);
+    }
   }, [stateStore.visiblePost.fullImageUrl]);
   
   const _closeModal = () => {

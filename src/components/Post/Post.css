@@ -1,9 +1,5 @@
 .post {
   position: absolute;
-  max-width: 80%;
-  max-height: 80%;
-  top: 0;
-  left: 0;
   border: solid 1px #999999;
   background-color: #606060;
   display: grid;

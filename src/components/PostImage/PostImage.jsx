@@ -6,11 +6,13 @@ import React, { useEffect } from "react";
 import { observer } from 'mobx-react';
 import './PostImage.css';
 
-const PostImage = observer(({ stateStore, title }) => {
+const PostImage = observer(({ stateStore }) => {
   const imageStyle = {backgroundImage: "url(" + stateStore.visiblePost.fullImageUrl + ")" };
 
   return(
-    <div className="post-image" style={imageStyle}>{title}</div>
+    <div className="post-image">
+      <img src={stateStore.visiblePost.fullImageUrl}></img>
+    </div>
   )
 });
 
