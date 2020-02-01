@@ -9,27 +9,21 @@ import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
 import './Posts.css';
 
 const Posts = observer(({ stateStore, categoryId, categoryName, api }) => {
-  let postList = [];
 
   //If we are showing all posts, then map the list of posts to a list of PostThumbnail components
-  if(stateStore.visibilityFlags.showAllPosts) {
-    postList = stateStore.currentCategoryPosts.map((post, index) => { 
-      return ( <PostThumbnail key={post.id.toString()} stateStore={stateStore} id={post.id} title={post.title.rendered} index={index} image={post.featured_media} api={api}/> ); 
-    });
-  }
-    
-  //Otherwise, display the single post which matches the 'singlePostToShow'
-  else {
-    stateStore.currentCategoryPosts.forEach(post => {
-      if(post.id == stateStore.visiblePost.postId) {
-        api.getPostImage(post.featured_media);
-        postList[0] = <Post key={stateStore.visiblePost.postId.toString()} stateStore={stateStore} id={stateStore.visiblePost.postId} category={categoryId} categoryName={categoryName} title={post.title.rendered} image={post.featured_media} api={api} context="full-image"/>;
-      }
-    });
-  }
+  const postList = stateStore.currentCategoryPosts.map((post, index) => { 
+    return ( <PostThumbnail key={post.id.toString()} stateStore={stateStore} id={post.id} title={post.title.rendered} tags={post.tags} index={index} image={post.featured_media} api={api}/> ); 
+  });
     
   return (
     <div className="posts">
+        {stateStore.visibilityFlags.showModal && 
+          <Post key={stateStore.visiblePost.postId.toString()} 
+                stateStore={stateStore} 
+                title={stateStore.visiblePost.postTitle} 
+                tags={stateStore.visiblePost.tags}
+          />
+        }
         {postList} 
     </div>
   );

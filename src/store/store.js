@@ -3,6 +3,9 @@ import { observable, action, configure } from 'mobx';
 configure({ enforceActions: 'observed' });
 
 export default class stateStore {
+  @observable applicationRoot = null;
+  @observable modalDiv = null;
+
   siteInfo = observable.object({
     siteName: null,
     siteUrl: 'throughapinhole.com'
@@ -15,18 +18,27 @@ export default class stateStore {
 
   visiblePost = observable.object({
     postId: 1,
-    postName: null,
+    postTitle: null,
+    tags: [],
     fullImageUrl: null
   });
 
   visibilityFlags = observable.object({
     showAllCategories: true,
-    showAllPosts: true
-  })
+    showModal: false
+  });
 
   categoryList = observable.array([]);
   currentCategoryPosts = observable.array([]);
   currentCategoryData = observable.object({});
+
+  @action setApplicationRoot = element => {
+    this.applicationRoot = element;
+  }
+
+  @action setModalDiv = element => {
+    this.modalDiv = element;
+  }
 
   @action setSiteName = (name) => {
     this.siteInfo.siteName = name;
@@ -36,8 +48,8 @@ export default class stateStore {
     this.visibilityFlags.showAllCategories = value;
   }
 
-  @action setShowAllPosts = (value) => {
-    this.visibilityFlags.showAllPosts = value;
+  @action setShowModal = (value) => {
+    this.visibilityFlags.showModal = value;
   }
 
   @action setVisibleCategory = (categoryId, categoryName) => {
@@ -45,9 +57,9 @@ export default class stateStore {
     this.visibleCategory.categoryName = categoryName;
   }
   
-  @action setVisiblePost = (postId, postName) => {
+  @action setVisiblePost = (postId, postTitle) => {
     this.visiblePost.postId = postId;
-    this.visiblePost.postName = postName;
+    this.visiblePost.postTitle = postTitle;
   }
 
   @action setVisiblePostImage = (fullImageUrl) => {

@@ -11,9 +11,10 @@ import '../sass/main.scss';
 
 const store = new stateStore();
 const api = new API(store);
+store.setApplicationRoot(document.getElementById('photo-portfolio'));
 
 //Render the PhotoPortfolio component in the 'photo-portfolio' container on the page.
 render(
   <PhotoPortfolio stateStore={store} api={api}/>,
-  document.getElementById("photo-portfolio")
+  store.applicationRoot
 );

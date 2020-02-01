@@ -14,6 +14,7 @@ import './PhotoPortfolio.css';
 const PhotoPortfolio = observer(({ stateStore, api }) => {
   useEffect(() => {
     api.getCategories();
+    stateStore.setModalDiv(document.querySelector('.app'));
   })
 
   return (

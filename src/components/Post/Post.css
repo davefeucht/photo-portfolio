@@ -1,5 +1,18 @@
 .post {
-  cursor: pointer;
-  grid-column: 1 / 6;
-  grid-row: 1/3;
+  position: absolute;
+  border: solid 1px #999999;
+  background-color: #606060;
+  display: grid;
+  grid-template-areas: "header" "content" "footer";
+  grid-template-rows: 3rem auto 2rem;
+}
+
+.post-background {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.8); 
+  z-index: 10;
 }

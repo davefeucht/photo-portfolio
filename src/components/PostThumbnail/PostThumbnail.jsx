@@ -7,11 +7,13 @@ import { runInAction } from "mobx";
 import { observer } from 'mobx-react';
 import './PostThumbnail.css';
 
-const PostThumbnail = observer(({ stateStore, id, title, index }) => {
+const PostThumbnail = observer(({ stateStore, id, title, tags, index, image, api }) => {
   const _showFullPost = () => {
     runInAction(() => {
+      api.getPostImage(image);
+      api.getTagNames(tags);
       stateStore.setVisiblePost(id, title);
-      stateStore.setShowAllPosts(false);
+      stateStore.setShowModal(true);
     });
   }
 
