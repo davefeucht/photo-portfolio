@@ -20,14 +20,10 @@ const Posts = observer(({ stateStore, categoryId, categoryName, api }) => {
         {stateStore.visibilityFlags.showModal && 
           <Post key={stateStore.visiblePost.postId.toString()} 
                 stateStore={stateStore} 
-                id={stateStore.visiblePost.postId} 
-                category={categoryId} 
-                categoryName={categoryName} 
                 title={stateStore.visiblePost.postTitle} 
                 tags={stateStore.visiblePost.tags}
-                image={stateStore.visiblePost.fullImageUrl} 
-                api={api} 
-                context="full-image"/>}
+          />
+        }
         {postList} 
     </div>
   );

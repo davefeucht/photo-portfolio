@@ -11,7 +11,7 @@ import PostImage from '../PostImage/PostImage.jsx';
 import PostFooter from '../PostFooter/PostFooter.jsx';
 import './Post.css';
 
-const Post = observer(({ stateStore, title, tags }) => {
+const Post = observer(({ stateStore }) => {
 
   const getPostRect = (imageWidth, imageHeight) => {
       const aspectRatio = imageWidth / imageHeight;
@@ -65,9 +65,9 @@ const Post = observer(({ stateStore, title, tags }) => {
     
   const div = <div className="post-background">
                 <div className="post">
-                  <PostTitlebar title={title} closeFunction={_closeModal}></PostTitlebar>
+                  <PostTitlebar title={stateStore.visiblePost.postTitle} closeFunction={_closeModal}></PostTitlebar>
                   <PostImage stateStore={stateStore}></PostImage>
-                  <PostFooter tags={tags}></PostFooter>
+                  <PostFooter stateStore={stateStore}></PostFooter>
                 </div>
               </div>
 

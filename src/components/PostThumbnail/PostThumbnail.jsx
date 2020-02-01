@@ -11,7 +11,8 @@ const PostThumbnail = observer(({ stateStore, id, title, tags, index, image, api
   const _showFullPost = () => {
     runInAction(() => {
       api.getPostImage(image);
-      stateStore.setVisiblePost(id, title, tags);
+      api.getTagNames(tags);
+      stateStore.setVisiblePost(id, title);
       stateStore.setShowModal(true);
     });
   }

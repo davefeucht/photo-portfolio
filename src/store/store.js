@@ -19,7 +19,7 @@ export default class stateStore {
   visiblePost = observable.object({
     postId: 1,
     postTitle: null,
-    tags: null,
+    tags: [],
     fullImageUrl: null
   });
 
@@ -57,10 +57,9 @@ export default class stateStore {
     this.visibleCategory.categoryName = categoryName;
   }
   
-  @action setVisiblePost = (postId, postTitle, tags) => {
+  @action setVisiblePost = (postId, postTitle) => {
     this.visiblePost.postId = postId;
     this.visiblePost.postTitle = postTitle;
-    this.visiblePost.tags = tags;
   }
 
   @action setVisiblePostImage = (fullImageUrl) => {

@@ -127,4 +127,16 @@ export default class API {
         })
       });
   }
+
+  getTagNames(tags) {
+    tags.forEach((tagId, index) => {
+      const getTagNameURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/tags/${tagId}`
+      axios.get(getTagNameURI)
+        .then(res => {
+          runInAction(() => {
+            this._stateStore.visiblePost.tags[index] = res.data.name;
+          })
+        })
+    });
+  }
 }
