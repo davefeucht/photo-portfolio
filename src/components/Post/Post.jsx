@@ -45,7 +45,7 @@ const Post = observer(({ stateStore }) => {
     postElement.style.top = rect.top;
   }
 
-  const _closeModal = () => {
+  const closeModal = () => {
     runInAction(() => {
       stateStore.setShowModal(false);
     })
@@ -65,7 +65,7 @@ const Post = observer(({ stateStore }) => {
     
   const div = <div className="post-background">
                 <div className="post">
-                  <PostTitlebar title={stateStore.visiblePost.postTitle} closeFunction={_closeModal}></PostTitlebar>
+                  <PostTitlebar title={stateStore.visiblePost.postTitle} closeFunction={closeModal}></PostTitlebar>
                   <PostImage stateStore={stateStore}></PostImage>
                   <PostFooter stateStore={stateStore}></PostFooter>
                 </div>

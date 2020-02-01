@@ -1,5 +1,5 @@
 /****************
-* PostTitlebar component displays the titlebar for a Post
+* PostFooter component displays the footer for a Post
 ****************/
 
 import React from "react";
