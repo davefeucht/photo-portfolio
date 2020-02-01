@@ -38,9 +38,10 @@ const Post = observer(({ stateStore }) => {
 
   const setPostRect = (image) => {
     const postElement = document.querySelector('.post');
+    const imageElement = document.querySelector('.post-image > img');
     const rect = getPostRect(image.width, image.height);
+    imageElement.style.width = rect.width;
     postElement.style.width = rect.width;
-    postElement.style.height = rect.height;
     postElement.style.left = rect.left;
     postElement.style.top = rect.top;
   }
