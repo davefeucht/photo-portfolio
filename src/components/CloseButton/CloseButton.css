@@ -1,8 +1,6 @@
 .close-button {
-  display: grid;
-  grid-column: 2;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
+  order: 2;
+  margin-right: 10px;
   background-color: #000000;
 }
 
