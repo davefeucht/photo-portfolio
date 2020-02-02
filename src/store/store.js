@@ -20,6 +20,7 @@ export default class stateStore {
     postId: 1,
     postTitle: null,
     tags: [],
+    tagNames: [],
     fullImageUrl: null
   });
 
