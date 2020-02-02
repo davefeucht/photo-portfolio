@@ -129,12 +129,13 @@ export default class API {
   }
 
   getTagNames(tags) {
-    tags.forEach((tagId, index) => {
+    this._stateStore.visiblePost.tagNames.clear();
+    tags.forEach(tagId => {
       const getTagNameURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/tags/${tagId}`
       axios.get(getTagNameURI)
         .then(res => {
           runInAction(() => {
-            this._stateStore.visiblePost.tags[index] = res.data.name;
+            this._stateStore.visiblePost.tagNames.push(res.data.name);
           })
         })
     });

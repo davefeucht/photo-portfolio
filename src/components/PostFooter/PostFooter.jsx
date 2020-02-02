@@ -8,13 +8,9 @@ import CloseButton from '../CloseButton/CloseButton.jsx';
 import './PostFooter.css';
 
 const PostFooter = observer(({ stateStore }) => {
-  let tags = '';
-  if (stateStore.visiblePost.tags) {
-    tags = stateStore.visiblePost.tags.join(', ');
-  }
   return(
     <div className="post-footer">
-      <div className="labels">{tags}</div>
+      <div className="labels">{stateStore.visiblePost.tagNames.join(', ')}</div>
     </div>
   )
 });
