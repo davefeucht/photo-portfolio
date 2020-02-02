@@ -3,14 +3,15 @@
   font-size: 25px;
   color: #FFFFFF;
   grid-area: header;
-  display: grid;
-  grid-template-columns: 95% 5%;
-  grid-template-rows: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .post-titlebar > .title {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
-  margin: auto auto auto 5px;
+  margin-left: 10px;
+  order: 1;
+  flex-grow: 3;
 }
