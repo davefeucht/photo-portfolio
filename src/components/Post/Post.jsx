@@ -13,36 +13,46 @@ import './Post.css';
 
 const Post = observer(({ stateStore }) => {
 
-  const getPostRect = (imageWidth, imageHeight) => {
+  const getPostSize = (screenWidth, screenHeight, imageWidth, imageHeight) => {
       const aspectRatio = imageWidth / imageHeight;
-      const screenWidth = stateStore.applicationRoot.clientWidth;
-      const screenHeight = stateStore.applicationRoot.clientHeight;
       const rect = {};
       let width = 0;
       let height = 0;
-      width = screenWidth * 0.8;
-      height = width / aspectRatio;
-      
-      if (height > screenHeight) {
+      if (aspectRatio > 1.2) {
+        width = screenWidth * 0.8;
+        height = width / aspectRatio;
+      } else {
         height = screenHeight * 0.8;
-        width = height * aspectRatio;
+        width = screenHeight * aspectRatio;
       }
-
+      
       rect.width = `${width}px`;
       rect.height = `${height}px`;
-      rect.left = `${(screenWidth - width) / 2}px`;
-      rect.top = `${(screenHeight - height) / 2}px`;
 
       return rect;
   }
 
+  const getPostPosition = (screenWidth, screenHeight, postWidth, postHeight) => {
+    const position = {};
+    position.left = `${(screenWidth - postWidth) / 2}px`;
+    position.top = `${(screenHeight - postHeight) / 2}px`;
+
+    return position;
+  }
+
   const setPostRect = (image) => {
+    const screenWidth = stateStore.applicationRoot.clientWidth;
+    const screenHeight = stateStore.applicationRoot.clientHeight;
     const postElement = document.querySelector('.post');
-    const rect = getPostRect(image.width, image.height);
+    const imageElement = document.querySelector('.post-image > img');
+    const rect = getPostSize(screenWidth, screenHeight, image.width, image.height);
+    imageElement.style.width = rect.width;
+    imageElement.style.height = rect.height;
     postElement.style.width = rect.width;
-    postElement.style.height = rect.height;
-    postElement.style.left = rect.left;
-    postElement.style.top = rect.top;
+
+    const position = getPostPosition(screenWidth, screenHeight, postElement.clientWidth, postElement.clientHeight);
+    postElement.style.left = position.left;
+    postElement.style.top = position.top;
   }
 
   const closeModal = () => {
