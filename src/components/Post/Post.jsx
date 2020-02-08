@@ -23,7 +23,7 @@ const Post = observer(({ stateStore, api }) => {
         height = width / aspectRatio;
       } else {
         height = screenHeight * 0.8;
-        width = screenHeight * aspectRatio;
+        width = height * aspectRatio;
       }
       
       rect.width = `${width}px`;
