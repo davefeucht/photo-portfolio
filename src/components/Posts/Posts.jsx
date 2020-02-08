@@ -8,7 +8,7 @@ import Post from '../Post/Post.jsx';
 import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
 import './Posts.css';
 
-const Posts = observer(({ stateStore, categoryId, categoryName, api }) => {
+const Posts = observer(({ stateStore, api }) => {
 
   //If we are showing all posts, then map the list of posts to a list of PostThumbnail components
   const postList = stateStore.currentCategoryPosts.map((post, index) => { 
@@ -22,6 +22,7 @@ const Posts = observer(({ stateStore, categoryId, categoryName, api }) => {
                 stateStore={stateStore} 
                 title={stateStore.visiblePost.postTitle} 
                 tags={stateStore.visiblePost.tags}
+                api={api}
           />
         }
         {postList} 
