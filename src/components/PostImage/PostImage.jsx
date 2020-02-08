@@ -4,12 +4,29 @@
 
 import React, { useEffect } from "react";
 import { observer } from 'mobx-react';
+import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow.js';
 import './PostImage.css';
 
-const PostImage = observer(({ stateStore }) => {
+const PostImage = observer(({ stateStore, api }) => {
+  const onMouseOverHandler = () => {
+    const arrows = document.querySelectorAll('.post-navigation-arrow');
+    arrows.forEach(arrow => {
+      arrow.style.opacity = 1;
+    })
+  }
+  
+  const onMouseOutHandler = () => {
+    const arrows = document.querySelectorAll('.post-navigation-arrow');
+    arrows.forEach(arrow => {
+      arrow.style.opacity = 0;
+    })
+  }
+
   return(
-    <div className="post-image">
+    <div className="post-image" onMouseOver={onMouseOverHandler.bind(this)} onMouseOut={onMouseOutHandler.bind(this)}>
+      <PostNavigationArrow stateStore={stateStore} direction="previous" api={api}></PostNavigationArrow>
       <img src={stateStore.visiblePost.fullImageUrl}></img>
+      <PostNavigationArrow stateStore={stateStore} direction="next" api={api}></PostNavigationArrow>
     </div>
   )
 });
