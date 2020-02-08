@@ -66,7 +66,9 @@ const Post = observer(({ stateStore }) => {
     image.onload = () => {
       setPostRect(image);
     }
-    image.src = stateStore.visiblePost.fullImageUrl;
+    if (stateStore.visiblePost.fullImageUrl !== null) {
+      image.src = stateStore.visiblePost.fullImageUrl;
+    }
     window.addEventListener("resize", setPostRect.bind(this, image));
     return () => {
       window.removeEventListener("resize", setPostRect);
