@@ -75,7 +75,7 @@ const Post = observer(({ stateStore }) => {
     }
   }, [stateStore.visiblePost.fullImageUrl]);
     
-  const div = <div className="post-background">
+  const div = <div className="post-background" onClick={closeModal}>
                 <div className="post">
                   <PostTitlebar title={stateStore.visiblePost.postTitle} closeFunction={closeModal}></PostTitlebar>
                   <PostImage stateStore={stateStore}></PostImage>
