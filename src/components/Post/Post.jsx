@@ -14,16 +14,17 @@ import './Post.css';
 const Post = observer(({ stateStore, api }) => {
 
   const getPostSize = (screenWidth, screenHeight, imageWidth, imageHeight) => {
+      const screenAspectRatio = screenWidth / screenHeight;
       const aspectRatio = imageWidth / imageHeight;
       const rect = {};
       let width = 0;
       let height = 0;
-      if (aspectRatio > 1.2) {
+      if (screenAspectRatio >= 1) {
+        height = screenAspectRatio < 1.7 ? screenHeight * 0.8 : screenHeight * 0.7;
+        width = height * aspectRatio;
+      } else {
         width = screenWidth * 0.8;
         height = width / aspectRatio;
-      } else {
-        height = screenHeight * 0.8;
-        width = height * aspectRatio;
       }
       
       rect.width = `${width}px`;
@@ -45,10 +46,13 @@ const Post = observer(({ stateStore, api }) => {
     const screenHeight = stateStore.applicationRoot.clientHeight;
     const postElement = document.querySelector('.post');
     const imageElement = document.querySelector('.post-image > img');
+    const backgroundElement = document.querySelector('.post-background');
     const rect = getPostSize(screenWidth, screenHeight, image.width, image.height);
     imageElement.style.width = rect.width;
     imageElement.style.height = rect.height;
     postElement.style.width = rect.width;
+    backgroundElement.style.width = `${screenWidth}px`;
+    backgroundElement.style.height = `${screenHeight}px`;
 
     const position = getPostPosition(screenWidth, screenHeight, postElement.clientWidth, postElement.clientHeight);
     postElement.style.left = position.left;
