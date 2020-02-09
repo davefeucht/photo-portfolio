@@ -19,7 +19,6 @@ const PostNavigationArrow = observer(({ stateStore, direction, api }) => {
       nextIndex = 0;
     }
     const post = stateStore.currentCategoryPosts[nextIndex];
-    console.log(post);
 
     runInAction(() => {
       stateStore.setVisiblePost(post.id, post.title.rendered);
