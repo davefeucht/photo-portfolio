@@ -20,7 +20,7 @@ const Post = observer(({ stateStore, api }) => {
       let width = 0;
       let height = 0;
       if (screenAspectRatio >= 1) {
-        height = screenHeight * 0.8;
+        height = screenAspectRatio < 1.7 ? screenHeight * 0.8 : screenHeight * 0.7;
         width = height * aspectRatio;
       } else {
         width = screenWidth * 0.8;
