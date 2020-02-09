@@ -57,7 +57,7 @@ export default class API {
       .then((response) => {
         //Determine a random post from the ones returned
         const numberOfPosts = response.data.length;
-        const randomPost = Math.floor((Math.random() * (numberOfPosts + 1)));
+        const randomPost = Math.floor((Math.random() * numberOfPosts));
 
         //If this post does exist in the returned results
         if(response.data[randomPost] !== undefined) {
