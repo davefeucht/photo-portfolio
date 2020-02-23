@@ -1,6 +1,11 @@
+:root {
+  --number-of-columns: 3;
+  --number-of-rows: 3;
+}
+
 .category-list {
   min-height: 100%;
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(var(--number-of-columns), calc(100% / var(--number-of-columns)));
+  grid-template-rows: repeat(var(--number-of-rows), 1fr);
 }
