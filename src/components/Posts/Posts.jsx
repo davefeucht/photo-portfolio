@@ -12,8 +12,8 @@ import './Posts.css';
 const Posts = observer(({ stateStore, api }) => {
   const setRows = () => {
     const numberOfColumns = document.body.style.getPropertyValue('--number-of-columns');
-    const numberOfCategories = stateStore.categoryList.length;
-    document.body.style.setProperty('--number-of-rows', numberOfCategories / numberOfColumns);
+    const numberOfPosts = stateStore.currentCategoryPosts.length;
+    document.body.style.setProperty('--number-of-rows', numberOfPosts / numberOfColumns);
   };
 
   useEffect(() => {
