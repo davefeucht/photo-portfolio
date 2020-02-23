@@ -20,7 +20,7 @@ const CategoryThumbnail = observer(({ id, index, name, stateStore, api }) => {
     api.getCategoryImage(id, index);
   }
 
-  const divStyle = {backgroundImage: "url(" + (stateStore.categoryList[index].thumbnail_image ? stateStore.categoryList[index].thumbnail_image : "")+ ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "auto 100%"};
+  const divStyle = {backgroundImage: "url(" + (stateStore.categoryList[index].thumbnail_image ? stateStore.categoryList[index].thumbnail_image : "")+ ")"};
 
   return ( 
     <div style={divStyle} className="category-thumbnail" onClick={_openCategory.bind(this)}>

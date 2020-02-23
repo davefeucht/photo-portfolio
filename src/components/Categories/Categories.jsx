@@ -3,12 +3,29 @@
 * and makes them clickable to display just a single category.
 *****************/
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { reaction } from 'mobx';
 import { observer } from "mobx-react";
 import CategoryThumbnail from "../CategoryThumbnail/CategoryThumbnail.jsx";
 import './Categories.css';
 
 const Categories = observer(({ stateStore, api }) => {
+  const setRows = () => {
+    const numberOfColumns = document.body.style.getPropertyValue('--number-of-columns');
+    const numberOfCategories = stateStore.categoryList.length;
+    document.body.style.setProperty('--number-of-rows', numberOfCategories / numberOfColumns);
+  };
+
+  useEffect(() => {
+    setRows();
+    const disposer = reaction(
+      () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
+      () => setRows()
+    );
+    return () => {
+      disposer();
+    }
+  });
 
   const _mapCategoryList = () => {
       return stateStore.categoryList.map((category, index) => { 

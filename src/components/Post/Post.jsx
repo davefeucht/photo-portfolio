@@ -4,7 +4,7 @@
 
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { runInAction } from 'mobx';
+import { reaction, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import PostTitlebar from '../PostTitlebar/PostTitlebar.jsx';
 import PostImage from '../PostImage/PostImage.jsx';
@@ -47,8 +47,8 @@ const Post = observer(({ stateStore, api }) => {
   }
 
   const setPostRect = (image) => {
-    const screenWidth = stateStore.applicationRoot.clientWidth;
-    const screenHeight = stateStore.applicationRoot.clientHeight;
+    const screenWidth = stateStore.screenInfo.width;
+    const screenHeight = stateStore.screenInfo.height;
     const postElement = document.querySelector('.post');
     const imageElement = document.querySelector('.post-image > img');
     const backgroundElement = document.querySelector('.post-background');
@@ -78,9 +78,13 @@ const Post = observer(({ stateStore, api }) => {
     if (stateStore.visiblePost.fullImageUrl !== null) {
       image.src = stateStore.visiblePost.fullImageUrl;
     }
-    window.addEventListener("resize", setPostRect.bind(this, image));
+    
+    const disposer = reaction(
+      () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
+      () => setPostRect(image)
+    );
     return () => {
-      window.removeEventListener("resize", setPostRect);
+      disposer();
     }
   }, [stateStore.visiblePost.fullImageUrl]);
     
