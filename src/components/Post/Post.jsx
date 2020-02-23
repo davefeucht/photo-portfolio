@@ -30,6 +30,11 @@ const Post = observer(({ stateStore, api }) => {
       rect.width = `${width}px`;
       rect.height = `${height}px`;
 
+      runInAction(() => {
+        stateStore.visiblePost.width = width;
+        stateStore.visiblePost.height = height;
+      })
+
       return rect;
   }
 

@@ -21,7 +21,9 @@ export default class stateStore {
     postTitle: null,
     tags: [],
     tagNames: [],
-    fullImageUrl: null
+    fullImageUrl: null,
+    width: null,
+    height: null
   });
 
   visibilityFlags = observable.object({

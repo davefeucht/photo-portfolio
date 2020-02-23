@@ -1,4 +1,5 @@
 .post-image {
+  position: relative;
   grid-area: content;
   display: grid;
   grid-template-columns: 100%;

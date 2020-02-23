@@ -27,11 +27,14 @@ const PostNavigationArrow = observer(({ stateStore, direction, api }) => {
     })
   }
 
-  const divStyle = direction === 'previous' ? { left: 0 } : { right: 0 };
+  //TODO: calc this based on a height variable, not just a hard-coded 41
+  const top = stateStore.visiblePost.height ? (stateStore.visiblePost.height / 2) - (41) : 0;
+  const divStyle = direction === 'previous' ? { top: `${top}px`, left: '0px' } : { top: `${top}px`, right: '0px' };
+  const imgSrc = direction === 'previous' ? './images/arrow-left.png' : './images/arrow-right.png';
 
   return(
     <div className="post-navigation-arrow" style={divStyle} onClick={clickHandler.bind(this)}>
-      <div className="arrow">{direction === 'previous' ? '<' : '>'}</div>
+      <div className="arrow"><img src={imgSrc} /></div>
     </div>
   );
 });

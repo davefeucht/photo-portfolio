@@ -16,10 +16,12 @@ const PostImage = observer(({ stateStore, api }) => {
   }
   
   const onMouseOutHandler = () => {
+    /*
     const arrows = document.querySelectorAll('.post-navigation-arrow');
     arrows.forEach(arrow => {
       arrow.style.opacity = 0;
     })
+    */
   }
 
   return(

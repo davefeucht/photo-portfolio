@@ -2,9 +2,6 @@
   position: absolute;
   height: 80px;
   width: 40px;
-  font-size: 40px;
-  top: 50%;
-  margin-top: -5%;
   border: 1px solid #000000;
   background-color: rgba(128, 128, 128, 0.4);
   transition: opacity 300ms ease-in-out;
@@ -20,4 +17,9 @@
   position: absolute;
   color: #FFFFFF;
   cursor: pointer;
+  font-size: initial;
+}
+
+.arrow > img {
+  vertical-align: middle;
 }
