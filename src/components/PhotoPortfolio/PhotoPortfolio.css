@@ -1,3 +1,8 @@
+:root {
+  --number-of-columns: 5;
+  --number-of-rows: 2;
+}
+
 .photo-portfolio {
   grid-area: content;
 }

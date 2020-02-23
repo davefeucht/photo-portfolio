@@ -1,8 +1,3 @@
-:root {
-  --number-of-columns: 3;
-  --number-of-rows: 3;
-}
-
 .category-list {
   min-height: 100%;
   display: grid;

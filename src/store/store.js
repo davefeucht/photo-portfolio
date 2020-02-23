@@ -6,6 +6,11 @@ export default class stateStore {
   @observable applicationRoot = null;
   @observable modalDiv = null;
 
+  screenInfo = observable.object({
+    width: 0,
+    height: 0
+  })
+
   siteInfo = observable.object({
     siteName: null,
     siteUrl: 'throughapinhole.com'

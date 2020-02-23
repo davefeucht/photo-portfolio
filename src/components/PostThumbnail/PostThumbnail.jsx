@@ -17,7 +17,7 @@ const PostThumbnail = observer(({ stateStore, id, title, tags, index, image, api
     });
   }
 
-  const divStyle = {backgroundImage: "url(" + (stateStore.currentCategoryPosts[index].thumbnail_image ? stateStore.currentCategoryPosts[index].thumbnail_image : "") + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover"};
+  const divStyle = {backgroundImage: "url(" + (stateStore.currentCategoryPosts[index].thumbnail_image ? stateStore.currentCategoryPosts[index].thumbnail_image : "") + ")"};
 
   return(
     <div className="post-thumbnail" style={divStyle} onClick={_showFullPost.bind(this)}></div>
