@@ -2,6 +2,7 @@
 
 var webpack = require("webpack");
 var path = require("path");
+var fs = require("fs");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
@@ -12,6 +13,10 @@ module.exports = {
   },
   devtool: "inline-source-map",
   devServer: {
+    https: {
+      cert: fs.readFileSync('/Users/agnes/ssl_cert/cert.pem'),
+      key: fs.readFileSync('/Users/agnes/ssl_cert/key.pem')
+    },
     contentBase: "./build/",
     compress: true
   },
