@@ -5,8 +5,9 @@
 
 import React, { useEffect } from 'react';
 import { reaction } from 'mobx';
-import { observer } from "mobx-react";
-import CategoryThumbnail from "../CategoryThumbnail/CategoryThumbnail.jsx";
+import { observer } from 'mobx-react';
+import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail.jsx';
+import Category from '../Category/Category.jsx';
 import './Categories.css';
 
 const Categories = observer(({ stateStore, api }) => {

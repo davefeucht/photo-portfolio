@@ -2,21 +2,23 @@
 * Category component displays the posts for a particular category.
 *****************/
 
-import React from "react";
+import React from 'react';
 import { observer } from 'mobx-react';
-import Posts from "../Posts/Posts.jsx";
-import CategoryHeader from "../CategoryHeader/CategoryHeader.jsx";
+import { useParams } from 'react-router-dom';
+import Posts from '../Posts/Posts.jsx';
+import CategoryHeader from '../CategoryHeader/CategoryHeader.jsx';
 import './Category.css';
 
-const Category = observer(( { stateStore, categoryId, categoryName, api }) => {
+const Category = observer(( { stateStore, api }) => {
+  let { categoryId } = useParams();
 
   api.getPosts(categoryId);
   api.getCategoryInfo(categoryId);
 
   return ( 
     <div className="category">
-      <CategoryHeader stateStore={stateStore} categoryId={categoryId} categoryName={categoryName} />
-      <Posts stateStore={stateStore} categoryId={categoryId} categoryName={categoryName} api={api} />
+      <CategoryHeader stateStore={stateStore} categoryId={categoryId} />
+      <Posts stateStore={stateStore} categoryId={categoryId} api={api} />
     </div>
   );
 });

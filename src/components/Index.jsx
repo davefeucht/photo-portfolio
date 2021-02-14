@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { render } from 'react-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import PhotoPortfolio from './PhotoPortfolio/PhotoPortfolio.jsx';
 import stateStore from '../store/store';
 import API from '../utils/Api';
@@ -15,6 +16,8 @@ store.setApplicationRoot(document.getElementById('photo-portfolio'));
 
 //Render the PhotoPortfolio component in the 'photo-portfolio' container on the page.
 render(
-  <PhotoPortfolio stateStore={store} api={api}/>,
+  <Router>
+    <PhotoPortfolio stateStore={store} api={api}/>
+  </Router>,
   store.applicationRoot
 );
