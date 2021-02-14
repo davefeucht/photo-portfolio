@@ -8,6 +8,15 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import './PostThumbnail.css';
 
 const PostThumbnail = observer(({ stateStore, id, title, tags, index, image, api }) => {
+  const _showFullPost = () => {
+    runInAction(() => {
+      api.getPostImage(image);
+      api.getTagNames(tags);
+      stateStore.setVisiblePost(id, title);
+      stateStore.setShowModal(true);
+    });
+  }
+
   const divStyle = {backgroundImage: "url(" + (stateStore.currentCategoryPosts[index].thumbnail_image ? stateStore.currentCategoryPosts[index].thumbnail_image : "") + ")"};
   let { url } = useRouteMatch();
 
