@@ -1,4 +1,4 @@
-import { observable, action, configure } from 'mobx';
+import { observable, action, configure, extendObservable } from 'mobx';
 
 configure({ enforceActions: 'observed' });
 
@@ -89,7 +89,7 @@ export default class stateStore {
   }
 
   @action setCategoryData = (categoryData) => {
-    this.currentCategoryData = categoryData;
+    extendObservable(this.currentCategoryData, categoryData);
   }
 
   @action setThumbnailImageUrl = (imageData) => {

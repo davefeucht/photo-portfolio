@@ -5,6 +5,10 @@
 import React, { useEffect } from 'react';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
+import { 
+  Route, 
+  Switch
+} from 'react-router-dom';
 import Post from '../Post/Post.jsx';
 import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
 import './Posts.css';
@@ -34,15 +38,7 @@ const Posts = observer(({ stateStore, api }) => {
     
   return (
     <div className="posts">
-        {stateStore.visibilityFlags.showModal && 
-          <Post key={stateStore.visiblePost.postId.toString()} 
-                stateStore={stateStore} 
-                title={stateStore.visiblePost.postTitle} 
-                tags={stateStore.visiblePost.tags}
-                api={api}
-          />
-        }
-        {postList} 
+      {postList} 
     </div>
   );
 });
