@@ -2,20 +2,23 @@
 * Category component displays the posts for a particular category.
 *****************/
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { 
-  useParams,
+  useParams
 } from 'react-router-dom';
 import Posts from '../Posts/Posts.jsx';
 import CategoryHeader from '../CategoryHeader/CategoryHeader.jsx';
 import './Category.css';
 
 const Category = observer(({ stateStore, api }) => {
-  let { categoryId } = useParams();
+  const { categoryId } = useParams();
+  console.log(categoryId);
 
-  api.getPosts(categoryId);
-  api.getCategoryInfo(categoryId);
+  useEffect(() => {
+    api.getPosts(categoryId);
+    api.getCategoryInfo(categoryId);
+  });
 
   return ( 
     <div className="category">

@@ -39,6 +39,7 @@ export default class stateStore {
   categoryList = observable.array([]);
   currentCategoryPosts = observable.array([]);
   currentCategoryData = observable.object({});
+  categoryLoaded = false;
 
   @action setApplicationRoot = element => {
     this.applicationRoot = element;
@@ -94,6 +95,10 @@ export default class stateStore {
 
   @action setThumbnailImageUrl = (imageData) => {
     this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
+  }
+  
+  @action setCategoryLoaded = (setting) => {
+    this.categoryLoaded = setting;
   }
 
 }

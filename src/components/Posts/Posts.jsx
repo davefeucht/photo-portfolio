@@ -5,11 +5,6 @@
 import React, { useEffect } from 'react';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
-import { 
-  Route, 
-  Switch
-} from 'react-router-dom';
-import Post from '../Post/Post.jsx';
 import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
 import './Posts.css';
 

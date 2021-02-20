@@ -9,16 +9,21 @@ import { observer } from 'mobx-react';
 import { 
   Route, 
   Switch,
-  useRouteMatch
+  useRouteMatch,
+  useParams,
+  useLocation
 } from 'react-router-dom';
 import TitleBar from '../TitleBar/TitleBar.jsx';
 import Categories from '../Categories/Categories.jsx';
 import Category from '../Category/Category.jsx';
+import Post from '../Post/Post.jsx';
 import Footer from '../Footer/Footer.jsx';
 import './PhotoPortfolio.css';
 
 const PhotoPortfolio = observer(({ stateStore, api }) => {
-  let { path } = useRouteMatch();
+  const { path } = useRouteMatch();
+  const { categoryId } = useParams();
+  const location = useLocation();
 
   const setScreenSize = () => {
     runInAction(() => {
@@ -66,15 +71,16 @@ const PhotoPortfolio = observer(({ stateStore, api }) => {
           <Route exact path={path}>
             <Categories stateStore={stateStore} api={api}/>
           </Route>
-          <Route path="/category/:categoryId">
+          <Route path={['/category/:categoryId', '/category/:categoryId/post/:postId']}>
             <Category 
-              key={stateStore.visibleCategory.categoryId.toString()} 
+              key={categoryId} 
               stateStore={stateStore}
               categoryName={stateStore.visibleCategory.categoryName}
               api={api}
             />
           </Route>
         </Switch>
+        {stateStore.categoryLoaded && <Route path="/category/:categoryId/post/:postId" children={<Post stateStore={stateStore} api={api} />} />}
       </div>
       <Footer />
     </div>

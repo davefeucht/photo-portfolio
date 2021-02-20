@@ -6,12 +6,25 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { reaction, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
+import { useParams, useHistory } from 'react-router-dom';
 import PostTitlebar from '../PostTitlebar/PostTitlebar.jsx';
 import PostImage from '../PostImage/PostImage.jsx';
 import PostFooter from '../PostFooter/PostFooter.jsx';
 import './Post.css';
 
 const Post = observer(({ stateStore, api }) => {
+  const { postId } = useParams();
+  const history = useHistory();
+
+  const getPostInfo = () => {
+    const parsedPostId = parseInt(postId);
+    const currentPost = stateStore.currentCategoryPosts.filter(post => post.id === parsedPostId)[0];
+    runInAction(() => {
+      api.getPostImage(currentPost.featured_media);
+      api.getTagNames(currentPost.tags);
+      stateStore.setVisiblePost(parsedPostId, currentPost.title.rendered);
+    });
+  }
 
   const getPostSize = (screenWidth, screenHeight, imageWidth, imageHeight) => {
       const screenAspectRatio = screenWidth / screenHeight;
@@ -64,13 +77,14 @@ const Post = observer(({ stateStore, api }) => {
     postElement.style.top = position.top;
   }
 
-  const closeModal = () => {
-    runInAction(() => {
-      stateStore.setShowModal(false);
-    })
-  }
+  const closeModal = e => {
+    e.stopPropagation();
+    history.goBack();
+  };
 
   useEffect(() => {
+    getPostInfo();
+
     const image = document.createElement('img');
     image.onload = () => {
       setPostRect(image);
@@ -90,17 +104,14 @@ const Post = observer(({ stateStore, api }) => {
     
   const div = <div className="post-background">
                 <div className="post">
-                  <PostTitlebar title={stateStore.visiblePost.postTitle} closeFunction={closeModal}></PostTitlebar>
+                  <PostTitlebar postTitle={stateStore.visiblePost.postTitle} closeFunction={closeModal}></PostTitlebar>
                   <PostImage stateStore={stateStore} api={api}></PostImage>
                   <PostFooter stateStore={stateStore}></PostFooter>
                 </div>
               </div>
 
   return(
-    ReactDOM.createPortal(
-      div,
-      stateStore.modalDiv
-    )
+    div
   );
 });
 

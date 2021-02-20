@@ -14,18 +14,9 @@ const PostImage = observer(({ stateStore, api }) => {
       arrow.style.opacity = 1;
     })
   }
-  
-  const onMouseOutHandler = () => {
-    /*
-    const arrows = document.querySelectorAll('.post-navigation-arrow');
-    arrows.forEach(arrow => {
-      arrow.style.opacity = 0;
-    })
-    */
-  }
 
   return(
-    <div className="post-image" onMouseOver={onMouseOverHandler.bind(this)} onMouseOut={onMouseOutHandler.bind(this)}>
+    <div className="post-image" onMouseOver={onMouseOverHandler.bind(this)}>
       <PostNavigationArrow stateStore={stateStore} direction="previous" api={api}></PostNavigationArrow>
       <img src={stateStore.visiblePost.fullImageUrl}></img>
       <PostNavigationArrow stateStore={stateStore} direction="next" api={api}></PostNavigationArrow>
