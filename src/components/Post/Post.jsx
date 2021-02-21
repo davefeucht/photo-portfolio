@@ -5,7 +5,7 @@
 import React, { useEffect } from "react";
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { 
   getPostInfo,
   getNextPost,
@@ -19,25 +19,11 @@ import './Post.css';
 
 const Post = observer(({ stateStore, api }) => {
   const { postId } = useParams();
-  const history = useHistory();
   const parsedPostId = parseInt(postId);
-
-  const closeModal = e => {
-    e.stopPropagation();
-    history.goBack();
-  };
 
   useEffect(() => {
     getPostInfo(postId, api);
 
-    const disposer = reaction(
-      () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
-      () => setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore)
-    );
-
-    return () => {
-      disposer();
-    }
   }, [postId]);
 
   useEffect(() => {
@@ -48,12 +34,21 @@ const Post = observer(({ stateStore, api }) => {
     if (stateStore.visiblePost.fullImageUrl !== null && stateStore.visiblePost.fullImageUrl !== undefined) {
       image.src = stateStore.visiblePost.fullImageUrl;
     }
+
+    const disposer = reaction(
+      () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
+      () => setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore)
+    );
+
+    return () => {
+      disposer();
+    }
   }, [stateStore.visiblePost.fullImageUrl]);
     
   return (
     <div className="post-background">
       <div className="post">
-        <PostTitlebar postTitle={stateStore.visiblePost.title && stateStore.visiblePost.title.rendered} closeFunction={closeModal}></PostTitlebar>
+        <PostTitlebar postTitle={stateStore.visiblePost.title && stateStore.visiblePost.title.rendered}></PostTitlebar>
         <PostImage 
           stateStore={stateStore} 
           previousPost={getPreviousPost(parsedPostId, stateStore.currentCategoryPosts)} 
