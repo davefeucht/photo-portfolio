@@ -117,6 +117,9 @@ export default class API {
       })
       .then(() => {
         this.getPostImage(this._stateStore.visiblePost.featured_media);
+      })
+      .then(() => {
+        this.getTagNames(this._stateStore.visiblePost.tags);
       });
   }
 
@@ -148,7 +151,9 @@ export default class API {
   }
 
   getTagNames(tags) {
-    this._stateStore.visiblePost.tagNames.clear();
+    runInAction(() => {
+      this._stateStore.visiblePost.tagNames.clear();
+    })
     tags.forEach(tagId => {
       const getTagNameURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/tags/${tagId}`
       axios.get(getTagNameURI)

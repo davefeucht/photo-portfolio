@@ -33,7 +33,7 @@ const Post = observer(({ stateStore, api }) => {
     image.onload = () => {
       setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore);
     }
-    if (stateStore.visiblePost.fullImageUrl !== null) {
+    if (stateStore.visiblePost.fullImageUrl !== null && stateStore.visiblePost.fullImageUrl !== undefined) {
       image.src = stateStore.visiblePost.fullImageUrl;
     }
     
@@ -44,7 +44,7 @@ const Post = observer(({ stateStore, api }) => {
     return () => {
       disposer();
     }
-  }, [stateStore.visiblePost.fullImageUrl]);
+  }, [postId]);
     
   return (
     <div className="post-background">

@@ -102,7 +102,9 @@ export default class stateStore {
   }
 
   @action setCurrentPost = (postData) => {
-    extendObservable(this.visiblePost, postData);
+    Object.keys(postData).forEach(property => {
+      this.visiblePost[property] = postData[property];
+    })
   }
 
 }

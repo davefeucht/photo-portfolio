@@ -4,13 +4,12 @@
 
 import React from "react";
 import { observer } from 'mobx-react';
-import CloseButton from '../CloseButton/CloseButton.jsx';
 import './PostFooter.css';
 
 const PostFooter = observer(({ stateStore }) => {
   return(
     <div className="post-footer">
-      <div className="labels">{stateStore.visiblePost.tagNames.join(', ')}</div>
+      <div className="labels">{stateStore.visiblePost.tagNames && stateStore.visiblePost.tagNames.join(', ')}</div>
     </div>
   )
 });
