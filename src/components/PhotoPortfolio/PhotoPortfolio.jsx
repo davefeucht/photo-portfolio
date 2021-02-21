@@ -43,7 +43,6 @@ const PhotoPortfolio = observer(({ stateStore, api }) => {
 
   useEffect(() => {
     api.getCategories();
-    stateStore.setModalDiv(document.querySelector('.app'));
 
     setScreenSize();
     setColumns(stateStore.screenInfo.width, stateStore.screenInfo.height);
@@ -73,7 +72,6 @@ const PhotoPortfolio = observer(({ stateStore, api }) => {
             <Category 
               key={categoryId} 
               stateStore={stateStore}
-              categoryName={stateStore.visibleCategory.categoryName}
               api={api}
             />
           </Route>
