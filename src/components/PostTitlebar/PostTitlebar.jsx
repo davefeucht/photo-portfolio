@@ -7,11 +7,11 @@ import { observer } from 'mobx-react';
 import CloseButton from '../CloseButton/CloseButton.jsx';
 import './PostTitlebar.css';
 
-const PostTitlebar = observer(({ postTitle, closeFunction }) => {
+const PostTitlebar = observer(({ postTitle }) => {
   return(
     <div className="post-titlebar">
       <div className="title">{postTitle}</div>
-      <CloseButton closeFunction={closeFunction}></CloseButton>
+      <CloseButton></CloseButton>
     </div>
   )
 });

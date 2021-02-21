@@ -4,15 +4,20 @@
 
 import React, { useEffect } from "react";
 import { observer } from 'mobx-react';
+import { Link, useParams } from 'react-router-dom';
 import './CloseButton.css';
 
 const CloseButton = observer(({ closeFunction }) => {
+  const { categoryId } = useParams();
+
   useEffect(() => {
     document.querySelector('.close-button').style.width = `${document.querySelector('.close-button').clientHeight}px`;
   })
   return(
-    <div className="close-button" onClick={closeFunction.bind(this)}>
-      <div className="close-button-content"><img src="./images/close-icon.png" width="30px" height="30px" /></div>
+    <div className="close-button">
+      <Link to={`/category/${categoryId}`}>
+        <div className="close-button-content"><img src="./images/close-icon.png" width="30px" height="30px" /></div>
+      </Link>
     </div>
   )
 });
