@@ -98,11 +98,6 @@ export default class API {
         this._stateStore.currentCategoryPosts.forEach((post, index) => {
           this._getPostThumbnail(post.featured_media, index);
         })
-      })
-      .then(() => {
-        runInAction(() => {
-          this._stateStore.setCategoryLoaded(true);
-        })
       });
   }
 
