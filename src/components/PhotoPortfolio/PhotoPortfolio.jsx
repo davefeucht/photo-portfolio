@@ -3,16 +3,26 @@
 * loads the title bar and list of categories.
 *******************/
 
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { reaction, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import TitleBar from "../TitleBar/TitleBar.jsx";
-import Categories from "../Categories/Categories.jsx";
-import Category from "../Category/Category.jsx";
-import Footer from "../Footer/Footer.jsx";
+import { 
+  Route, 
+  Switch,
+  useRouteMatch,
+  useParams
+} from 'react-router-dom';
+import TitleBar from '../TitleBar/TitleBar.jsx';
+import Categories from '../Categories/Categories.jsx';
+import Category from '../Category/Category.jsx';
+import Post from '../Post/Post.jsx';
+import Footer from '../Footer/Footer.jsx';
 import './PhotoPortfolio.css';
 
 const PhotoPortfolio = observer(({ stateStore, api }) => {
+  const { path } = useRouteMatch();
+  const { categoryId } = useParams();
+
   const setScreenSize = () => {
     runInAction(() => {
       stateStore.screenInfo.width = stateStore.applicationRoot.clientWidth;
@@ -55,16 +65,20 @@ const PhotoPortfolio = observer(({ stateStore, api }) => {
     <div className="app">
       <TitleBar stateStore={stateStore} api={api}/>
       <div className="photo-portfolio">
-        {stateStore.visibilityFlags.showAllCategories ? 
-          <Categories stateStore={stateStore} api={api}/> : 
-          <Category 
-            key={stateStore.visibleCategory.categoryId.toString()} 
-            stateStore={stateStore}
-            categoryId={stateStore.visibleCategory.categoryId} 
-            categoryName={stateStore.visibleCategory.categoryName}
-            api={api}
-          />
-        }
+        <Switch>
+          <Route exact path={path}>
+            <Categories stateStore={stateStore} api={api}/>
+          </Route>
+          <Route path={['/category/:categoryId', '/category/:categoryId/post/:postId']}>
+            <Category 
+              key={categoryId} 
+              stateStore={stateStore}
+              categoryName={stateStore.visibleCategory.categoryName}
+              api={api}
+            />
+          </Route>
+        </Switch>
+        <Route path="/category/:categoryId/post/:postId" children={<Post stateStore={stateStore} api={api} />} />
       </div>
       <Footer />
     </div>

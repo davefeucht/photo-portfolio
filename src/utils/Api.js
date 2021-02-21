@@ -98,6 +98,28 @@ export default class API {
         this._stateStore.currentCategoryPosts.forEach((post, index) => {
           this._getPostThumbnail(post.featured_media, index);
         })
+      })
+      .then(() => {
+        runInAction(() => {
+          this._stateStore.setCategoryLoaded(true);
+        })
+      });
+  }
+
+  getPost(postId) {
+    const getPostURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts/${postId}`;
+    axios.get(getPostURI)
+      .then(res => {
+        runInAction(() => {
+          const post = res.data;
+          this._stateStore.setCurrentPost(post);
+        });
+      })
+      .then(() => {
+        this.getTagNames(this._stateStore.visiblePost.tags);
+      })
+      .then(() => {
+        this.getPostImage(this._stateStore.visiblePost.featured_media);
       });
   }
 
@@ -129,7 +151,9 @@ export default class API {
   }
 
   getTagNames(tags) {
-    this._stateStore.visiblePost.tagNames.clear();
+    runInAction(() => {
+      this._stateStore.visiblePost.tagNames.clear();
+    })
     tags.forEach(tagId => {
       const getTagNameURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/tags/${tagId}`
       axios.get(getTagNameURI)

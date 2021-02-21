@@ -1,4 +1,4 @@
-import { observable, action, configure } from 'mobx';
+import { observable, action, configure, extendObservable } from 'mobx';
 
 configure({ enforceActions: 'observed' });
 
@@ -39,6 +39,7 @@ export default class stateStore {
   categoryList = observable.array([]);
   currentCategoryPosts = observable.array([]);
   currentCategoryData = observable.object({});
+  categoryLoaded = false;
 
   @action setApplicationRoot = element => {
     this.applicationRoot = element;
@@ -89,11 +90,21 @@ export default class stateStore {
   }
 
   @action setCategoryData = (categoryData) => {
-    this.currentCategoryData = categoryData;
+    extendObservable(this.currentCategoryData, categoryData);
   }
 
   @action setThumbnailImageUrl = (imageData) => {
     this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
+  }
+  
+  @action setCategoryLoaded = (setting) => {
+    this.categoryLoaded = setting;
+  }
+
+  @action setCurrentPost = (postData) => {
+    Object.keys(postData).forEach(property => {
+      this.visiblePost[property] = postData[property];
+    })
   }
 
 }

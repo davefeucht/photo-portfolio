@@ -4,7 +4,6 @@
 
 import React from "react";
 import { observer } from 'mobx-react';
-import CloseButton from '../CloseButton/CloseButton.jsx';
 import './PostFooter.css';
 
 const PostFooter = observer(({ stateStore }) => {

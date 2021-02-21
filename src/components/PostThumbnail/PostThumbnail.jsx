@@ -3,24 +3,22 @@
 ****************/
 
 import React from "react";
-import { runInAction } from "mobx";
 import { observer } from 'mobx-react';
+import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import './PostThumbnail.css';
 
-const PostThumbnail = observer(({ stateStore, id, title, tags, index, image, api }) => {
-  const _showFullPost = () => {
-    runInAction(() => {
-      api.getPostImage(image);
-      api.getTagNames(tags);
-      stateStore.setVisiblePost(id, title);
-      stateStore.setShowModal(true);
-    });
-  }
-
+const PostThumbnail = observer(({ stateStore, id, index }) => {
   const divStyle = {backgroundImage: "url(" + (stateStore.currentCategoryPosts[index].thumbnail_image ? stateStore.currentCategoryPosts[index].thumbnail_image : "") + ")"};
+  const { url } = useRouteMatch();
+  const location = useLocation();
 
   return(
-    <div className="post-thumbnail" style={divStyle} onClick={_showFullPost.bind(this)}></div>
+    <Link to={{
+      pathname: `${url}/post/${id}`,
+      state: { background: location }
+    }}>
+      <div className="post-thumbnail" style={divStyle}></div>
+    </Link>
   );
 });
 
