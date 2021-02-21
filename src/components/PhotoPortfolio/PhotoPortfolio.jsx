@@ -10,8 +10,7 @@ import {
   Route, 
   Switch,
   useRouteMatch,
-  useParams,
-  useLocation
+  useParams
 } from 'react-router-dom';
 import TitleBar from '../TitleBar/TitleBar.jsx';
 import Categories from '../Categories/Categories.jsx';
@@ -23,7 +22,6 @@ import './PhotoPortfolio.css';
 const PhotoPortfolio = observer(({ stateStore, api }) => {
   const { path } = useRouteMatch();
   const { categoryId } = useParams();
-  const location = useLocation();
 
   const setScreenSize = () => {
     runInAction(() => {
@@ -80,7 +78,7 @@ const PhotoPortfolio = observer(({ stateStore, api }) => {
             />
           </Route>
         </Switch>
-        {stateStore.categoryLoaded && <Route path="/category/:categoryId/post/:postId" children={<Post stateStore={stateStore} api={api} />} />}
+        <Route path="/category/:categoryId/post/:postId" children={<Post stateStore={stateStore} api={api} />} />
       </div>
       <Footer />
     </div>

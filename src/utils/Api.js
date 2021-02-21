@@ -106,6 +106,20 @@ export default class API {
       });
   }
 
+  getPost(postId) {
+    const getPostURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts/${postId}`;
+    axios.get(getPostURI)
+      .then(res => {
+        runInAction(() => {
+          const post = res.data;
+          this._stateStore.setCurrentPost(post);
+        });
+      })
+      .then(() => {
+        this.getPostImage(this._stateStore.visiblePost.featured_media);
+      });
+  }
+
   getCategoryInfo(categoryId) {
     const getPostsCategoryURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/categories/${categoryId}`; 
     axios.get(getPostsCategoryURI)

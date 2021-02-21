@@ -13,12 +13,11 @@ import './Category.css';
 
 const Category = observer(({ stateStore, api }) => {
   const { categoryId } = useParams();
-  console.log(categoryId);
 
   useEffect(() => {
     api.getPosts(categoryId);
     api.getCategoryInfo(categoryId);
-  });
+  }, [categoryId]);
 
   return ( 
     <div className="category">

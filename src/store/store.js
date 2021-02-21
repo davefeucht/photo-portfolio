@@ -101,4 +101,8 @@ export default class stateStore {
     this.categoryLoaded = setting;
   }
 
+  @action setCurrentPost = (postData) => {
+    extendObservable(this.visiblePost, postData);
+  }
+
 }

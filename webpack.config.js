@@ -17,11 +17,13 @@ module.exports = {
       cert: fs.readFileSync('/Users/agnes/ssl_cert/cert.pem'),
       key: fs.readFileSync('/Users/agnes/ssl_cert/key.pem')
     },
-    contentBase: "./build/",
+    contentBase: path.join(__dirname, "build"),
+    watchContentBase: true,
     compress: true
   },
   output: {
     path: path.resolve(__dirname, "build/js"),
+    publicPath: "/js/",
     filename: "index.js"
   },
   module: {
