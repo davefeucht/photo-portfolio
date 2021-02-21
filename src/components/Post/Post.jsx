@@ -29,6 +29,18 @@ const Post = observer(({ stateStore, api }) => {
 
   useEffect(() => {
     getPostInfo(postId, api);
+
+    const disposer = reaction(
+      () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
+      () => setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore)
+    );
+
+    return () => {
+      disposer();
+    }
+  }, [postId]);
+
+  useEffect(() => {
     const image = document.createElement('img');
     image.onload = () => {
       setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore);
@@ -36,15 +48,7 @@ const Post = observer(({ stateStore, api }) => {
     if (stateStore.visiblePost.fullImageUrl !== null && stateStore.visiblePost.fullImageUrl !== undefined) {
       image.src = stateStore.visiblePost.fullImageUrl;
     }
-    
-    const disposer = reaction(
-      () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
-      () => setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore)
-    );
-    return () => {
-      disposer();
-    }
-  }, [postId]);
+  }, [stateStore.visiblePost.fullImageUrl]);
     
   return (
     <div className="post-background">

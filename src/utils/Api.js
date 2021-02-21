@@ -116,10 +116,10 @@ export default class API {
         });
       })
       .then(() => {
-        this.getPostImage(this._stateStore.visiblePost.featured_media);
+        this.getTagNames(this._stateStore.visiblePost.tags);
       })
       .then(() => {
-        this.getTagNames(this._stateStore.visiblePost.tags);
+        this.getPostImage(this._stateStore.visiblePost.featured_media);
       });
   }
 
