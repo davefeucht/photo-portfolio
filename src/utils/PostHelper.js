@@ -42,8 +42,8 @@ const getPostSize = (screenWidth, screenHeight, imageWidth, imageHeight, stateSt
       height = width / aspectRatio;
     }
       
-    rect.width = `${width}px`;
-    rect.height = `${height}px`;
+    rect.width = width;
+    rect.height = height;
 
     runInAction(() => {
       stateStore.visiblePost.width = width;
@@ -66,13 +66,13 @@ export const setPostRect = (image, screenWidth, screenHeight, stateStore) => {
   const imageElement = document.querySelector('.post-image > img');
   const backgroundElement = document.querySelector('.post-background');
   const rect = getPostSize(screenWidth, screenHeight, image.width, image.height, stateStore);
-  imageElement.style.width = rect.width;
-  imageElement.style.height = rect.height;
-  postElement.style.width = rect.width;
+  imageElement.style.width = `${rect.width}px`;
+  imageElement.style.height = `${rect.height}px`;
+  postElement.style.width = `${rect.width}px`;
   backgroundElement.style.width = `${screenWidth}px`;
   backgroundElement.style.height = `${screenHeight}px`;
 
-  const position = getPostPosition(screenWidth, screenHeight, postElement.clientWidth, postElement.clientHeight);
+  const position = getPostPosition(screenWidth, screenHeight, rect.width, postElement.clientHeight);
   postElement.style.left = position.left;
   postElement.style.top = position.top;
 }

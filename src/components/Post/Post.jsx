@@ -17,31 +17,35 @@ import PostImage from '../PostImage/PostImage.jsx';
 import PostFooter from '../PostFooter/PostFooter.jsx';
 import './Post.css';
 
+const image = document.createElement('img');
+
 const Post = observer(({ stateStore, api }) => {
   const { postId } = useParams();
   const parsedPostId = parseInt(postId);
+  let element = null;
+
+  const updateImage = () => {
+    setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore);
+  };
+  
+  image.onload = () => {
+    updateImage();
+  }
 
   useEffect(() => {
     getPostInfo(postId, api);
-
   }, [postId]);
 
   useEffect(() => {
-    const image = document.createElement('img');
-    image.onload = () => {
-      setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore);
-    }
     if (stateStore.visiblePost.fullImageUrl !== null && stateStore.visiblePost.fullImageUrl !== undefined) {
       image.src = stateStore.visiblePost.fullImageUrl;
     }
 
-    const disposer = reaction(
-      () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
-      () => setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore)
-    );
+    element = document.querySelector('.post img');
+    element.addEventListener('transitionend', updateImage, true);
 
     return () => {
-      disposer();
+      element.removeEventListener('transitionend', updateImage);
     }
   }, [stateStore.visiblePost.fullImageUrl]);
     

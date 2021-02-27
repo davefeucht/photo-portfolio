@@ -6,6 +6,7 @@
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 100%;
+  transition: width var(--modal-transition-time), height var(--modal-transition-time)
 }
 
 .post-footer .labels {
