@@ -62,8 +62,7 @@ const Post = observer(({ stateStore, api }) => {
         <PostImage 
           stateStore={stateStore} 
           previousPost={getPreviousPost(parsedPostId, stateStore.currentCategoryPosts)} 
-          nextPost={getNextPost(parsedPostId, stateStore.currentCategoryPosts)}
-          api={api}>
+          nextPost={getNextPost(parsedPostId, stateStore.currentCategoryPosts)}>
         </PostImage>
         <PostFooter stateStore={stateStore}></PostFooter>
       </div>
