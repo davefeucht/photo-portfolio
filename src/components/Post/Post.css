@@ -5,6 +5,7 @@
   display: grid;
   grid-template-areas: "header" "content" "footer";
   grid-template-rows: 3rem auto 2rem;
+  transition: all var(--modal-transition-time);
 }
 
 .post-background {

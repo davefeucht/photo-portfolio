@@ -8,6 +8,7 @@
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
+  transition: width var(--modal-transition-time), height var(--modal-transition-time)
 }
 
 .post-titlebar > .title {
