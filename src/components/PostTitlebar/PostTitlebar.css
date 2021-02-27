@@ -1,6 +1,6 @@
 .post-titlebar {
   background-color: #000000;
-  font-size: 25px;
+  font-size: min(2.5vw, 1.5rem);
   color: #FFFFFF;
   grid-area: header;
   display: flex;
