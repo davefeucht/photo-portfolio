@@ -3,7 +3,7 @@
 /****************************
 *  React Photo Portfolio
 *  Author: Dave Feucht
-*  Version: 0.8
+*  Version: 0.9.0
 *  Description: Front-end web application for a WordPress backend photography portfolio site. 
 ****************************/
 
@@ -26,6 +26,8 @@ also eventually be put out into the community for others to use.
 
 -src/CategoryThumbnail.jsx: displays a thumbnail image from the featured post of a category
 
+-src/CategoryTitle.jsx: displays the title of a category over the CategoryThumbnail
+
 -src/Category.jsx: displays a category 
 
 -src/CategoryHeader.jsx: displays the category title and subtitle
@@ -34,7 +36,15 @@ also eventually be put out into the community for others to use.
 
 -src/PostThumbnail.jsx: displays a post as a thumbnail image
 
--src/Post.jsx: displays a single post/photo
+-src/Post.jsx: displays a single post/photo in a modal
+
+-src/PostTitlebar.jsx displays the title bar of a Post
+
+-src/PostImage.jsx displays the content of a Post
+
+-src/PostFooter.jsx displays the footer of a post with a list of tags
+
+-src/PostNavigationArrow.jsx displays the navigation arrow to browse Posts in a Category
 
 -src/Footer.jsx: displays the application footer
 
