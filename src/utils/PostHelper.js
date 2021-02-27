@@ -29,6 +29,8 @@ export const getPreviousPost = (postId, currentCategoryPosts) => {
 }
 
 const getPostSize = (screenWidth, screenHeight, imageWidth, imageHeight, stateStore) => {
+    const postTitlebar = document.querySelector('.post-titlebar');
+    const postFooter = document.querySelector('.post-footer');
     const screenAspectRatio = screenWidth / screenHeight;
     const aspectRatio = imageWidth / imageHeight;
     const rect = {};
@@ -43,7 +45,8 @@ const getPostSize = (screenWidth, screenHeight, imageWidth, imageHeight, stateSt
     }
       
     rect.width = width;
-    rect.height = height;
+    rect.image_height = height;
+    rect.height = height + postTitlebar.clientHeight + postFooter.clientHeight;
 
     runInAction(() => {
       stateStore.visiblePost.width = width;
@@ -67,12 +70,12 @@ export const setPostRect = (image, screenWidth, screenHeight, stateStore) => {
   const backgroundElement = document.querySelector('.post-background');
   const rect = getPostSize(screenWidth, screenHeight, image.width, image.height, stateStore);
   imageElement.style.width = `${rect.width}px`;
-  imageElement.style.height = `${rect.height}px`;
+  imageElement.style.height = `${rect.image_height}px`;
   postElement.style.width = `${rect.width}px`;
   backgroundElement.style.width = `${screenWidth}px`;
   backgroundElement.style.height = `${screenHeight}px`;
 
-  const position = getPostPosition(screenWidth, screenHeight, rect.width, postElement.clientHeight);
+  const position = getPostPosition(screenWidth, screenHeight, rect.width, rect.height);
   postElement.style.left = position.left;
   postElement.style.top = position.top;
 }
