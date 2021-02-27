@@ -1,7 +1,7 @@
 :root {
   --number-of-columns: 5;
   --number-of-rows: 2;
-  --modal-transition-time: 750ms;
+  --modal-transition-time: 300ms;
 }
 
 .photo-portfolio {
