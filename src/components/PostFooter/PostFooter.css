@@ -1,6 +1,6 @@
 .post-footer {
   background-color: #000000;
-  font-size: 15px;
+  font-size: min(1.5vw, 1rem);
   color: #FFFFFF;
   grid-area: footer;
   display: grid;
