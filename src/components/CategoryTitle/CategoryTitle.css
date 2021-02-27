@@ -1,0 +1,17 @@
+.category-title {
+  width: 100%;
+  height: min(1.7rem, 2.2vw);
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0
+}
+
+.category-title-text {
+  color: #FFFFFF;
+  /*
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  */
+  margin-left: .3rem;
+  font-size: min(1.5rem, 2vw);
+}

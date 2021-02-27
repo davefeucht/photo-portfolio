@@ -5,6 +5,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import CategoryTitle from '../CategoryTitle/CategoryTitle.jsx';
 import './CategoryThumbnail.css';
 
 const CategoryThumbnail = observer(({ id, index, name, stateStore, api }) => {
@@ -19,6 +20,7 @@ const CategoryThumbnail = observer(({ id, index, name, stateStore, api }) => {
   return ( 
     <Link to={`${url}category/${id}`}>
       <div style={divStyle} className="category-thumbnail">
+        <CategoryTitle name={name} />
       </div>
     </Link>
   );
