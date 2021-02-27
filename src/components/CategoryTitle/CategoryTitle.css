@@ -1,6 +1,6 @@
 .category-title {
   width: 100%;
-  height: min(1.7rem, 2.2vw);
+  height: min(3.5vw, 2rem);
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   bottom: 0
@@ -13,5 +13,5 @@
   text-orientation: sideways;
   */
   margin-left: .3rem;
-  font-size: min(1.5rem, 2vw);
+  font-size: min(3.2vw, 1.8rem);
 }
