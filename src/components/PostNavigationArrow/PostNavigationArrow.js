@@ -14,13 +14,26 @@ const PostNavigationArrow = observer(({ stateStore, direction, postId }) => {
   const top = stateStore.visiblePost.height ? (stateStore.visiblePost.height / 2) - (41) : 0;
   const divStyle = direction === 'previous' ? { top: `${top}px`, left: '0px' } : { top: `${top}px`, right: '0px' };
   const imgSrc = direction === 'previous' ? './images/arrow-left.png' : './images/arrow-right.png';
+  const classNames = ['post-navigation-arrow', postId ? 'active' : 'disabled'];
   let post = null;
 
-  return(
-    <div className="post-navigation-arrow" style={divStyle}>
-      <Link to={`/category/${categoryId}/post/${postId}`}>
+  const getContent = () => {
+    if (postId) {
+      return (
+        <Link to={`/category/${categoryId}/post/${postId}`}>
+          <div className="arrow"><img src={imgSrc} /></div>
+        </Link>
+      );
+    } else {
+      return (
         <div className="arrow"><img src={imgSrc} /></div>
-      </Link>
+      );
+    }
+  }
+
+  return(
+    <div className={classNames.join(' ')} style={divStyle}>
+      {getContent()}
     </div>
   );
 });
