@@ -44,8 +44,14 @@ const Post = observer(({ stateStore, api }) => {
     element = document.querySelector('.post img');
     element.addEventListener('transitionend', updateImage, true);
 
+    const disposer = reaction(
+      () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
+      () => updateImage()
+    );
+
     return () => {
       element.removeEventListener('transitionend', updateImage);
+      disposer();
     }
   }, [stateStore.visiblePost.fullImageUrl]);
     
