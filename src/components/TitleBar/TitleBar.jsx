@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import './TitleBar.css';
 
-const TitleBar = observer(({ stateStore, api }) => {
+const TitleBar = ({ stateStore, api }) => {
   useEffect(() => {
     api.getSiteInfo();
   });
@@ -18,8 +18,8 @@ const TitleBar = observer(({ stateStore, api }) => {
       </div>
     </div>
   );
-});
+};
 
 TitleBar.displayName = 'TitleBar';
 
-export default TitleBar;
+export default observer(TitleBar);

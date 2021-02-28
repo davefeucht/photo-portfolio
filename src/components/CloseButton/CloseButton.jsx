@@ -11,6 +11,7 @@ const CloseButton = () => {
 
   useEffect(() => {
     document.querySelector('.close-button').style.width = `${document.querySelector('.close-button').clientHeight}px`;
+
   })
   return(
     <div className="close-button">

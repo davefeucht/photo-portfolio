@@ -7,7 +7,7 @@ import { observer } from 'mobx-react';
 import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow.js';
 import './PostImage.css';
 
-const PostImage = observer(({ stateStore, previousPost, nextPost }) => {
+const PostImage = ({ stateStore, previousPost, nextPost }) => {
   const onMouseOverHandler = () => {	
     const arrows = document.querySelectorAll('.post-navigation-arrow');	
     arrows.forEach(arrow => {	
@@ -34,8 +34,8 @@ const PostImage = observer(({ stateStore, previousPost, nextPost }) => {
       <PostNavigationArrow stateStore={stateStore} direction="next" postId={nextPost}></PostNavigationArrow>
     </div>
   )
-});
+};
 
 PostImage.displayName = 'PostImage';
 
-export default PostImage;
+export default observer(PostImage);

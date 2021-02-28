@@ -11,7 +11,7 @@ import Posts from '../Posts/Posts.jsx';
 import CategoryHeader from '../CategoryHeader/CategoryHeader.jsx';
 import './Category.css';
 
-const Category = observer(({ stateStore, api }) => {
+const Category = ({ stateStore, api }) => {
   const { categoryId } = useParams();
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const Category = observer(({ stateStore, api }) => {
       <Posts stateStore={stateStore} categoryId={categoryId} api={api} />
     </div>
   );
-});
+};
 
 Category.displayName = 'Category';
 
-export default Category;
+export default observer(Category);

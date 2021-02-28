@@ -7,7 +7,7 @@ import { observer } from 'mobx-react';
 import { Link, useParams } from 'react-router-dom';
 import './PostNavigationArrow.css';
 
-const PostNavigationArrow = observer(({ stateStore, direction, postId }) => {
+const PostNavigationArrow = ({ stateStore, direction, postId }) => {
   const { categoryId } = useParams();
 
   //TODO: calc this based on a height variable, not just a hard-coded 41
@@ -36,8 +36,8 @@ const PostNavigationArrow = observer(({ stateStore, direction, postId }) => {
       {getContent()}
     </div>
   );
-});
+};
 
 PostNavigationArrow.displayName = 'PostNavigationArrow';
 
-export default PostNavigationArrow;
+export default observer(PostNavigationArrow);

@@ -3,16 +3,15 @@
 *****************/
 
 import React from "react";
-import { observer } from 'mobx-react';
 import './Footer.css';
 
-const Footer = observer((props) => {
+const Footer = () => {
     return (
       <div className="footer">
-        Theme Copyright @2018 Dave Feucht  
+        Theme Copyright @2021 Dave Feucht  
       </div>
     );
-});
+};
 
 Footer.displayName = 'Footer';
 

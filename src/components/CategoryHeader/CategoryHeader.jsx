@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import './CategoryHeader.css';
 
 //TODO: figure out why name is not updated properly
-const CategoryHeader = observer(({ categoryData }) => {
+const CategoryHeader = ({ categoryData }) => {
   return (
     <div className="category-header">
       <div className="title">{categoryData.name}</div>
@@ -17,8 +17,8 @@ const CategoryHeader = observer(({ categoryData }) => {
       </div>
     </div>
   );
-});
+};
 
 CategoryHeader.displayName = 'CategoryHeader';
 
-export default CategoryHeader;
+export default observer(CategoryHeader);

@@ -7,15 +7,15 @@ import { observer } from 'mobx-react';
 import CloseButton from '../CloseButton/CloseButton.jsx';
 import './PostTitlebar.css';
 
-const PostTitlebar = observer(({ postTitle }) => {
+const PostTitlebar = ({ postTitle }) => {
   return(
     <div className="post-titlebar">
       <div className="title">{postTitle}</div>
       <CloseButton></CloseButton>
     </div>
   )
-});
+};
 
 PostTitlebar.displayName = 'PostTitlebar';
 
-export default PostTitlebar;
+export default observer(PostTitlebar);

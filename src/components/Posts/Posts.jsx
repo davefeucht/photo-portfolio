@@ -8,7 +8,7 @@ import { observer } from 'mobx-react';
 import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
 import './Posts.css';
 
-const Posts = observer(({ stateStore, api }) => {
+const Posts = ({ stateStore, api }) => {
   const setRows = () => {
     const numberOfColumns = document.body.style.getPropertyValue('--number-of-columns');
     const numberOfPosts = stateStore.currentCategoryPosts.length;
@@ -36,8 +36,8 @@ const Posts = observer(({ stateStore, api }) => {
       {postList} 
     </div>
   );
-});
+};
 
 Posts.displayName = 'Posts';
 
-export default Posts;
+export default observer(Posts);
