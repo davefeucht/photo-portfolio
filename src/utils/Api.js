@@ -12,7 +12,8 @@ export default class API {
       .then(res => {
         runInAction(() => {
           let thumbnailImage = new Image();
-          const thumbnailUrl = res.data.media_details.sizes.medium.source_url;
+          const size = res.data.media_details.large ? 'large' : 'full';
+          const thumbnailUrl = res.data.media_details.sizes[size].source_url;
           this._stateStore.setThumbnailImageUrl({post_index: index, image_url: thumbnailUrl});
           thumbnailImage.src = thumbnailUrl;
         })
@@ -86,7 +87,7 @@ export default class API {
   }
 
   getPosts(categoryId) {
-    const getPostsURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
+    const getPostsURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}&per_page=20`;
     axios.get(getPostsURI)
       .then(res => {
         runInAction(() => {
