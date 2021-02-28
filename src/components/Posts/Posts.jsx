@@ -30,7 +30,7 @@ const Posts = observer(({ stateStore, api }) => {
   const postList = stateStore.currentCategoryPosts.map((post, index) => { 
     return ( <PostThumbnail key={post.id.toString()} stateStore={stateStore} id={post.id} title={post.title.rendered} tags={post.tags} index={index} image={post.featured_media} api={api}/> ); 
   });
-    
+
   return (
     <div className="posts">
       {postList} 
