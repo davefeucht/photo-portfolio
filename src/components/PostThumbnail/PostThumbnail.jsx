@@ -7,7 +7,7 @@ import { observer } from 'mobx-react';
 import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import './PostThumbnail.css';
 
-const PostThumbnail = observer(({ stateStore, id, index }) => {
+const PostThumbnail = ({ stateStore, id, index }) => {
   const divStyle = {backgroundImage: "url(" + (stateStore.currentCategoryPosts[index].thumbnail_image ? stateStore.currentCategoryPosts[index].thumbnail_image : "") + ")"};
   const { url } = useRouteMatch();
   const location = useLocation();
@@ -20,8 +20,8 @@ const PostThumbnail = observer(({ stateStore, id, index }) => {
       <div className="post-thumbnail" style={divStyle}></div>
     </Link>
   );
-});
+};
 
 PostThumbnail.displayName = 'PostThumbnail';
 
-export default PostThumbnail;
+export default observer(PostThumbnail);

@@ -19,7 +19,7 @@ import './Post.css';
 
 const image = document.createElement('img');
 
-const Post = observer(({ stateStore, api }) => {
+const Post = ({ stateStore, api }) => {
   const { categoryId, postId } = useParams();
   const parsedPostId = parseInt(postId);
   const history = useHistory();
@@ -77,8 +77,8 @@ const Post = observer(({ stateStore, api }) => {
       </div>
     </div>
   );
-});
+};
 
 Post.displayName = 'Post';
 
-export default Post;
+export default observer(Post);

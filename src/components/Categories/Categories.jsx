@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail.jsx';
 import './Categories.css';
 
-const Categories = observer(({ stateStore, api }) => {
+const Categories = ({ stateStore, api }) => {
   const setRows = () => {
     const numberOfColumns = document.body.style.getPropertyValue('--number-of-columns');
     const numberOfCategories = stateStore.categoryList.length;
@@ -39,8 +39,8 @@ const Categories = observer(({ stateStore, api }) => {
       {_mapCategoryList()} 
     </div>
   );
-});
+};
 
 Categories.displayName = 'Categories';
 
-export default Categories;
+export default observer(Categories);

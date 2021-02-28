@@ -19,7 +19,7 @@ import Post from '../Post/Post.jsx';
 import Footer from '../Footer/Footer.jsx';
 import './PhotoPortfolio.css';
 
-const PhotoPortfolio = observer(({ stateStore, api }) => {
+const PhotoPortfolio = ({ stateStore, api }) => {
   const { path } = useRouteMatch();
   const { categoryId } = useParams();
 
@@ -81,8 +81,8 @@ const PhotoPortfolio = observer(({ stateStore, api }) => {
       <Footer />
     </div>
   );
-});
+};
 
 PhotoPortfolio.displayName = 'PhotoPortfolio';
 
-export default PhotoPortfolio;
+export default observer(PhotoPortfolio);

@@ -8,7 +8,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import CategoryTitle from '../CategoryTitle/CategoryTitle.jsx';
 import './CategoryThumbnail.css';
 
-const CategoryThumbnail = observer(({ id, index, name, stateStore, api }) => {
+const CategoryThumbnail = ({ id, index, name, stateStore, api }) => {
   let { url } = useRouteMatch();
 
   if (!stateStore.categoryList[index].thumbnail_image) {
@@ -24,8 +24,8 @@ const CategoryThumbnail = observer(({ id, index, name, stateStore, api }) => {
       </div>
     </Link>
   );
-});
+};
 
 CategoryThumbnail.displayName = 'CategoryThumbnail';
 
-export default CategoryThumbnail;
+export default observer(CategoryThumbnail);
