@@ -5,7 +5,7 @@
 import React, { useEffect } from "react";
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { 
   getPostInfo,
   getNextPost,
@@ -20,9 +20,18 @@ import './Post.css';
 const image = document.createElement('img');
 
 const Post = observer(({ stateStore, api }) => {
-  const { postId } = useParams();
+  const { categoryId, postId } = useParams();
   const parsedPostId = parseInt(postId);
+  const history = useHistory();
   let element = null;
+
+  const closeModalHandler = e => {
+    history.push(`/category/${categoryId}`);
+  };
+
+  const stopPropagation = e => {
+    e.stopPropagation();
+  }
 
   const updateImage = () => {
     setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore);
@@ -56,8 +65,8 @@ const Post = observer(({ stateStore, api }) => {
   }, [stateStore.visiblePost.fullImageUrl]);
     
   return (
-    <div className="post-background">
-      <div className="post">
+    <div className="post-background" onClick={closeModalHandler}>
+      <div className="post" onClick={stopPropagation}>
         <PostTitlebar postTitle={stateStore.visiblePost.title && stateStore.visiblePost.title.rendered}></PostTitlebar>
         <PostImage 
           stateStore={stateStore} 

@@ -3,11 +3,10 @@
 ****************/
 
 import React, { useEffect } from "react";
-import { observer } from 'mobx-react';
 import { Link, useParams } from 'react-router-dom';
 import './CloseButton.css';
 
-const CloseButton = observer(({ closeFunction }) => {
+const CloseButton = () => {
   const { categoryId } = useParams();
 
   useEffect(() => {
@@ -20,7 +19,7 @@ const CloseButton = observer(({ closeFunction }) => {
       </Link>
     </div>
   )
-});
+};
 
 CloseButton.displayName = 'CloseButton';
 
