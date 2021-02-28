@@ -3,6 +3,7 @@
 ****************/
 
 import React, { useEffect } from "react";
+import PropTypes from 'prop-types';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import { useParams, useHistory } from 'react-router-dom';
@@ -80,5 +81,10 @@ const Post = ({ stateStore, api }) => {
 };
 
 Post.displayName = 'Post';
+
+Post.propTypes = {
+  stateStore: PropTypes.object.isRequired,
+  api: PropTypes.object.isRequired
+};
 
 export default observer(Post);

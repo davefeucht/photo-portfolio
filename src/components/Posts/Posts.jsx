@@ -3,6 +3,7 @@
 *****************/
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
@@ -39,5 +40,10 @@ const Posts = ({ stateStore, api }) => {
 };
 
 Posts.displayName = 'Posts';
+
+Posts.propTypes = {
+  stateStore: PropTypes.object.isRequired,
+  api: PropTypes.object.isRequired
+};
 
 export default observer(Posts);

@@ -3,6 +3,7 @@
 *****************/
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { 
   useParams
@@ -28,5 +29,10 @@ const Category = ({ stateStore, api }) => {
 };
 
 Category.displayName = 'Category';
+
+Category.propTypes = {
+  stateStore: PropTypes.object.isRequired,
+  api: PropTypes.object.isRequired
+};
 
 export default observer(Category);

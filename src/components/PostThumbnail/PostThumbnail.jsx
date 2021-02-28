@@ -3,6 +3,7 @@
 ****************/
 
 import React from "react";
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import './PostThumbnail.css';
@@ -23,5 +24,11 @@ const PostThumbnail = ({ stateStore, id, index }) => {
 };
 
 PostThumbnail.displayName = 'PostThumbnail';
+
+PostThumbnail.propTypes = {
+  stateStore: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired
+};
 
 export default observer(PostThumbnail);

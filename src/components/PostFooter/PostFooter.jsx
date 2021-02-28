@@ -3,6 +3,7 @@
 ****************/
 
 import React from "react";
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import './PostFooter.css';
 
@@ -15,5 +16,9 @@ const PostFooter = ({ stateStore }) => {
 };
 
 PostFooter.displayName = 'PostFooter';
+
+PostFooter.propTypes = {
+  stateStore: PropTypes.object.isRequired
+};
 
 export default observer(PostFooter);
