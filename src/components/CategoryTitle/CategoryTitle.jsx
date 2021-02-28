@@ -18,6 +18,6 @@ CategoryTitle.displayName = 'CategoryTitle';
 
 CategoryTitle.propTypes = {
   name: PropTypes.string.isRequired
-}
+};
 
 export default CategoryTitle;
