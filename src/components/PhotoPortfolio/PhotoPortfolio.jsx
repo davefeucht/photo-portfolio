@@ -4,6 +4,7 @@
 *******************/
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { reaction, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { 
@@ -84,5 +85,10 @@ const PhotoPortfolio = ({ stateStore, api }) => {
 };
 
 PhotoPortfolio.displayName = 'PhotoPortfolio';
+
+PhotoPortfolio.propTypes = {
+  stateStore: PropTypes.object.isRequired,
+  api: PropTypes.object.isRequired
+};
 
 export default observer(PhotoPortfolio);

@@ -2,7 +2,8 @@
 * PostImage component displays the image for a Post
 ****************/
 
-import React, { useEffect } from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow.js';
 import './PostImage.css';
@@ -37,5 +38,11 @@ const PostImage = ({ stateStore, previousPost, nextPost }) => {
 };
 
 PostImage.displayName = 'PostImage';
+
+PostImage.propTypes = {
+  stateStore: PropTypes.object.isRequired,
+  previousPost: PropTypes.number,
+  nextPost: PropTypes.number
+};
 
 export default observer(PostImage);

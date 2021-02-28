@@ -3,6 +3,7 @@
 *****************/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import CategoryTitle from '../CategoryTitle/CategoryTitle.jsx';
@@ -27,5 +28,13 @@ const CategoryThumbnail = ({ id, index, name, stateStore, api }) => {
 };
 
 CategoryThumbnail.displayName = 'CategoryThumbnail';
+
+CategoryThumbnail.propTypes = {
+  id: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  stateStore: PropTypes.object.isRequired,
+  api: PropTypes.object.isRequired
+};
 
 export default observer(CategoryThumbnail);

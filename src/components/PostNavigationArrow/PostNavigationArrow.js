@@ -3,6 +3,7 @@
 ****************/
 
 import React from "react";
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { Link, useParams } from 'react-router-dom';
 import './PostNavigationArrow.css';
@@ -39,5 +40,11 @@ const PostNavigationArrow = ({ stateStore, direction, postId }) => {
 };
 
 PostNavigationArrow.displayName = 'PostNavigationArrow';
+
+PostNavigationArrow.propTypes = {
+  stateStore: PropTypes.object.isRequired,
+  direction: PropTypes.string.isRequired,
+  postId: PropTypes.number
+};
 
 export default observer(PostNavigationArrow);

@@ -4,6 +4,7 @@
 *****************/
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail.jsx';
@@ -39,6 +40,11 @@ const Categories = ({ stateStore, api }) => {
       {_mapCategoryList()} 
     </div>
   );
+};
+
+Categories.propTypes = {
+  stateStore: PropTypes.object.isRequired,
+  api: PropTypes.object.isRequired
 };
 
 Categories.displayName = 'Categories';

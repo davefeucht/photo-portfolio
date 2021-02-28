@@ -3,6 +3,7 @@
 *****************/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import './CategoryHeader.css';
@@ -20,5 +21,9 @@ const CategoryHeader = ({ categoryData }) => {
 };
 
 CategoryHeader.displayName = 'CategoryHeader';
+
+CategoryHeader.propTypes = {
+  categoryData: PropTypes.object.isRequired
+};
 
 export default observer(CategoryHeader);

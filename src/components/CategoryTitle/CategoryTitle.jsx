@@ -3,6 +3,7 @@
 *****************/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import './CategoryTitle.css';
 
 const CategoryTitle = ({ name }) => {
@@ -14,5 +15,9 @@ const CategoryTitle = ({ name }) => {
 };
 
 CategoryTitle.displayName = 'CategoryTitle';
+
+CategoryTitle.propTypes = {
+  name: PropTypes.string.isRequired
+};
 
 export default CategoryTitle;

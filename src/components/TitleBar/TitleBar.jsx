@@ -3,6 +3,7 @@
 *****************/
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import './TitleBar.css';
 
@@ -21,5 +22,10 @@ const TitleBar = ({ stateStore, api }) => {
 };
 
 TitleBar.displayName = 'TitleBar';
+
+TitleBar.propTypes = {
+  stateStore: PropTypes.object.isRequired,
+  api: PropTypes.object.isRequired
+};
 
 export default observer(TitleBar);
