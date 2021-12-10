@@ -4,7 +4,7 @@
   "description": "React Photo Portfolio",
   "main": "index.html",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "fs": "0.0.1-security",
     "mobx": "^6.1.7",
     "mobx-react": "^7.1.0",
