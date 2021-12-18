@@ -7,8 +7,6 @@
 *  Description: Front-end web application for a WordPress backend photography portfolio site. 
 ****************************/
 
-[![Build Status](https://travis-ci.com/davefeucht/photo-portfolio.svg?branch=master)](https://travis-ci.com/davefeucht/photo-portfolio)
-
 This is a personal project to learn React, Mobx, CSS grid layout, to get familiar with the 
 WordPress REST API, and to get familiar with github. It combines my interest in coding 
 and photography, and will serve as a portfolio for both once finished. Hopefully this can 
