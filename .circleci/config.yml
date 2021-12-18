@@ -15,7 +15,7 @@ workflows:
       - node/run:
           version: '16.10'
           pkg-manager: npm
-          npm-run: build:dev
+          npm-run: build:prod
       - node/test:
           # This is the node version to use for the `cimg/node` tag
           # Relevant tags can be found on the CircleCI Developer Hub
