@@ -14,7 +14,7 @@ const PostNavigationArrow = ({ stateStore, direction, postId }) => {
   //TODO: calc this based on a height variable, not just a hard-coded 41
   const top = stateStore.visiblePost.height ? (stateStore.visiblePost.height / 2) - (41) : 0;
   const divStyle = direction === 'previous' ? { top: `${top}px`, left: '0px' } : { top: `${top}px`, right: '0px' };
-  const imgSrc = direction === 'previous' ? './images/arrow-left.png' : './images/arrow-right.png';
+  const imgSrc = direction === 'previous' ? './assets/images/arrow-left.png' : './assets/images/arrow-right.png';
   const classNames = ['post-navigation-arrow', postId ? 'active' : 'disabled'];
   let post = null;
 
