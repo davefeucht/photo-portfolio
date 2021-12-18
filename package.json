@@ -33,7 +33,7 @@
     "webpack-dev-server": "4.3.1"
   },
   "scripts": {
-    "test": "jest --updateSnapshot",
+    "test": "",
     "build:dev": "node_modules/.bin/webpack --config webpack.dev.config.js",
     "build:prod": "node_modules/.bin/webpack --config webpack.prod.config.js",
     "start": "node_modules/.bin/webpack serve --hot --config webpack.dev.config.js"
