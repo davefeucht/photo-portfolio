@@ -3,11 +3,27 @@
   grid-area: header;
   background: rgba(0,0,0,.75); 
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: 3% 97%;
   grid-template-rows: 100%;
   align-items: center;
 }
 .title-bar h1 {
   color: #FFFFFF;
   margin-left: 10px;
+}
+
+.title-bar .hamburger-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.hamburger-button.open {
+  transform: rotate(90deg);
+}
+
+.hamburger-button.closed {
+  transform: rotate(0deg);
 }

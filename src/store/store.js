@@ -4,6 +4,7 @@ configure({ enforceActions: 'observed' });
 
 export default class stateStore {
   constructor() {
+    this.menuState = 'closed';
     this.applicationRoot = null;
 
     this.screenInfo = {
@@ -31,6 +32,10 @@ export default class stateStore {
     this.currentCategoryData = {};
 
     makeAutoObservable(this);
+  }
+
+  setMenuState = state => {
+    this.menuState = state;
   }
 
   setApplicationRoot = element => {

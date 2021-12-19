@@ -1,0 +1,23 @@
+.menu {
+  grid-area: content;
+  height: 100%;
+  width: 300px;
+  background-color: black;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 10;
+
+  color: #FFFFFF;
+  font-size: 22px;
+}
+
+.menu.open {
+  opacity: 0.9;
+}
+.menu.closed {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu ul {
+    list-style: none;
+}
