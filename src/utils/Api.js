@@ -55,7 +55,7 @@ export default class API {
     const getCategoryPostURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
     //Make the request
     axios.get(getCategoryPostURI) 
-      .then((response) => {
+      .then(response => {
         //Determine a random post from the ones returned
         const numberOfPosts = response.data.length;
         const randomPost = Math.floor((Math.random() * numberOfPosts));

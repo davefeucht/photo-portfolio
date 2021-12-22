@@ -15,6 +15,10 @@ workflows:
       - node/run:
           version: '16.10'
           pkg-manager: npm
+          npm-run: lint
+      - node/run:
+          version: '16.10'
+          pkg-manager: npm
           npm-run: build:prod
       - node/test:
           # This is the node version to use for the `cimg/node` tag

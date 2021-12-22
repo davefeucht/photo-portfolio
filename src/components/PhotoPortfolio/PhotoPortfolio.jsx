@@ -78,7 +78,9 @@ const PhotoPortfolio = ({ stateStore, api }) => {
             />
           </Route>
         </Switch>
-        <Route path="/category/:categoryId/post/:postId" children={<Post stateStore={stateStore} api={api} />} />
+        <Route path="/category/:categoryId/post/:postId">
+          <Post stateStore={stateStore} api={api} />
+        </Route>
       </div>
       <Menu stateStore={stateStore} />
       <Footer />

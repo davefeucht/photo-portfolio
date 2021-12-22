@@ -18,7 +18,7 @@ const Menu = ({ stateStore }) => {
                     <ul>
                         {categoryList.map(category => {
                             return (
-                                <li><MenuLink key={`${category.name}_${category.id}`} href={`category/${category.id}`} text={category.name} /></li>
+                                <li key={`li_${category.name}_${category.id}`}><MenuLink key={`${category.name}_${category.id}`} href={`category/${category.id}`} text={category.name} /></li>
                             )
                         })}
                     </ul>

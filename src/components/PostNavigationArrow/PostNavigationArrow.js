@@ -16,7 +16,6 @@ const PostNavigationArrow = ({ stateStore, direction, postId }) => {
   const divStyle = direction === 'previous' ? { top: `${top}px`, left: '0px' } : { top: `${top}px`, right: '0px' };
   const imgSrc = direction === 'previous' ? './assets/images/arrow-left.png' : './assets/images/arrow-right.png';
   const classNames = ['post-navigation-arrow', postId ? 'active' : 'disabled'];
-  let post = null;
 
   const getContent = () => {
     if (postId) {
