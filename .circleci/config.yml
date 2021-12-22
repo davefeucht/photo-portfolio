@@ -3,8 +3,17 @@ version: 2.1
 orbs:
   node: circleci/node@4.9.0
 
+jobs:
+  deploy:
+    machine:
+      image: ubuntu-2004:202111-01
+    steps:
+      - run:
+          name: Deploy via SFTP
+          command: scp build/bundle.min.js build/bundle.min.js/LICENSE.txt "$DEPLOY_USER@$DEPLOY_SERVER:~/WordPress_01/"
+
 workflows:
-  build_test:
+  lint_test:
     jobs:
       - node/run:
           version: '16.10'
@@ -13,21 +22,14 @@ workflows:
       - node/test:
           version: '16.10'
           pkg-manager: npm
-  deploy:
+  build_deploy:
     jobs:
-      build:
-        steps:
-          - node/run:
-              version: '16.10'
-              pkg-manager: npm
-              npm-run: build:prod
-      deploy:
+      - node/run:
+          version: '16.10'
+          pkg-manager: npm
+          npm-run: build:prod
+      - deploy:
         filters:
           branches:
             only:
-              - master
-        steps:
-          - run:
-            name: Deploy via SCP
-            command: scp build/bundle.min.js build/bundle.min.js/LICENSE.txt "$DEPLOY_USER@$DEPLOY_SERVER:~/WordPress_01/"
-            
+              - main
