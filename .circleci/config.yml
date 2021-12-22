@@ -14,10 +14,6 @@ workflows:
           version: '16.10'
           pkg-manager: npm
   deploy:
-    filters:
-      branches:
-        only:
-          - master
     jobs:
       build:
         steps:
@@ -26,6 +22,10 @@ workflows:
               pkg-manager: npm
               npm-run: build:prod
       deploy:
+        filters:
+          branches:
+            only:
+              - master
         steps:
           - run:
             name: Deploy via SCP
