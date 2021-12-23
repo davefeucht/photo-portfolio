@@ -25,7 +25,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: Deploy via SFTP
-          command: ls -Fla /tmp/workspace && scp build/bundle.min.js build/bundle.min.js.LICENSE.txt "$DEPLOY_USER@$DEPLOY_SERVER:~/WordPress_01/"
+          command: ls -Fla /tmp/workspace && scp /tmp/workspace/bundle.min.js /tmp/workspace/bundle.min.js.LICENSE.txt "$DEPLOY_USER@$DEPLOY_SERVER:~/WordPress_01/"
 
 workflows:
   lint_test:
