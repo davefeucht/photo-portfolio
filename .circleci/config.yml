@@ -11,6 +11,7 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run build:prod
+      - run: ls -Fla
       - store_artifacts:
           path: /build/bundle.min.js
 
@@ -36,7 +37,9 @@ workflows:
     jobs:
       - build
       - deploy:
-        filters:
-          branches:
-            only:
-              - main
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
