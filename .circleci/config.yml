@@ -11,8 +11,11 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run build:prod
-      - store_artifacts:
-          path: build/bundle.min.js
+      - persist_to_workspace:
+          root: build
+          paths:
+            - bundle.min.js
+            - bundle.min.js.LICENSE.txt
 
   deploy:
     machine:
@@ -20,7 +23,7 @@ jobs:
     steps:
       - run:
           name: Deploy via SFTP
-          command: scp build/bundle.min.js "$DEPLOY_USER@$DEPLOY_SERVER:~/WordPress_01/"
+          command: scp build/bundle.min.js build/bundle.min.js.LICENSE.txt "$DEPLOY_USER@$DEPLOY_SERVER:~/WordPress_01/"
 
 workflows:
   lint_test:
