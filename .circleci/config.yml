@@ -10,7 +10,7 @@ jobs:
     steps:
       - run:
           name: Deploy via SFTP
-          command: scp /build/bundle.min.js /build/bundle.min.js/LICENSE.txt "$DEPLOY_USER@$DEPLOY_SERVER:~/WordPress_01/"
+          command: pwd && scp /build/bundle.min.js /build/bundle.min.js/LICENSE.txt "$DEPLOY_USER@$DEPLOY_SERVER:~/WordPress_01/"
 
 workflows:
   lint_test:
