@@ -4,6 +4,16 @@ orbs:
   node: circleci/node@4.9.0
 
 jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202111-01
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run build:prod
+      - store_artifacts:
+          path: /build/bundle.min.js
+
   deploy:
     machine:
       image: ubuntu-2004:202111-01
@@ -24,10 +34,7 @@ workflows:
           pkg-manager: npm
   build_deploy:
     jobs:
-      - node/run:
-          version: '16.10'
-          pkg-manager: npm
-          npm-run: build:prod
+      - build
       - deploy:
         filters:
           branches:
