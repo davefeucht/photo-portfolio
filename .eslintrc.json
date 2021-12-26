@@ -8,10 +8,10 @@
         "plugin:react/recommended",
         "plugin:json/recommended"
     ],
-    "parser": "@babel-eslint-parser",
+    "parser": "@babel/eslint-parser",
     "settings": {
         "react": {
-            "version": 17
+            "version": "17"
         }
     },
     "parserOptions": {
@@ -23,7 +23,9 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "json",
+        "react",
+        "react-hooks"
     ],
     "rules": {
         "no-prototype-builtins": 0,

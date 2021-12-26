@@ -26,7 +26,7 @@ const Post = ({ stateStore, api }) => {
   const history = useHistory();
   let element = null;
 
-  const closeModalHandler = e => {
+  const closeModalHandler = () => {
     history.push(`/category/${categoryId}`);
   };
 

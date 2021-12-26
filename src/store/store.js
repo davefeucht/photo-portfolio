@@ -1,9 +1,10 @@
-import { observable, action, configure, makeAutoObservable, extendObservable } from 'mobx';
+import { configure, makeAutoObservable } from 'mobx';
 
 configure({ enforceActions: 'observed' });
 
 export default class stateStore {
   constructor() {
+    this.menuState = 'closed';
     this.applicationRoot = null;
 
     this.screenInfo = {
@@ -33,11 +34,15 @@ export default class stateStore {
     makeAutoObservable(this);
   }
 
+  setMenuState = state => {
+    this.menuState = state;
+  }
+
   setApplicationRoot = element => {
     this.applicationRoot = element;
   }
 
-  setSiteName = (name) => {
+  setSiteName = name => {
     this.siteInfo.siteName = name;
   }
 
@@ -46,35 +51,35 @@ export default class stateStore {
     this.visiblePost.postTitle = postTitle;
   }
 
-  setVisiblePostImage = (fullImageUrl) => {
+  setVisiblePostImage = fullImageUrl => {
     this.visiblePost.fullImageUrl = fullImageUrl;
   }
 
-  setCategoryList = (categories) => {
+  setCategoryList = categories => {
     this.categoryList.length = 0;
     categories.forEach((category, index) => {
       this.categoryList[index] = category;
     })
   }
 
-  setCategoryPosts = (posts) => {
+  setCategoryPosts = posts => {
     this.currentCategoryPosts.length = 0;
     posts.forEach((post, index) => {
       this.currentCategoryPosts[index] = post;
     })
   }
 
-  setCategoryData = (categoryData) => {
+  setCategoryData = categoryData => {
     Object.keys(categoryData).forEach(property => {
       this.currentCategoryData[property] = categoryData[property];
     })
   }
 
-  setThumbnailImageUrl = (imageData) => {
+  setThumbnailImageUrl = imageData => {
     this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
   }
   
-  setCurrentPost = (postData) => {
+  setCurrentPost = postData => {
     Object.keys(postData).forEach(property => {
       this.visiblePost[property] = postData[property];
     })

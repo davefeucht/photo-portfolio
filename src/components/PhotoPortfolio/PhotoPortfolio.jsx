@@ -14,6 +14,7 @@ import {
   useParams
 } from 'react-router-dom';
 import TitleBar from '../TitleBar/TitleBar.jsx';
+import Menu from '../Menu/Menu.jsx';
 import Categories from '../Categories/Categories.jsx';
 import Category from '../Category/Category.jsx';
 import Post from '../Post/Post.jsx';
@@ -63,11 +64,11 @@ const PhotoPortfolio = ({ stateStore, api }) => {
 
   return (
     <div className="app">
-      <TitleBar stateStore={stateStore} api={api}/>
+      <TitleBar stateStore={stateStore} api={api} />
       <div className="photo-portfolio">
         <Switch>
           <Route exact path={path}>
-            <Categories stateStore={stateStore} api={api}/>
+            <Categories stateStore={stateStore} api={api} />
           </Route>
           <Route path={['/category/:categoryId', '/category/:categoryId/post/:postId']}>
             <Category 
@@ -77,8 +78,11 @@ const PhotoPortfolio = ({ stateStore, api }) => {
             />
           </Route>
         </Switch>
-        <Route path="/category/:categoryId/post/:postId" children={<Post stateStore={stateStore} api={api} />} />
+        <Route path="/category/:categoryId/post/:postId">
+          <Post stateStore={stateStore} api={api} />
+        </Route>
       </div>
+      <Menu stateStore={stateStore} />
       <Footer />
     </div>
   );
