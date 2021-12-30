@@ -38,6 +38,10 @@ export default class stateStore {
     this.menuState = state;
   }
 
+  toggleMenuState = () => {
+    this.menuState = this.menuState === 'closed' ? 'open' : 'closed';
+  }
+
   setApplicationRoot = element => {
     this.applicationRoot = element;
   }
