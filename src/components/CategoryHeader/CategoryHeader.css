@@ -1,17 +1,15 @@
 .category-header {
   background: rgba(0, 0, 0, 0.8);
   padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: #FFFFFF;
 }
 
 .category-header > .title {
   font-size: 120%;
   font-weight: bold;
-}
-
-.category-header > .subtitle {
-  margin-left: 5px;
-  cursor: pointer;
 }
 
 .category-header a {
