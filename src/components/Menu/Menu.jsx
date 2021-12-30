@@ -9,7 +9,7 @@ import MenuLink from '../MenuLink/MenuLink.jsx';
 import './Menu.css';
 
 const Menu = ({ stateStore }) => {
-    const { menuState, categoryList } = stateStore;
+    const { menuState, toggleMenuState, categoryList } = stateStore;
     return (
         <div className={`menu ${menuState}`}>
             <ul>
@@ -18,7 +18,7 @@ const Menu = ({ stateStore }) => {
                     <ul>
                         {categoryList.map(category => {
                             return (
-                                <li key={`li_${category.name}_${category.id}`}><MenuLink key={`${category.name}_${category.id}`} href={`category/${category.id}`} text={category.name} /></li>
+                                <li key={`li_${category.name}_${category.id}`} onClick={() => toggleMenuState()}><MenuLink key={`${category.name}_${category.id}`} href={`category/${category.id}`} text={category.name} /></li>
                             )
                         })}
                     </ul>
