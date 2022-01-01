@@ -9,17 +9,17 @@ import './CategoryHeader.css';
 
 //TODO: figure out why name is not updated properly
 const CategoryHeader = ({ categoryData }) => {
-  return (
-    <div className="category-header">
-      <div className="title">{categoryData.name}</div>
-    </div>
-  );
+    return (
+        <div className="category-header">
+            <div className="title">{categoryData.name}</div>
+        </div>
+    );
 };
 
 CategoryHeader.displayName = 'CategoryHeader';
 
 CategoryHeader.propTypes = {
-  categoryData: PropTypes.object.isRequired
+    categoryData: PropTypes.object.isRequired
 };
 
 export default observer(CategoryHeader);
