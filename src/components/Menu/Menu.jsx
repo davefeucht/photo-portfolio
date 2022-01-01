@@ -27,7 +27,7 @@ const Menu = ({ stateStore }) => {
                     </ul>
                 </li>
                 <li>
-                    Pages
+                    Info
                     <ul>
                         {pages.map(page => {
                             return (
