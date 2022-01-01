@@ -17,6 +17,10 @@
   cursor: pointer;
 }
 
+.post-navigation-arrow.previous {
+    transform: rotate(-180deg);
+}
+
 .post-navigation-arrow.disabled {
   cursor: default;
 }

@@ -14,19 +14,18 @@ const PostNavigationArrow = ({ stateStore, direction, postId }) => {
     //TODO: calc this based on a height variable, not just a hard-coded 41
     const top = stateStore.visiblePost.height ? (stateStore.visiblePost.height / 2) - (41) : 0;
     const divStyle = direction === 'previous' ? { top: `${top}px`, left: '0px' } : { top: `${top}px`, right: '0px' };
-    const imgSrc = direction === 'previous' ? './assets/images/arrow-left.png' : './assets/images/arrow-right.png';
-    const classNames = ['post-navigation-arrow', postId ? 'active' : 'disabled'];
+    const classNames = ['post-navigation-arrow', postId ? 'active' : 'disabled', direction];
 
     const getContent = () => {
         if (postId) {
             return (
                 <Link to={`/category/${categoryId}/post/${postId}`}>
-                    <div className="arrow"><img src={imgSrc} /></div>
+                    <div className="arrow"><img src='./assets/images/chevron.svg' /></div>
                 </Link>
             );
         } else {
             return (
-                <div className="arrow"><img src={imgSrc} /></div>
+                <div className="arrow"><img src='./assets/images/chevron.svg' /></div>
             );
         }
     }

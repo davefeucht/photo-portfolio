@@ -16,7 +16,7 @@ const CloseButton = () => {
     return (
         <div className="close-button">
             <Link to={`/category/${categoryId}`}>
-                <div className="close-button-content"><img src="./assets/images/close-icon.png" width="30px" height="30px" /></div>
+                <div className="close-button-content"><img src="./assets/images/close-button.svg" width="30px" height="30px" /></div>
             </Link>
         </div>
     )
