@@ -6,7 +6,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
 import PhotoPortfolio from './components/PhotoPortfolio/PhotoPortfolio.jsx';
-import stateStore from './store/store';
+import stateStore from './StateStore/store';
 import API from './utils/Api';
 import './assets/stylesheets/main.scss';
 

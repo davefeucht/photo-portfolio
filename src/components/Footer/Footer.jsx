@@ -7,9 +7,9 @@ import './Footer.css';
 
 const Footer = () => {
     return (
-      <div className="footer">
-        Theme Copyright @2021 Dave Feucht  
-      </div>
+        <div className="footer">
+            Theme Copyright @2021 Dave Feucht
+        </div>
     );
 };
 

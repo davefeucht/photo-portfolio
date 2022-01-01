@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import { useParams, useHistory } from 'react-router-dom';
-import { 
-  getPostInfo,
-  getNextPost,
-  getPreviousPost,
-  setPostRect 
+import {
+    getPostInfo,
+    getNextPost,
+    getPreviousPost,
+    setPostRect
 } from '../../utils/PostHelper';
 import PostTitlebar from '../PostTitlebar/PostTitlebar.jsx';
 import PostImage from '../PostImage/PostImage.jsx';
@@ -21,70 +21,70 @@ import './Post.css';
 const image = document.createElement('img');
 
 const Post = ({ stateStore, api }) => {
-  const { categoryId, postId } = useParams();
-  const parsedPostId = parseInt(postId);
-  const history = useHistory();
-  let element = null;
+    const { categoryId, postId } = useParams();
+    const parsedPostId = parseInt(postId);
+    const history = useHistory();
+    let element = null;
 
-  const closeModalHandler = () => {
-    history.push(`/category/${categoryId}`);
-  };
+    const closeModalHandler = () => {
+        history.push(`/category/${categoryId}`);
+    };
 
-  const stopPropagation = e => {
-    e.stopPropagation();
-  }
-
-  const updateImage = () => {
-    setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore);
-  };
-  
-  image.onload = () => {
-    updateImage();
-  }
-
-  useEffect(() => {
-    getPostInfo(postId, api);
-  }, [postId]);
-
-  useEffect(() => {
-    if (stateStore.visiblePost.fullImageUrl !== null && stateStore.visiblePost.fullImageUrl !== undefined) {
-      image.src = stateStore.visiblePost.fullImageUrl;
+    const stopPropagation = e => {
+        e.stopPropagation();
     }
 
-    element = document.querySelector('.post img');
-    element.addEventListener('transitionend', updateImage, true);
+    const updateImage = () => {
+        setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore);
+    };
 
-    const disposer = reaction(
-      () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
-      () => updateImage()
+    image.onload = () => {
+        updateImage();
+    }
+
+    useEffect(() => {
+        getPostInfo(postId, api);
+    }, [postId]);
+
+    useEffect(() => {
+        if (stateStore.visiblePost.fullImageUrl !== null && stateStore.visiblePost.fullImageUrl !== undefined) {
+            image.src = stateStore.visiblePost.fullImageUrl;
+        }
+
+        element = document.querySelector('.post img');
+        element.addEventListener('transitionend', updateImage, true);
+
+        const disposer = reaction(
+            () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
+            () => updateImage()
+        );
+
+        return () => {
+            element.removeEventListener('transitionend', updateImage);
+            disposer();
+        }
+    }, [stateStore.visiblePost.fullImageUrl]);
+
+    return (
+        <div className="post-background" onClick={closeModalHandler}>
+            <div className="post" onClick={stopPropagation}>
+                <PostTitlebar postTitle={stateStore.visiblePost.title && stateStore.visiblePost.title.rendered}></PostTitlebar>
+                <PostImage
+                    stateStore={stateStore}
+                    previousPost={getPreviousPost(parsedPostId, stateStore.currentCategoryPosts)}
+                    nextPost={getNextPost(parsedPostId, stateStore.currentCategoryPosts)}>
+                </PostImage>
+                <PostFooter stateStore={stateStore}></PostFooter>
+            </div>
+        </div>
     );
-
-    return () => {
-      element.removeEventListener('transitionend', updateImage);
-      disposer();
-    }
-  }, [stateStore.visiblePost.fullImageUrl]);
-    
-  return (
-    <div className="post-background" onClick={closeModalHandler}>
-      <div className="post" onClick={stopPropagation}>
-        <PostTitlebar postTitle={stateStore.visiblePost.title && stateStore.visiblePost.title.rendered}></PostTitlebar>
-        <PostImage 
-          stateStore={stateStore} 
-          previousPost={getPreviousPost(parsedPostId, stateStore.currentCategoryPosts)} 
-          nextPost={getNextPost(parsedPostId, stateStore.currentCategoryPosts)}>
-        </PostImage>
-        <PostFooter stateStore={stateStore}></PostFooter>
-      </div>
-    </div>
-  );
 };
 
 Post.displayName = 'Post';
 
 Post.propTypes = {
-  stateStore: PropTypes.object.isRequired,
-  api: PropTypes.object.isRequired
+    stateStore: PropTypes.object.isRequired,
+    api: PropTypes.object.isRequired
 };
 
 export default observer(Post);
