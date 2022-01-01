@@ -1,13 +1,13 @@
 .category-title {
   width: 100%;
   height: min(3.5vw, 2rem);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--template-transparent-blue);
   position: absolute;
   bottom: 0
 }
 
 .category-title-text {
-  color: #FFFFFF;
+  color: var(--template-white);
   /*
   writing-mode: vertical-rl;
   text-orientation: sideways;

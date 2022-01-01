@@ -1,7 +1,7 @@
 .post-titlebar {
-  background-color: #000000;
+  background-color: var(--template-blue);
   font-size: min(4vw, 2rem);
-  color: #FFFFFF;
+  color: var(--template-white);
   grid-area: header;
   display: flex;
   flex-direction: row;

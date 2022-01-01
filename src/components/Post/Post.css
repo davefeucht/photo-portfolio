@@ -1,7 +1,7 @@
 .post {
   position: absolute;
-  border: solid 1px #999999;
-  background-color: #606060;
+  border: solid 1px var(--template-light-gray);
+  background-color: var(--template-medium-gray);
   display: grid;
   grid-template-areas: "header" "content" "footer";
   grid-template-rows: 3rem auto 2rem;

@@ -1,7 +1,7 @@
 .close-button {
   order: 2;
   margin-right: 10px;
-  background-color: #000000;
+  background-color: var(--template-black);
 }
 
 .close-button-content {

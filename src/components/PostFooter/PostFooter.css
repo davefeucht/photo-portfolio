@@ -1,7 +1,7 @@
 .post-footer {
-  background-color: #000000;
+  background-color: var(--template-black);
   font-size: min(3vw, 1rem);
-  color: #FFFFFF;
+  color: var(--template-white);
   grid-area: footer;
   display: grid;
   grid-template-columns: 100%;

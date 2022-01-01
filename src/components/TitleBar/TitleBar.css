@@ -17,15 +17,15 @@
 }
 
 .title-bar {
-  color: #FFFFFF;
+  color: var(--template-white);
   grid-area: header;
-  background: rgba(0,0,0,.75); 
+  background: var(--template-dark-gray); 
   display: grid;
   grid-template-rows: 100%;
   align-items: center;
 }
 .title-bar h1 {
-  color: #FFFFFF;
+  color: var(--template-white);
   margin-left: 10px;
 }
 

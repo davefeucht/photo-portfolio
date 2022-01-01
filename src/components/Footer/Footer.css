@@ -1,9 +1,9 @@
 .footer {
-  color: #FFFFFF;
+  color: var(--template-white);
   grid-area: footer;
-  background: rgba(0,0,0,.75); 
+  background: var(--template-dark-gray); 
   display: grid;
-  grid-template-colums: 100%;
+  grid-template-columns: 100%;
   grid-template-rows: 100%;
   align-items: center;
   padding: 5px;
