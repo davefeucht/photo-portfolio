@@ -13,8 +13,11 @@ const Menu = ({ stateStore }) => {
     return (
         <div className={`menu ${menuState}`}>
             <ul>
+                <li onClick={() => toggleMenuState()}>
+                    <MenuLink href="" text="Home" />
+                </li>
                 <li>
-                    <MenuLink href="" text="Categories" />
+                    Categories
                     <ul>
                         {categoryList.map(category => {
                             return (
