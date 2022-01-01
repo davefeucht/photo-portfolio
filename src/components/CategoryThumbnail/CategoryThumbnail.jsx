@@ -21,7 +21,7 @@ const CategoryThumbnail = ({ id, index, name, stateStore, api }) => {
     return (
         <Link to={`${url}category/${id}`}>
             <div style={divStyle} className="category-thumbnail">
-                <CategoryTitle name={name} />
+                <CategoryTitle title={name} />
             </div>
         </Link>
     );

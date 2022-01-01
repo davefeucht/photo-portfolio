@@ -16,7 +16,7 @@ const MenuLink = ({ href, text }) => {
     );
 };
 
-MenuLink.displayName = 'Menu';
+MenuLink.displayName = 'MenuLink';
 
 MenuLink.propTypes = {
     href: PropTypes.string.isRequired,

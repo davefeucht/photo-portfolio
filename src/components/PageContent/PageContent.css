@@ -1,0 +1,13 @@
+.page__content {
+    background-color: var(--template-black);
+    color: var(--template-white);
+    padding: 0 3% 0 5%;
+}
+
+.page__content a {
+    color: var(--template-blue);
+}
+
+.page__content a:visited {
+    color: var(--template-transparent-blue);
+}

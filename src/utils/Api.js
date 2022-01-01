@@ -161,4 +161,26 @@ export default class API {
             })
         });
     }
+
+    getPages() {
+        const getPagesURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/pages`;
+        axios.get(getPagesURI)
+        .then(res => {
+            runInAction(() => {
+                const pages = res.data;
+                this._stateStore.setPages(pages);
+            });
+        })
+    }
+
+    getPage(pageId) {
+        const getPagesURI = `https://${this._stateStore.siteInfo.siteUrl}/wp-json/wp/v2/pages/${pageId}`;
+        axios.get(getPagesURI)
+        .then(res => {
+            runInAction(() => {
+                const page = res.data;
+                this._stateStore.setPageData(page);
+            });
+        })
+    }
 }
