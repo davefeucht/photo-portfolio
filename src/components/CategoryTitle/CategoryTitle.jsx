@@ -6,10 +6,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './CategoryTitle.css';
 
-const CategoryTitle = ({ name }) => {
+const CategoryTitle = ({ title }) => {
     return (
         <div className="category-title">
-            <div className="category-title-text">{name}</div>
+            <div className="category-title-text">{title}</div>
         </div>
     )
 };
@@ -17,7 +17,7 @@ const CategoryTitle = ({ name }) => {
 CategoryTitle.displayName = 'CategoryTitle';
 
 CategoryTitle.propTypes = {
-    name: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired
 };
 
 export default CategoryTitle;

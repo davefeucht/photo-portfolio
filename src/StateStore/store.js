@@ -3,89 +3,101 @@ import { configure, makeAutoObservable } from 'mobx';
 configure({ enforceActions: 'observed' });
 
 export default class stateStore {
-  constructor() {
-    this.menuState = 'closed';
-    this.applicationRoot = null;
+    constructor() {
+        this.menuState = 'closed';
+        this.applicationRoot = null;
 
-    this.screenInfo = {
-      width: 0,
-      height: 0
-    };
+        this.screenInfo = {
+            width: 0,
+            height: 0
+        };
 
-    this.siteInfo = {
-      siteName: null,
-      siteUrl: 'throughapinhole.com'
-    };
-  
-    this.visiblePost = {
-      postId: 1,
-      postTitle: null,
-      tags: [],
-      tagNames: [],
-      fullImageUrl: null,
-      width: null,
-      height: null
-    };
+        this.siteInfo = {
+            siteName: null,
+            siteUrl: 'throughapinhole.com'
+        };
 
-    this.categoryList = [];
-    this.currentCategoryPosts = [];
-    this.currentCategoryData = {};
+        this.visiblePost = {
+            postId: 1,
+            postTitle: null,
+            tags: [],
+            tagNames: [],
+            fullImageUrl: null,
+            width: null,
+            height: null
+        };
 
-    makeAutoObservable(this);
-  }
+        this.categoryList = [];
+        this.currentCategoryPosts = [];
+        this.currentCategoryData = {};
+        this.pages = [];
+        this.currentPageData = {};
 
-  setMenuState = state => {
-    this.menuState = state;
-  }
+        makeAutoObservable(this);
+    }
 
-  toggleMenuState = () => {
-    this.menuState = this.menuState === 'closed' ? 'open' : 'closed';
-  }
+    setMenuState = state => {
+        this.menuState = state;
+    }
 
-  setApplicationRoot = element => {
-    this.applicationRoot = element;
-  }
+    toggleMenuState = () => {
+        this.menuState = this.menuState === 'closed' ? 'open' : 'closed';
+    }
 
-  setSiteName = name => {
-    this.siteInfo.siteName = name;
-  }
+    setApplicationRoot = element => {
+        this.applicationRoot = element;
+    }
 
-  setVisiblePost = (postId, postTitle) => {
-    this.visiblePost.postId = postId;
-    this.visiblePost.postTitle = postTitle;
-  }
+    setSiteName = name => {
+        this.siteInfo.siteName = name;
+    }
 
-  setVisiblePostImage = fullImageUrl => {
-    this.visiblePost.fullImageUrl = fullImageUrl;
-  }
+    setVisiblePost = (postId, postTitle) => {
+        this.visiblePost.postId = postId;
+        this.visiblePost.postTitle = postTitle;
+    }
 
-  setCategoryList = categories => {
-    this.categoryList.length = 0;
-    categories.forEach((category, index) => {
-      this.categoryList[index] = category;
-    })
-  }
+    setVisiblePostImage = fullImageUrl => {
+        this.visiblePost.fullImageUrl = fullImageUrl;
+    }
 
-  setCategoryPosts = posts => {
-    this.currentCategoryPosts.length = 0;
-    posts.forEach((post, index) => {
-      this.currentCategoryPosts[index] = post;
-    })
-  }
+    setCategoryList = categories => {
+        this.categoryList.length = 0;
+        categories.forEach((category, index) => {
+            this.categoryList[index] = category;
+        })
+    }
 
-  setCategoryData = categoryData => {
-    Object.keys(categoryData).forEach(property => {
-      this.currentCategoryData[property] = categoryData[property];
-    })
-  }
+    setCategoryPosts = posts => {
+        this.currentCategoryPosts.length = 0;
+        posts.forEach((post, index) => {
+            this.currentCategoryPosts[index] = post;
+        })
+    }
 
-  setThumbnailImageUrl = imageData => {
-    this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
-  }
-  
-  setCurrentPost = postData => {
-    Object.keys(postData).forEach(property => {
-      this.visiblePost[property] = postData[property];
-    })
-  }
+    setCategoryData = categoryData => {
+        Object.keys(categoryData).forEach(property => {
+            this.currentCategoryData[property] = categoryData[property];
+        })
+    }
+
+    setThumbnailImageUrl = imageData => {
+        this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
+    }
+
+    setCurrentPost = postData => {
+        Object.keys(postData).forEach(property => {
+            this.visiblePost[property] = postData[property];
+        })
+    }
+
+    setPages = pageData => {
+        pageData.forEach(page => {
+            this.pages.push(page);
+        });
+    }
+
+    setPageData = pageData => {
+        Object.assign(this.currentPageData, pageData);
+    }
 }

@@ -9,7 +9,7 @@ import {
     useParams
 } from 'react-router-dom';
 import Posts from '../Posts/Posts.jsx';
-import CategoryHeader from '../CategoryHeader/CategoryHeader.jsx';
+import SectionHeader from '../SectionHeader/SectionHeader.jsx';
 import './Category.css';
 
 const Category = ({ stateStore, api }) => {
@@ -22,7 +22,7 @@ const Category = ({ stateStore, api }) => {
 
     return (
         <div className="category">
-            <CategoryHeader stateStore={stateStore} categoryData={stateStore.currentCategoryData} />
+            <SectionHeader stateStore={stateStore} title={stateStore.currentCategoryData.name} />
             <Posts stateStore={stateStore} categoryId={categoryId} api={api} />
         </div>
     );

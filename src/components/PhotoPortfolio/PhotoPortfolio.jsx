@@ -17,13 +17,14 @@ import TitleBar from '../TitleBar/TitleBar.jsx';
 import Menu from '../Menu/Menu.jsx';
 import Categories from '../Categories/Categories.jsx';
 import Category from '../Category/Category.jsx';
+import Page from '../Page/Page.jsx';
 import Post from '../Post/Post.jsx';
 import Footer from '../Footer/Footer.jsx';
 import './PhotoPortfolio.css';
 
 const PhotoPortfolio = ({ stateStore, api }) => {
     const { path } = useRouteMatch();
-    const { categoryId } = useParams();
+    const { categoryId, pageId } = useParams();
 
     const setScreenSize = () => {
         runInAction(() => {
@@ -43,6 +44,7 @@ const PhotoPortfolio = ({ stateStore, api }) => {
     useEffect(() => {
         window.addEventListener('resize', setScreenSize.bind(this));
         api.getCategories();
+        api.getPages();
 
         setScreenSize();
         setColumns(stateStore.screenInfo.width, stateStore.screenInfo.height);
@@ -72,6 +74,13 @@ const PhotoPortfolio = ({ stateStore, api }) => {
                     <Route path={['/category/:categoryId', '/category/:categoryId/post/:postId']}>
                         <Category
                             key={categoryId}
+                            stateStore={stateStore}
+                            api={api}
+                        />
+                    </Route>
+                    <Route path={['/page/:pageId']}>
+                        <Page
+                            key={pageId}
                             stateStore={stateStore}
                             api={api}
                         />
