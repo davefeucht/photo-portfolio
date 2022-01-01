@@ -2,11 +2,11 @@
   grid-area: content;
   height: 100%;
   width: 300px;
-  background-color: black;
+  background-color: var(--template-black);
   transition: opacity 0.5s ease-in-out;
   z-index: 10;
 
-  color: #FFFFFF;
+  color: var(--template-white);
   font-size: 22px;
 }
 

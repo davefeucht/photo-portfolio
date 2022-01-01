@@ -1,5 +1,5 @@
 .category-list {
-  background-color: #000000;
+  background-color: var(--template-black);
   min-height: 100%;
   display: grid;
   gap: 3px;

@@ -1,5 +1,5 @@
 .posts {
-  background-color: #000000;
+  background-color: var(--template-black);
   height: 100%;
   grid-area: category-content;
   display: grid;

@@ -2,8 +2,8 @@
   position: absolute;
   height: 80px;
   width: 40px;
-  border: 1px solid #000000;
-  background-color: rgba(128, 128, 128, 0.4);
+  border: 1px solid var(--template-black);
+  background-color: var(--template-transparent-gray); 
   transition: opacity 300ms ease-in-out;
   opacity: 0;
   display: flex;
@@ -23,7 +23,7 @@
 
 .post-navigation-arrow > .arrow {
   position: absolute;
-  color: #FFFFFF;
+  color: var(--template-white);
   font-size: initial;
 }
 
