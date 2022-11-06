@@ -5,12 +5,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CategoryTitle from '../CategoryTitle/CategoryTitle.jsx';
 import './CategoryThumbnail.css';
 
 const CategoryThumbnail = ({ id, index, name, stateStore, api }) => {
-    let { url } = useRouteMatch();
 
     if (!stateStore.categoryList[index].thumbnail_image) {
         api.getCategoryImage(id, index);
@@ -19,7 +18,7 @@ const CategoryThumbnail = ({ id, index, name, stateStore, api }) => {
     const divStyle = { backgroundImage: "url(" + (stateStore.categoryList[index].thumbnail_image ? stateStore.categoryList[index].thumbnail_image : "") + ")" };
 
     return (
-        <Link to={`${url}category/${id}`}>
+        <Link to={`/category/${id}`}>
             <div style={divStyle} className="category-thumbnail">
                 <CategoryTitle title={name} />
             </div>

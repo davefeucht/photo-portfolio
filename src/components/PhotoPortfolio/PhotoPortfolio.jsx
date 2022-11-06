@@ -9,8 +9,7 @@ import { reaction, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import {
     Route,
-    Switch,
-    useRouteMatch,
+    Routes,
     useParams
 } from 'react-router-dom';
 import TitleBar from '../TitleBar/TitleBar.jsx';
@@ -23,7 +22,6 @@ import Footer from '../Footer/Footer.jsx';
 import './PhotoPortfolio.css';
 
 const PhotoPortfolio = ({ stateStore, api }) => {
-    const { path } = useRouteMatch();
     const { categoryId, pageId } = useParams();
 
     const setScreenSize = () => {
@@ -67,28 +65,25 @@ const PhotoPortfolio = ({ stateStore, api }) => {
         <div className="app">
             <TitleBar stateStore={stateStore} api={api} />
             <div className="photo-portfolio">
-                <Switch>
-                    <Route exact path={path}>
-                        <Categories stateStore={stateStore} api={api} />
-                    </Route>
-                    <Route path={['/category/:categoryId', '/category/:categoryId/post/:postId']}>
-                        <Category
-                            key={categoryId}
-                            stateStore={stateStore}
-                            api={api}
+                <Routes>
+                    <Route 
+                        path='/' 
+                        element={<Categories stateStore={stateStore} api={api} />} 
+                    />
+                    <Route 
+                        path='page/:pageId' 
+                        element={<Page key={pageId} stateStore={stateStore} api={api} />} 
+                    />
+                    <Route 
+                        path={'category/:categoryId'} 
+                        element={<Category key={categoryId} stateStore={stateStore} api={api} />} 
+                    >
+                        <Route 
+                            path='post/:postId'
+                            element={<Post stateStore={stateStore} api={api} />}
                         />
                     </Route>
-                    <Route path={['/page/:pageId']}>
-                        <Page
-                            key={pageId}
-                            stateStore={stateStore}
-                            api={api}
-                        />
-                    </Route>
-                </Switch>
-                <Route path="/category/:categoryId/post/:postId">
-                    <Post stateStore={stateStore} api={api} />
-                </Route>
+                </Routes>
             </div>
             <Menu stateStore={stateStore} />
             <Footer />
