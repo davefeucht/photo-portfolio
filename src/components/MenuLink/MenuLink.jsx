@@ -4,13 +4,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './MenuLink.css';
 
 const MenuLink = ({ href, text }) => {
-    let { url } = useRouteMatch();
     return (
-        <Link to={`${url}${href}`}>
+        <Link to={`${href}`}>
             <div className="menu-link">{text}</div>
         </Link>
     );

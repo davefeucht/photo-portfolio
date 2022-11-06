@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import {
+    Outlet,
     useParams
 } from 'react-router-dom';
 import Posts from '../Posts/Posts.jsx';
@@ -24,6 +25,7 @@ const Category = ({ stateStore, api }) => {
         <div className="category">
             <SectionHeader stateStore={stateStore} title={stateStore.currentCategoryData.name} />
             <Posts stateStore={stateStore} categoryId={categoryId} api={api} />
+            <Outlet />
         </div>
     );
 };

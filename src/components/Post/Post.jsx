@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import PropTypes from 'prop-types';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
     getPostInfo,
     getNextPost,
@@ -23,11 +23,11 @@ const image = document.createElement('img');
 const Post = ({ stateStore, api }) => {
     const { categoryId, postId } = useParams();
     const parsedPostId = parseInt(postId);
-    const history = useHistory();
+    const navigate = useNavigate();
     let element = null;
 
     const closeModalHandler = () => {
-        history.push(`/category/${categoryId}`);
+        navigate(`/category/${categoryId}`);
     };
 
     const stopPropagation = e => {
