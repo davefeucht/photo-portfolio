@@ -63,7 +63,7 @@ const PhotoPortfolio = ({ stateStore, api }) => {
 
     return (
         <div className="app">
-            <TitleBar stateStore={stateStore} api={api} />
+            <TitleBar stateStore={stateStore} api={api.getSiteInfo} />
             <div className="photo-portfolio">
                 <Routes>
                     <Route 
