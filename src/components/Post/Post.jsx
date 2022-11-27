@@ -20,7 +20,7 @@ import './Post.css';
 
 const image = document.createElement('img');
 
-const Post = ({ stateStore, api }) => {
+const Post = ({ stateStore }) => {
     const { categoryId, postId } = useParams();
     const parsedPostId = parseInt(postId);
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ const Post = ({ stateStore, api }) => {
     }
 
     useEffect(() => {
-        getPostInfo(postId, api);
+        getPostInfo(postId, stateStore);
     }, [postId]);
 
     useEffect(() => {
@@ -83,8 +83,7 @@ const Post = ({ stateStore, api }) => {
 Post.displayName = 'Post';
 
 Post.propTypes = {
-    stateStore: PropTypes.object.isRequired,
-    api: PropTypes.object.isRequired
+    stateStore: PropTypes.object.isRequired
 };
 
 export default observer(Post);

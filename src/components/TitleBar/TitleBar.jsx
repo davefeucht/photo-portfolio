@@ -5,9 +5,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
+
+import { getSiteInfo } from '../../utils/Api';
+
 import './TitleBar.css';
 
-const TitleBar = ({ stateStore, api }) => {
+const TitleBar = ({ stateStore }) => {
     const { menuState } = stateStore;
 
     const toggleMenu = () => {
@@ -15,7 +18,7 @@ const TitleBar = ({ stateStore, api }) => {
     }
 
     useEffect(() => {
-        api.getSiteInfo();
+        getSiteInfo(stateStore);
     }, []);
 
     return (
@@ -33,8 +36,7 @@ const TitleBar = ({ stateStore, api }) => {
 TitleBar.displayName = 'TitleBar';
 
 TitleBar.propTypes = {
-    stateStore: PropTypes.object.isRequired,
-    api: PropTypes.object.isRequired
+    stateStore: PropTypes.object.isRequired
 };
 
 export default observer(TitleBar);
