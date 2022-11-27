@@ -2,7 +2,7 @@
 * CategoryThumbnail component displays the post image for a particular category.
 *****************/
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
@@ -12,13 +12,17 @@ import { getCategoryImage } from '../../utils/Api';
 
 import './CategoryThumbnail.css';
 
-const CategoryThumbnail = ({ id, index, name, stateStore }) => {
+const CategoryThumbnail = ({ id, name, stateStore }) => {
+    const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
 
-    if (!stateStore.categoryList[index].thumbnail_image) {
-        getCategoryImage(id, index, stateStore);
+    if (!thumbnailImageUrl) {
+        getCategoryImage(id, stateStore)
+            .then(imageUrl => {
+                setThumbnailImageUrl(imageUrl);
+            });
     }
 
-    const divStyle = { backgroundImage: "url(" + (stateStore.categoryList[index].thumbnail_image ? stateStore.categoryList[index].thumbnail_image : "") + ")" };
+    const divStyle = { backgroundImage: "url(" + (thumbnailImageUrl ? thumbnailImageUrl : "") + ")" };
 
     return (
         <Link to={`/category/${id}`}>
@@ -33,7 +37,6 @@ CategoryThumbnail.displayName = 'CategoryThumbnail';
 
 CategoryThumbnail.propTypes = {
     id: PropTypes.number.isRequired,
-    index: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     stateStore: PropTypes.object.isRequired
 };

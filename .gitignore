@@ -2,5 +2,4 @@
 build
 node_modules
 *.log
-src/test/__snapshots__/
 *.png
