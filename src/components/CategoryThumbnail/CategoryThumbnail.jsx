@@ -12,7 +12,7 @@ import { getCategoryImage } from '../../utils/Api';
 
 import './CategoryThumbnail.css';
 
-const CategoryThumbnail = ({ id, index, name, stateStore, api }) => {
+const CategoryThumbnail = ({ id, index, name, stateStore }) => {
 
     if (!stateStore.categoryList[index].thumbnail_image) {
         getCategoryImage(id, index, stateStore);
@@ -35,8 +35,7 @@ CategoryThumbnail.propTypes = {
     id: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    stateStore: PropTypes.object.isRequired,
-    api: PropTypes.object.isRequired
+    stateStore: PropTypes.object.isRequired
 };
 
 export default observer(CategoryThumbnail);
