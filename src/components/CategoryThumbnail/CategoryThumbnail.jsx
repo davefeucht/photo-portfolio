@@ -7,12 +7,15 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import CategoryTitle from '../CategoryTitle/CategoryTitle.jsx';
+
+import { getCategoryImage } from '../../utils/Api';
+
 import './CategoryThumbnail.css';
 
-const CategoryThumbnail = ({ id, index, name, stateStore, api }) => {
+const CategoryThumbnail = ({ id, index, name, stateStore }) => {
 
     if (!stateStore.categoryList[index].thumbnail_image) {
-        api.getCategoryImage(id, index);
+        getCategoryImage(id, index, stateStore);
     }
 
     const divStyle = { backgroundImage: "url(" + (stateStore.categoryList[index].thumbnail_image ? stateStore.categoryList[index].thumbnail_image : "") + ")" };
@@ -32,8 +35,7 @@ CategoryThumbnail.propTypes = {
     id: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    stateStore: PropTypes.object.isRequired,
-    api: PropTypes.object.isRequired
+    stateStore: PropTypes.object.isRequired
 };
 
 export default observer(CategoryThumbnail);
