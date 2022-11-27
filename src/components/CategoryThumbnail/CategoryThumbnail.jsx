@@ -13,7 +13,7 @@ import { getCategoryImage } from '../../utils/Api';
 import './CategoryThumbnail.css';
 
 const CategoryThumbnail = ({ id, name, stateStore }) => {
-    const [thumbnailImageUrl, setThumbnailImageUrl] = useState(null);
+    const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
 
     if (!thumbnailImageUrl) {
         getCategoryImage(id, stateStore)

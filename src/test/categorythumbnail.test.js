@@ -6,7 +6,7 @@ import stateStore from '../StateStore/store';
 
 const id = 5;
 const name = 'Test Category';
-const thumbnailImageUrl = "";
+const thumbnailImageUrl = '';
 
 jest.mock("../utils/Api", () => ({
     getCategoryImage: jest.fn(() => Promise.resolve(thumbnailImageUrl))
@@ -14,14 +14,13 @@ jest.mock("../utils/Api", () => ({
 
 test('CategoryThumbnail displays', () => {
   const store = new stateStore();
-  const component = renderer.create(
+  let component;
+  let tree;
+  component = renderer.create(
       <MemoryRouter>
           <CategoryThumbnail id={id} name={name} stateStore={store}></CategoryThumbnail>
       </MemoryRouter>
   );
-  let tree;
-  act(() => {
-    tree = component.toJSON();
-  });
+  tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
