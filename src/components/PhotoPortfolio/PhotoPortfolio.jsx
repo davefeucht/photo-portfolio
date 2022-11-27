@@ -19,9 +19,11 @@ import Category from '../Category/Category.jsx';
 import Page from '../Page/Page.jsx';
 import Post from '../Post/Post.jsx';
 import Footer from '../Footer/Footer.jsx';
+
+import { getCategories, getPages } from '../../utils/Api';
 import './PhotoPortfolio.css';
 
-const PhotoPortfolio = ({ stateStore, api }) => {
+const PhotoPortfolio = ({ stateStore }) => {
     const { categoryId, pageId } = useParams();
 
     const setScreenSize = () => {
@@ -41,8 +43,8 @@ const PhotoPortfolio = ({ stateStore, api }) => {
 
     useEffect(() => {
         window.addEventListener('resize', setScreenSize.bind(this));
-        api.getCategories();
-        api.getPages();
+        getCategories(stateStore);
+        getPages(stateStore);
 
         setScreenSize();
         setColumns(stateStore.screenInfo.width, stateStore.screenInfo.height);
@@ -63,24 +65,24 @@ const PhotoPortfolio = ({ stateStore, api }) => {
 
     return (
         <div className="app">
-            <TitleBar stateStore={stateStore} api={api} />
+            <TitleBar stateStore={stateStore} />
             <div className="photo-portfolio">
                 <Routes>
                     <Route 
                         path='/' 
-                        element={<Categories stateStore={stateStore} api={api} />} 
+                        element={<Categories stateStore={stateStore} />} 
                     />
                     <Route 
                         path='page/:pageId' 
-                        element={<Page key={pageId} stateStore={stateStore} api={api} />} 
+                        element={<Page key={pageId} stateStore={stateStore} />} 
                     />
                     <Route 
                         path={'category/:categoryId'} 
-                        element={<Category key={categoryId} stateStore={stateStore} api={api} />} 
+                        element={<Category key={categoryId} stateStore={stateStore} />} 
                     >
                         <Route 
                             path='post/:postId'
-                            element={<Post stateStore={stateStore} api={api} />}
+                            element={<Post stateStore={stateStore} />}
                         />
                     </Route>
                 </Routes>
@@ -94,8 +96,7 @@ const PhotoPortfolio = ({ stateStore, api }) => {
 PhotoPortfolio.displayName = 'PhotoPortfolio';
 
 PhotoPortfolio.propTypes = {
-    stateStore: PropTypes.object.isRequired,
-    api: PropTypes.object.isRequired
+    stateStore: PropTypes.object.isRequired
 };
 
 export default observer(PhotoPortfolio);

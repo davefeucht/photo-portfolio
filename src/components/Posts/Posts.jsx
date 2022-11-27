@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
 import './Posts.css';
 
-const Posts = ({ stateStore, api }) => {
+const Posts = ({ stateStore }) => {
     const setRows = () => {
         const numberOfColumns = document.body.style.getPropertyValue('--number-of-columns');
         const numberOfPosts = stateStore.currentCategoryPosts.length;
@@ -29,7 +29,7 @@ const Posts = ({ stateStore, api }) => {
 
     //If we are showing all posts, then map the list of posts to a list of PostThumbnail components
     const postList = stateStore.currentCategoryPosts.map((post, index) => {
-        return (<PostThumbnail key={post.id.toString()} stateStore={stateStore} id={post.id} title={post.title.rendered} tags={post.tags} index={index} image={post.featured_media} api={api} />);
+        return (<PostThumbnail key={post.id.toString()} stateStore={stateStore} id={post.id} title={post.title.rendered} tags={post.tags} index={index} image={post.featured_media} />);
     });
 
     return (
@@ -42,8 +42,7 @@ const Posts = ({ stateStore, api }) => {
 Posts.displayName = 'Posts';
 
 Posts.propTypes = {
-    stateStore: PropTypes.object.isRequired,
-    api: PropTypes.object.isRequired
+    stateStore: PropTypes.object.isRequired
 };
 
 export default observer(Posts);

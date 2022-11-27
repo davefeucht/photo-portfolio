@@ -10,7 +10,7 @@ import { observer } from 'mobx-react';
 import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail.jsx';
 import './Categories.css';
 
-const Categories = ({ stateStore, api }) => {
+const Categories = ({ stateStore }) => {
     const setRows = () => {
         const numberOfColumns = document.body.style.getPropertyValue('--number-of-columns');
         const numberOfCategories = stateStore.categoryList.length;
@@ -31,7 +31,7 @@ const Categories = ({ stateStore, api }) => {
     const _mapCategoryList = () => {
         return stateStore.categoryList.map((category, index) => {
             //Display the Category component, and pass along the showSpecificCategory function as a prop, so that we can call it from the Category component
-            return (<CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} stateStore={stateStore} api={api} />);
+            return (<CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} stateStore={stateStore} />);
         });
     }
 
@@ -43,8 +43,7 @@ const Categories = ({ stateStore, api }) => {
 };
 
 Categories.propTypes = {
-    stateStore: PropTypes.object.isRequired,
-    api: PropTypes.object.isRequired
+    stateStore: PropTypes.object.isRequired
 };
 
 Categories.displayName = 'Categories';

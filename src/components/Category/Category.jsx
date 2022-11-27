@@ -11,20 +11,23 @@ import {
 } from 'react-router-dom';
 import Posts from '../Posts/Posts.jsx';
 import SectionHeader from '../SectionHeader/SectionHeader.jsx';
+
+import { getCategoryInfo, getPosts } from '../../utils/Api.js';
+
 import './Category.css';
 
-const Category = ({ stateStore, api }) => {
+const Category = ({ stateStore }) => {
     const { categoryId } = useParams();
 
     useEffect(() => {
-        api.getPosts(categoryId);
-        api.getCategoryInfo(categoryId);
+        getPosts(categoryId, stateStore);
+        getCategoryInfo(categoryId, stateStore);
     }, [categoryId]);
 
     return (
         <div className="category">
             <SectionHeader stateStore={stateStore} title={stateStore.currentCategoryData.name} />
-            <Posts stateStore={stateStore} categoryId={categoryId} api={api} />
+            <Posts stateStore={stateStore} categoryId={categoryId} />
             <Outlet />
         </div>
     );
@@ -33,8 +36,7 @@ const Category = ({ stateStore, api }) => {
 Category.displayName = 'Category';
 
 Category.propTypes = {
-    stateStore: PropTypes.object.isRequired,
-    api: PropTypes.object.isRequired
+    stateStore: PropTypes.object.isRequired
 };
 
 export default observer(Category);

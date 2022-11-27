@@ -1,9 +1,11 @@
 import { runInAction } from 'mobx';
 
-export const getPostInfo = (postId, api) => {
+import { getPost } from './Api';
+
+export const getPostInfo = (postId, stateStore) => {
     const parsedPostId = parseInt(postId);
     runInAction(() => {
-        api.getPost(parsedPostId);
+        getPost(parsedPostId, stateStore);
     });
 }
 
