@@ -45,40 +45,41 @@ export const getCategories = stateStore => {
         });
 };
 
-export const getCategoryImage = (categoryId, index, stateStore) => {
+export const getCategoryImage = async (categoryId, stateStore) => {
     //Define the request string to get the posts for this category
     const getCategoryPostURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
+
+    // Var to return
+    let fullImageUrl = '';
+
     //Make the request
-    axios.get(getCategoryPostURI) 
-    .then(response => {
-        //Determine a random post from the ones returned
-        const numberOfPosts = response.data.length;
-        const randomPost = Math.floor((Math.random() * numberOfPosts));
+    const response = await axios.get(getCategoryPostURI);
+    const categories = response.data;
 
-        //If this post does exist in the returned results
-        if(response.data[randomPost] !== undefined) {
+    //Determine a random post from the ones returned
+    const numberOfPosts = categories.length;
+    const randomPost = Math.floor((Math.random() * numberOfPosts));
+
+    //If this post does exist in the returned results
+    if (categories[randomPost] !== undefined) {
         //Define the request string to get the featured media for the random post
-        const getCategoryImage = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${response.data[randomPost].featured_media}/`; 
-        //Make the request
-        axios.get(getCategoryImage)
-            .then(response => {
-                runInAction(() => {
-                    let fullImageUrl = '';
+        const getCategoryImage = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${categories[randomPost].featured_media}/`; 
 
-                    //If the large size image exists, use it
-                    if(response.data.media_details.sizes.large) {
-                    fullImageUrl = response.data.media_details.sizes.large.source_url;
-                    }
-                    //Otherwise use the medium size version
-                    else {
-                    fullImageUrl = response.data.media_details.sizes.medium.source_url;
-                    }
-                    
-                    stateStore.categoryList[index].thumbnail_image = fullImageUrl;
-                })
-            })
+        const response = await axios.get(getCategoryImage);
+        const categoryImage = response.data;
+
+        //If the large size image exists, use it
+        if(categoryImage.media_details.sizes.large) {
+            fullImageUrl = categoryImage.media_details.sizes.large.source_url;
         }
-    })
+
+        //Otherwise use the medium size version
+        else {
+            fullImageUrl = categoryImage.media_details.sizes.medium.source_url;
+        }
+    }
+
+    return fullImageUrl;
 };
 
 export const getPosts = (categoryId, stateStore) => {
