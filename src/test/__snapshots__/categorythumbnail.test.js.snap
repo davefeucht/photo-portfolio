@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryThumbnail displays 1`] = `
+<a
+  href="/category/5"
+  onClick={[Function]}
+>
+  <div
+    className="category-thumbnail"
+    style={
+      {
+        "backgroundImage": "url()",
+      }
+    }
+  >
+    <div
+      className="category-title"
+    >
+      <div
+        className="category-title-text"
+      >
+        Test Category
+      </div>
+    </div>
+  </div>
+</a>
+`;

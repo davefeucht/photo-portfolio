@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Titlebar displays 1`] = `
+<div
+  className="title-bar"
+>
+  <div
+    className="hamburger-button closed"
+    onClick={[Function]}
+  >
+    <img
+      border="0"
+      src="./assets/images/hamburger_icon.svg"
+    />
+  </div>
+  <div>
+    <h1 />
+  </div>
+</div>
+`;
