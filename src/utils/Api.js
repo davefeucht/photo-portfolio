@@ -21,7 +21,7 @@ export const getSiteInfo = async stateStore => {
     const response = await axios.get(getSiteInformationURI);
     const siteName = response.data.name;
 
-    return ({ name: siteName });
+    return siteName;
 };
 
 export const getCategories = async stateStore => {
