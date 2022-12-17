@@ -43,7 +43,8 @@ const PhotoPortfolio = ({ stateStore }) => {
 
     useEffect(() => {
         window.addEventListener('resize', setScreenSize.bind(this));
-        getCategories(stateStore);
+        const categories = getCategories(stateStore);
+        stateStore.setCategoryList(categories);
         getPages(stateStore);
 
         setScreenSize();

@@ -15,34 +15,23 @@ export const getPostThumbnail = (featuredImage, index, stateStore) => {
     });
 };
 
-export const getSiteInfo = stateStore => {
+export const getSiteInfo = async stateStore => {
     const getSiteInformationURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/`;
 
-    axios.get(getSiteInformationURI)
-    .then(response => {
-        runInAction(() => {
-            stateStore.setSiteName(response.data.name);
-            document.title = response.data.name;
-        })
-    })
-    .catch(error => {
-        console.warn(error.message);
-    });
+    const response = await axios.get(getSiteInformationURI);
+    const siteName = response.data.name;
+
+    return ({ name: siteName });
 };
 
-export const getCategories = stateStore => {
-        const getCategoriesURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/categories?exclude=175`;
+export const getCategories = async stateStore => {
+    let categories = [];
+    const getCategoriesURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/categories?exclude=175`;
 
-        axios.get(getCategoriesURI)
-        .then(response => {
-            runInAction(() => {
-                const categories = response.data;
-                stateStore.setCategoryList(categories);
-            })
-        })
-        .catch(error => {
-            console.warn(error.message);
-        });
+    const response = await axios.get(getCategoriesURI);
+    categories = response.data;
+
+    return categories
 };
 
 export const getCategoryImage = async (categoryId, stateStore) => {
