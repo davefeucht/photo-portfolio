@@ -1,53 +1,36 @@
 import axios from 'axios';
-import { runInAction } from 'mobx';
 
-export const getPostThumbnail = (featuredImage, index, stateStore) => {
-    const getPostThumbnailURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${featuredImage}`;
-    axios.get(getPostThumbnailURI)
-    .then(res => {
-        runInAction(() => {
-            let thumbnailImage = new Image();
-            const size = res.data.media_details.large ? 'large' : 'full';
-            const thumbnailUrl = res.data.media_details.sizes[size].source_url;
-            stateStore.setThumbnailImageUrl({post_index: index, image_url: thumbnailUrl});
-            thumbnailImage.src = thumbnailUrl;
-        })
-    });
+export const getPostThumbnail = async (featuredImage, siteUrl) => {
+    const getPostThumbnailURI = `https://${siteUrl}/wp-json/wp/v2/media/${featuredImage}`;
+    const response = await axios.get(getPostThumbnailURI);
+    const size = response.data.media_details.large ? 'large' : 'full';
+    const thumbUrl = response.data.media_details.sizes[size].source_url;
+
+    return thumbUrl;
 };
 
-export const getSiteInfo = stateStore => {
-    const getSiteInformationURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/`;
+export const getSiteInfo = async siteUrl => {
+    const getSiteInformationURI = `https://${siteUrl}/wp-json/`;
 
-    axios.get(getSiteInformationURI)
-    .then(response => {
-        runInAction(() => {
-            stateStore.setSiteName(response.data.name);
-            document.title = response.data.name;
-        })
-    })
-    .catch(error => {
-        console.warn(error.message);
-    });
+    const response = await axios.get(getSiteInformationURI);
+    const siteName = response.data.name;
+
+    return siteName;
 };
 
-export const getCategories = stateStore => {
-        const getCategoriesURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/categories?exclude=175`;
+export const getCategories = async siteUrl => {
+    let categories = [];
+    const getCategoriesURI = `https://${siteUrl}/wp-json/wp/v2/categories?exclude=175`;
 
-        axios.get(getCategoriesURI)
-        .then(response => {
-            runInAction(() => {
-                const categories = response.data;
-                stateStore.setCategoryList(categories);
-            })
-        })
-        .catch(error => {
-            console.warn(error.message);
-        });
+    const response = await axios.get(getCategoriesURI);
+    categories = response.data;
+
+    return categories
 };
 
-export const getCategoryImage = async (categoryId, stateStore) => {
+export const getCategoryImage = async (categoryId, siteUrl) => {
     //Define the request string to get the posts for this category
-    const getCategoryPostURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
+    const getCategoryPostURI = `https://${siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
 
     // Var to return
     let fullImageUrl = '';
@@ -63,7 +46,7 @@ export const getCategoryImage = async (categoryId, stateStore) => {
     //If this post does exist in the returned results
     if (categories[randomPost] !== undefined) {
         //Define the request string to get the featured media for the random post
-        const getCategoryImage = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${categories[randomPost].featured_media}/`; 
+        const getCategoryImage = `https://${siteUrl}/wp-json/wp/v2/media/${categories[randomPost].featured_media}/`; 
 
         const response = await axios.get(getCategoryImage);
         const categoryImage = response.data;
@@ -82,99 +65,61 @@ export const getCategoryImage = async (categoryId, stateStore) => {
     return fullImageUrl;
 };
 
-export const getPosts = (categoryId, stateStore) => {
-    const getPostsURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}&per_page=20`;
-    axios.get(getPostsURI)
-    .then(res => {
-        runInAction(() => {
-            const posts = res.data;
-            stateStore.setCategoryPosts(posts);
-        });
-    })
-    .then(() => {
-        stateStore.currentCategoryPosts.forEach((post, index) => {
-            getPostThumbnail(post.featured_media, index, stateStore);
-        })
-    });
+export const getPosts = async (categoryId, siteUrl) => {
+    const getPostsURI = `https://${siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}&per_page=20`;
+    const response = await axios.get(getPostsURI);
+    const posts = response.data;
+
+    return posts;
 };
 
-export const getPost = (postId, stateStore) => {
-    const getPostURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/posts/${postId}`;
-    axios.get(getPostURI)
-    .then(res => {
-        runInAction(() => {
-            const post = res.data;
-            stateStore.setCurrentPost(post);
-        });
-    })
-    .then(() => {
-        getTagNames(stateStore.visiblePost.tags, stateStore);
-    })
-    .then(() => {
-        getPostImage(stateStore.visiblePost.featured_media, stateStore);
-    });
+export const getPost = async (postId, siteUrl) => {
+    const getPostURI = `https://${siteUrl}/wp-json/wp/v2/posts/${postId}`;
+    const response = await axios.get(getPostURI);
+    const post = response.data;
+
+    return post;
 };
 
-export const getCategoryInfo = (categoryId, stateStore) => {
-    const getPostsCategoryURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/categories/${categoryId}`; 
-    axios.get(getPostsCategoryURI)
-    .then(res => {
-        runInAction(() => {
-        const categoryData = res.data;
-        stateStore.setCategoryData(categoryData);
-        });
-    });
+export const getCategoryInfo = async (categoryId, siteUrl) => {
+    const getPostsCategoryURI = `https://${siteUrl}/wp-json/wp/v2/categories/${categoryId}`; 
+    const response = await axios.get(getPostsCategoryURI);
+    const categoryData = response.data;
+
+    return categoryData;
 };
 
-export const getPostImage = (image, stateStore) => {
-    const getPostImageURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/media/${image}`; 
-    axios.get(getPostImageURI)
-    .then(res => {
-        runInAction(() => {
-            let thumbnailImage = new Image();
-            let fullImage = new Image();
-            const thumbnailUrl = res.data.media_details.sizes.thumbnail.source_url;
-            const fullImageUrl = res.data.media_details.sizes.full.source_url;
-            stateStore.setVisiblePostImage(fullImageUrl);
-            thumbnailImage.src = thumbnailUrl;
-            fullImage.src = fullImageUrl;
-        })
-    });
+export const getPostImage = async (image, siteUrl) => {
+    const getPostImageURI = `https://${siteUrl}/wp-json/wp/v2/media/${image}`; 
+    const response = await axios.get(getPostImageURI);
+    const fullImageUrl = response.data.media_details.sizes.full.source_url; 
+
+    return fullImageUrl;
 };
 
-export const getTagNames = (tags, stateStore) => {
-    runInAction(() => {
-        stateStore.visiblePost.tagNames.clear();
-    })
-    tags.forEach(tagId => {
-    const getTagNameURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/tags/${tagId}`
-    axios.get(getTagNameURI)
-        .then(res => {
-            runInAction(() => {
-                stateStore.visiblePost.tagNames.push(res.data.name);
-            })
-        })
-    });
+export const getTagNames = async (tags, siteUrl) => {
+    const tagNames = [];
+    for (const tagId of tags) {
+        const getTagNameURI = `https://${siteUrl}/wp-json/wp/v2/tags/${tagId}`
+        const response = await axios.get(getTagNameURI);
+        tagNames.push(response.data.name); 
+    }
+    
+    return tagNames;
 };
 
-export const getPages = stateStore => {
-    const getPagesURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/pages`;
-    axios.get(getPagesURI)
-    .then(res => {
-        runInAction(() => {
-            const pages = res.data;
-            stateStore.setPages(pages);
-        });
-    })
+export const getPages = async siteUrl => {
+    const getPagesURI = `https://${siteUrl}/wp-json/wp/v2/pages`;
+    const response = await axios.get(getPagesURI);
+    const pages = response.data;
+
+    return pages;
 };
 
-export const getPage = (pageId, stateStore) => {
-    const getPagesURI = `https://${stateStore.siteInfo.siteUrl}/wp-json/wp/v2/pages/${pageId}`;
-    axios.get(getPagesURI)
-    .then(res => {
-        runInAction(() => {
-            const page = res.data;
-            stateStore.setPageData(page);
-        });
-    })
+export const getPage = async (pageId, siteUrl) => {
+    const getPagesURI = `https://${siteUrl}/wp-json/wp/v2/pages/${pageId}`;
+    const response = await axios.get(getPagesURI);
+    const page = response.data;
+
+    return page;
 };

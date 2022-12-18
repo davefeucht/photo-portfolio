@@ -12,7 +12,7 @@ import {
 import Posts from '../Posts/Posts.jsx';
 import SectionHeader from '../SectionHeader/SectionHeader.jsx';
 
-import { getCategoryInfo, getPosts } from '../../utils/Api.js';
+import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api.js';
 
 import './Category.css';
 
@@ -20,8 +20,20 @@ const Category = ({ stateStore }) => {
     const { categoryId } = useParams();
 
     useEffect(() => {
-        getPosts(categoryId, stateStore);
-        getCategoryInfo(categoryId, stateStore);
+        getPosts(categoryId, stateStore.siteInfo.siteUrl)
+            .then(posts => {
+                stateStore.setCategoryPosts(posts);
+                stateStore.currentCategoryPosts.forEach((post, index) => {
+                    getPostThumbnail(post.featured_media, stateStore.siteInfo.siteUrl)
+                        .then(thumbUrl => {
+                            stateStore.setThumbnailImageUrl({ post_index: index, image_url: thumbUrl });
+                        })
+                });
+            });
+        getCategoryInfo(categoryId, stateStore.siteInfo.siteUrl)
+            .then(categoryInfo => {
+                stateStore.setCategoryData(categoryInfo);
+            });
     }, [categoryId]);
 
     return (

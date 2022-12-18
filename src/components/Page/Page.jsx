@@ -18,7 +18,10 @@ const Page = ({ stateStore }) => {
     const { currentPageData } = stateStore;
 
     useEffect(() => {
-        getPage(pageId);
+        getPage(pageId, stateStore.siteInfo.siteUrl)
+            .then(page => {
+                stateStore.setPageData(page);
+            });
     }, [pageId]);
 
     return (

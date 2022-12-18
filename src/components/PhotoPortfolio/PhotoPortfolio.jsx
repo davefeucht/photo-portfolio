@@ -43,8 +43,14 @@ const PhotoPortfolio = ({ stateStore }) => {
 
     useEffect(() => {
         window.addEventListener('resize', setScreenSize.bind(this));
-        getCategories(stateStore);
-        getPages(stateStore);
+        getCategories(stateStore.siteInfo.siteUrl)
+            .then(categories => {
+                stateStore.setCategoryList(categories);
+            });
+        getPages(stateStore.siteInfo.siteUrl)
+            .then(pages => {
+                stateStore.setPages(pages);
+            });
 
         setScreenSize();
         setColumns(stateStore.screenInfo.width, stateStore.screenInfo.height);

@@ -8,11 +8,11 @@ import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-    getPostInfo,
     getNextPost,
     getPreviousPost,
     setPostRect
 } from '../../utils/PostHelper';
+import { getPost, getPostImage, getTagNames } from "../../utils/Api";
 import PostTitlebar from '../PostTitlebar/PostTitlebar.jsx';
 import PostImage from '../PostImage/PostImage.jsx';
 import PostFooter from '../PostFooter/PostFooter.jsx';
@@ -43,7 +43,21 @@ const Post = ({ stateStore }) => {
     }
 
     useEffect(() => {
-        getPostInfo(postId, stateStore);
+        stateStore.clearVisiblePostTagNames();
+        getPost (postId, stateStore.siteInfo.siteUrl)
+            .then(post => {
+                stateStore.setCurrentPost(post);
+            })
+            .then(() => {
+                getTagNames(stateStore.visiblePost.tags, stateStore.siteInfo.siteUrl)
+                    .then(tags => {
+                        stateStore.setVisiblePostTags(tags);
+                    });
+                getPostImage(stateStore.visiblePost.featured_media, stateStore.siteInfo.siteUrl)
+                    .then(imageUrl => {
+                        stateStore.setVisiblePostImage(imageUrl);
+                    })
+            });
     }, [postId]);
 
     useEffect(() => {
