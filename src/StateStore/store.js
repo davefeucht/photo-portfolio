@@ -61,6 +61,16 @@ export default class stateStore {
         this.visiblePost.fullImageUrl = fullImageUrl;
     }
 
+    setVisiblePostTags = tagNames => {
+        tagNames.forEach(tagName => {
+            this.visiblePost.tagNames.push(tagName);
+        });
+    }
+
+    clearVisiblePostTagNames = () => {
+        this.visiblePost.tagNames.clear();
+    }
+
     setCategoryList = categories => {
         this.categoryList.length = 0;
         categories.forEach((category, index) => {

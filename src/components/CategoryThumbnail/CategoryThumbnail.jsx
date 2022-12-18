@@ -16,7 +16,7 @@ const CategoryThumbnail = ({ id, name, stateStore }) => {
     const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
 
     if (!thumbnailImageUrl) {
-        getCategoryImage(id, stateStore)
+        getCategoryImage(id, stateStore.siteInfo.siteUrl)
             .then(imageUrl => {
                 setThumbnailImageUrl(imageUrl);
             });

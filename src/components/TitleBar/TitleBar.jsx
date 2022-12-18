@@ -18,9 +18,11 @@ const TitleBar = ({ stateStore }) => {
     }
 
     useEffect(() => {
-        const siteName = getSiteInfo(stateStore);
-        stateStore.setSiteName(siteName);
-        document.title = siteName;
+        getSiteInfo(stateStore.siteInfo.siteUrl)
+            .then(siteName => {
+                stateStore.setSiteName(siteName);
+                document.title = siteName;
+            });
     }, []);
 
     return (

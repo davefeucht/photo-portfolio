@@ -5,7 +5,7 @@ module.exports = Object.assign({}, webpackConfig, {
     devServer: {
         historyApiFallback: true,
         https: true,
-        host: '0.0.0.0', //for public access
+        host: '0.0.0.0',
         port: 8080,
         static: [
             {
