@@ -1,16 +1,17 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
-import renderer, { act } from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
 import CategoryThumbnail from '../components/CategoryThumbnail/CategoryThumbnail';
 import stateStore from '../StateStore/store';
 
+jest.mock('../utils/Api');
+
 const id = 5;
 const name = 'Test Category';
-const thumbnailImageUrl = '';
-
-jest.mock("../utils/Api", () => ({
-    getCategoryImage: jest.fn(() => Promise.resolve(thumbnailImageUrl))
-  }));
 
 test('CategoryThumbnail displays', () => {
   const store = new stateStore();
