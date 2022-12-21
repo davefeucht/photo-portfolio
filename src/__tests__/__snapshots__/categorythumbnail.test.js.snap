@@ -9,7 +9,7 @@ exports[`CategoryThumbnail displays 1`] = `
     className="category-thumbnail"
     style={
       {
-        "backgroundImage": "url()",
+        "backgroundImage": "url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg)",
       }
     }
   >
