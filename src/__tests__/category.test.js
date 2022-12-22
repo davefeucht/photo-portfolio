@@ -31,7 +31,9 @@ const category = {
 
 jest.mock('../utils/Api', () => ({
     getPosts: () => Promise.resolve(posts),
-    getCategoryInfo: () => Promise.resolve(category)
+    getPostThumbnail: () => Promise.resolve('https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg'),
+    getCategoryInfo: () => Promise.resolve(category),
+    getCategoryImage: () => Promise.resolve('https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg')
 }));
 
 test('Category displays', () => {

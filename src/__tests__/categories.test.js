@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
 import Categories from '../components/Categories/Categories';
 import stateStore from '../StateStore/store';
 
@@ -29,16 +30,23 @@ const categories = [
     }
 ]
 
-test('Category list displays', () => {
-  const store = new stateStore();
-  let component;
-  let tree;
-  store.setCategoryList(categories);
-  component = renderer.create(
-      <MemoryRouter>
-          <Categories stateStore={store}></Categories>
-      </MemoryRouter>
-  );
-  tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+jest.mock('../utils/Api', () => ({
+    getCategoryImage: () => Promise.resolve('https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg')
+}));
+
+test('Category list displays', async () => {
+    const store = new stateStore();
+    let component;
+    let tree;
+    store.setCategoryList(categories);
+    await act(async () => {
+        component = renderer.create(
+            <MemoryRouter>
+                <Categories stateStore={store}></Categories>
+            </MemoryRouter>
+        );
+
+    })
+    tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 });
