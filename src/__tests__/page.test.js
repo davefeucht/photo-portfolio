@@ -19,14 +19,14 @@ jest.mock('../utils/Api', () => ({
 }));
 
 test('Page displays', () => {
-  const store = new stateStore();
-  let component;
-  let tree;
-  component = renderer.create(
-      <MemoryRouter initialEntries={['/page/150']} >
-          <Page stateStore={store}></Page>
-      </MemoryRouter>
-  );
-  tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+    const store = new stateStore();
+    let component;
+    let tree;
+    component = renderer.create(
+        <MemoryRouter initialEntries={['/page/150']} >
+            <Page stateStore={store}></Page>
+        </MemoryRouter>
+    );
+    tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 });

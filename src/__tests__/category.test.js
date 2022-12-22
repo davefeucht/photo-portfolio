@@ -37,14 +37,14 @@ jest.mock('../utils/Api', () => ({
 }));
 
 test('Category displays', () => {
-  const store = new stateStore();
-  let component;
-  let tree;
-  component = renderer.create(
-      <MemoryRouter initialEntries={['/category/35']} >
-          <Category stateStore={store}></Category>
-      </MemoryRouter>
-  );
-  tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+    const store = new stateStore();
+    let component;
+    let tree;
+    component = renderer.create(
+        <MemoryRouter initialEntries={['/category/35']} >
+            <Category stateStore={store}></Category>
+        </MemoryRouter>
+    );
+    tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 });
