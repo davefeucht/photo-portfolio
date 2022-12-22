@@ -11,3 +11,15 @@ exports[`CategoryThumbnail displays 1`] = `
   </div>
 </div>
 `;
+
+exports[`CategoryTitle displays 1`] = `
+<div
+  className="category-title"
+>
+  <div
+    className="category-title-text"
+  >
+    Test Category
+  </div>
+</div>
+`;

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CloseButton displays 1`] = `
+<div
+  className="close-button"
+>
+  <a
+    href="/category/undefined"
+    onClick={[Function]}
+  >
+    <div
+      className="close-button-content"
+    >
+      <img
+        height="30px"
+        src="./assets/images/close-button.svg"
+        width="30px"
+      />
+    </div>
+  </a>
+</div>
+`;
