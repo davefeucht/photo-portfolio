@@ -18,7 +18,7 @@ jest.mock('../utils/Api', () => ({
     getPage: () => Promise.resolve(page)
 }));
 
-test('Category displays', () => {
+test('Page displays', () => {
   const store = new stateStore();
   let component;
   let tree;
