@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuLink displays 1`] = `
+<a
+  href="/page/150"
+  onClick={[Function]}
+>
+  <div
+    className="menu-link"
+  >
+    Contact
+  </div>
+</a>
+`;
