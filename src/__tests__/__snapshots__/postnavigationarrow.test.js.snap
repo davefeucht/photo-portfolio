@@ -24,3 +24,28 @@ exports[`PostFooter displays 1`] = `
   </a>
 </div>
 `;
+
+exports[`PostNavigationArrow displays 1`] = `
+<div
+  className="post-navigation-arrow active previous"
+  style={
+    {
+      "left": "0px",
+      "top": "0px",
+    }
+  }
+>
+  <a
+    href="/category/undefined/post/35"
+    onClick={[Function]}
+  >
+    <div
+      className="arrow"
+    >
+      <img
+        src="./assets/images/chevron.svg"
+      />
+    </div>
+  </a>
+</div>
+`;
