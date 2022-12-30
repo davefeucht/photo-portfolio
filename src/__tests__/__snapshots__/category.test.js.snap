@@ -13,6 +13,14 @@ exports[`Category displays 1`] = `
   </div>
   <div
     className="posts"
-  />
+  >
+    <div
+      className="pagination-navigation"
+    >
+      <div
+        className="pagination-navigation__content"
+      />
+    </div>
+  </div>
 </div>
 `;

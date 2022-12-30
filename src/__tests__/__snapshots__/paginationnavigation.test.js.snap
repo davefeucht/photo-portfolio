@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginationNavigation displays 1`] = `
+<div
+  className="pagination-navigation"
+>
+  <div
+    className="pagination-navigation__content"
+  >
+    <div
+      className="pagination-navigation__item selected"
+      onClick={[Function]}
+    >
+      1
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      2
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      3
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      4
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      5
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      6
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      7
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      8
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      9
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      10
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      11
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      12
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      13
+       • 
+    </div>
+    <div
+      className="pagination-navigation__item deselected"
+      onClick={[Function]}
+    >
+      14
+    </div>
+  </div>
+</div>
+`;

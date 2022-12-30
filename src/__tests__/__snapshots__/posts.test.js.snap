@@ -30,5 +30,19 @@ exports[`Posts displays 1`] = `
       }
     />
   </a>
+  <div
+    className="pagination-navigation"
+  >
+    <div
+      className="pagination-navigation__content"
+    >
+      <div
+        className="pagination-navigation__item selected"
+        onClick={[Function]}
+      >
+        1
+      </div>
+    </div>
+  </div>
 </div>
 `;
