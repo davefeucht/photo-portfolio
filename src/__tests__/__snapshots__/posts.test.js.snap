@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Posts displays 1`] = `
+<div
+  className="posts"
+>
+  <a
+    href="/post/887"
+    onClick={[Function]}
+  >
+    <div
+      className="post-thumbnail"
+      style={
+        {
+          "backgroundImage": "url()",
+        }
+      }
+    />
+  </a>
+  <a
+    href="/post/889"
+    onClick={[Function]}
+  >
+    <div
+      className="post-thumbnail"
+      style={
+        {
+          "backgroundImage": "url()",
+        }
+      }
+    />
+  </a>
+</div>
+`;
