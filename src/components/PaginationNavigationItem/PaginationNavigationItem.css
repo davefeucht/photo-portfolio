@@ -1,0 +1,13 @@
+.pagination-navigation__item {
+    margin: 3px;
+    color: #FFFFFF;
+}
+
+.pagination-navigation__item.selected {
+    font-weight: bold;
+    font-size: larger
+}
+
+.pagination-navigation__item.deselected {
+    cursor: pointer;
+}

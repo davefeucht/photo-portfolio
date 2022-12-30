@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginationNavigationItem displays 1`] = `
+<div
+  className="pagination-navigation__item selected"
+  onClick={[Function]}
+>
+  1
+   • 
+</div>
+`;

@@ -32,6 +32,7 @@ export default class stateStore {
         this.currentCategoryData = {};
         this.pages = [];
         this.currentPageData = {};
+        this.maxItemsPerPage = 10;
 
         makeAutoObservable(this);
     }
