@@ -1,19 +1,11 @@
-/**
- * @jest-environment jsdom
- */
-
 import React from 'react';
 import renderer from 'react-test-renderer';
 import TitleBar from '../components/TitleBar/TitleBar';
 import stateStore from '../StateStore/store';
 
-const siteInfo = {
-    name: 'Through a Pinhole'
-};
-
 jest.mock("../utils/Api", () => ({
-    getSiteInfo: jest.fn(() => Promise.resolve(siteInfo))
-  }));
+    getSiteInfo: () => Promise.resolve('Through a Pinhole')
+}));
 
 test('Titlebar displays', () => {
   const store = new stateStore();

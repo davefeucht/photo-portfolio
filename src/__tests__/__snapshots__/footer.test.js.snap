@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer displays 1`] = `
+<div
+  className="footer"
+>
+  Theme Copyright @2021 Dave Feucht
+</div>
+`;

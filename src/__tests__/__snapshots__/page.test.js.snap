@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page displays 1`] = `
+<div
+  className="page"
+>
+  <div
+    className="section-header"
+  >
+    <div
+      className="title"
+    />
+  </div>
+  <div
+    className="page__content"
+    dangerouslySetInnerHTML={
+      {
+        "__html": undefined,
+      }
+    }
+  />
+</div>
+`;

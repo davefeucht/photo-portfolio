@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoPortfolio displays 1`] = `
+<div
+  className="app"
+>
+  <div
+    className="title-bar"
+  >
+    <div
+      className="hamburger-button closed"
+      onClick={[Function]}
+    >
+      <img
+        border="0"
+        src="./assets/images/hamburger_icon.svg"
+      />
+    </div>
+    <div>
+      <h1 />
+    </div>
+  </div>
+  <div
+    className="photo-portfolio"
+  >
+    <div
+      className="category"
+    >
+      <div
+        className="section-header"
+      >
+        <div
+          className="title"
+        />
+      </div>
+      <div
+        className="posts"
+      />
+    </div>
+  </div>
+  <div
+    className="menu closed"
+  >
+    <ul>
+      <li
+        onClick={[Function]}
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <div
+            className="menu-link"
+          >
+            Home
+          </div>
+        </a>
+      </li>
+      <li>
+        Categories
+        <ul />
+      </li>
+      <li>
+        Info
+        <ul />
+      </li>
+    </ul>
+  </div>
+  <div
+    className="footer"
+  >
+    Theme Copyright @2021 Dave Feucht
+  </div>
+</div>
+`;

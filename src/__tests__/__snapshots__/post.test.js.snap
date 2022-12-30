@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post displays 1`] = `
+<div
+  className="post-background"
+  onClick={[Function]}
+>
+  <div
+    className="post"
+    onClick={[Function]}
+  >
+    <div
+      className="post-titlebar"
+    >
+      <div
+        className="title"
+      />
+      <div
+        className="close-button"
+      >
+        <a
+          href="/category/undefined"
+          onClick={[Function]}
+        >
+          <div
+            className="close-button-content"
+          >
+            <img
+              height="30px"
+              src="./assets/images/close-button.svg"
+              width="30px"
+            />
+          </div>
+        </a>
+      </div>
+    </div>
+    <div
+      className="post-image"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <div
+        className="post-navigation-arrow disabled previous"
+        style={
+          {
+            "left": "0px",
+            "top": "0px",
+          }
+        }
+      >
+        <div
+          className="arrow"
+        >
+          <img
+            src="./assets/images/chevron.svg"
+          />
+        </div>
+      </div>
+      <img
+        src={null}
+      />
+      <div
+        className="post-navigation-arrow disabled next"
+        style={
+          {
+            "right": "0px",
+            "top": "0px",
+          }
+        }
+      >
+        <div
+          className="arrow"
+        >
+          <img
+            src="./assets/images/chevron.svg"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="post-footer"
+    >
+      <div
+        className="labels"
+      />
+    </div>
+  </div>
+</div>
+`;

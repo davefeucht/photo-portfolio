@@ -3,7 +3,7 @@ import axios from 'axios';
 export const getPostThumbnail = async (featuredImage, siteUrl) => {
     const getPostThumbnailURI = `https://${siteUrl}/wp-json/wp/v2/media/${featuredImage}`;
     const response = await axios.get(getPostThumbnailURI);
-    const size = response.data.media_details.large ? 'large' : 'full';
+    const size = response.data.media_details.sizes.large ? 'large' : 'full';
     const thumbUrl = response.data.media_details.sizes[size].source_url;
 
     return thumbUrl;

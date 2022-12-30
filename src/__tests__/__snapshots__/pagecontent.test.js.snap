@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageContent displays 1`] = `
+<div
+  className="page__content"
+  dangerouslySetInnerHTML={
+    {
+      "__html": "This content should be displayed in the page because that is how it works",
+    }
+  }
+/>
+`;

@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest/globals": true
     },
     "extends": [
         "eslint:recommended",
@@ -23,6 +24,7 @@
         "sourceType": "module"
     },
     "plugins": [
+        "jest",
         "json",
         "react",
         "react-hooks"
