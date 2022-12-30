@@ -5,7 +5,6 @@
 
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail.jsx';
 import PaginationNavigation from '../PaginationNavigation/PaginationNavigation.jsx';
