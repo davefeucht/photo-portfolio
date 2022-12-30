@@ -8,12 +8,13 @@ import PropTypes from 'prop-types';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail.jsx';
+import PaginationNavigation from '../PaginationNavigation/PaginationNavigation.jsx';
 import './Categories.css';
 
 const Categories = ({ stateStore }) => {
     const setRows = () => {
         const numberOfColumns = document.body.style.getPropertyValue('--number-of-columns');
-        const numberOfCategories = stateStore.categoryList.length;
+        const numberOfCategories = stateStore.maxItemsPerPage;
         document.body.style.setProperty('--number-of-rows', numberOfCategories / numberOfColumns);
     };
 
@@ -38,6 +39,7 @@ const Categories = ({ stateStore }) => {
     return (
         <div className="category-list">
             {_mapCategoryList()}
+            <PaginationNavigation totalPages={stateStore.categoryList.length / stateStore.maxItemsPerPage} currentPageIndex={0} navigationFunction={content => {console.log(content)}} />
         </div>
     );
 };
