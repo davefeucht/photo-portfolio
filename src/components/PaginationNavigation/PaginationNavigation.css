@@ -7,7 +7,7 @@
     align-items: center;
     background-color: var(--template-black);
     grid-column: 1 / -1;
-    grid-row-start: 3;
+    grid-row-start: calc(var(--number-of-rows) + 1);
 }
 
 .pagination-navigation__content {
