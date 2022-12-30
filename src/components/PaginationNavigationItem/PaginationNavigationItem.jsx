@@ -8,7 +8,7 @@ import './PaginationNavigationItem.css';
 
 const PaginationNavigationItem = ({ content, selectedState, navigationFunction }) => {
     return (
-        <div className={`pagination-navigation__item ${selectedState}`} onClick={navigationFunction ? () => navigationFunction(content) : undefined}>{content}</div>
+        <div className={`pagination-navigation__item ${selectedState}`} onClick={navigationFunction ? () => navigationFunction(parseInt(content)) : undefined}>{content}</div>
     )
 };
 
