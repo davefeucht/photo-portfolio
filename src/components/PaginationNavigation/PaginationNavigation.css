@@ -7,4 +7,16 @@
     align-items: center;
     background-color: var(--template-black);
     grid-column: 1 / -1;
+    grid-row-start: 3;
+}
+
+.pagination-navigation__content {
+    padding: 1px;
+    font-size: 13px;
+    border-top: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.pagination-navigation__content div {
+    display: inline-block;
 }

@@ -22,9 +22,19 @@ const prepNavigationItems = (totalPages, currentPageIndex) => {
 const PaginationNavigation = ({ totalPages, currentPageIndex, navigationFunction }) => {
     return (
         <div className="pagination-navigation">
-            {prepNavigationItems(totalPages, currentPageIndex).map(item => {
-                return (<PaginationNavigationItem key={`pagination_navigation_${item.content}`} content={item.content} selectedState={item.selectedState} navigationFunction={navigationFunction} />);
-            })}
+            <div className="pagination-navigation__content">
+                {prepNavigationItems(totalPages, currentPageIndex).map((item, index, array) => {
+                    return (
+                        <PaginationNavigationItem 
+                            key={`pagination_navigation_${item.content}`} 
+                            content={item.content} 
+                            selectedState={item.selectedState} 
+                            navigationFunction={navigationFunction} 
+                            isLast={index === array.length - 1}
+                        />
+                    );
+                })}
+            </div>
         </div>
     )
 };

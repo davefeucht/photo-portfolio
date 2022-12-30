@@ -6,9 +6,14 @@ import React from "react";
 import PropTypes from 'prop-types';
 import './PaginationNavigationItem.css';
 
-const PaginationNavigationItem = ({ content, selectedState, navigationFunction }) => {
+const PaginationNavigationItem = ({ content, selectedState, navigationFunction, isLast }) => {
     return (
-        <div className={`pagination-navigation__item ${selectedState}`} onClick={navigationFunction ? () => navigationFunction(parseInt(content)) : undefined}>{content}</div>
+        <div 
+            className={`pagination-navigation__item ${selectedState}`} 
+            onClick={navigationFunction ? () => navigationFunction(parseInt(content)) : undefined}
+        >
+            {content}{!isLast ? ' • ' : ''}
+        </div>
     )
 };
 
@@ -17,7 +22,8 @@ PaginationNavigationItem.displayName = 'PaginationNavigationItem';
 PaginationNavigationItem.propTypes = {
     content: PropTypes.string.isRequired,
     selectedState: PropTypes.string.isRequired,
-    navigationFunction: PropTypes.func
+    navigationFunction: PropTypes.func,
+    isLast: PropTypes.bool.isRequired
 };
 
 export default PaginationNavigationItem;
