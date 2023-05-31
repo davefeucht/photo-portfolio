@@ -2,14 +2,33 @@ import { runInAction } from 'mobx';
 
 import { getPost } from './Api';
 
-export const getPostInfo = (postId, stateStore) => {
+interface CategoryPost {
+    id: string
+}
+
+interface Image {
+    width: number,
+    height: number
+}
+
+interface Post {
+    width: number,
+    height: number
+}
+
+interface Store {
+    visiblePost: Post
+}
+
+
+export const getPostInfo = (postId: string, stateStore: object) => {
     const parsedPostId = parseInt(postId);
     runInAction(() => {
         getPost(parsedPostId, stateStore);
     });
 }
 
-export const getNextPost = (postId, currentCategoryPosts) => {
+export const getNextPost = (postId: string, currentCategoryPosts: CategoryPost[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const nextIndex = currentIndex + 1;
     const numberOfPosts = currentCategoryPosts.length;
@@ -20,7 +39,7 @@ export const getNextPost = (postId, currentCategoryPosts) => {
     return nextId;
 }
 
-export const getPreviousPost = (postId, currentCategoryPosts) => {
+export const getPreviousPost = (postId: string, currentCategoryPosts: CategoryPost[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const previousIndex = currentIndex - 1;
     if (previousIndex < 0) {
@@ -30,12 +49,16 @@ export const getPreviousPost = (postId, currentCategoryPosts) => {
     return previousId;
 }
 
-const getPostSize = (screenWidth, screenHeight, imageWidth, imageHeight, stateStore) => {
+const getPostSize = (screenWidth: number, screenHeight: number, imageWidth: number, imageHeight: number, stateStore: Store) => {
     const postTitlebar = document.querySelector('.post-titlebar');
     const postFooter = document.querySelector('.post-footer');
     const screenAspectRatio = screenWidth / screenHeight;
     const aspectRatio = imageWidth / imageHeight;
-    const rect = {};
+    const rect = {
+        width: 0,
+        height: 0,
+        image_height: 0
+    };
     let width = 0;
     let height = 0;
     if (screenAspectRatio >= 1) {
@@ -58,18 +81,21 @@ const getPostSize = (screenWidth, screenHeight, imageWidth, imageHeight, stateSt
     return rect;
 }
 
-const getPostPosition = (screenWidth, screenHeight, postWidth, postHeight) => {
-    const position = {};
+const getPostPosition = (screenWidth: number, screenHeight: number, postWidth: number, postHeight: number) => {
+    const position = {
+        left: '0px',
+        top: '0px'
+    };
     position.left = `${(screenWidth - postWidth) / 2}px`;
     position.top = `${(screenHeight - postHeight) / 2}px`;
 
     return position;
 }
 
-export const setPostRect = (image, screenWidth, screenHeight, stateStore) => {
-    const postElement = document.querySelector('.post');
-    const imageElement = document.querySelector('.post-image > img');
-    const backgroundElement = document.querySelector('.post-background');
+export const setPostRect = (image: Image, screenWidth: number, screenHeight: number, stateStore: Store) => {
+    const postElement = document.querySelector('.post') as HTMLElement;
+    const imageElement = document.querySelector('.post-image > img') as HTMLElement;
+    const backgroundElement = document.querySelector('.post-background') as HTMLElement;
     const rect = getPostSize(screenWidth, screenHeight, image.width, image.height, stateStore);
     imageElement.style.width = `${rect.width}px`;
     imageElement.style.height = `${rect.image_height}px`;

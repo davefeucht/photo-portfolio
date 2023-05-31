@@ -29,6 +29,19 @@
         "react",
         "react-hooks"
     ],
+
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx"],
+            "extends": [
+                "plugin:@typescript-eslint/eslint-recommended",
+                "plugin:@typescript-eslint/recommended",
+                "prettier/@typescript-eslint"
+            ],
+            "parser": "@typescript-eslint/parser",
+            "plugins": ["@typescript-eslint"]
+        }
+    ],
     "rules": {
         "no-prototype-builtins": 0,
         "comma-dangle": ["error", "never"],
