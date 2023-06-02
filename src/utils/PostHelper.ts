@@ -1,25 +1,11 @@
 import { runInAction } from 'mobx';
 
 import { getPost } from './Api';
-
-interface CategoryPost {
-    id: string
-}
-
-interface Image {
-    width: number,
-    height: number
-}
-
-interface Post {
-    width: number,
-    height: number
-}
-
-interface Store {
-    visiblePost: Post
-}
-
+import {
+    Post,
+    Image,
+    Store
+} from './types';
 
 export const getPostInfo = (postId: string, stateStore: object) => {
     const parsedPostId = parseInt(postId);
@@ -28,7 +14,7 @@ export const getPostInfo = (postId: string, stateStore: object) => {
     });
 }
 
-export const getNextPost = (postId: string, currentCategoryPosts: CategoryPost[]) => {
+export const getNextPost = (postId: string, currentCategoryPosts: Post[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const nextIndex = currentIndex + 1;
     const numberOfPosts = currentCategoryPosts.length;
@@ -39,7 +25,7 @@ export const getNextPost = (postId: string, currentCategoryPosts: CategoryPost[]
     return nextId;
 }
 
-export const getPreviousPost = (postId: string, currentCategoryPosts: CategoryPost[]) => {
+export const getPreviousPost = (postId: string, currentCategoryPosts: Post[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const previousIndex = currentIndex - 1;
     if (previousIndex < 0) {
