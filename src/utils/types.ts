@@ -7,6 +7,11 @@ export interface PostContent {
     protected: boolean
 }
 
+export interface ImageData {
+    post_index: number,
+    image_url: string
+}
+
 export interface Category {
     id: number,
     count: number,
@@ -29,7 +34,8 @@ export interface Post {
     author: number,
     featured_media: number,
     categories: number[],
-    tags: number[]
+    tags: number[],
+    thumbnail_image: string
 }
 
 export interface Page {
@@ -72,8 +78,23 @@ export interface Store {
     visiblePost: Image,
     categoryList: Category[],
     currentCategoryPosts: Post[],
-    currentCategoryDate: Category,
+    currentCategoryData: Category,
     pages: Page[],
     currentPageData: Page,
-    maxItemsPerPage: number
+    maxItemsPerPage: number,
+    setMenuState(state: string): void,
+    toggleMenuState(): void,
+    setApplicationRoot(element: HTMLElement): void,
+    setSiteName(name: string): void,
+    setVisiblePost(postId: number, postTitle: string): void,
+    setVisiblePostImage(fullImageUrl: string): void,
+    setVisiblePostTags(tagNames: string[]): void,
+    clearVisiblePostTagNames(): void,
+    setCategoryList(categories: Category[]): void,
+    setCategoryPosts(posts: Post[]): void,
+    setCategoryData(categoryData: Category): void,
+    setThumbnailImageUrl(imageData: ImageData): void,
+    setCurrentPost(postData: Post): void,
+    setPages(pages: Page[]): void,
+    setPageData(pageData: Page): void
 }
