@@ -16,5 +16,5 @@ module.exports = Object.assign({}, webpackConfig, {
         ],
         allowedHosts: 'all'
     },
-    devtool: 'source-map'
+    devtool: 'inline-source-map'
 });

@@ -2,7 +2,7 @@
     "verbose": true,
     "testEnvironment": "jsdom",
     "transform": {
-        "^.+\\.(js|jsx)$": "babel-jest"
+        "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },
     "moduleNameMapper": {
         "\\.(css|scss)$": "identity-obj-proxy"

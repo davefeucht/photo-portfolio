@@ -2,7 +2,7 @@
 * Index which includes the PhotoPortfolio component
 ****************/
 
-import React from 'react';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import PhotoPortfolio from './components/PhotoPortfolio/PhotoPortfolio.jsx';
