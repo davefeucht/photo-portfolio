@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import './PostFooter.css';
 
 const PostFooter = ({ stateStore }) => {
+    console.log(stateStore.visiblePost.tagNames);
     return (
         <div className="post-footer">
             <div className="labels">{stateStore.visiblePost.tagNames.join(', ')}</div>

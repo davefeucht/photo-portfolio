@@ -23,6 +23,16 @@ export interface Category {
     parent: number
 }
 
+export interface VisiblePost {
+    postId: number,
+    postTitle: string,
+    tags: number[],
+    tagNames: string[],
+    fullImageUrl: string,
+    width: number,
+    height: number
+}
+
 export interface Post {
     id: string,
     link: string,
@@ -75,7 +85,7 @@ export interface Store {
     applicationRoot: HTMLElement
     screenInfo: ScreenInfo,
     siteInfo: SiteInfo,
-    visiblePost: Image,
+    visiblePost: VisiblePost,
     categoryList: Category[],
     currentCategoryPosts: Post[],
     currentCategoryData: Category,
@@ -94,7 +104,7 @@ export interface Store {
     setCategoryPosts(posts: Post[]): void,
     setCategoryData(categoryData: Category): void,
     setThumbnailImageUrl(imageData: ImageData): void,
-    setCurrentPost(postData: Post): void,
+    setCurrentPost(postData: VisiblePost): void,
     setPages(pages: Page[]): void,
     setPageData(pageData: Page): void
 }

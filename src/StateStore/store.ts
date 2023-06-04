@@ -1,5 +1,14 @@
 import { configure, makeAutoObservable } from 'mobx';
-import { ImageData, Image, Store, Category, Post, Page } from '../utils/types';
+import {
+    ImageData,
+    Store,
+    VisiblePost,
+    Category,
+    Post,
+    Page,
+    PostContent,
+    PostTitle
+} from '../utils/types';
 
 configure({ enforceActions: 'observed' });
 
@@ -55,6 +64,60 @@ class stateStore implements Store {
     maxItemsPerPage = 10;
 
     constructor() {
+        this.menuState = 'closed';
+        this.applicationRoot = null;
+
+        this.screenInfo = {
+            width: 0,
+            height: 0
+        };
+
+        this.siteInfo = {
+            siteName: 'Through a Pinhole',
+            siteUrl: 'throughapinhole.com'
+        };
+
+        this.visiblePost = {
+            postId: 1,
+            postTitle: null,
+            tags: [],
+            tagNames: [],
+            fullImageUrl: null,
+            width: null,
+            height: null
+        };
+
+        this.categoryList = [];
+        this.currentCategoryPosts = [];
+        this.currentCategoryData = {
+            id: 0,
+            count: 0,
+            description: '',
+            link: '',
+            name: '',
+            slug: '',
+            taxonomy: '',
+            parent: 0
+        };
+        this.pages = [];
+        this.currentPageData = {
+            id: 0,
+            link: '',
+            modified: '',
+            slug: '',
+            type: '',
+            title: {
+                rendered: ''
+            },
+            content: {
+                rendered: '',
+                protected: false
+            },
+            author: 0,
+            featured_media: 0
+        };
+        this.maxItemsPerPage = 10
+
         makeAutoObservable(this);
     }
 
@@ -108,19 +171,19 @@ class stateStore implements Store {
     }
 
     setCategoryData = (categoryData: Category) => {
-        Object.keys(categoryData).forEach((key: keyof Category) => {
-            this.currentCategoryData[key] = categoryData[key];
-        });
+        this.currentCategoryData = categoryData;
     }
 
     setThumbnailImageUrl = (imageData: ImageData) => {
         this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
     }
 
-    setCurrentPost = (postData: Post) => {
-        Object.keys(postData).forEach((key: keyof Image) => {
-            this.visiblePost[key] = postData[key];
-        })
+    setCurrentPost = (postData: VisiblePost) => {
+        if (!postData.tagNames) {
+            postData.tagNames = [];
+        }
+
+        this.visiblePost = postData;
     }
 
     setPages = (pages: Page[]) => {
