@@ -14,7 +14,9 @@ exports[`Titlebar displays 1`] = `
     />
   </div>
   <div>
-    <h1 />
+    <h1>
+      Through a Pinhole
+    </h1>
   </div>
 </div>
 `;
