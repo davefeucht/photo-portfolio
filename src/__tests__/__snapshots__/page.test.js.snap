@@ -15,7 +15,7 @@ exports[`Page displays 1`] = `
     className="page__content"
     dangerouslySetInnerHTML={
       {
-        "__html": undefined,
+        "__html": "",
       }
     }
   />
