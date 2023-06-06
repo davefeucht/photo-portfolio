@@ -42,7 +42,11 @@ PostNavigationArrow.displayName = 'PostNavigationArrow';
 PostNavigationArrow.propTypes = {
     stateStore: PropTypes.object.isRequired,
     direction: PropTypes.string.isRequired,
-    postId: PropTypes.number.isRequired
+    postId: PropTypes.number
+};
+
+PostNavigationArrow.defaultProps = {
+    postId: null
 };
 
 export default observer(PostNavigationArrow);

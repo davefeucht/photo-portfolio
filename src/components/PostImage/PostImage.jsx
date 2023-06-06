@@ -8,7 +8,7 @@ import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow.js';
+import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow.jsx';
 
 function PostImage({ stateStore, previousPost, nextPost }) {
     const onMouseOverHandler = () => {

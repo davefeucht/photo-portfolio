@@ -22,7 +22,11 @@ function PostTitlebar({ postTitle }) {
 PostTitlebar.displayName = 'PostTitlebar';
 
 PostTitlebar.propTypes = {
-    postTitle: PropTypes.string.isRequired
+    postTitle: PropTypes.string
+};
+
+PostTitlebar.defaultProps = {
+    postTitle: null
 };
 
 export default observer(PostTitlebar);
