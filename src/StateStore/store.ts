@@ -5,9 +5,7 @@ import {
     VisiblePost,
     Category,
     Post,
-    Page,
-    PostContent,
-    PostTitle
+    Page
 } from '../utils/types';
 
 configure({ enforceActions: 'observed' });
