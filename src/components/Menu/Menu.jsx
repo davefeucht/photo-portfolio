@@ -1,15 +1,19 @@
-/*****************
+/** ***************
 * Menu component implements the menu of the application
-*****************/
+**************** */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { observer } from 'mobx-react';
-import MenuLink from '../MenuLink/MenuLink.jsx';
 import './Menu.css';
 
-const Menu = ({ stateStore }) => {
-    const { menuState, toggleMenuState, categoryList, pages } = stateStore;
+import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import MenuLink from '../MenuLink/MenuLink.jsx';
+
+function Menu({ stateStore }) {
+    const {
+        menuState, toggleMenuState, categoryList, pages
+    } = stateStore;
     return (
         <div className={`menu ${menuState}`}>
             <ul>
@@ -22,7 +26,7 @@ const Menu = ({ stateStore }) => {
                         {categoryList.map(category => {
                             return (
                                 <li key={`li_${category.name}_${category.id}`} onClick={() => toggleMenuState()}><MenuLink key={`${category.name}_${category.id}`} href={`category/${category.id}`} text={category.name} /></li>
-                            )
+                            );
                         })}
                     </ul>
                 </li>
@@ -32,14 +36,14 @@ const Menu = ({ stateStore }) => {
                         {pages.map(page => {
                             return (
                                 <li key={`li_${page.title.rendered}`} onClick={() => toggleMenuState()}><MenuLink key={`${page.title.rendered}_${page.id}`} href={`page/${page.id}`} text={page.title.rendered} /></li>
-                            )
+                            );
                         })}
                     </ul>
                 </li>
             </ul>
         </div>
     );
-};
+}
 
 Menu.displayName = 'Menu';
 

@@ -1,8 +1,9 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+
 import Posts from '../components/Posts/Posts';
-import stateStore from '../StateStore/store';
+import StateStore from '../StateStore/store';
 
 const posts = [
     {
@@ -24,15 +25,13 @@ const posts = [
 ];
 
 test('Posts displays', () => {
-  const store = new stateStore();
-  let component;
-  let tree;
-  store.setCategoryPosts(posts);
-  component = renderer.create(
-      <MemoryRouter>
-          <Posts stateStore={store}></Posts>
-      </MemoryRouter>
-  );
-  tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+    const store = new StateStore();
+    store.setCategoryPosts(posts);
+    const component = renderer.create(
+        <MemoryRouter>
+            <Posts stateStore={store} />
+        </MemoryRouter>
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 });

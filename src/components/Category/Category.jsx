@@ -1,22 +1,22 @@
-/*****************
+/** ***************
 * Category component displays the posts for a particular category.
-*****************/
+**************** */
 
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import './Category.css';
+
 import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import {
     Outlet,
     useParams
 } from 'react-router-dom';
+
+import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api.js';
 import Posts from '../Posts/Posts.jsx';
 import SectionHeader from '../SectionHeader/SectionHeader.jsx';
 
-import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api.js';
-
-import './Category.css';
-
-const Category = ({ stateStore }) => {
+function Category({ stateStore }) {
     const { categoryId } = useParams();
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const Category = ({ stateStore }) => {
                     getPostThumbnail(post.featured_media, stateStore.siteInfo.siteUrl)
                         .then(thumbUrl => {
                             stateStore.setThumbnailImageUrl({ post_index: index, image_url: thumbUrl });
-                        })
+                        });
                 });
             });
         getCategoryInfo(categoryId, stateStore.siteInfo.siteUrl)
@@ -43,7 +43,7 @@ const Category = ({ stateStore }) => {
             <Outlet />
         </div>
     );
-};
+}
 
 Category.displayName = 'Category';
 

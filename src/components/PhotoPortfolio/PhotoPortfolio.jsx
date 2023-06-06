@@ -1,29 +1,30 @@
-/*******************
+/** *****************
 * Top level PhotoPortfolio component. Sets up the base site URL and 
 * loads the title bar and list of categories.
-*******************/
+****************** */
 
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import './PhotoPortfolio.css';
+
 import { reaction, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import {
     Route,
     Routes,
     useParams
 } from 'react-router-dom';
-import TitleBar from '../TitleBar/TitleBar.jsx';
-import Menu from '../Menu/Menu.jsx';
-import Categories from '../Categories/Categories.jsx';
-import Category from '../Category/Category.jsx';
-import Page from '../Page/Page.jsx';
-import Post from '../Post/Post.jsx';
-import Footer from '../Footer/Footer.jsx';
 
 import { getCategories, getPages } from '../../utils/Api';
-import './PhotoPortfolio.css';
+import Categories from '../Categories/Categories.jsx';
+import Category from '../Category/Category.jsx';
+import Footer from '../Footer/Footer.jsx';
+import Menu from '../Menu/Menu.jsx';
+import Page from '../Page/Page.jsx';
+import Post from '../Post/Post.jsx';
+import TitleBar from '../TitleBar/TitleBar.jsx';
 
-const PhotoPortfolio = ({ stateStore }) => {
+function PhotoPortfolio({ stateStore }) {
     const { categoryId, pageId } = useParams();
 
     const setScreenSize = () => {
@@ -39,7 +40,7 @@ const PhotoPortfolio = ({ stateStore }) => {
         } else {
             document.body.style.setProperty('--number-of-columns', 5);
         }
-    }
+    };
 
     useEffect(() => {
         window.addEventListener('resize', setScreenSize.bind(this));
@@ -66,28 +67,28 @@ const PhotoPortfolio = ({ stateStore }) => {
             window.removeEventListener('resize', setScreenSize);
             disposer();
             disposer2();
-        }
-    }, [])
+        };
+    }, []);
 
     return (
         <div className="app">
             <TitleBar stateStore={stateStore} />
             <div className="photo-portfolio">
                 <Routes>
-                    <Route 
-                        path='/' 
-                        element={<Categories stateStore={stateStore} />} 
+                    <Route
+                        path="/"
+                        element={<Categories stateStore={stateStore} />}
                     />
-                    <Route 
-                        path='page/:pageId' 
-                        element={<Page key={pageId} stateStore={stateStore} />} 
+                    <Route
+                        path="page/:pageId"
+                        element={<Page key={pageId} stateStore={stateStore} />}
                     />
-                    <Route 
-                        path={'category/:categoryId'} 
-                        element={<Category key={categoryId} stateStore={stateStore} />} 
+                    <Route
+                        path="category/:categoryId"
+                        element={<Category key={categoryId} stateStore={stateStore} />}
                     >
-                        <Route 
-                            path='post/:postId'
+                        <Route
+                            path="post/:postId"
                             element={<Post stateStore={stateStore} />}
                         />
                     </Route>
@@ -97,7 +98,7 @@ const PhotoPortfolio = ({ stateStore }) => {
             <Footer />
         </div>
     );
-};
+}
 
 PhotoPortfolio.displayName = 'PhotoPortfolio';
 

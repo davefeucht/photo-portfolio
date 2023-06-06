@@ -1,18 +1,19 @@
-/*****************
+/** ***************
 * CategoryTitle component displays the category title over a CategoryThumbnail for a particular category.
-*****************/
+**************** */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import './CategoryTitle.css';
 
-const CategoryTitle = ({ title }) => {
+import PropTypes from 'prop-types';
+import React from 'react';
+
+function CategoryTitle({ title }) {
     return (
         <div className="category-title">
             <div className="category-title-text">{title}</div>
         </div>
-    )
-};
+    );
+}
 
 CategoryTitle.displayName = 'CategoryTitle';
 
