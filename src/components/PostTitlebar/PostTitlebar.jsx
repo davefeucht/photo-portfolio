@@ -1,26 +1,32 @@
-/****************
+/** **************
 * PostTitlebar component displays the titlebar for a Post
-****************/
+*************** */
 
-import React from "react";
-import PropTypes from 'prop-types';
-import { observer } from 'mobx-react';
-import CloseButton from '../CloseButton/CloseButton.jsx';
 import './PostTitlebar.css';
 
-const PostTitlebar = ({ postTitle }) => {
+import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import CloseButton from '../CloseButton/CloseButton.jsx';
+
+function PostTitlebar({ postTitle }) {
     return (
         <div className="post-titlebar">
             <div className="title">{postTitle}</div>
-            <CloseButton></CloseButton>
+            <CloseButton />
         </div>
-    )
-};
+    );
+}
 
 PostTitlebar.displayName = 'PostTitlebar';
 
 PostTitlebar.propTypes = {
     postTitle: PropTypes.string
+};
+
+PostTitlebar.defaultProps = {
+    postTitle: null
 };
 
 export default observer(PostTitlebar);

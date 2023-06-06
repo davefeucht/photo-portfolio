@@ -1,9 +1,10 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+
 import CategoryThumbnail from '../components/CategoryThumbnail/CategoryThumbnail';
-import stateStore from '../StateStore/store';
+import StateStore from '../StateStore/store';
 
 const id = 5;
 const name = 'Test Category';
@@ -13,16 +14,15 @@ jest.mock('../utils/Api', () => ({
 }));
 
 test('CategoryThumbnail displays', async () => {
-    const store = new stateStore();
+    const store = new StateStore();
     let component;
-    let tree;
     await act(async () => {
         component = renderer.create(
             <MemoryRouter>
-                <CategoryThumbnail id={id} name={name} stateStore={store}></CategoryThumbnail>
+                <CategoryThumbnail id={id} name={name} stateStore={store} />
             </MemoryRouter>
         );
     });
-    tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });

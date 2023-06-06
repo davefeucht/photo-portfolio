@@ -1,18 +1,17 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+
 import CategoryTitle from '../components/CategoryTitle/CategoryTitle';
 
 const name = 'Test Category';
 
 test('CategoryTitle displays', async () => {
-    let component;
-    let tree;
-    component = renderer.create(
+    const component = renderer.create(
         <MemoryRouter>
-            <CategoryTitle title={name} ></CategoryTitle>
+            <CategoryTitle title={name} />
         </MemoryRouter>
     );
-    tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });

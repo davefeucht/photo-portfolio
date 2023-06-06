@@ -1,8 +1,9 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+
 import Post from '../components/Post/Post';
-import stateStore from '../StateStore/store';
+import StateStore from '../StateStore/store';
 
 const post = {
     id: 887,
@@ -21,14 +22,12 @@ jest.mock('../utils/Api', () => ({
 }));
 
 test('Post displays', () => {
-  const store = new stateStore();
-  let component;
-  let tree;
-  component = renderer.create(
-      <MemoryRouter initialEntries={['/page/150']} >
-          <Post stateStore={store}></Post>
-      </MemoryRouter>
-  );
-  tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+    const store = new StateStore();
+    const component = renderer.create(
+        <MemoryRouter initialEntries={['/page/150']}>
+            <Post stateStore={store} />
+        </MemoryRouter>
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 });

@@ -1,18 +1,18 @@
-/*****************
+/** ***************
 * CategoryThumbnail component displays the post image for a particular category.
-*****************/
-
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { observer } from 'mobx-react';
-import { Link } from 'react-router-dom';
-import CategoryTitle from '../CategoryTitle/CategoryTitle.jsx';
-
-import { getCategoryImage } from '../../utils/Api';
+**************** */
 
 import './CategoryThumbnail.css';
 
-const CategoryThumbnail = ({ id, name, stateStore }) => {
+import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { getCategoryImage } from '../../utils/Api';
+import CategoryTitle from '../CategoryTitle/CategoryTitle.jsx';
+
+function CategoryThumbnail({ id, name, stateStore }) {
     const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
 
     if (!thumbnailImageUrl) {
@@ -22,7 +22,7 @@ const CategoryThumbnail = ({ id, name, stateStore }) => {
             });
     }
 
-    const divStyle = { backgroundImage: "url(" + (thumbnailImageUrl ? thumbnailImageUrl : "") + ")" };
+    const divStyle = { backgroundImage: `url(${thumbnailImageUrl || ''})` };
 
     return (
         <Link to={`/category/${id}`}>
@@ -31,7 +31,7 @@ const CategoryThumbnail = ({ id, name, stateStore }) => {
             </div>
         </Link>
     );
-};
+}
 
 CategoryThumbnail.displayName = 'CategoryThumbnail';
 

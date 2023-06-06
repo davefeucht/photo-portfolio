@@ -1,8 +1,9 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+
 import PhotoPortfolio from '../components/PhotoPortfolio/PhotoPortfolio';
-import stateStore from '../StateStore/store';
+import StateStore from '../StateStore/store';
 
 const pages = [
     {
@@ -14,7 +15,7 @@ const pages = [
             rendered: 'Contact'
         }
     }
-]
+];
 
 const categories = [
     {
@@ -47,14 +48,12 @@ jest.mock('../utils/Api', () => ({
 }));
 
 test('PhotoPortfolio displays', () => {
-    const store = new stateStore();
-    let component;
-    let tree;
-    component = renderer.create(
-        <MemoryRouter initialEntries={['/category/35']} >
-            <PhotoPortfolio stateStore={store}></PhotoPortfolio>
+    const store = new StateStore();
+    const component = renderer.create(
+        <MemoryRouter initialEntries={['/category/35']}>
+            <PhotoPortfolio stateStore={store} />
         </MemoryRouter>
     );
-    tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });

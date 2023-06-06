@@ -1,8 +1,9 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+
 import Category from '../components/Category/Category';
-import stateStore from '../StateStore/store';
+import StateStore from '../StateStore/store';
 
 const posts = [
     {
@@ -37,14 +38,12 @@ jest.mock('../utils/Api', () => ({
 }));
 
 test('Category displays', () => {
-    const store = new stateStore();
-    let component;
-    let tree;
-    component = renderer.create(
-        <MemoryRouter initialEntries={['/category/35']} >
-            <Category stateStore={store}></Category>
+    const store = new StateStore();
+    const component = renderer.create(
+        <MemoryRouter initialEntries={['/category/35']}>
+            <Category stateStore={store} />
         </MemoryRouter>
     );
-    tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });

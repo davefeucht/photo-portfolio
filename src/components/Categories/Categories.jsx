@@ -1,16 +1,18 @@
-/*****************
+/** ***************
 * Categories component displays a list of existing photo categories 
 * and makes them clickable to display just a single category.
-*****************/
+**************** */
 
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { observer } from 'mobx-react';
-import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail.jsx';
-import PaginationNavigation from '../PaginationNavigation/PaginationNavigation.jsx';
 import './Categories.css';
 
-const Categories = ({ stateStore }) => {
+import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+
+import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail.jsx';
+import PaginationNavigation from '../PaginationNavigation/PaginationNavigation.jsx';
+
+function Categories({ stateStore }) {
     const [currentPageIndex, setCurrentPageIndex] = useState(1);
 
     const startIndex = (currentPageIndex - 1) * stateStore.maxItemsPerPage;
@@ -29,13 +31,13 @@ const Categories = ({ stateStore }) => {
     return (
         <div className="category-list">
             {stateStore.categoryList.slice(startIndex, endIndex)
-            .map((category, index) => {
-                return (<CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} stateStore={stateStore} />);
-            })}
-            <PaginationNavigation totalPages={stateStore.categoryList.length / stateStore.maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={content => {setCurrentPageIndex(content)}} />
+                .map((category, index) => {
+                    return (<CategoryThumbnail key={category.id.toString()} id={category.id} index={index} name={category.name} stateStore={stateStore} />);
+                })}
+            <PaginationNavigation totalPages={stateStore.categoryList.length / stateStore.maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={content => { setCurrentPageIndex(content); }} />
         </div>
     );
-};
+}
 
 Categories.propTypes = {
     stateStore: PropTypes.object.isRequired

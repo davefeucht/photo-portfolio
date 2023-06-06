@@ -1,21 +1,21 @@
-/*****************
+/** ***************
 * TitleBar component implements the title bar of the application
-*****************/
-
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { observer } from 'mobx-react';
-
-import { getSiteInfo } from '../../utils/Api';
+**************** */
 
 import './TitleBar.css';
 
-const TitleBar = ({ stateStore }) => {
+import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+
+import { getSiteInfo } from '../../utils/Api';
+
+function TitleBar({ stateStore }) {
     const { menuState } = stateStore;
 
     const toggleMenu = () => {
         stateStore.setMenuState(stateStore.menuState === 'closed' ? 'open' : 'closed');
-    }
+    };
 
     useEffect(() => {
         getSiteInfo(stateStore.siteInfo.siteUrl)
@@ -26,16 +26,16 @@ const TitleBar = ({ stateStore }) => {
     }, []);
 
     return (
-      <div className='title-bar'>
-        <div className={`hamburger-button ${menuState}`} onClick={toggleMenu}>
-            <img src="./assets/images/hamburger_icon.svg" border="0" />
+        <div className="title-bar">
+            <div className={`hamburger-button ${menuState}`} onClick={toggleMenu}>
+                <img src="./assets/images/hamburger_icon.svg" border="0" />
+            </div>
+            <div>
+                <h1>{stateStore.siteInfo.siteName}</h1>
+            </div>
         </div>
-        <div>
-            <h1>{stateStore.siteInfo.siteName}</h1>
-        </div>
-      </div>
     );
-};
+}
 
 TitleBar.displayName = 'TitleBar';
 

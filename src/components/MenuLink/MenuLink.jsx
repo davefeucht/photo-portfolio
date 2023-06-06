@@ -1,19 +1,20 @@
-/*****************
+/** ***************
 * MenuLink component implements the a link in the menu of the application
-*****************/
+**************** */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import './MenuLink.css';
 
-const MenuLink = ({ href, text }) => {
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+function MenuLink({ href, text }) {
     return (
         <Link to={`${href}`}>
             <div className="menu-link">{text}</div>
         </Link>
     );
-};
+}
 
 MenuLink.displayName = 'MenuLink';
 

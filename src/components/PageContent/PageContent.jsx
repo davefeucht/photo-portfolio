@@ -1,25 +1,26 @@
-/*****************
+/** ***************
 * PageContent component implements displaying the content of a page in the application
-*****************/
+**************** */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import './PageContent.css';
 
-const PageContent = ({ content }) => {
+import PropTypes from 'prop-types';
+import React from 'react';
+
+function PageContent({ content }) {
     return (
-        <div 
+        <div
             className="page__content"
+            /* eslint-disable-next-line react/no-danger */
             dangerouslySetInnerHTML={{ __html: content }}
-        >
-        </div>
+        />
     );
-};
+}
 
 PageContent.displayName = 'PageContent';
 
 PageContent.propTypes = {
-    content: PropTypes.string
+    content: PropTypes.string.isRequired
 };
 
 export default PageContent;
