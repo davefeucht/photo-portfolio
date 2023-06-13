@@ -21,7 +21,7 @@ const prepNavigationItems = (totalPages, currentPageIndex) => {
     return navigationItems;
 };
 
-function PaginationNavigation({ totalPages, currentPageIndex, navigationFunction }) {
+const PaginationNavigation = ({ totalPages, currentPageIndex, navigationFunction }) => {
     return (
         <div className="pagination-navigation">
             <div className="pagination-navigation__content">
@@ -39,7 +39,7 @@ function PaginationNavigation({ totalPages, currentPageIndex, navigationFunction
             </div>
         </div>
     );
-}
+};
 
 PaginationNavigation.displayName = 'PaginationNavigation';
 

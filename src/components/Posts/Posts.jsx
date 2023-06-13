@@ -11,7 +11,7 @@ import React, { useEffect, useState } from 'react';
 import PaginationNavigation from '../PaginationNavigation/PaginationNavigation.jsx';
 import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
 
-function Posts({ stateStore }) {
+const Posts = ({ stateStore }) => {
     const [currentPageIndex, setCurrentPageIndex] = useState(1);
 
     const startIndex = (currentPageIndex - 1) * stateStore.maxItemsPerPage;
@@ -36,7 +36,7 @@ function Posts({ stateStore }) {
             <PaginationNavigation totalPages={stateStore.currentCategoryPosts.length / stateStore.maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={content => { setCurrentPageIndex(content); }} />
         </div>
     );
-}
+};
 
 Posts.displayName = 'Posts';
 

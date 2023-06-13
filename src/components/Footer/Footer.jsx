@@ -6,13 +6,13 @@ import './Footer.css';
 
 import React from 'react';
 
-function Footer() {
+const Footer = () => {
     return (
         <div className="footer">
             Theme Copyright @2021 Dave Feucht
         </div>
     );
-}
+};
 
 Footer.displayName = 'Footer';
 

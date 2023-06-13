@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react';
 import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail.jsx';
 import PaginationNavigation from '../PaginationNavigation/PaginationNavigation.jsx';
 
-function Categories({ stateStore }) {
+const Categories = ({ stateStore }) => {
     const [currentPageIndex, setCurrentPageIndex] = useState(1);
 
     const startIndex = (currentPageIndex - 1) * stateStore.maxItemsPerPage;
@@ -37,7 +37,7 @@ function Categories({ stateStore }) {
             <PaginationNavigation totalPages={stateStore.categoryList.length / stateStore.maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={content => { setCurrentPageIndex(content); }} />
         </div>
     );
-}
+};
 
 Categories.propTypes = {
     stateStore: PropTypes.object.isRequired

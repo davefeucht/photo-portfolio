@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import { getCategoryImage } from '../../utils/Api';
 import CategoryTitle from '../CategoryTitle/CategoryTitle.jsx';
 
-function CategoryThumbnail({ id, name, stateStore }) {
+const CategoryThumbnail = ({ id, name, stateStore }) => {
     const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
 
     if (!thumbnailImageUrl) {
@@ -31,7 +31,7 @@ function CategoryThumbnail({ id, name, stateStore }) {
             </div>
         </Link>
     );
-}
+};
 
 CategoryThumbnail.displayName = 'CategoryThumbnail';
 

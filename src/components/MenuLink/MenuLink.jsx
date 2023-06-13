@@ -8,13 +8,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function MenuLink({ href, text }) {
+const MenuLink = ({ href, text }) => {
     return (
         <Link to={`${href}`}>
             <div className="menu-link">{text}</div>
         </Link>
     );
-}
+};
 
 MenuLink.displayName = 'MenuLink';
 

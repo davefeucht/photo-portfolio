@@ -10,7 +10,7 @@ import React from 'react';
 
 import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow.jsx';
 
-function PostImage({ stateStore, previousPost, nextPost }) {
+const PostImage = ({ stateStore, previousPost, nextPost }) => {
     const onMouseOverHandler = () => {
         const arrows = document.querySelectorAll('.post-navigation-arrow');
         arrows.forEach(arrow => {
@@ -37,7 +37,7 @@ function PostImage({ stateStore, previousPost, nextPost }) {
             <PostNavigationArrow stateStore={stateStore} direction="next" postId={nextPost} />
         </div>
     );
-}
+};
 
 PostImage.displayName = 'PostImage';
 

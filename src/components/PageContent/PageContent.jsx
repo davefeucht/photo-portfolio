@@ -7,7 +7,7 @@ import './PageContent.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function PageContent({ content }) {
+const PageContent = ({ content }) => {
     return (
         <div
             className="page__content"
@@ -15,7 +15,7 @@ function PageContent({ content }) {
             dangerouslySetInnerHTML={{ __html: content }}
         />
     );
-}
+};
 
 PageContent.displayName = 'PageContent';
 

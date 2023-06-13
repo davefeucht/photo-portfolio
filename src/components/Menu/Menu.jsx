@@ -10,7 +10,7 @@ import React from 'react';
 
 import MenuLink from '../MenuLink/MenuLink.jsx';
 
-function Menu({ stateStore }) {
+const Menu = ({ stateStore }) => {
     const {
         menuState, toggleMenuState, categoryList, pages
     } = stateStore;
@@ -43,7 +43,7 @@ function Menu({ stateStore }) {
             </ul>
         </div>
     );
-}
+};
 
 Menu.displayName = 'Menu';
 

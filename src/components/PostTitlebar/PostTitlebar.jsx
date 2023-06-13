@@ -10,14 +10,14 @@ import React from 'react';
 
 import CloseButton from '../CloseButton/CloseButton.jsx';
 
-function PostTitlebar({ postTitle }) {
+const PostTitlebar = ({ postTitle }) => {
     return (
         <div className="post-titlebar">
             <div className="title">{postTitle}</div>
             <CloseButton />
         </div>
     );
-}
+};
 
 PostTitlebar.displayName = 'PostTitlebar';
 

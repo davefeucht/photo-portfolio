@@ -10,7 +10,7 @@ import React, { useEffect } from 'react';
 
 import { getSiteInfo } from '../../utils/Api';
 
-function TitleBar({ stateStore }) {
+const TitleBar = ({ stateStore }) => {
     const { menuState } = stateStore;
 
     const toggleMenu = () => {
@@ -35,7 +35,7 @@ function TitleBar({ stateStore }) {
             </div>
         </div>
     );
-}
+};
 
 TitleBar.displayName = 'TitleBar';
 

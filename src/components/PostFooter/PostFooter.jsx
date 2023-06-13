@@ -8,13 +8,13 @@ import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function PostFooter({ stateStore }) {
+const PostFooter = ({ stateStore }) => {
     return (
         <div className="post-footer">
             <div className="labels">{stateStore.visiblePost.tagNames.join(', ')}</div>
         </div>
     );
-}
+};
 
 PostFooter.displayName = 'PostFooter';
 

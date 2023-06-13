@@ -13,7 +13,7 @@ import { getPage } from '../../utils/Api.js';
 import PageContent from '../PageContent/PageContent.jsx';
 import SectionHeader from '../SectionHeader/SectionHeader.jsx';
 
-function Page({ stateStore }) {
+const Page = ({ stateStore }) => {
     const { pageId } = useParams();
     const { currentPageData } = stateStore;
 
@@ -30,7 +30,7 @@ function Page({ stateStore }) {
             <PageContent content={currentPageData.content?.rendered} />
         </div>
     );
-}
+};
 
 Page.displayName = 'Page';
 

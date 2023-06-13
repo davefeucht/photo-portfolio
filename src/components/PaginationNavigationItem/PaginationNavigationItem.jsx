@@ -7,9 +7,9 @@ import './PaginationNavigationItem.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function PaginationNavigationItem({
+const PaginationNavigationItem = ({
     content, selectedState, navigationFunction, isLast
-}) {
+}) => {
     return (
         <div
             className={`pagination-navigation__item ${selectedState}`}
@@ -19,7 +19,7 @@ function PaginationNavigationItem({
             {!isLast ? ' • ' : ''}
         </div>
     );
-}
+};
 
 PaginationNavigationItem.displayName = 'PaginationNavigationItem';
 

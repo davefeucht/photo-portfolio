@@ -7,7 +7,7 @@ import './CloseButton.css';
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-function CloseButton() {
+const CloseButton = () => {
     const { categoryId } = useParams();
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function CloseButton() {
             </Link>
         </div>
     );
-}
+};
 
 CloseButton.displayName = 'CloseButton';
 

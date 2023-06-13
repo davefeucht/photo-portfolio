@@ -7,13 +7,13 @@ import './SectionHeader.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function SectionHeader({ title }) {
+const SectionHeader = ({ title }) => {
     return (
         <div className="section-header">
             <div className="title">{title}</div>
         </div>
     );
-}
+};
 
 SectionHeader.displayName = 'SectionHeader';
 

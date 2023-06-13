@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-function PostNavigationArrow({ stateStore, direction, postId }) {
+const PostNavigationArrow = ({ stateStore, direction, postId }) => {
     const { categoryId } = useParams();
 
     // TODO: calc this based on a height variable, not just a hard-coded 41
@@ -35,7 +35,7 @@ function PostNavigationArrow({ stateStore, direction, postId }) {
             {getContent()}
         </div>
     );
-}
+};
 
 PostNavigationArrow.displayName = 'PostNavigationArrow';
 

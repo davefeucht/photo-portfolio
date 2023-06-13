@@ -22,7 +22,7 @@ import PostTitlebar from '../PostTitlebar/PostTitlebar.jsx';
 
 const image = document.createElement('img');
 
-function Post({ stateStore }) {
+const Post = ({ stateStore }) => {
     const { categoryId, postId } = useParams();
     const parsedPostId = parseInt(postId);
     const navigate = useNavigate();
@@ -94,7 +94,7 @@ function Post({ stateStore }) {
             </div>
         </div>
     );
-}
+};
 
 Post.displayName = 'Post';
 

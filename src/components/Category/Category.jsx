@@ -16,7 +16,7 @@ import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api.js'
 import Posts from '../Posts/Posts.jsx';
 import SectionHeader from '../SectionHeader/SectionHeader.jsx';
 
-function Category({ stateStore }) {
+const Category = ({ stateStore }) => {
     const { categoryId } = useParams();
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function Category({ stateStore }) {
             <Outlet />
         </div>
     );
-}
+};
 
 Category.displayName = 'Category';
 

@@ -7,8 +7,8 @@ import './PhotoPortfolio.css';
 
 import { reaction, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import { useEffect } from 'react';
 import {
     Route,
     Routes,
@@ -16,6 +16,7 @@ import {
 } from 'react-router-dom';
 
 import { getCategories, getPages } from '../../utils/Api';
+import { Store } from '../../utils/types';
 import Categories from '../Categories/Categories.jsx';
 import Category from '../Category/Category.jsx';
 import Footer from '../Footer/Footer.jsx';
@@ -24,7 +25,11 @@ import Page from '../Page/Page.jsx';
 import Post from '../Post/Post.jsx';
 import TitleBar from '../TitleBar/TitleBar.jsx';
 
-function PhotoPortfolio({ stateStore }) {
+interface PhotoPortfolioProps {
+    stateStore: Store
+}
+
+const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
     const { categoryId, pageId } = useParams();
 
     const setScreenSize = () => {
@@ -34,11 +39,11 @@ function PhotoPortfolio({ stateStore }) {
         });
     };
 
-    const setColumns = (width, height) => {
+    const setColumns = (width: number, height: number) => {
         if ((width < height)) {
-            document.body.style.setProperty('--number-of-columns', 2);
+            document.body.style.setProperty('--number-of-columns', '2');
         } else {
-            document.body.style.setProperty('--number-of-columns', 5);
+            document.body.style.setProperty('--number-of-columns', '5');
         }
     };
 
@@ -57,7 +62,7 @@ function PhotoPortfolio({ stateStore }) {
         setColumns(stateStore.screenInfo.width, stateStore.screenInfo.height);
         const disposer = reaction(
             () => [stateStore.applicationRoot.clientWidth, stateStore.applicationRoot.clientHeight],
-            () => setScreenSize(stateStore.applicationRoot.clientWidth, stateStore.applicationRoot.clientHeight)
+            () => setScreenSize()
         );
         const disposer2 = reaction(
             () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
@@ -98,12 +103,8 @@ function PhotoPortfolio({ stateStore }) {
             <Footer />
         </div>
     );
-}
+};
 
 PhotoPortfolio.displayName = 'PhotoPortfolio';
-
-PhotoPortfolio.propTypes = {
-    stateStore: PropTypes.object.isRequired
-};
 
 export default observer(PhotoPortfolio);
