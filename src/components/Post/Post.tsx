@@ -6,8 +6,8 @@ import './Post.css';
 
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { getPost, getPostImage, getTagNames } from '../../utils/Api';
@@ -16,23 +16,27 @@ import {
     getPreviousPost,
     setPostRect
 } from '../../utils/PostHelper';
-import PostFooter from '../PostFooter/PostFooter.jsx';
-import PostImage from '../PostImage/PostImage.jsx';
-import PostTitlebar from '../PostTitlebar/PostTitlebar.jsx';
+import { Store } from '../../utils/types';
+import PostFooter from '../PostFooter/PostFooter';
+import PostImage from '../PostImage/PostImage';
+import PostTitlebar from '../PostTitlebar/PostTitlebar';
 
 const image = document.createElement('img');
 
-function Post({ stateStore }) {
+interface PostProps {
+    stateStore: Store
+}
+
+const Post: React.FC<PostProps> = ({ stateStore }) => {
     const { categoryId, postId } = useParams();
-    const parsedPostId = parseInt(postId);
     const navigate = useNavigate();
-    let element = null;
+    let element: HTMLElement = null;
 
     const closeModalHandler = () => {
         navigate(`/category/${categoryId}`);
     };
 
-    const stopPropagation = e => {
+    const stopPropagation = (e: React.MouseEvent) => {
         e.stopPropagation();
     };
 
@@ -84,22 +88,18 @@ function Post({ stateStore }) {
     return (
         <div className="post-background" onClick={closeModalHandler}>
             <div className="post" onClick={stopPropagation}>
-                <PostTitlebar postTitle={stateStore.visiblePost.title && stateStore.visiblePost.title.rendered} />
+                <PostTitlebar postTitle={stateStore.visiblePost.postTitle} />
                 <PostImage
                     stateStore={stateStore}
-                    previousPost={getPreviousPost(parsedPostId, stateStore.currentCategoryPosts)}
-                    nextPost={getNextPost(parsedPostId, stateStore.currentCategoryPosts)}
+                    previousPost={getPreviousPost(postId, stateStore.currentCategoryPosts)}
+                    nextPost={getNextPost(postId, stateStore.currentCategoryPosts)}
                 />
                 <PostFooter stateStore={stateStore} />
             </div>
         </div>
     );
-}
+};
 
 Post.displayName = 'Post';
-
-Post.propTypes = {
-    stateStore: PropTypes.object.isRequired
-};
 
 export default observer(Post);

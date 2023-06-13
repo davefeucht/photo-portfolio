@@ -4,21 +4,20 @@
 
 import './CategoryTitle.css';
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-function CategoryTitle({ title }) {
+interface CategoryTitleProps {
+    title: string
+}
+
+const CategoryTitle: React.FC<CategoryTitleProps> = ({ title }) => {
     return (
         <div className="category-title">
             <div className="category-title-text">{title}</div>
         </div>
     );
-}
+};
 
 CategoryTitle.displayName = 'CategoryTitle';
-
-CategoryTitle.propTypes = {
-    title: PropTypes.string.isRequired
-};
 
 export default CategoryTitle;

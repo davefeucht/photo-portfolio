@@ -4,12 +4,18 @@
 
 import './PaginationNavigationItem.css';
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-function PaginationNavigationItem({
+interface PaginationNavigationItemProps {
+    content: string,
+    selectedState: string,
+    navigationFunction(content: number): void,
+    isLast: boolean
+}
+
+const PaginationNavigationItem: React.FC<PaginationNavigationItemProps> = ({
     content, selectedState, navigationFunction, isLast
-}) {
+}) => {
     return (
         <div
             className={`pagination-navigation__item ${selectedState}`}
@@ -19,15 +25,8 @@ function PaginationNavigationItem({
             {!isLast ? ' • ' : ''}
         </div>
     );
-}
+};
 
 PaginationNavigationItem.displayName = 'PaginationNavigationItem';
-
-PaginationNavigationItem.propTypes = {
-    content: PropTypes.string.isRequired,
-    selectedState: PropTypes.string.isRequired,
-    navigationFunction: PropTypes.func.isRequired,
-    isLast: PropTypes.bool.isRequired
-};
 
 export default PaginationNavigationItem;

@@ -1,26 +1,31 @@
 import { configure, makeAutoObservable } from 'mobx';
+
 import {
-    ImageData,
-    Store,
-    VisiblePost,
     Category,
+    ImageData,
+    Page,
     Post,
-    Page
+    Store,
+    VisiblePost
 } from '../utils/types';
 
 configure({ enforceActions: 'observed' });
 
 class stateStore implements Store {
-    menuState = 'closed'
+    menuState = 'closed';
+
     applicationRoot: HTMLElement = null;
+
     screenInfo: {
         width: number,
         height: number
-    }
+    };
+
     siteInfo: {
         siteName: string,
         siteUrl: string
-    }
+    };
+
     visiblePost: {
         postId: number,
         postTitle: string,
@@ -28,10 +33,14 @@ class stateStore implements Store {
         tagNames: string[],
         fullImageUrl: string,
         width: number,
-        height: number
+        height: number,
+        featured_media: number
     };
+
     categoryList: Category[] = [];
+
     currentCategoryPosts: Post[] = [];
+
     currentCategoryData: Category = {
         id: 0,
         count: 0,
@@ -42,7 +51,9 @@ class stateStore implements Store {
         taxonomy: '',
         parent: 0
     };
+
     pages: Page[] = [];
+
     currentPageData: Page = {
         id: 0,
         link: '',
@@ -59,6 +70,7 @@ class stateStore implements Store {
         author: 0,
         featured_media: 0
     };
+
     maxItemsPerPage = 10;
 
     constructor() {
@@ -82,7 +94,8 @@ class stateStore implements Store {
             tagNames: [],
             fullImageUrl: null,
             width: null,
-            height: null
+            height: null,
+            featured_media: null
         };
 
         this.categoryList = [];
@@ -114,85 +127,92 @@ class stateStore implements Store {
             author: 0,
             featured_media: 0
         };
-        this.maxItemsPerPage = 10
+        this.maxItemsPerPage = 10;
 
         makeAutoObservable(this);
     }
 
     setMenuState = (state: string) => {
         this.menuState = state;
-    }
+    };
 
     toggleMenuState = () => {
         this.menuState = this.menuState === 'closed' ? 'open' : 'closed';
-    }
+    };
 
     setApplicationRoot = (element: HTMLElement) => {
         this.applicationRoot = element;
-    }
+    };
 
     setSiteName = (name: string) => {
         this.siteInfo.siteName = name;
-    }
+    };
 
     setVisiblePost = (postId: number, postTitle: string) => {
         this.visiblePost.postId = postId;
         this.visiblePost.postTitle = postTitle;
-    }
+    };
 
     setVisiblePostImage = (fullImageUrl: string) => {
         this.visiblePost.fullImageUrl = fullImageUrl;
-    }
+    };
 
     setVisiblePostTags = (tagNames: string[]) => {
         tagNames.forEach(tagName => {
             this.visiblePost.tagNames.push(tagName);
         });
-    }
+    };
 
     clearVisiblePostTagNames = () => {
         this.visiblePost.tagNames.splice(0, this.visiblePost.tagNames.length);
-    }
+    };
 
     setCategoryList = (categories: Category[]) => {
         this.categoryList.length = 0;
         categories.forEach((category, index) => {
             this.categoryList[index] = category;
-        })
-    }
+        });
+    };
 
     setCategoryPosts = (posts: Post[]) => {
         this.currentCategoryPosts.length = 0;
         posts.forEach((post, index) => {
             this.currentCategoryPosts[index] = post;
-        })
-    }
+        });
+    };
 
     setCategoryData = (categoryData: Category) => {
         this.currentCategoryData = categoryData;
-    }
+    };
 
     setThumbnailImageUrl = (imageData: ImageData) => {
         this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
-    }
+    };
 
-    setCurrentPost = (postData: VisiblePost) => {
-        if (!postData.tagNames) {
-            postData.tagNames = [];
-        }
+    setCurrentPost = (postData: Post) => {
+        const visiblePostData: VisiblePost = {
+            postId: parseInt(postData.id),
+            postTitle: postData.title.rendered,
+            tags: postData.tags,
+            tagNames: [],
+            fullImageUrl: null,
+            width: 0,
+            height: 0,
+            featured_media: postData.featured_media
+        };
 
-        this.visiblePost = postData;
-    }
+        this.visiblePost = visiblePostData;
+    };
 
     setPages = (pages: Page[]) => {
         pages.forEach(page => {
             this.pages.push(page);
         });
-    }
+    };
 
     setPageData = (pageData: Page) => {
         Object.assign(this.currentPageData, pageData);
-    }
+    };
 }
 
 export default stateStore;

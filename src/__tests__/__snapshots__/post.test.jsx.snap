@@ -39,43 +39,9 @@ exports[`Post displays 1`] = `
       onMouseOut={[Function]}
       onMouseOver={[Function]}
     >
-      <div
-        className="post-navigation-arrow disabled previous"
-        style={
-          {
-            "left": "0px",
-            "top": "0px",
-          }
-        }
-      >
-        <div
-          className="arrow"
-        >
-          <img
-            src="./assets/images/chevron.svg"
-          />
-        </div>
-      </div>
       <img
         src={null}
       />
-      <div
-        className="post-navigation-arrow disabled next"
-        style={
-          {
-            "right": "0px",
-            "top": "0px",
-          }
-        }
-      >
-        <div
-          className="arrow"
-        >
-          <img
-            src="./assets/images/chevron.svg"
-          />
-        </div>
-      </div>
     </div>
     <div
       className="post-footer"

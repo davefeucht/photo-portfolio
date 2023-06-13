@@ -12,8 +12,12 @@ exports[`PhotoPortfolio displays 1`] = `
       onClick={[Function]}
     >
       <img
-        border="0"
         src="./assets/images/hamburger_icon.svg"
+        style={
+          {
+            "border": 0,
+          }
+        }
       />
     </div>
     <div>
@@ -79,7 +83,7 @@ exports[`PhotoPortfolio displays 1`] = `
   <div
     className="footer"
   >
-    Theme Copyright @2021 Dave Feucht
+    Theme Copyright @2023 Dave Feucht
   </div>
 </div>
 `;

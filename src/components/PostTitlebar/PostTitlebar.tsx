@@ -5,28 +5,23 @@
 import './PostTitlebar.css';
 
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-import CloseButton from '../CloseButton/CloseButton.jsx';
+import CloseButton from '../CloseButton/CloseButton';
 
-function PostTitlebar({ postTitle }) {
+interface PostTitlebarProps {
+    postTitle: string
+}
+
+const PostTitlebar: React.FC<PostTitlebarProps> = ({ postTitle = null }) => {
     return (
         <div className="post-titlebar">
             <div className="title">{postTitle}</div>
             <CloseButton />
         </div>
     );
-}
+};
 
 PostTitlebar.displayName = 'PostTitlebar';
-
-PostTitlebar.propTypes = {
-    postTitle: PropTypes.string
-};
-
-PostTitlebar.defaultProps = {
-    postTitle: null
-};
 
 export default observer(PostTitlebar);

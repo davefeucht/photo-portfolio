@@ -4,6 +4,6 @@ exports[`Footer displays 1`] = `
 <div
   className="footer"
 >
-  Theme Copyright @2021 Dave Feucht
+  Theme Copyright @2023 Dave Feucht
 </div>
 `;

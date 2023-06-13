@@ -5,22 +5,27 @@
 import './Posts.css';
 
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 
-import PaginationNavigation from '../PaginationNavigation/PaginationNavigation.jsx';
-import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
+import { Store } from '../../utils/types';
+import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
+import PostThumbnail from '../PostThumbnail/PostThumbnail';
 
-function Posts({ stateStore }) {
+interface PostsProps {
+    stateStore: Store
+}
+
+const Posts: React.FC<PostsProps> = ({ stateStore }) => {
     const [currentPageIndex, setCurrentPageIndex] = useState(1);
 
     const startIndex = (currentPageIndex - 1) * stateStore.maxItemsPerPage;
     const endIndex = startIndex + stateStore.maxItemsPerPage;
 
     const setRows = () => {
-        const numberOfColumns = document.body.style.getPropertyValue('--number-of-columns');
+        const numberOfColumns = parseInt(document.body.style.getPropertyValue('--number-of-columns'));
         const numberOfPosts = stateStore.maxItemsPerPage;
-        document.body.style.setProperty('--number-of-rows', numberOfPosts / numberOfColumns);
+        document.body.style.setProperty('--number-of-rows', `${numberOfPosts / numberOfColumns}`);
     };
 
     useEffect(() => {
@@ -36,12 +41,8 @@ function Posts({ stateStore }) {
             <PaginationNavigation totalPages={stateStore.currentCategoryPosts.length / stateStore.maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={content => { setCurrentPageIndex(content); }} />
         </div>
     );
-}
+};
 
 Posts.displayName = 'Posts';
-
-Posts.propTypes = {
-    stateStore: PropTypes.object.isRequired
-};
 
 export default observer(Posts);

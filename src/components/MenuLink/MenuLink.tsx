@@ -4,23 +4,22 @@
 
 import './MenuLink.css';
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-function MenuLink({ href, text }) {
+interface MenuLinkProps {
+    href: string,
+    text: string
+}
+
+const MenuLink: React.FC<MenuLinkProps> = ({ href, text }) => {
     return (
         <Link to={`${href}`}>
             <div className="menu-link">{text}</div>
         </Link>
     );
-}
+};
 
 MenuLink.displayName = 'MenuLink';
-
-MenuLink.propTypes = {
-    href: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired
-};
 
 export default MenuLink;

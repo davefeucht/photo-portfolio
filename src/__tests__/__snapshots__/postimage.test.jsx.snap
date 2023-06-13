@@ -6,52 +6,8 @@ exports[`PostImage displays 1`] = `
   onMouseOut={[Function]}
   onMouseOver={[Function]}
 >
-  <div
-    className="post-navigation-arrow active previous"
-    style={
-      {
-        "left": "0px",
-        "top": "0px",
-      }
-    }
-  >
-    <a
-      href="/category/undefined/post/34"
-      onClick={[Function]}
-    >
-      <div
-        className="arrow"
-      >
-        <img
-          src="./assets/images/chevron.svg"
-        />
-      </div>
-    </a>
-  </div>
   <img
     src={null}
   />
-  <div
-    className="post-navigation-arrow active next"
-    style={
-      {
-        "right": "0px",
-        "top": "0px",
-      }
-    }
-  >
-    <a
-      href="/category/undefined/post/36"
-      onClick={[Function]}
-    >
-      <div
-        className="arrow"
-      >
-        <img
-          src="./assets/images/chevron.svg"
-        />
-      </div>
-    </a>
-  </div>
 </div>
 `;

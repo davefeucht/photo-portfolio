@@ -3,7 +3,6 @@ import { runInAction } from 'mobx';
 import { getPost } from './Api';
 import {
     Post,
-    Image,
     Store
 } from './types';
 
@@ -12,7 +11,7 @@ export const getPostInfo = (postId: string, stateStore: object) => {
     runInAction(() => {
         getPost(parsedPostId, stateStore);
     });
-}
+};
 
 export const getNextPost = (postId: string, currentCategoryPosts: Post[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
@@ -23,7 +22,7 @@ export const getNextPost = (postId: string, currentCategoryPosts: Post[]) => {
     }
     const nextId = currentCategoryPosts[currentIndex + 1].id;
     return nextId;
-}
+};
 
 export const getPreviousPost = (postId: string, currentCategoryPosts: Post[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
@@ -33,7 +32,7 @@ export const getPreviousPost = (postId: string, currentCategoryPosts: Post[]) =>
     }
     const previousId = currentCategoryPosts[currentIndex - 1].id;
     return previousId;
-}
+};
 
 const getPostSize = (screenWidth: number, screenHeight: number, imageWidth: number, imageHeight: number, stateStore: Store) => {
     const postTitlebar = document.querySelector('.post-titlebar');
@@ -62,10 +61,10 @@ const getPostSize = (screenWidth: number, screenHeight: number, imageWidth: numb
     runInAction(() => {
         stateStore.visiblePost.width = width;
         stateStore.visiblePost.height = height;
-    })
+    });
 
     return rect;
-}
+};
 
 const getPostPosition = (screenWidth: number, screenHeight: number, postWidth: number, postHeight: number) => {
     const position = {
@@ -76,9 +75,9 @@ const getPostPosition = (screenWidth: number, screenHeight: number, postWidth: n
     position.top = `${(screenHeight - postHeight) / 2}px`;
 
     return position;
-}
+};
 
-export const setPostRect = (image: Image, screenWidth: number, screenHeight: number, stateStore: Store) => {
+export const setPostRect = (image: HTMLImageElement, screenWidth: number, screenHeight: number, stateStore: Store) => {
     const postElement = document.querySelector('.post') as HTMLElement;
     const imageElement = document.querySelector('.post-image > img') as HTMLElement;
     const backgroundElement = document.querySelector('.post-background') as HTMLElement;
@@ -92,4 +91,4 @@ export const setPostRect = (image: Image, screenWidth: number, screenHeight: num
     const position = getPostPosition(screenWidth, screenHeight, rect.width, rect.height);
     postElement.style.left = position.left;
     postElement.style.top = position.top;
-}
+};

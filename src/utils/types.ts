@@ -30,7 +30,8 @@ export interface VisiblePost {
     tagNames: string[],
     fullImageUrl: string,
     width: number,
-    height: number
+    height: number,
+    featured_media: number
 }
 
 export interface Post {
@@ -58,16 +59,6 @@ export interface Page {
     content: PostContent,
     author: number,
     featured_media: number
-}
-
-export interface Image {
-    postId: number,
-    postTitle: string,
-    tags: number[],
-    tagNames: string[],
-    fullImageUrl: string,
-    width: number,
-    height: number
 }
 
 export interface ScreenInfo {
@@ -104,7 +95,7 @@ export interface Store {
     setCategoryPosts(posts: Post[]): void,
     setCategoryData(categoryData: Category): void,
     setThumbnailImageUrl(imageData: ImageData): void,
-    setCurrentPost(postData: VisiblePost): void,
+    setCurrentPost(postData: Post): void,
     setPages(pages: Page[]): void,
     setPageData(pageData: Page): void
 }

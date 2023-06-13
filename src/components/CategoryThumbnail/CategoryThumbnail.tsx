@@ -5,14 +5,21 @@
 import './CategoryThumbnail.css';
 
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getCategoryImage } from '../../utils/Api';
-import CategoryTitle from '../CategoryTitle/CategoryTitle.jsx';
+import { Store } from '../../utils/types';
+import CategoryTitle from '../CategoryTitle/CategoryTitle';
 
-function CategoryThumbnail({ id, name, stateStore }) {
+interface CategoryThumbnailProps {
+    id: number,
+    name: string,
+    stateStore: Store
+}
+
+const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name, stateStore }) => {
     const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
 
     if (!thumbnailImageUrl) {
@@ -31,14 +38,8 @@ function CategoryThumbnail({ id, name, stateStore }) {
             </div>
         </Link>
     );
-}
+};
 
 CategoryThumbnail.displayName = 'CategoryThumbnail';
-
-CategoryThumbnail.propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    stateStore: PropTypes.object.isRequired
-};
 
 export default observer(CategoryThumbnail);

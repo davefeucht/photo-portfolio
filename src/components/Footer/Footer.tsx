@@ -4,15 +4,15 @@
 
 import './Footer.css';
 
-import React from 'react';
+import * as React from 'react';
 
-function Footer() {
+const Footer = () => {
     return (
         <div className="footer">
-            Theme Copyright @2021 Dave Feucht
+            Theme Copyright @2023 Dave Feucht
         </div>
     );
-}
+};
 
 Footer.displayName = 'Footer';
 

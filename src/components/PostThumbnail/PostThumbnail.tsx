@@ -5,31 +5,31 @@
 import './PostThumbnail.css';
 
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function PostThumbnail({ stateStore, id, index }) {
+import { Store } from '../../utils/types';
+
+interface PostThumbnailProps {
+    stateStore: Store,
+    id: string,
+    index: number
+}
+
+const PostThumbnail: React.FC<PostThumbnailProps> = ({ stateStore, id, index }) => {
     const divStyle = { backgroundImage: `url(${stateStore.currentCategoryPosts[index].thumbnail_image ? stateStore.currentCategoryPosts[index].thumbnail_image : ''})` };
     const location = useLocation();
 
     return (
-        <Link to={{
-            pathname: `post/${id}`,
-            state: { background: location }
-        }}
+        <Link
+            to={{ pathname: `post/${id}` }}
+            state={{ background: location }}
         >
             <div className="post-thumbnail" style={divStyle} />
         </Link>
     );
-}
+};
 
 PostThumbnail.displayName = 'PostThumbnail';
-
-PostThumbnail.propTypes = {
-    stateStore: PropTypes.object.isRequired,
-    id: PropTypes.number.isRequired,
-    index: PropTypes.number.isRequired
-};
 
 export default observer(PostThumbnail);
