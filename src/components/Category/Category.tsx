@@ -5,18 +5,23 @@
 import './Category.css';
 
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import { useEffect } from 'react';
 import {
     Outlet,
     useParams
 } from 'react-router-dom';
 
 import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api.js';
-import Posts from '../Posts/Posts.jsx';
-import SectionHeader from '../SectionHeader/SectionHeader.jsx';
+import { Store } from '../../utils/types';
+import Posts from '../Posts/Posts';
+import SectionHeader from '../SectionHeader/SectionHeader';
 
-const Category = ({ stateStore }) => {
+interface CategoryProps {
+    stateStore: Store
+}
+
+const Category: React.FC<CategoryProps> = ({ stateStore }) => {
     const { categoryId } = useParams();
 
     useEffect(() => {
@@ -38,17 +43,13 @@ const Category = ({ stateStore }) => {
 
     return (
         <div className="category">
-            <SectionHeader stateStore={stateStore} title={stateStore.currentCategoryData.name} />
-            <Posts stateStore={stateStore} categoryId={categoryId} />
+            <SectionHeader title={stateStore.currentCategoryData.name} />
+            <Posts stateStore={stateStore} />
             <Outlet />
         </div>
     );
 };
 
 Category.displayName = 'Category';
-
-Category.propTypes = {
-    stateStore: PropTypes.object.isRequired
-};
 
 export default observer(Category);

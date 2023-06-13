@@ -16,9 +16,9 @@ import {
     getPreviousPost,
     setPostRect
 } from '../../utils/PostHelper';
-import PostFooter from '../PostFooter/PostFooter.jsx';
-import PostImage from '../PostImage/PostImage.jsx';
-import PostTitlebar from '../PostTitlebar/PostTitlebar.jsx';
+import PostFooter from '../PostFooter/PostFooter';
+import PostImage from '../PostImage/PostImage';
+import PostTitlebar from '../PostTitlebar/PostTitlebar';
 
 const image = document.createElement('img');
 

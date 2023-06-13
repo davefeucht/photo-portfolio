@@ -4,12 +4,17 @@
 
 import './PaginationNavigation.css';
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-import PaginationNavigationItem from '../PaginationNavigationItem/PaginationNavigationItem.jsx';
+import PaginationNavigationItem from '../PaginationNavigationItem/PaginationNavigationItem';
 
-const prepNavigationItems = (totalPages, currentPageIndex) => {
+interface PaginationNavigationProps {
+    totalPages: number,
+    currentPageIndex: number,
+    navigationFunction(content: number): void
+}
+
+const prepNavigationItems = (totalPages: number, currentPageIndex: number) => {
     const navigationItems = [];
     for (let i = 0; i < totalPages; i++) {
         navigationItems.push({
@@ -21,7 +26,7 @@ const prepNavigationItems = (totalPages, currentPageIndex) => {
     return navigationItems;
 };
 
-const PaginationNavigation = ({ totalPages, currentPageIndex, navigationFunction }) => {
+const PaginationNavigation: React.FC<PaginationNavigationProps> = ({ totalPages, currentPageIndex, navigationFunction }) => {
     return (
         <div className="pagination-navigation">
             <div className="pagination-navigation__content">
@@ -42,11 +47,5 @@ const PaginationNavigation = ({ totalPages, currentPageIndex, navigationFunction
 };
 
 PaginationNavigation.displayName = 'PaginationNavigation';
-
-PaginationNavigation.propTypes = {
-    totalPages: PropTypes.number.isRequired,
-    currentPageIndex: PropTypes.number.isRequired,
-    navigationFunction: PropTypes.func.isRequired
-};
 
 export default PaginationNavigation;

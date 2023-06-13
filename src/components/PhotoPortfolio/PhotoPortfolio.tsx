@@ -17,13 +17,13 @@ import {
 
 import { getCategories, getPages } from '../../utils/Api';
 import { Store } from '../../utils/types';
-import Categories from '../Categories/Categories.jsx';
-import Category from '../Category/Category.jsx';
-import Footer from '../Footer/Footer.jsx';
-import Menu from '../Menu/Menu.jsx';
-import Page from '../Page/Page.jsx';
-import Post from '../Post/Post.jsx';
-import TitleBar from '../TitleBar/TitleBar.jsx';
+import Categories from '../Categories/Categories';
+import Category from '../Category/Category';
+import Footer from '../Footer/Footer';
+import Menu from '../Menu/Menu';
+import Page from '../Page/Page';
+import Post from '../Post/Post';
+import TitleBar from '../TitleBar/TitleBar';
 
 interface PhotoPortfolioProps {
     stateStore: Store

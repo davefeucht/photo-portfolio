@@ -4,10 +4,13 @@
 
 import './SectionHeader.css';
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-const SectionHeader = ({ title }) => {
+interface SectionHeaderProps {
+    title: string
+}
+
+const SectionHeader: React.FC<SectionHeaderProps> = ({ title }) => {
     return (
         <div className="section-header">
             <div className="title">{title}</div>
@@ -16,9 +19,5 @@ const SectionHeader = ({ title }) => {
 };
 
 SectionHeader.displayName = 'SectionHeader';
-
-SectionHeader.propTypes = {
-    title: PropTypes.string.isRequired
-};
 
 export default SectionHeader;

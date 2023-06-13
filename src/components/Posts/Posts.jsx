@@ -8,8 +8,8 @@ import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
-import PaginationNavigation from '../PaginationNavigation/PaginationNavigation.jsx';
-import PostThumbnail from '../PostThumbnail/PostThumbnail.jsx';
+import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
+import PostThumbnail from '../PostThumbnail/PostThumbnail';
 
 const Posts = ({ stateStore }) => {
     const [currentPageIndex, setCurrentPageIndex] = useState(1);

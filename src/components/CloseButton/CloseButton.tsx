@@ -4,15 +4,12 @@
 
 import './CloseButton.css';
 
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const CloseButton = () => {
     const { categoryId } = useParams();
 
-    useEffect(() => {
-        document.querySelector('.close-button').style.width = `${document.querySelector('.close-button').clientHeight}px`;
-    });
     return (
         <div className="close-button">
             <Link to={`/category/${categoryId}`}>
