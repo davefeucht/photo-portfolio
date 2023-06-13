@@ -5,12 +5,16 @@
 import './Menu.css';
 
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-import MenuLink from '../MenuLink/MenuLink.jsx';
+import { Store } from '../../utils/types';
+import MenuLink from '../MenuLink/MenuLink';
 
-const Menu = ({ stateStore }) => {
+interface MenuProps {
+    stateStore: Store
+}
+
+const Menu: React.FC<MenuProps> = ({ stateStore }) => {
     const {
         menuState, toggleMenuState, categoryList, pages
     } = stateStore;
@@ -46,9 +50,5 @@ const Menu = ({ stateStore }) => {
 };
 
 Menu.displayName = 'Menu';
-
-Menu.propTypes = {
-    stateStore: PropTypes.object.isRequired
-};
 
 export default observer(Menu);

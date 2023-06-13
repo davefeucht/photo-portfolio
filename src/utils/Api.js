@@ -97,13 +97,14 @@ export const getPostImage = async (image, siteUrl) => {
 
 export const getTagNames = async (tags, siteUrl) => {
     const tagNames = [];
-    for (const tagId of tags) {
-        const getTagNameURI = `https://${siteUrl}/wp-json/wp/v2/tags/${tagId}`;
-        axios.get(getTagNameURI)
+    const tagPromises = tags.map(async tagId => {
+        return axios.get(`https://${siteUrl}/wp-json/wp/v2/tags/${tagId}`)
             .then(response => {
                 tagNames.push(response.data.name);
             });
-    }
+    });
+
+    await Promise.all(tagPromises);
 
     return tagNames;
 };

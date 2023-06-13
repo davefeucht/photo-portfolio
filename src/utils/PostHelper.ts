@@ -2,7 +2,6 @@ import { runInAction } from 'mobx';
 
 import { getPost } from './Api';
 import {
-    Image,
     Post,
     Store
 } from './types';
@@ -78,7 +77,7 @@ const getPostPosition = (screenWidth: number, screenHeight: number, postWidth: n
     return position;
 };
 
-export const setPostRect = (image: Image, screenWidth: number, screenHeight: number, stateStore: Store) => {
+export const setPostRect = (image: HTMLImageElement, screenWidth: number, screenHeight: number, stateStore: Store) => {
     const postElement = document.querySelector('.post') as HTMLElement;
     const imageElement = document.querySelector('.post-image > img') as HTMLElement;
     const backgroundElement = document.querySelector('.post-background') as HTMLElement;

@@ -23,6 +23,12 @@
 
 .post-navigation-arrow.disabled {
   cursor: default;
+  opacity: 0.5;
+}
+
+.post-navigation-arrow.active {
+  cursor: default;
+  opacity: 1;
 }
 
 .post-navigation-arrow > .arrow {

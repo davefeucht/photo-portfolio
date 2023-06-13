@@ -5,11 +5,18 @@
 import './PostNavigationArrow.css';
 
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const PostNavigationArrow = ({ stateStore, direction, postId }) => {
+import { Store } from '../../utils/types';
+
+interface PostNavigationArrowProps {
+    stateStore: Store,
+    direction: string,
+    postId: string
+}
+
+const PostNavigationArrow: React.FC<PostNavigationArrowProps> = ({ stateStore, direction, postId }) => {
     const { categoryId } = useParams();
 
     // TODO: calc this based on a height variable, not just a hard-coded 41
@@ -38,15 +45,5 @@ const PostNavigationArrow = ({ stateStore, direction, postId }) => {
 };
 
 PostNavigationArrow.displayName = 'PostNavigationArrow';
-
-PostNavigationArrow.propTypes = {
-    stateStore: PropTypes.object.isRequired,
-    direction: PropTypes.string.isRequired,
-    postId: PropTypes.number
-};
-
-PostNavigationArrow.defaultProps = {
-    postId: null
-};
 
 export default observer(PostNavigationArrow);

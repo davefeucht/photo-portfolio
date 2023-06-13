@@ -9,8 +9,12 @@ exports[`Titlebar displays 1`] = `
     onClick={[Function]}
   >
     <img
-      border="0"
       src="./assets/images/hamburger_icon.svg"
+      style={
+        {
+          "border": 0,
+        }
+      }
     />
   </div>
   <div>

@@ -33,7 +33,8 @@ class stateStore implements Store {
         tagNames: string[],
         fullImageUrl: string,
         width: number,
-        height: number
+        height: number,
+        featured_media: number
     };
 
     categoryList: Category[] = [];
@@ -93,7 +94,8 @@ class stateStore implements Store {
             tagNames: [],
             fullImageUrl: null,
             width: null,
-            height: null
+            height: null,
+            featured_media: null
         };
 
         this.categoryList = [];
@@ -187,12 +189,19 @@ class stateStore implements Store {
         this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
     };
 
-    setCurrentPost = (postData: VisiblePost) => {
-        if (!postData.tagNames) {
-            postData.tagNames = [];
-        }
+    setCurrentPost = (postData: Post) => {
+        const visiblePostData: VisiblePost = {
+            postId: parseInt(postData.id),
+            postTitle: postData.title.rendered,
+            tags: postData.tags,
+            tagNames: [],
+            fullImageUrl: null,
+            width: 0,
+            height: 0,
+            featured_media: postData.featured_media
+        };
 
-        this.visiblePost = postData;
+        this.visiblePost = visiblePostData;
     };
 
     setPages = (pages: Page[]) => {

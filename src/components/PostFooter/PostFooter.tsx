@@ -5,10 +5,15 @@
 import './PostFooter.css';
 
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-const PostFooter = ({ stateStore }) => {
+import { Store } from '../../utils/types';
+
+interface PostFooterProps {
+    stateStore: Store
+}
+
+const PostFooter: React.FC<PostFooterProps> = ({ stateStore }) => {
     return (
         <div className="post-footer">
             <div className="labels">{stateStore.visiblePost.tagNames.join(', ')}</div>
@@ -17,9 +22,5 @@ const PostFooter = ({ stateStore }) => {
 };
 
 PostFooter.displayName = 'PostFooter';
-
-PostFooter.propTypes = {
-    stateStore: PropTypes.object.isRequired
-};
 
 export default observer(PostFooter);

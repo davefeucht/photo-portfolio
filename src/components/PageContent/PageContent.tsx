@@ -4,10 +4,13 @@
 
 import './PageContent.css';
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-const PageContent = ({ content }) => {
+interface PageContentProps {
+    content: string
+}
+
+const PageContent: React.FC<PageContentProps> = ({ content }) => {
     return (
         <div
             className="page__content"
@@ -18,9 +21,5 @@ const PageContent = ({ content }) => {
 };
 
 PageContent.displayName = 'PageContent';
-
-PageContent.propTypes = {
-    content: PropTypes.string.isRequired
-};
 
 export default PageContent;
