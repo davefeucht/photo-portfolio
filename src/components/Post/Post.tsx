@@ -50,7 +50,7 @@ const Post: React.FC<PostProps> = ({ stateStore }) => {
 
     useEffect(() => {
         stateStore.clearVisiblePostTagNames();
-        getPost(postId, stateStore.siteInfo.siteUrl)
+        getPost(parseInt(postId), stateStore.siteInfo.siteUrl)
             .then(post => {
                 stateStore.setCurrentPost(post);
             })

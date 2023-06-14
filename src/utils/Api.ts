@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getPostThumbnail = async (featuredImage, siteUrl) => {
+export const getPostThumbnail = async (featuredImage: number, siteUrl: string) => {
     const getPostThumbnailURI = `https://${siteUrl}/wp-json/wp/v2/media/${featuredImage}`;
     const response = await axios.get(getPostThumbnailURI);
     const size = response.data.media_details.sizes.large ? 'large' : 'full';
@@ -9,7 +9,7 @@ export const getPostThumbnail = async (featuredImage, siteUrl) => {
     return thumbUrl;
 };
 
-export const getSiteInfo = async siteUrl => {
+export const getSiteInfo = async (siteUrl: string) => {
     const getSiteInformationURI = `https://${siteUrl}/wp-json/`;
 
     const response = await axios.get(getSiteInformationURI);
@@ -18,7 +18,7 @@ export const getSiteInfo = async siteUrl => {
     return siteName;
 };
 
-export const getCategories = async siteUrl => {
+export const getCategories = async (siteUrl: string) => {
     let categories = [];
     const getCategoriesURI = `https://${siteUrl}/wp-json/wp/v2/categories?exclude=175`;
 
@@ -28,7 +28,7 @@ export const getCategories = async siteUrl => {
     return categories;
 };
 
-export const getCategoryImage = async (categoryId, siteUrl) => {
+export const getCategoryImage = async (categoryId: number, siteUrl: string) => {
     // Define the request string to get the posts for this category
     const getCategoryPostURI = `https://${siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}`;
 
@@ -63,7 +63,7 @@ export const getCategoryImage = async (categoryId, siteUrl) => {
     return fullImageUrl;
 };
 
-export const getPosts = async (categoryId, siteUrl) => {
+export const getPosts = async (categoryId: number, siteUrl: string) => {
     const getPostsURI = `https://${siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}&per_page=20`;
     const response = await axios.get(getPostsURI);
     const posts = response.data;
@@ -71,7 +71,7 @@ export const getPosts = async (categoryId, siteUrl) => {
     return posts;
 };
 
-export const getPost = async (postId, siteUrl) => {
+export const getPost = async (postId: number, siteUrl: string) => {
     const getPostURI = `https://${siteUrl}/wp-json/wp/v2/posts/${postId}`;
     const response = await axios.get(getPostURI);
     const post = response.data;
@@ -79,7 +79,7 @@ export const getPost = async (postId, siteUrl) => {
     return post;
 };
 
-export const getCategoryInfo = async (categoryId, siteUrl) => {
+export const getCategoryInfo = async (categoryId: number, siteUrl: string) => {
     const getPostsCategoryURI = `https://${siteUrl}/wp-json/wp/v2/categories/${categoryId}`;
     const response = await axios.get(getPostsCategoryURI);
     const categoryData = response.data;
@@ -87,7 +87,7 @@ export const getCategoryInfo = async (categoryId, siteUrl) => {
     return categoryData;
 };
 
-export const getPostImage = async (image, siteUrl) => {
+export const getPostImage = async (image: number, siteUrl: string) => {
     const getPostImageURI = `https://${siteUrl}/wp-json/wp/v2/media/${image}`;
     const response = await axios.get(getPostImageURI);
     const fullImageUrl = response.data.media_details.sizes.full.source_url;
@@ -95,8 +95,8 @@ export const getPostImage = async (image, siteUrl) => {
     return fullImageUrl;
 };
 
-export const getTagNames = async (tags, siteUrl) => {
-    const tagNames = [];
+export const getTagNames = async (tags: number[], siteUrl: string) => {
+    const tagNames: string[] = [];
     const tagPromises = tags.map(async tagId => {
         return axios.get(`https://${siteUrl}/wp-json/wp/v2/tags/${tagId}`)
             .then(response => {
@@ -109,7 +109,7 @@ export const getTagNames = async (tags, siteUrl) => {
     return tagNames;
 };
 
-export const getPages = async siteUrl => {
+export const getPages = async (siteUrl: string) => {
     const getPagesURI = `https://${siteUrl}/wp-json/wp/v2/pages`;
     const response = await axios.get(getPagesURI);
     const pages = response.data;
@@ -117,7 +117,7 @@ export const getPages = async siteUrl => {
     return pages;
 };
 
-export const getPage = async (pageId, siteUrl) => {
+export const getPage = async (pageId: number, siteUrl: string) => {
     const getPagesURI = `https://${siteUrl}/wp-json/wp/v2/pages/${pageId}`;
     const response = await axios.get(getPagesURI);
     const page = response.data;

@@ -12,7 +12,7 @@ import {
     useParams
 } from 'react-router-dom';
 
-import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api.js';
+import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api';
 import { Store } from '../../utils/types';
 import Posts from '../Posts/Posts';
 import SectionHeader from '../SectionHeader/SectionHeader';
@@ -25,7 +25,7 @@ const Category: React.FC<CategoryProps> = ({ stateStore }) => {
     const { categoryId } = useParams();
 
     useEffect(() => {
-        getPosts(categoryId, stateStore.siteInfo.siteUrl)
+        getPosts(parseInt(categoryId), stateStore.siteInfo.siteUrl)
             .then(posts => {
                 stateStore.setCategoryPosts(posts);
                 stateStore.currentCategoryPosts.forEach((post, index) => {
@@ -35,7 +35,7 @@ const Category: React.FC<CategoryProps> = ({ stateStore }) => {
                         });
                 });
             });
-        getCategoryInfo(categoryId, stateStore.siteInfo.siteUrl)
+        getCategoryInfo(parseInt(categoryId), stateStore.siteInfo.siteUrl)
             .then(categoryInfo => {
                 stateStore.setCategoryData(categoryInfo);
             });

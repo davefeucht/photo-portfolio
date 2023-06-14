@@ -9,7 +9,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getPage } from '../../utils/Api.js';
+import { getPage } from '../../utils/Api';
 import { Store } from '../../utils/types';
 import PageContent from '../PageContent/PageContent';
 import SectionHeader from '../SectionHeader/SectionHeader';
@@ -23,7 +23,7 @@ const Page: React.FC<PageProps> = ({ stateStore }) => {
     const { currentPageData } = stateStore;
 
     useEffect(() => {
-        getPage(pageId, stateStore.siteInfo.siteUrl)
+        getPage(parseInt(pageId), stateStore.siteInfo.siteUrl)
             .then(page => {
                 stateStore.setPageData(page);
             });
