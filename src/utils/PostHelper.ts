@@ -6,10 +6,10 @@ import {
     Store
 } from './types';
 
-export const getPostInfo = (postId: string, stateStore: object) => {
+export const getPostInfo = (postId: string, stateStore: Store) => {
     const parsedPostId = parseInt(postId);
     runInAction(() => {
-        getPost(parsedPostId, stateStore);
+        getPost(parsedPostId, stateStore.siteInfo.siteUrl);
     });
 };
 
