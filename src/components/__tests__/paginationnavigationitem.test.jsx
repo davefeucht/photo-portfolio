@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import PaginationNavigationItem from '../components/PaginationNavigationItem/PaginationNavigationItem';
+import PaginationNavigationItem from '../PaginationNavigationItem/PaginationNavigationItem';
 
 const content = '1';
 const selectedState = 'selected';

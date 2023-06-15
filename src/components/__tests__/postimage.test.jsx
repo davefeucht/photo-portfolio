@@ -2,17 +2,17 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import PostNavigationArrow from '../components/PostNavigationArrow/PostNavigationArrow';
-import StateStore from '../StateStore/store';
+import StateStore from '../../StateStore/store';
+import PostImage from '../PostImage/PostImage';
 
-const direction = 'previous';
-const postId = 35;
+const previousPostId = 34;
+const nextPostId = 36;
 
-test('PostNavigationArrow displays', () => {
+test('PostImage displays', () => {
     const store = new StateStore();
     const component = renderer.create(
         <MemoryRouter>
-            <PostNavigationArrow stateStore={store} direction={direction} postId={postId} />
+            <PostImage stateStore={store} previousPost={previousPostId} nextPost={nextPostId} />
         </MemoryRouter>
     );
     const tree = component.toJSON();

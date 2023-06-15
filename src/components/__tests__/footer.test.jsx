@@ -2,14 +2,12 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import PostFooter from '../components/PostFooter/PostFooter';
-import StateStore from '../StateStore/store';
+import Footer from '../Footer/Footer';
 
-test('PostFooter displays', () => {
-    const store = new StateStore();
+test('Footer displays', async () => {
     const component = renderer.create(
         <MemoryRouter>
-            <PostFooter stateStore={store} />
+            <Footer />
         </MemoryRouter>
     );
     const tree = component.toJSON();

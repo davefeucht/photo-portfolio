@@ -2,14 +2,12 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import CategoryTitle from '../components/CategoryTitle/CategoryTitle';
+import CloseButton from '../CloseButton/CloseButton';
 
-const name = 'Test Category';
-
-test('CategoryTitle displays', async () => {
+test('CloseButton displays', async () => {
     const component = renderer.create(
         <MemoryRouter>
-            <CategoryTitle title={name} />
+            <CloseButton />
         </MemoryRouter>
     );
     const tree = component.toJSON();

@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import TitleBar from '../components/TitleBar/TitleBar';
-import StateStore from '../StateStore/store';
+import StateStore from '../../StateStore/store';
+import TitleBar from '../TitleBar/TitleBar';
 
-jest.mock('../utils/Api', () => ({
+jest.mock('../../utils/Api', () => ({
     getSiteInfo: () => Promise.resolve('Through a Pinhole')
 }));
 

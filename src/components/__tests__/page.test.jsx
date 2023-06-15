@@ -2,8 +2,8 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import Page from '../components/Page/Page';
-import StateStore from '../StateStore/store';
+import StateStore from '../../StateStore/store';
+import Page from '../Page/Page';
 
 const page = {
     id: 150,
@@ -15,7 +15,7 @@ const page = {
     }
 };
 
-jest.mock('../utils/Api', () => ({
+jest.mock('../../utils/Api', () => ({
     getPage: () => Promise.resolve(page)
 }));
 

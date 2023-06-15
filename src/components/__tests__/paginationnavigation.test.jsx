@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import PaginationNavigation from '../components/PaginationNavigation/PaginationNavigation';
+import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
 
 const totalPages = 14;
 const currentPageIndex = 1;

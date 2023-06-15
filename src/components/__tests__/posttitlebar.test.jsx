@@ -2,14 +2,14 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import Menu from '../components/Menu/Menu';
-import StateStore from '../StateStore/store';
+import PostTitlebar from '../PostTitlebar/PostTitlebar';
 
-test('Menu displays', async () => {
-    const store = new StateStore();
+const postTitle = 'Some Post';
+
+test('PostTitlebar displays', () => {
     const component = renderer.create(
         <MemoryRouter>
-            <Menu stateStore={store} />
+            <PostTitlebar postTitle={postTitle} />
         </MemoryRouter>
     );
     const tree = component.toJSON();

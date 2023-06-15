@@ -2,8 +2,8 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import PostThumbnail from '../components/PostThumbnail/PostThumbnail';
-import StateStore from '../StateStore/store';
+import StateStore from '../../StateStore/store';
+import PostThumbnail from '../PostThumbnail/PostThumbnail';
 
 const categoryPosts = [
     {

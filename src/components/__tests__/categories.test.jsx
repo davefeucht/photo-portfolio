@@ -3,8 +3,8 @@ import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import Categories from '../components/Categories/Categories';
-import StateStore from '../StateStore/store';
+import StateStore from '../../StateStore/store';
+import Categories from '../Categories/Categories';
 
 const categories = [
     {
@@ -31,7 +31,7 @@ const categories = [
     }
 ];
 
-jest.mock('../utils/Api', () => ({
+jest.mock('../../utils/Api', () => ({
     getCategoryImage: () => Promise.resolve('https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg')
 }));
 

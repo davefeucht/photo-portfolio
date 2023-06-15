@@ -2,8 +2,8 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import Category from '../components/Category/Category';
-import StateStore from '../StateStore/store';
+import StateStore from '../../StateStore/store';
+import Category from '../Category/Category';
 
 const posts = [
     {
@@ -30,7 +30,7 @@ const category = {
     meta: {}
 };
 
-jest.mock('../utils/Api', () => ({
+jest.mock('../../utils/Api', () => ({
     getPosts: () => Promise.resolve(posts),
     getPostThumbnail: () => Promise.resolve('https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg'),
     getCategoryInfo: () => Promise.resolve(category),

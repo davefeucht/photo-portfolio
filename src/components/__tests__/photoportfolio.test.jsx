@@ -2,8 +2,8 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import PhotoPortfolio from '../components/PhotoPortfolio/PhotoPortfolio';
-import StateStore from '../StateStore/store';
+import StateStore from '../../StateStore/store';
+import PhotoPortfolio from '../PhotoPortfolio/PhotoPortfolio';
 
 const pages = [
     {
@@ -42,7 +42,7 @@ const categories = [
     }
 ];
 
-jest.mock('../utils/Api', () => ({
+jest.mock('../../utils/Api', () => ({
     getCategories: () => Promise.resolve(categories),
     getPages: () => Promise.resolve(pages)
 }));

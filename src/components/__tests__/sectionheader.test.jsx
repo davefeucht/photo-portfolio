@@ -2,15 +2,14 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import MenuLink from '../components/MenuLink/MenuLink';
+import SectionHeader from '../SectionHeader/SectionHeader';
 
-const href = '/page/150';
-const text = 'Contact';
+const title = 'Some Section';
 
-test('MenuLink displays', async () => {
+test('SectionHeader displays', () => {
     const component = renderer.create(
         <MemoryRouter>
-            <MenuLink href={href} text={text} />
+            <SectionHeader title={title} />
         </MemoryRouter>
     );
     const tree = component.toJSON();

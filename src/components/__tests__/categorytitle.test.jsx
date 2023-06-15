@@ -2,14 +2,14 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import PostTitlebar from '../components/PostTitlebar/PostTitlebar';
+import CategoryTitle from '../CategoryTitle/CategoryTitle';
 
-const postTitle = 'Some Post';
+const name = 'Test Category';
 
-test('PostTitlebar displays', () => {
+test('CategoryTitle displays', async () => {
     const component = renderer.create(
         <MemoryRouter>
-            <PostTitlebar postTitle={postTitle} />
+            <CategoryTitle title={name} />
         </MemoryRouter>
     );
     const tree = component.toJSON();

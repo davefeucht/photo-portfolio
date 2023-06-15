@@ -2,8 +2,8 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import Posts from '../components/Posts/Posts';
-import StateStore from '../StateStore/store';
+import StateStore from '../../StateStore/store';
+import Posts from '../Posts/Posts';
 
 const posts = [
     {

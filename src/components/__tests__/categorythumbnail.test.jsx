@@ -3,13 +3,13 @@ import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import CategoryThumbnail from '../components/CategoryThumbnail/CategoryThumbnail';
-import StateStore from '../StateStore/store';
+import StateStore from '../../StateStore/store';
+import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail';
 
 const id = 5;
 const name = 'Test Category';
 
-jest.mock('../utils/Api', () => ({
+jest.mock('../../utils/Api', () => ({
     getCategoryImage: () => Promise.resolve('https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg')
 }));
 

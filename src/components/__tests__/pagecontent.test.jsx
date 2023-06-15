@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import PageContent from '../components/PageContent/PageContent';
+import PageContent from '../PageContent/PageContent';
 
 const content = 'This content should be displayed in the page because that is how it works';
 
