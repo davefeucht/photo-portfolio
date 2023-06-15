@@ -87,7 +87,6 @@ export interface Store {
     toggleMenuState(): void,
     setApplicationRoot(element: HTMLElement): void,
     setSiteName(name: string): void,
-    setVisiblePost(postId: number, postTitle: string): void,
     setVisiblePostImage(fullImageUrl: string): void,
     setVisiblePostTags(tagNames: string[]): void,
     clearVisiblePostTagNames(): void,

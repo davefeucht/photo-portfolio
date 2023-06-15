@@ -12,9 +12,9 @@ import {
 configure({ enforceActions: 'observed' });
 
 class stateStore implements Store {
-    menuState = 'closed';
+    menuState: string;
 
-    applicationRoot: HTMLElement = null;
+    applicationRoot: HTMLElement;
 
     screenInfo: {
         width: number,
@@ -26,52 +26,19 @@ class stateStore implements Store {
         siteUrl: string
     };
 
-    visiblePost: {
-        postId: number,
-        postTitle: string,
-        tags: number[],
-        tagNames: string[],
-        fullImageUrl: string,
-        width: number,
-        height: number,
-        featured_media: number
-    };
+    visiblePost: VisiblePost;
 
-    categoryList: Category[] = [];
+    categoryList: Category[];
 
-    currentCategoryPosts: Post[] = [];
+    currentCategoryPosts: Post[];
 
-    currentCategoryData: Category = {
-        id: 0,
-        count: 0,
-        description: '',
-        link: '',
-        name: '',
-        slug: '',
-        taxonomy: '',
-        parent: 0
-    };
+    currentCategoryData: Category;
 
-    pages: Page[] = [];
+    pages: Page[];
 
-    currentPageData: Page = {
-        id: 0,
-        link: '',
-        modified: '',
-        slug: '',
-        type: '',
-        title: {
-            rendered: ''
-        },
-        content: {
-            rendered: '',
-            protected: false
-        },
-        author: 0,
-        featured_media: 0
-    };
+    currentPageData: Page;
 
-    maxItemsPerPage = 10;
+    maxItemsPerPage: number;
 
     constructor() {
         this.menuState = 'closed';
@@ -146,11 +113,6 @@ class stateStore implements Store {
 
     setSiteName = (name: string) => {
         this.siteInfo.siteName = name;
-    };
-
-    setVisiblePost = (postId: number, postTitle: string) => {
-        this.visiblePost.postId = postId;
-        this.visiblePost.postTitle = postTitle;
     };
 
     setVisiblePostImage = (fullImageUrl: string) => {
