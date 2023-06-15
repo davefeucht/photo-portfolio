@@ -115,11 +115,6 @@ class stateStore implements Store {
         this.siteInfo.siteName = name;
     };
 
-    setVisiblePost = (postId: number, postTitle: string) => {
-        this.visiblePost.postId = postId;
-        this.visiblePost.postTitle = postTitle;
-    };
-
     setVisiblePostImage = (fullImageUrl: string) => {
         this.visiblePost.fullImageUrl = fullImageUrl;
     };
