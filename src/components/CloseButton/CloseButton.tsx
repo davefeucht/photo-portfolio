@@ -11,7 +11,7 @@ const CloseButton = () => {
     const { categoryId } = useParams();
 
     return (
-        <div className="close-button">
+        <div className="close-button" role="button">
             <Link to={`/category/${categoryId}`}>
                 <div className="close-button-content"><img src="./assets/images/close-button.svg" width="30px" height="30px" /></div>
             </Link>

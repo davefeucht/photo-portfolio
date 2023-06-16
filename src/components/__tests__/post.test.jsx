@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 
 import StateStore from '../../StateStore/store';
@@ -44,7 +45,7 @@ const categories = [
 
 const posts = [
     {
-        id: 'foo',
+        id: 150,
         link: 'http://foo',
         modified: '12308213098',
         slug: 'foo',
@@ -77,12 +78,15 @@ jest.mock('../../utils/Api', () => ({
     getPage: () => Promise.resolve(pages[0])
 }));
 
-test('Post displays', () => {
+test('Post displays', async () => {
     const store = new StateStore();
-    const { container } = render(
-        <MemoryRouter initialEntries={['/page/150']}>
-            <Post stateStore={store} />
-        </MemoryRouter>
-    );
+    let container;
+    await act(async () => {
+        container = render(
+            <MemoryRouter initialEntries={['/page/150']}>
+                <Post stateStore={store} />
+            </MemoryRouter>
+        ).container;
+    });
     expect(container.firstChild).toMatchSnapshot();
 });

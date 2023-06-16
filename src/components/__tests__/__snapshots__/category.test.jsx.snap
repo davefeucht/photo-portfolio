@@ -9,17 +9,41 @@ exports[`Category displays 1`] = `
   >
     <div
       class="title"
-    />
+    >
+      Some category
+    </div>
   </div>
   <div
     class="posts"
   >
+    <a
+      href="/post/887"
+    >
+      <div
+        class="post-thumbnail"
+        style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+      />
+    </a>
+    <a
+      href="/post/824"
+    >
+      <div
+        class="post-thumbnail"
+        style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+      />
+    </a>
     <div
       class="pagination-navigation"
     >
       <div
         class="pagination-navigation__content"
-      />
+      >
+        <div
+          class="pagination-navigation__item selected"
+        >
+          1
+        </div>
+      </div>
     </div>
   </div>
 </div>
