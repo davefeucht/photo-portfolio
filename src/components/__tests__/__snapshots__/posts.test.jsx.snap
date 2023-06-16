@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Posts displays 1`] = `
+<div
+  class="posts"
+>
+  <a
+    href="/post/887"
+  >
+    <div
+      class="post-thumbnail"
+      style="background-image: url();"
+    />
+  </a>
+  <a
+    href="/post/889"
+  >
+    <div
+      class="post-thumbnail"
+      style="background-image: url();"
+    />
+  </a>
+  <div
+    class="pagination-navigation"
+  >
+    <div
+      class="pagination-navigation__content"
+    >
+      <div
+        class="pagination-navigation__item selected"
+      >
+        1
+      </div>
+    </div>
+  </div>
+</div>
+`;

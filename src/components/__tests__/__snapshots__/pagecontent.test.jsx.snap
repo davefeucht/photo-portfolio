@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageContent displays 1`] = `
+<div
+  class="page__content"
+>
+  This content should be displayed in the page because that is how it works
+</div>
+`;

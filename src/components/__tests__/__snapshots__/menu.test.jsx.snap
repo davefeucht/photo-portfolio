@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu displays 1`] = `
+<div
+  class="menu closed"
+>
+  <ul>
+    <li>
+      <a
+        href="/"
+      >
+        <div
+          class="menu-link"
+        >
+          Home
+        </div>
+      </a>
+    </li>
+    <li>
+      Categories
+      <ul />
+    </li>
+    <li>
+      Info
+      <ul />
+    </li>
+  </ul>
+</div>
+`;

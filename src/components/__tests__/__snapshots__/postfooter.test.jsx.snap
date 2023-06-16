@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostFooter displays 1`] = `
+<div
+  class="post-footer"
+>
+  <div
+    class="labels"
+  />
+</div>
+`;

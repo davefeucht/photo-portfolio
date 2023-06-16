@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostTitlebar displays 1`] = `
+<div
+  class="post-titlebar"
+>
+  <div
+    class="title"
+  >
+    Some Post
+  </div>
+  <div
+    class="close-button"
+  >
+    <a
+      href="/category/undefined"
+    >
+      <div
+        class="close-button-content"
+      >
+        <img
+          height="30px"
+          src="./assets/images/close-button.svg"
+          width="30px"
+        />
+      </div>
+    </a>
+  </div>
+</div>
+`;

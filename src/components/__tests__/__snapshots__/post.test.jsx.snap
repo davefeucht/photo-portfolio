@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post displays 1`] = `
+<div
+  class="post-background"
+>
+  <div
+    class="post"
+  >
+    <div
+      class="post-titlebar"
+    >
+      <div
+        class="title"
+      />
+      <div
+        class="close-button"
+      >
+        <a
+          href="/category/undefined"
+        >
+          <div
+            class="close-button-content"
+          >
+            <img
+              height="30px"
+              src="./assets/images/close-button.svg"
+              width="30px"
+            />
+          </div>
+        </a>
+      </div>
+    </div>
+    <div
+      class="post-image"
+    >
+      <img />
+    </div>
+    <div
+      class="post-footer"
+    >
+      <div
+        class="labels"
+      />
+    </div>
+  </div>
+</div>
+`;

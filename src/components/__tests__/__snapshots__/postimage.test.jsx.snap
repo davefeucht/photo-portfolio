@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostImage displays 1`] = `
+<div
+  class="post-image"
+>
+  <img />
+</div>
+`;

@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginationNavigation displays 1`] = `
+<div
+  class="pagination-navigation"
+>
+  <div
+    class="pagination-navigation__content"
+  >
+    <div
+      class="pagination-navigation__item selected"
+    >
+      1
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      2
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      3
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      4
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      5
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      6
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      7
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      8
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      9
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      10
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      11
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      12
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      13
+       • 
+    </div>
+    <div
+      class="pagination-navigation__item deselected"
+    >
+      14
+    </div>
+  </div>
+</div>
+`;

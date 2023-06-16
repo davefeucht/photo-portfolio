@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryTitle displays 1`] = `
+<div
+  class="category-title"
+>
+  <div
+    class="category-title-text"
+  >
+    Test Category
+  </div>
+</div>
+`;

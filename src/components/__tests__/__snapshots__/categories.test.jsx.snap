@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Category list displays 1`] = `
+<div
+  class="category-list"
+>
+  <a
+    href="/category/23"
+  >
+    <div
+      class="category-thumbnail"
+      style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+    >
+      <div
+        class="category-title"
+      >
+        <div
+          class="category-title-text"
+        >
+          Some other category
+        </div>
+      </div>
+    </div>
+  </a>
+  <a
+    href="/category/35"
+  >
+    <div
+      class="category-thumbnail"
+      style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+    >
+      <div
+        class="category-title"
+      >
+        <div
+          class="category-title-text"
+        >
+          Some category
+        </div>
+      </div>
+    </div>
+  </a>
+  <div
+    class="pagination-navigation"
+  >
+    <div
+      class="pagination-navigation__content"
+    >
+      <div
+        class="pagination-navigation__item selected"
+      >
+        1
+      </div>
+    </div>
+  </div>
+</div>
+`;

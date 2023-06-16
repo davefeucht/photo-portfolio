@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page displays 1`] = `
+<div
+  class="page"
+>
+  <div
+    class="section-header"
+  >
+    <div
+      class="title"
+    />
+  </div>
+  <div
+    class="page__content"
+  />
+</div>
+`;

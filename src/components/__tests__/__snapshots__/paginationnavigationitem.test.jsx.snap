@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginationNavigationItem displays 1`] = `
+<div
+  class="pagination-navigation__item selected"
+>
+  1
+   • 
+</div>
+`;

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Category displays 1`] = `
+<div
+  class="category"
+>
+  <div
+    class="section-header"
+  >
+    <div
+      class="title"
+    />
+  </div>
+  <div
+    class="posts"
+  >
+    <div
+      class="pagination-navigation"
+    >
+      <div
+        class="pagination-navigation__content"
+      />
+    </div>
+  </div>
+</div>
+`;

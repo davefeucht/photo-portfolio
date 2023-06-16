@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryThumbnail displays 1`] = `
+<a
+  href="/category/5"
+>
+  <div
+    class="category-thumbnail"
+    style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+  >
+    <div
+      class="category-title"
+    >
+      <div
+        class="category-title-text"
+      >
+        Test Category
+      </div>
+    </div>
+  </div>
+</a>
+`;

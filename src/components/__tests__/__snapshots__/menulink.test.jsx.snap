@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuLink displays 1`] = `
+<a
+  href="/page/150"
+>
+  <div
+    class="menu-link"
+  >
+    Contact
+  </div>
+</a>
+`;

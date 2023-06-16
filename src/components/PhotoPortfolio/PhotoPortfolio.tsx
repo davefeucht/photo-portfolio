@@ -34,8 +34,8 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
 
     const setScreenSize = () => {
         runInAction(() => {
-            stateStore.screenInfo.width = stateStore.applicationRoot.clientWidth;
-            stateStore.screenInfo.height = stateStore.applicationRoot.clientHeight;
+            stateStore.screenInfo.width = stateStore.applicationRoot?.clientWidth;
+            stateStore.screenInfo.height = stateStore.applicationRoot?.clientHeight;
         });
     };
 
@@ -61,7 +61,7 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
         setScreenSize();
         setColumns(stateStore.screenInfo.width, stateStore.screenInfo.height);
         const disposer = reaction(
-            () => [stateStore.applicationRoot.clientWidth, stateStore.applicationRoot.clientHeight],
+            () => [stateStore.applicationRoot?.clientWidth, stateStore.applicationRoot?.clientHeight],
             () => setScreenSize()
         );
         const disposer2 = reaction(
