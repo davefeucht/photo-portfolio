@@ -11,6 +11,7 @@ exports[`PostTitlebar displays 1`] = `
   </div>
   <div
     class="close-button"
+    role="button"
   >
     <a
       href="/category/undefined"

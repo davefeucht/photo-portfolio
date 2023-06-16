@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 
 import StateStore from '../../StateStore/store';
@@ -70,19 +71,22 @@ jest.mock('../../utils/Api', () => ({
     getCategoryImage: () => Promise.resolve('http://foo'),
     getPosts: () => Promise.resolve(posts),
     getPost: () => Promise.resolve(posts[0]),
-    getCategoryInfo: () => Promise.resolve(),
+    getCategoryInfo: () => Promise.resolve(categories[1]),
     getPostImage: () => Promise.resolve('http://foo'),
     getTagNames: () => Promise.resolve(['foo', 'bob']),
     getPages: () => Promise.resolve(pages),
     getPage: () => Promise.resolve(pages[0])
 }));
 
-test('PhotoPortfolio displays', () => {
+test('PhotoPortfolio displays', async () => {
     const store = new StateStore();
-    const { container } = render(
-        <MemoryRouter initialEntries={['/category/35']}>
-            <PhotoPortfolio stateStore={store} />
-        </MemoryRouter>
-    );
+    let container;
+    await act(async () => {
+        container = render(
+            <MemoryRouter initialEntries={['/category/35']}>
+                <PhotoPortfolio stateStore={store} />
+            </MemoryRouter>
+        ).container;
+    });
     expect(container.firstChild).toMatchSnapshot();
 });

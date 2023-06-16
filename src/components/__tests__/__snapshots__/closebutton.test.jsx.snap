@@ -3,6 +3,7 @@
 exports[`CloseButton displays 1`] = `
 <div
   class="close-button"
+  role="button"
 >
   <a
     href="/category/undefined"

@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 
 import StateStore from '../../StateStore/store';
@@ -24,13 +25,16 @@ const posts = [
     }
 ];
 
-test('Posts displays', () => {
+test('Posts displays', async () => {
     const store = new StateStore();
     store.setCategoryPosts(posts);
-    const { container } = render(
-        <MemoryRouter>
-            <Posts stateStore={store} />
-        </MemoryRouter>
-    );
+    let container;
+    await act(async () => {
+        container = render(
+            <MemoryRouter>
+                <Posts stateStore={store} />
+            </MemoryRouter>
+        ).container;
+    });
     expect(container.firstChild).toMatchSnapshot();
 });

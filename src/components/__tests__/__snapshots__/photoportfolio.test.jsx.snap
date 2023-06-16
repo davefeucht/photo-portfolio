@@ -17,7 +17,7 @@ exports[`PhotoPortfolio displays 1`] = `
     </div>
     <div>
       <h1>
-        Through a Pinhole
+        Though a Pinhole
       </h1>
     </div>
   </div>
@@ -32,17 +32,33 @@ exports[`PhotoPortfolio displays 1`] = `
       >
         <div
           class="title"
-        />
+        >
+          Some category
+        </div>
       </div>
       <div
         class="posts"
       >
+        <a
+          href="/category/35/post/foo"
+        >
+          <div
+            class="post-thumbnail"
+            style="background-image: url(http://foo);"
+          />
+        </a>
         <div
           class="pagination-navigation"
         >
           <div
             class="pagination-navigation__content"
-          />
+          >
+            <div
+              class="pagination-navigation__item selected"
+            >
+              1
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -64,11 +80,46 @@ exports[`PhotoPortfolio displays 1`] = `
       </li>
       <li>
         Categories
-        <ul />
+        <ul>
+          <li>
+            <a
+              href="/category/23"
+            >
+              <div
+                class="menu-link"
+              >
+                Some other category
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/category/35"
+            >
+              <div
+                class="menu-link"
+              >
+                Some category
+              </div>
+            </a>
+          </li>
+        </ul>
       </li>
       <li>
         Info
-        <ul />
+        <ul>
+          <li>
+            <a
+              href="/page/150"
+            >
+              <div
+                class="menu-link"
+              >
+                Contact
+              </div>
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
