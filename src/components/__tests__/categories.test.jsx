@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 
 import StateStore from '../../StateStore/store';
@@ -37,11 +38,14 @@ jest.mock('../../utils/Api', () => ({
 test('Category list displays', async () => {
     const store = new StateStore();
     store.setCategoryList(categories);
-    const { container } = render(
-        <MemoryRouter>
-            <Categories stateStore={store} />
-        </MemoryRouter>
-    );
+    let container;
+    await act(async () => {
+        container = render(
+            <MemoryRouter>
+                <Categories stateStore={store} />
+            </MemoryRouter>
+        ).container;
+    });
     expect(container.firstChild).toMatchSnapshot();
     categories.forEach(category => {
         expect(screen.getByText(category.name));

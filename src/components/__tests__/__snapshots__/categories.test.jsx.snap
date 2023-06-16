@@ -9,7 +9,7 @@ exports[`Category list displays 1`] = `
   >
     <div
       class="category-thumbnail"
-      style="background-image: url();"
+      style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
     >
       <div
         class="category-title"
@@ -27,7 +27,7 @@ exports[`Category list displays 1`] = `
   >
     <div
       class="category-thumbnail"
-      style="background-image: url();"
+      style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
     >
       <div
         class="category-title"
