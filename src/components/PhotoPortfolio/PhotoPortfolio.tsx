@@ -34,8 +34,8 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
 
     const setScreenSize = () => {
         runInAction(() => {
-            stateStore.screenInfo.width = stateStore.applicationRoot.clientWidth;
-            stateStore.screenInfo.height = stateStore.applicationRoot.clientHeight;
+            stateStore.screenInfo.width = stateStore.applicationRoot?.clientWidth;
+            stateStore.screenInfo.height = stateStore.applicationRoot?.clientHeight;
         });
     };
 

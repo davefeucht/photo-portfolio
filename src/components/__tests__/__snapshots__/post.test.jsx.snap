@@ -2,28 +2,25 @@
 
 exports[`Post displays 1`] = `
 <div
-  className="post-background"
-  onClick={[Function]}
+  class="post-background"
 >
   <div
-    className="post"
-    onClick={[Function]}
+    class="post"
   >
     <div
-      className="post-titlebar"
+      class="post-titlebar"
     >
       <div
-        className="title"
+        class="title"
       />
       <div
-        className="close-button"
+        class="close-button"
       >
         <a
           href="/category/undefined"
-          onClick={[Function]}
         >
           <div
-            className="close-button-content"
+            class="close-button-content"
           >
             <img
               height="30px"
@@ -35,19 +32,15 @@ exports[`Post displays 1`] = `
       </div>
     </div>
     <div
-      className="post-image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
+      class="post-image"
     >
-      <img
-        src={null}
-      />
+      <img />
     </div>
     <div
-      className="post-footer"
+      class="post-footer"
     >
       <div
-        className="labels"
+        class="labels"
       />
     </div>
   </div>

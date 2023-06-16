@@ -2,105 +2,91 @@
 
 exports[`PaginationNavigation displays 1`] = `
 <div
-  className="pagination-navigation"
+  class="pagination-navigation"
 >
   <div
-    className="pagination-navigation__content"
+    class="pagination-navigation__content"
   >
     <div
-      className="pagination-navigation__item selected"
-      onClick={[Function]}
+      class="pagination-navigation__item selected"
     >
       1
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       2
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       3
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       4
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       5
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       6
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       7
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       8
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       9
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       10
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       11
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       12
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       13
        • 
     </div>
     <div
-      className="pagination-navigation__item deselected"
-      onClick={[Function]}
+      class="pagination-navigation__item deselected"
     >
       14
     </div>

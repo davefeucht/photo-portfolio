@@ -2,23 +2,23 @@
 
 exports[`Category displays 1`] = `
 <div
-  className="category"
+  class="category"
 >
   <div
-    className="section-header"
+    class="section-header"
   >
     <div
-      className="title"
+      class="title"
     />
   </div>
   <div
-    className="posts"
+    class="posts"
   >
     <div
-      className="pagination-navigation"
+      class="pagination-navigation"
     >
       <div
-        className="pagination-navigation__content"
+        class="pagination-navigation__content"
       />
     </div>
   </div>

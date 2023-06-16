@@ -1,6 +1,6 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import renderer from 'react-test-renderer';
 
 import StateStore from '../../StateStore/store';
 import Category from '../Category/Category';
@@ -39,11 +39,10 @@ jest.mock('../../utils/Api', () => ({
 
 test('Category displays', () => {
     const store = new StateStore();
-    const component = renderer.create(
+    const { container } = render(
         <MemoryRouter initialEntries={['/category/35']}>
             <Category stateStore={store} />
         </MemoryRouter>
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
 });

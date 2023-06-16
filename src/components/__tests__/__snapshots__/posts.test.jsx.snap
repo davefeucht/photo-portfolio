@@ -2,43 +2,32 @@
 
 exports[`Posts displays 1`] = `
 <div
-  className="posts"
+  class="posts"
 >
   <a
     href="/post/887"
-    onClick={[Function]}
   >
     <div
-      className="post-thumbnail"
-      style={
-        {
-          "backgroundImage": "url()",
-        }
-      }
+      class="post-thumbnail"
+      style="background-image: url();"
     />
   </a>
   <a
     href="/post/889"
-    onClick={[Function]}
   >
     <div
-      className="post-thumbnail"
-      style={
-        {
-          "backgroundImage": "url()",
-        }
-      }
+      class="post-thumbnail"
+      style="background-image: url();"
     />
   </a>
   <div
-    className="pagination-navigation"
+    class="pagination-navigation"
   >
     <div
-      className="pagination-navigation__content"
+      class="pagination-navigation__content"
     >
       <div
-        className="pagination-navigation__item selected"
-        onClick={[Function]}
+        class="pagination-navigation__item selected"
       >
         1
       </div>

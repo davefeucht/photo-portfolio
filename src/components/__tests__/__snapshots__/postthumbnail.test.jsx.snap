@@ -3,15 +3,10 @@
 exports[`PostThumbnail displays 1`] = `
 <a
   href="/post/35"
-  onClick={[Function]}
 >
   <div
-    className="post-thumbnail"
-    style={
-      {
-        "backgroundImage": "url(some_url)",
-      }
-    }
+    class="post-thumbnail"
+    style="background-image: url(some_url);"
   />
 </a>
 `;

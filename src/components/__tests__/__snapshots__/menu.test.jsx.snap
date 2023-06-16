@@ -2,18 +2,15 @@
 
 exports[`Menu displays 1`] = `
 <div
-  className="menu closed"
+  class="menu closed"
 >
   <ul>
-    <li
-      onClick={[Function]}
-    >
+    <li>
       <a
         href="/"
-        onClick={[Function]}
       >
         <div
-          className="menu-link"
+          class="menu-link"
         >
           Home
         </div>

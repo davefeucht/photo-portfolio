@@ -1,6 +1,6 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import renderer from 'react-test-renderer';
 
 import StateStore from '../../StateStore/store';
 import PhotoPortfolio from '../PhotoPortfolio/PhotoPortfolio';
@@ -42,18 +42,47 @@ const categories = [
     }
 ];
 
+const posts = [
+    {
+        id: 'foo',
+        link: 'http://foo',
+        modified: '12308213098',
+        slug: 'foo',
+        type: 'foo',
+        title: {
+            rendered: 'foo'
+        },
+        content: {
+            rendered: 'foo'
+        },
+        author: 0,
+        featured_media: 0,
+        categories: [0, 1],
+        tags: [0, 1],
+        thumbnail_image: 'http:/foo'
+    }
+];
+
 jest.mock('../../utils/Api', () => ({
+    getPostThumbnail: () => Promise.resolve('http://foo'),
+    getSiteInfo: () => Promise.resolve('Though a Pinhole'),
     getCategories: () => Promise.resolve(categories),
-    getPages: () => Promise.resolve(pages)
+    getCategoryImage: () => Promise.resolve('http://foo'),
+    getPosts: () => Promise.resolve(posts),
+    getPost: () => Promise.resolve(posts[0]),
+    getCategoryInfo: () => Promise.resolve(),
+    getPostImage: () => Promise.resolve('http://foo'),
+    getTagNames: () => Promise.resolve(['foo', 'bob']),
+    getPages: () => Promise.resolve(pages),
+    getPage: () => Promise.resolve(pages[0])
 }));
 
 test('PhotoPortfolio displays', () => {
     const store = new StateStore();
-    const component = renderer.create(
+    const { container } = render(
         <MemoryRouter initialEntries={['/category/35']}>
             <PhotoPortfolio stateStore={store} />
         </MemoryRouter>
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
 });

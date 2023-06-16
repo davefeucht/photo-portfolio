@@ -2,10 +2,10 @@
 
 exports[`SectionHeader displays 1`] = `
 <div
-  className="section-header"
+  class="section-header"
 >
   <div
-    className="title"
+    class="title"
   >
     Some Section
   </div>

@@ -1,6 +1,6 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import renderer from 'react-test-renderer';
 
 import StateStore from '../../StateStore/store';
 import Page from '../Page/Page';
@@ -21,11 +21,10 @@ jest.mock('../../utils/Api', () => ({
 
 test('Page displays', () => {
     const store = new StateStore();
-    const component = renderer.create(
+    const { container } = render(
         <MemoryRouter initialEntries={['/page/150']}>
             <Page stateStore={store} />
         </MemoryRouter>
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
 });

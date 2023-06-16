@@ -1,6 +1,6 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import renderer from 'react-test-renderer';
 
 import StateStore from '../../StateStore/store';
 import Posts from '../Posts/Posts';
@@ -27,11 +27,10 @@ const posts = [
 test('Posts displays', () => {
     const store = new StateStore();
     store.setCategoryPosts(posts);
-    const component = renderer.create(
+    const { container } = render(
         <MemoryRouter>
             <Posts stateStore={store} />
         </MemoryRouter>
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
 });

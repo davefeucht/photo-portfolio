@@ -1,17 +1,16 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import renderer from 'react-test-renderer';
 
 import PageContent from '../PageContent/PageContent';
 
 const content = 'This content should be displayed in the page because that is how it works';
 
 test('PageContent displays', () => {
-    const component = renderer.create(
+    const { container } = render(
         <MemoryRouter initialEntries={['/page/150']}>
             <PageContent content={content} />
         </MemoryRouter>
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
 });

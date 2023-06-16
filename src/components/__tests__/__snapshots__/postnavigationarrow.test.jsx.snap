@@ -2,20 +2,14 @@
 
 exports[`PostNavigationArrow displays 1`] = `
 <div
-  className="post-navigation-arrow active previous"
-  style={
-    {
-      "left": "0px",
-      "top": "0px",
-    }
-  }
+  class="post-navigation-arrow active previous"
+  style="top: 0px; left: 0px;"
 >
   <a
     href="/category/undefined/post/35"
-    onClick={[Function]}
   >
     <div
-      className="arrow"
+      class="arrow"
     >
       <img
         src="./assets/images/chevron.svg"

@@ -2,22 +2,17 @@
 
 exports[`Page displays 1`] = `
 <div
-  className="page"
+  class="page"
 >
   <div
-    className="section-header"
+    class="section-header"
   >
     <div
-      className="title"
+      class="title"
     />
   </div>
   <div
-    className="page__content"
-    dangerouslySetInnerHTML={
-      {
-        "__html": "",
-      }
-    }
+    class="page__content"
   />
 </div>
 `;

@@ -2,12 +2,8 @@
 
 exports[`PostImage displays 1`] = `
 <div
-  className="post-image"
-  onMouseOut={[Function]}
-  onMouseOver={[Function]}
+  class="post-image"
 >
-  <img
-    src={null}
-  />
+  <img />
 </div>
 `;

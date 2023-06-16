@@ -2,10 +2,10 @@
 
 exports[`PostFooter displays 1`] = `
 <div
-  className="post-footer"
+  class="post-footer"
 >
   <div
-    className="labels"
+    class="labels"
   />
 </div>
 `;

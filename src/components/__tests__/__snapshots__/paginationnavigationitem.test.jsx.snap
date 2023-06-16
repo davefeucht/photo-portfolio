@@ -2,8 +2,7 @@
 
 exports[`PaginationNavigationItem displays 1`] = `
 <div
-  className="pagination-navigation__item selected"
-  onClick={[Function]}
+  class="pagination-navigation__item selected"
 >
   1
    • 

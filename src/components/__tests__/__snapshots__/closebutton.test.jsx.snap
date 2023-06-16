@@ -2,14 +2,13 @@
 
 exports[`CloseButton displays 1`] = `
 <div
-  className="close-button"
+  class="close-button"
 >
   <a
     href="/category/undefined"
-    onClick={[Function]}
   >
     <div
-      className="close-button-content"
+      class="close-button-content"
     >
       <img
         height="30px"

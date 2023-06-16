@@ -2,10 +2,10 @@
 
 exports[`CategoryTitle displays 1`] = `
 <div
-  className="category-title"
+  class="category-title"
 >
   <div
-    className="category-title-text"
+    class="category-title-text"
   >
     Test Category
   </div>
