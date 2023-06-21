@@ -16,7 +16,12 @@ import {
     getPreviousPost,
     setPostRect
 } from '../../utils/PostHelper';
-import { Store } from '../../utils/types';
+import {
+    Post as PostState,
+    ScreenInfo,
+    SiteInfo,
+    VisiblePost
+} from '../../utils/types';
 import PostFooter from '../PostFooter/PostFooter';
 import PostImage from '../PostImage/PostImage';
 import PostTitlebar from '../PostTitlebar/PostTitlebar';
@@ -24,10 +29,22 @@ import PostTitlebar from '../PostTitlebar/PostTitlebar';
 const image = document.createElement('img');
 
 interface PostProps {
-    stateStore: Store
+    screenInfo: ScreenInfo,
+    siteInfo: SiteInfo,
+    visiblePost: VisiblePost,
+    currentCategoryPosts: PostState[],
+    clearVisiblePostTagNames: () => void,
+    setCurrentPost: (a: PostState, b: string[], c: string) => void
 }
 
-const Post: React.FC<PostProps> = ({ stateStore }) => {
+const Post: React.FC<PostProps> = ({
+    screenInfo,
+    siteInfo,
+    visiblePost,
+    currentCategoryPosts,
+    clearVisiblePostTagNames,
+    setCurrentPost
+}) => {
     const { categoryId, postId } = useParams();
     const navigate = useNavigate();
     let element: HTMLElement = null;
@@ -41,7 +58,7 @@ const Post: React.FC<PostProps> = ({ stateStore }) => {
     };
 
     const updateImage = () => {
-        setPostRect(image, stateStore.screenInfo.width, stateStore.screenInfo.height, stateStore);
+        setPostRect(image, screenInfo.width, screenInfo.height, visiblePost);
     };
 
     image.onload = () => {
@@ -49,52 +66,58 @@ const Post: React.FC<PostProps> = ({ stateStore }) => {
     };
 
     useEffect(() => {
-        stateStore.clearVisiblePostTagNames();
-        getPost(parseInt(postId), stateStore.siteInfo.siteUrl)
-            .then(post => {
-                stateStore.setCurrentPost(post);
+        let tagNames: string[] = [];
+        let url = '';
+        clearVisiblePostTagNames();
+        getPost(parseInt(postId), siteInfo.siteUrl)
+            .then((post: PostState) => {
+                return post;
             })
-            .then(() => {
-                getTagNames(stateStore.visiblePost.tags, stateStore.siteInfo.siteUrl)
+            .then((newPost: PostState) => {
+                getTagNames(newPost.tags, siteInfo.siteUrl)
                     .then(tags => {
-                        stateStore.setVisiblePostTags(tags);
+                        tagNames = tags;
                     });
-                getPostImage(stateStore.visiblePost.featured_media, stateStore.siteInfo.siteUrl)
-                    .then(imageUrl => {
-                        stateStore.setVisiblePostImage(imageUrl);
+                getPostImage(newPost.featured_media, siteInfo.siteUrl)
+                    .then((imageUrl: string) => {
+                        url = imageUrl;
+                        setCurrentPost(newPost, tagNames, url);
                     });
             });
     }, [postId]);
 
     useEffect(() => {
-        if (stateStore.visiblePost.fullImageUrl !== null && stateStore.visiblePost.fullImageUrl !== undefined) {
-            image.src = stateStore.visiblePost.fullImageUrl;
+        if (visiblePost.fullImageUrl !== null && visiblePost.fullImageUrl !== undefined) {
+            image.src = visiblePost.fullImageUrl;
         }
 
         element = document.querySelector('.post img');
         element.addEventListener('transitionend', updateImage, true);
 
         const disposer = reaction(
-            () => [stateStore.screenInfo.width, stateStore.screenInfo.height],
+            () => [screenInfo.width, screenInfo.height],
             () => updateImage()
         );
+
+        updateImage();
 
         return () => {
             element.removeEventListener('transitionend', updateImage);
             disposer();
         };
-    }, [stateStore.visiblePost.fullImageUrl]);
+    }, [visiblePost.fullImageUrl]);
 
     return (
         <div className="post-background" onClick={closeModalHandler}>
             <div className="post" onClick={stopPropagation}>
-                <PostTitlebar postTitle={stateStore.visiblePost.postTitle} />
+                <PostTitlebar postTitle={visiblePost.postTitle} />
                 <PostImage
-                    stateStore={stateStore}
-                    previousPost={getPreviousPost(postId, stateStore.currentCategoryPosts)}
-                    nextPost={getNextPost(postId, stateStore.currentCategoryPosts)}
+                    imageUrl={visiblePost.fullImageUrl}
+                    postHeight={visiblePost.height}
+                    previousPost={getPreviousPost(postId, currentCategoryPosts)}
+                    nextPost={getNextPost(postId, currentCategoryPosts)}
                 />
-                <PostFooter stateStore={stateStore} />
+                <PostFooter tagNames={visiblePost.tagNames} />
             </div>
         </div>
     );
