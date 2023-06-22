@@ -17,8 +17,9 @@ interface PostNavigationArrowProps {
 const PostNavigationArrow: React.FC<PostNavigationArrowProps> = ({ postHeight = 0, direction, postId }) => {
     const { categoryId } = useParams();
 
-    // TODO: calc this based on a height variable, not just a hard-coded 41
-    const top = (postHeight / 2) - 41;
+    // TODO: calculate these based on a variable somewhere - they are navigationArrowHeight - (postHeaderHight + postFooterHeight)
+    // What we want here is actually the height of just the image and not the whole modal
+    const top = (postHeight / 2) - 41 - (48 + 32);
     const divStyle = direction === 'previous' ? { top: `${top}px`, left: '0px' } : { top: `${top}px`, right: '0px' };
     const classNames = ['post-navigation-arrow', postId ? 'active' : 'disabled', direction];
 
