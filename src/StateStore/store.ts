@@ -153,7 +153,7 @@ class stateStore implements Store {
 
     setCurrentPost = (postData: Post, tagNames: string[] = [], imageUrl = '') => {
         const visiblePostData: VisiblePost = {
-            postId: parseInt(postData.id),
+            postId: postData.id,
             postTitle: postData.title.rendered,
             tags: postData.tags,
             tagNames,

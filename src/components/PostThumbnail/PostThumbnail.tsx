@@ -9,7 +9,7 @@ import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 interface PostThumbnailProps {
-    id: string,
+    id: number,
     thumbnailImage: string
 }
 

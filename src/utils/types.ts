@@ -35,7 +35,7 @@ export interface VisiblePost {
 }
 
 export interface Post {
-    id: string,
+    id: number,
     link: string,
     modified: string,
     slug: string,

@@ -114,8 +114,8 @@ const Post: React.FC<PostProps> = ({
                 <PostImage
                     imageUrl={visiblePost.fullImageUrl}
                     postHeight={visiblePost.height}
-                    previousPost={getPreviousPost(postId, currentCategoryPosts)}
-                    nextPost={getNextPost(postId, currentCategoryPosts)}
+                    previousPost={getPreviousPost(parseInt(postId), currentCategoryPosts)}
+                    nextPost={getNextPost(parseInt(postId), currentCategoryPosts)}
                 />
                 <PostFooter tagNames={visiblePost.tagNames} />
             </div>

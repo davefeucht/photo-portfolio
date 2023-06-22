@@ -15,7 +15,7 @@ export const getPostInfo = (postId: string, stateStore: Store) => {
 };
 
 // TODO: See why these two methods are not always working OK
-export const getNextPost = (postId: string, currentCategoryPosts: Post[]) => {
+export const getNextPost = (postId: number, currentCategoryPosts: Post[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const nextIndex = currentIndex + 1;
     const numberOfPosts = currentCategoryPosts.length;
@@ -26,7 +26,7 @@ export const getNextPost = (postId: string, currentCategoryPosts: Post[]) => {
     return nextId;
 };
 
-export const getPreviousPost = (postId: string, currentCategoryPosts: Post[]) => {
+export const getPreviousPost = (postId: number, currentCategoryPosts: Post[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const previousIndex = currentIndex - 1;
     if (previousIndex < 0) {

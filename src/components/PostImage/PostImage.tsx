@@ -13,8 +13,8 @@ import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow';
 interface PostImageProps {
     imageUrl: string,
     postHeight: number,
-    previousPost: string,
-    nextPost: string
+    previousPost: number,
+    nextPost: number
 }
 
 const PostImage: React.FC<PostImageProps> = ({

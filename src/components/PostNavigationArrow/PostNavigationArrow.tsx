@@ -11,7 +11,7 @@ import { Link, useParams } from 'react-router-dom';
 interface PostNavigationArrowProps {
     postHeight: number,
     direction: string,
-    postId: string
+    postId: number
 }
 
 const PostNavigationArrow: React.FC<PostNavigationArrowProps> = ({ postHeight = 0, direction, postId }) => {
