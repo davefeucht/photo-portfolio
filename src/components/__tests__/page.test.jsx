@@ -6,6 +6,11 @@ import { MemoryRouter } from 'react-router-dom';
 import StateStore from '../../StateStore/store';
 import Page from '../Page/Page';
 
+const siteInfo = {
+    siteName: 'Through a Pinhole',
+    siteUrl: 'throughapinhole.com'
+};
+
 const page = {
     id: 150,
     content: {
@@ -26,7 +31,11 @@ test('Page displays', async () => {
     await act(async () => {
         container = render(
             <MemoryRouter initialEntries={['/page/150']}>
-                <Page stateStore={store} />
+                <Page
+                    currentPageData={page}
+                    siteInfo={siteInfo}
+                    setPageData={store.setPageData}
+                />
             </MemoryRouter>
         ).container;
     });

@@ -14,7 +14,7 @@ import {
 
 import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api';
 import {
-    Category,
+    Category as CategoryState,
     ImageData,
     Post as PostState,
     ScreenInfo,
@@ -28,9 +28,9 @@ interface CategoryProps {
     siteInfo: SiteInfo,
     screenInfo: ScreenInfo,
     currentCategoryPosts: PostState[],
-    currentCategoryData: Category,
+    currentCategoryData: CategoryState,
     setCategoryPosts: (a: PostState[]) => void,
-    setCategoryData: (a: Category) => void,
+    setCategoryData: (a: CategoryState) => void,
     setThumbnailImageUrl: (a: ImageData) => void
 }
 

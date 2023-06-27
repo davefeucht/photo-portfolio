@@ -6,6 +6,16 @@ import { MemoryRouter } from 'react-router-dom';
 import StateStore from '../../StateStore/store';
 import Categories from '../Categories/Categories';
 
+const screenInfo = {
+    width: 500,
+    height: 500
+};
+
+const siteInfo = {
+    siteName: 'Through a Pinhole',
+    siteUrl: 'throughapinhole.com'
+};
+
 const categories = [
     {
         id: 23,
@@ -42,7 +52,12 @@ test('Category list displays', async () => {
     await act(async () => {
         container = render(
             <MemoryRouter>
-                <Categories stateStore={store} />
+                <Categories
+                    maxItemsPerPage={10}
+                    screenInfo={screenInfo}
+                    categoryList={categories}
+                    siteInfo={siteInfo}
+                />
             </MemoryRouter>
         ).container;
     });

@@ -3,8 +3,17 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 
-import StateStore from '../../StateStore/store';
 import Post from '../Post/Post';
+
+const screenInfo = {
+    width: 500,
+    height: 500
+};
+
+const siteInfo = {
+    siteName: 'Through a Pinhole',
+    siteUrl: 'throughapinhole.com'
+};
 
 const pages = [
     {
@@ -43,6 +52,17 @@ const categories = [
     }
 ];
 
+const visiblePost = {
+    postId: 150,
+    postTitle: 'foo',
+    tags: [0, 1],
+    tagNames: ['moe', 'curly'],
+    fullImageUrl: 'http://foo',
+    width: 500,
+    height: 500,
+    featured_media: 0
+};
+
 const posts = [
     {
         id: 150,
@@ -79,12 +99,18 @@ jest.mock('../../utils/Api', () => ({
 }));
 
 test('Post displays', async () => {
-    const store = new StateStore();
     let container;
     await act(async () => {
         container = render(
             <MemoryRouter initialEntries={['/page/150']}>
-                <Post stateStore={store} />
+                <Post
+                    screenInfo={screenInfo}
+                    siteInfo={siteInfo}
+                    visiblePost={visiblePost}
+                    currentCategoryPosts={posts}
+                    clearVisiblePostTagNames={() => {}}
+                    setCurrentPost={() => {}}
+                />
             </MemoryRouter>
         ).container;
     });
