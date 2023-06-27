@@ -48,6 +48,9 @@ const Post: React.FC<PostProps> = ({
     const { categoryId, postId } = useParams();
     const navigate = useNavigate();
     let element: HTMLElement = null;
+    // Create ref here and pass to PostImage
+    // Create state for imageHeight
+    // In image.onload(), update imageHeight with ref.current.clientHeight
 
     const closeModalHandler = () => {
         navigate(`/category/${categoryId}`);
@@ -113,7 +116,6 @@ const Post: React.FC<PostProps> = ({
                 <PostTitlebar postTitle={visiblePost.postTitle} />
                 <PostImage
                     imageUrl={visiblePost.fullImageUrl}
-                    postHeight={visiblePost.height}
                     previousPost={getPreviousPost(parseInt(postId), currentCategoryPosts)}
                     nextPost={getNextPost(parseInt(postId), currentCategoryPosts)}
                 />
