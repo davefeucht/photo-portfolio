@@ -3,7 +3,6 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 
-import StateStore from '../../StateStore/store';
 import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail';
 
 const id = 5;
@@ -18,7 +17,6 @@ jest.mock('../../utils/Api', () => ({
 }));
 
 test('CategoryThumbnail displays', async () => {
-    const store = new StateStore();
     let container;
     await act(async () => {
         container = render(
