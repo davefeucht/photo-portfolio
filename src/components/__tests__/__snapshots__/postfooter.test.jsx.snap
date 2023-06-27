@@ -6,6 +6,8 @@ exports[`PostFooter displays 1`] = `
 >
   <div
     class="labels"
-  />
+  >
+    something, somethingelse
+  </div>
 </div>
 `;

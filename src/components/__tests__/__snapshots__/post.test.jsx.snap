@@ -3,9 +3,11 @@
 exports[`Post displays 1`] = `
 <div
   class="post-background"
+  style="width: 500px; height: 500px;"
 >
   <div
     class="post"
+    style="top: 50px;"
   >
     <div
       class="post-titlebar"
@@ -39,6 +41,7 @@ exports[`Post displays 1`] = `
     >
       <img
         src="http://foo"
+        style="height: 400px;"
       />
     </div>
     <div
@@ -47,7 +50,7 @@ exports[`Post displays 1`] = `
       <div
         class="labels"
       >
-        foo, bob
+        moe, curly
       </div>
     </div>
   </div>
