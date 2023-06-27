@@ -7,7 +7,7 @@ import './Post.css';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { getPost, getPostImage, getTagNames } from '../../utils/Api';
@@ -45,12 +45,10 @@ const Post: React.FC<PostProps> = ({
     clearVisiblePostTagNames,
     setCurrentPost
 }) => {
+    const [imageHeight, setImageHeight] = useState<number>(0);
     const { categoryId, postId } = useParams();
     const navigate = useNavigate();
-    let element: HTMLElement = null;
-    // Create ref here and pass to PostImage
-    // Create state for imageHeight
-    // In image.onload(), update imageHeight with ref.current.clientHeight
+    const imageRef = useRef<HTMLImageElement>(null);
 
     const closeModalHandler = () => {
         navigate(`/category/${categoryId}`);
@@ -66,6 +64,7 @@ const Post: React.FC<PostProps> = ({
 
     image.onload = () => {
         updateImage();
+        setImageHeight(imageRef.current?.clientHeight ?? 0);
     };
 
     useEffect(() => {
@@ -94,8 +93,9 @@ const Post: React.FC<PostProps> = ({
             image.src = visiblePost.fullImageUrl;
         }
 
-        element = document.querySelector('.post img');
-        element.addEventListener('transitionend', updateImage, true);
+        if (imageRef.current) {
+            imageRef.current.addEventListener('transitionend', updateImage, true);
+        }
 
         const disposer = reaction(
             () => [screenInfo.width, screenInfo.height],
@@ -105,7 +105,9 @@ const Post: React.FC<PostProps> = ({
         updateImage();
 
         return () => {
-            element.removeEventListener('transitionend', updateImage);
+            if (imageRef.current) {
+                imageRef.current.removeEventListener('transitionend', updateImage);
+            }
             disposer();
         };
     }, [visiblePost.fullImageUrl]);
@@ -116,8 +118,10 @@ const Post: React.FC<PostProps> = ({
                 <PostTitlebar postTitle={visiblePost.postTitle} />
                 <PostImage
                     imageUrl={visiblePost.fullImageUrl}
+                    imageHeight={imageHeight}
                     previousPost={getPreviousPost(parseInt(postId), currentCategoryPosts)}
                     nextPost={getNextPost(parseInt(postId), currentCategoryPosts)}
+                    ref={imageRef}
                 />
                 <PostFooter tagNames={visiblePost.tagNames} />
             </div>
