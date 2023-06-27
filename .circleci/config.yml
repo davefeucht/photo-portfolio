@@ -33,7 +33,7 @@ workflows:
       - node/run:
           version: '18.16.1'
           pkg-manager: yarn
-          npm-run: lint
+          yarn-run: lint
       - node/test:
           version: '18.16.1'
           pkg-manager: yarn
