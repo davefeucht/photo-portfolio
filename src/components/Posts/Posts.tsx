@@ -25,7 +25,7 @@ const Posts: React.FC<PostsProps> = ({ maxItemsPerPage, screenInfo, currentCateg
     const endIndex = startIndex + maxItemsPerPage;
 
     const setRows = () => {
-        const numberOfColumns = parseInt(document.body.style.getPropertyValue('--number-of-columns'));
+        const numberOfColumns = parseInt(document.body.style.getPropertyValue('--number-of-columns')) || 1;
         const numberOfPosts = maxItemsPerPage;
         document.body.style.setProperty('--number-of-rows', `${numberOfPosts / numberOfColumns}`);
     };

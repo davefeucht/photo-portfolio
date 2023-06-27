@@ -9,7 +9,7 @@ exports[`Posts displays 1`] = `
   >
     <div
       class="post-thumbnail"
-      style="background-image: url();"
+      style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
     />
   </a>
   <a
@@ -17,7 +17,7 @@ exports[`Posts displays 1`] = `
   >
     <div
       class="post-thumbnail"
-      style="background-image: url();"
+      style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
     />
   </a>
   <div
