@@ -23,12 +23,6 @@ interface PageProps {
     setPageData: (a: PageState) => void
 }
 
-/*
- * currentPageData
- * siteInfo
- * setPageData
-*/
-
 const Page: React.FC<PageProps> = ({ currentPageData, siteInfo, setPageData }) => {
     const { pageId } = useParams();
 
