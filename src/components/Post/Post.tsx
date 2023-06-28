@@ -89,7 +89,7 @@ const Post: React.FC<PostProps> = ({
     }, [postId]);
 
     useEffect(() => {
-        if (visiblePost.fullImageUrl !== null && visiblePost.fullImageUrl !== undefined) {
+        if (visiblePost.fullImageUrl) {
             image.src = visiblePost.fullImageUrl;
         }
 
