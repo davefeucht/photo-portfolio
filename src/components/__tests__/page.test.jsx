@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import StateStore from '../../StateStore/store';
 import Page from '../Page/Page';
@@ -31,11 +31,18 @@ test('Page displays', async () => {
     await act(async () => {
         container = render(
             <MemoryRouter initialEntries={['/page/150']}>
-                <Page
-                    currentPageData={page}
-                    siteInfo={siteInfo}
-                    setPageData={store.setPageData}
-                />
+                <Routes>
+                    <Route
+                        path="page/:pageId"
+                        element={(
+                            <Page
+                                currentPageData={page}
+                                siteInfo={siteInfo}
+                                setPageData={store.setPageData}
+                            />
+                        )}
+                    />
+                </Routes>
             </MemoryRouter>
         ).container;
     });

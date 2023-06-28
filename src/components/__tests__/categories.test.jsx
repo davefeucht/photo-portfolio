@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import StateStore from '../../StateStore/store';
 import Categories from '../Categories/Categories';
@@ -52,12 +52,19 @@ test('Category list displays', async () => {
     await act(async () => {
         container = render(
             <MemoryRouter>
-                <Categories
-                    maxItemsPerPage={10}
-                    screenInfo={screenInfo}
-                    categoryList={categories}
-                    siteInfo={siteInfo}
-                />
+                <Routes>
+                    <Route
+                        path="/"
+                        element={(
+                            <Categories
+                                maxItemsPerPage={10}
+                                screenInfo={screenInfo}
+                                categoryList={categories}
+                                siteInfo={siteInfo}
+                            />
+                        )}
+                    />
+                </Routes>
             </MemoryRouter>
         ).container;
     });

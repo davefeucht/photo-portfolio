@@ -17,7 +17,7 @@ exports[`Category displays 1`] = `
     class="posts"
   >
     <a
-      href="/post/887"
+      href="/category/35/post/887"
     >
       <div
         class="post-thumbnail"
@@ -25,7 +25,7 @@ exports[`Category displays 1`] = `
       />
     </a>
     <a
-      href="/post/824"
+      href="/category/35/post/824"
     >
       <div
         class="post-thumbnail"
