@@ -24,7 +24,7 @@ const PostNavigationArrow: React.FC<PostNavigationArrowProps> = ({ imageHeight =
     const classNames = ['post-navigation-arrow', postId ? 'active' : 'disabled', direction];
 
     const getContent = () => {
-        if (postId) {
+        if (postId >= 0) {
             return (
                 <Link to={`/category/${categoryId}/post/${postId}`}>
                     <div className="arrow"><img src="./assets/images/chevron.svg" /></div>

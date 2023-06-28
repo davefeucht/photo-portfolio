@@ -33,10 +33,12 @@ const Page: React.FC<PageProps> = ({ currentPageData, siteInfo, setPageData }) =
     const { pageId } = useParams();
 
     useEffect(() => {
-        getPage(parseInt(pageId), siteInfo.siteUrl)
-            .then(page => {
-                setPageData(page);
-            });
+        if (pageId) {
+            getPage(parseInt(pageId), siteInfo.siteUrl)
+                .then(page => {
+                    setPageData(page);
+                });
+        }
     }, [pageId]);
 
     return (

@@ -42,7 +42,7 @@ class stateStore implements Store {
 
     constructor() {
         this.menuState = 'closed';
-        this.applicationRoot = null;
+        this.applicationRoot = document.createElement('div');
 
         this.screenInfo = {
             width: 0,
@@ -56,13 +56,13 @@ class stateStore implements Store {
 
         this.visiblePost = {
             postId: 1,
-            postTitle: null,
+            postTitle: '',
             tags: [],
             tagNames: [],
-            fullImageUrl: null,
-            width: null,
-            height: null,
-            featured_media: null
+            fullImageUrl: '',
+            width: 0,
+            height: 0,
+            featured_media: 0
         };
 
         this.categoryList = [];

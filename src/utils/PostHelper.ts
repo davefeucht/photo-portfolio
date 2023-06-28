@@ -20,7 +20,7 @@ export const getNextPost = (postId: number, currentCategoryPosts: Post[]) => {
     const nextIndex = currentIndex + 1;
     const numberOfPosts = currentCategoryPosts.length;
     if (nextIndex >= numberOfPosts) {
-        return null;
+        return -1;
     }
     const nextId = currentCategoryPosts[currentIndex + 1].id;
     return nextId;
@@ -30,7 +30,7 @@ export const getPreviousPost = (postId: number, currentCategoryPosts: Post[]) =>
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const previousIndex = currentIndex - 1;
     if (previousIndex < 0) {
-        return null;
+        return -1;
     }
     const previousId = currentCategoryPosts[currentIndex - 1].id;
     return previousId;
@@ -58,7 +58,7 @@ const getPostSize = (screenWidth: number, screenHeight: number, imageWidth: numb
 
     rect.width = width;
     rect.image_height = height;
-    rect.height = height + postTitlebar.clientHeight + postFooter.clientHeight;
+    rect.height = (postTitlebar && postFooter) ? height + postTitlebar.clientHeight + postFooter.clientHeight : 0;
 
     return rect;
 };
