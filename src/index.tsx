@@ -12,7 +12,10 @@ import PhotoPortfolio from './components/PhotoPortfolio/PhotoPortfolio';
 import StateStore from './StateStore/store';
 
 const store = new StateStore();
-store.setApplicationRoot(document.getElementById('photo-portfolio'));
+const rootNode = document.getElementById('photo-portfolio');
+if (rootNode) {
+    store.setApplicationRoot(rootNode);
+}
 const root = createRoot(store.applicationRoot);
 const router = createHashRouter([
     {
