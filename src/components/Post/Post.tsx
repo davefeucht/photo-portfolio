@@ -46,7 +46,7 @@ const Post: React.FC<PostProps> = ({
     setCurrentPost
 }) => {
     const [imageHeight, setImageHeight] = useState<number>(0);
-    const { categoryId, postId } = useParams();
+    const { categoryId = '-1', postId = '-1' } = useParams();
     const navigate = useNavigate();
     const imageRef = useRef<HTMLImageElement>(null);
 
@@ -70,22 +70,24 @@ const Post: React.FC<PostProps> = ({
     useEffect(() => {
         let tagNames: string[] = [];
         let url = '';
-        clearVisiblePostTagNames();
-        getPost(parseInt(postId), siteInfo.siteUrl)
-            .then((post: PostState) => {
-                return post;
-            })
-            .then((newPost: PostState) => {
-                getTagNames(newPost.tags, siteInfo.siteUrl)
-                    .then(tags => {
-                        tagNames = tags;
-                    });
-                getPostImage(newPost.featured_media, siteInfo.siteUrl)
-                    .then((imageUrl: string) => {
-                        url = imageUrl;
-                        setCurrentPost(newPost, tagNames, url);
-                    });
-            });
+        if (postId) {
+            clearVisiblePostTagNames();
+            getPost(parseInt(postId), siteInfo.siteUrl)
+                .then((post: PostState) => {
+                    return post;
+                })
+                .then((newPost: PostState) => {
+                    getTagNames(newPost.tags, siteInfo.siteUrl)
+                        .then(tags => {
+                            tagNames = tags;
+                        });
+                    getPostImage(newPost.featured_media, siteInfo.siteUrl)
+                        .then((imageUrl: string) => {
+                            url = imageUrl;
+                            setCurrentPost(newPost, tagNames, url);
+                        });
+                });
+        }
     }, [postId]);
 
     useEffect(() => {

@@ -47,20 +47,22 @@ const Category: React.FC<CategoryProps> = ({
     const { categoryId } = useParams();
 
     useEffect(() => {
-        getPosts(parseInt(categoryId), siteInfo.siteUrl)
-            .then(posts => {
-                setCategoryPosts(posts);
-                currentCategoryPosts.forEach((post, index) => {
-                    getPostThumbnail(post.featured_media, siteInfo.siteUrl)
-                        .then(thumbUrl => {
-                            setThumbnailImageUrl({ post_index: index, image_url: thumbUrl });
-                        });
+        if (categoryId) {
+            getPosts(parseInt(categoryId), siteInfo.siteUrl)
+                .then(posts => {
+                    setCategoryPosts(posts);
+                    currentCategoryPosts.forEach((post, index) => {
+                        getPostThumbnail(post.featured_media, siteInfo.siteUrl)
+                            .then(thumbUrl => {
+                                setThumbnailImageUrl({ post_index: index, image_url: thumbUrl });
+                            });
+                    });
                 });
-            });
-        getCategoryInfo(parseInt(categoryId), siteInfo.siteUrl)
-            .then(categoryInfo => {
-                setCategoryData(categoryInfo);
-            });
+            getCategoryInfo(parseInt(categoryId), siteInfo.siteUrl)
+                .then(categoryInfo => {
+                    setCategoryData(categoryInfo);
+                });
+        }
     }, [categoryId]);
 
     return (

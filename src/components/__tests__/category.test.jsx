@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import Category from '../Category/Category';
 
@@ -58,16 +58,23 @@ test('Category displays', async () => {
     await act(async () => {
         container = render(
             <MemoryRouter initialEntries={['/category/35']}>
-                <Category
-                    maxItemsPerPage={2}
-                    siteInfo={siteInfo}
-                    screenInfo={screenInfo}
-                    currentCategoryPosts={posts}
-                    currentCategoryData={category}
-                    setCategoryPosts={setCategoryPostsMock}
-                    setCategoryData={setCategoryDataMock}
-                    setThumbnailImageUrl={setThumbnailImageUrlMock}
-                />
+                <Routes>
+                    <Route
+                        path="category/:categoryId"
+                        element={(
+                            <Category
+                                maxItemsPerPage={2}
+                                siteInfo={siteInfo}
+                                screenInfo={screenInfo}
+                                currentCategoryPosts={posts}
+                                currentCategoryData={category}
+                                setCategoryPosts={setCategoryPostsMock}
+                                setCategoryData={setCategoryDataMock}
+                                setThumbnailImageUrl={setThumbnailImageUrlMock}
+                            />
+                        )}
+                    />
+                </Routes>
             </MemoryRouter>
         ).container;
     });

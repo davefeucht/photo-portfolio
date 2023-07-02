@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import Post from '../Post/Post';
 
@@ -102,15 +102,22 @@ test('Post displays', async () => {
     let container;
     await act(async () => {
         container = render(
-            <MemoryRouter initialEntries={['/page/150']}>
-                <Post
-                    screenInfo={screenInfo}
-                    siteInfo={siteInfo}
-                    visiblePost={visiblePost}
-                    currentCategoryPosts={posts}
-                    clearVisiblePostTagNames={() => {}}
-                    setCurrentPost={() => {}}
-                />
+            <MemoryRouter initialEntries={['/post/150']}>
+                <Routes>
+                    <Route
+                        path="post/:postId"
+                        element={(
+                            <Post
+                                screenInfo={screenInfo}
+                                siteInfo={siteInfo}
+                                visiblePost={visiblePost}
+                                currentCategoryPosts={posts}
+                                clearVisiblePostTagNames={() => {}}
+                                setCurrentPost={() => {}}
+                            />
+                        )}
+                    />
+                </Routes>
             </MemoryRouter>
         ).container;
     });
