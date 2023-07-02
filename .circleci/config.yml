@@ -1,16 +1,16 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.9.0
+  node: circleci/node@5.1.0
 
 jobs:
   build:
     machine:
-      image: ubuntu-2004:202111-01
+      image: ubuntu-2004:2023.04.2
     steps:
       - checkout
-      - run: npm install
-      - run: npm run build:prod
+      - run: yarn install
+      - run: yarn build:prod
       - persist_to_workspace:
           root: build
           paths:
@@ -31,12 +31,12 @@ workflows:
   lint_test:
     jobs:
       - node/run:
-          version: '16.10'
-          pkg-manager: npm
-          npm-run: lint
+          version: '18.16.1'
+          pkg-manager: yarn
+          yarn-run: lint
       - node/test:
-          version: '16.10'
-          pkg-manager: npm
+          version: '18.16.1'
+          pkg-manager: yarn
   build_deploy:
     jobs:
       - build
