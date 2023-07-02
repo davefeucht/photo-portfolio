@@ -151,13 +151,13 @@ class stateStore implements Store {
         this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
     };
 
-    setCurrentPost = (postData: Post) => {
+    setCurrentPost = (postData: Post, tagNames: string[] = [], imageUrl = '') => {
         const visiblePostData: VisiblePost = {
-            postId: parseInt(postData.id),
+            postId: postData.id,
             postTitle: postData.title.rendered,
             tags: postData.tags,
-            tagNames: [],
-            fullImageUrl: null,
+            tagNames,
+            fullImageUrl: imageUrl,
             width: 0,
             height: 0,
             featured_media: postData.featured_media

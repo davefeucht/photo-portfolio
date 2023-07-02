@@ -3,17 +3,30 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 
-import StateStore from '../../StateStore/store';
 import Posts from '../Posts/Posts';
+
+const screenInfo = {
+    width: 500,
+    height: 500
+};
 
 const posts = [
     {
         id: 887,
+        link: '',
+        modified: '',
+        slug: '',
+        type: '',
         featured_media: 142,
         categories: [220],
         title: {
             rendered: 'Some post'
-        }
+        },
+        content: {
+            rendered: 'Some content',
+            protected: false
+        },
+        thumbnail_image: 'https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg'
     },
     {
         id: 889,
@@ -21,18 +34,21 @@ const posts = [
         categories: [220],
         title: {
             rendered: 'Some other post'
-        }
+        },
+        thumbnail_image: 'https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg'
     }
 ];
 
 test('Posts displays', async () => {
-    const store = new StateStore();
-    store.setCategoryPosts(posts);
     let container;
     await act(async () => {
         container = render(
             <MemoryRouter>
-                <Posts stateStore={store} />
+                <Posts
+                    maxItemsPerPage={10}
+                    screenInfo={screenInfo}
+                    currentCategoryPosts={posts}
+                />
             </MemoryRouter>
         ).container;
     });

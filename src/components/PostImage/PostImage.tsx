@@ -6,18 +6,24 @@ import './PostImage.css';
 
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 
-import { Store } from '../../utils/types';
 import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow';
 
 interface PostImageProps {
-    stateStore: Store,
-    previousPost: string,
-    nextPost: string
+    imageUrl: string,
+    imageHeight: number,
+    previousPost: number,
+    nextPost: number,
+    ref: React.ForwardedRef<HTMLImageElement>
 }
 
-const PostImage: React.FC<PostImageProps> = ({ stateStore, previousPost, nextPost }) => {
+const PostImage: React.FC<PostImageProps> = forwardRef(({
+    imageUrl,
+    imageHeight,
+    previousPost,
+    nextPost
+}, ref) => {
     const [arrowsVisible, setArrowsVisible] = useState<boolean>(false);
 
     const onMouseOverHandler = () => {
@@ -30,12 +36,12 @@ const PostImage: React.FC<PostImageProps> = ({ stateStore, previousPost, nextPos
 
     return (
         <div className="post-image" onMouseOver={onMouseOverHandler.bind(this)} onMouseOut={onMouseOutHandler.bind(this)}>
-            {arrowsVisible && <PostNavigationArrow stateStore={stateStore} direction="previous" postId={previousPost} />}
-            <img src={stateStore.visiblePost.fullImageUrl} />
-            {arrowsVisible && <PostNavigationArrow stateStore={stateStore} direction="next" postId={nextPost} />}
+            {arrowsVisible && <PostNavigationArrow imageHeight={imageHeight} direction="previous" postId={previousPost} />}
+            <img ref={ref} src={imageUrl} />
+            {arrowsVisible && <PostNavigationArrow imageHeight={imageHeight} direction="next" postId={nextPost} />}
         </div>
     );
-};
+});
 
 PostImage.displayName = 'PostImage';
 

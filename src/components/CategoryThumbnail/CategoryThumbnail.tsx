@@ -10,20 +10,20 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getCategoryImage } from '../../utils/Api';
-import { Store } from '../../utils/types';
+import { SiteInfo } from '../../utils/types';
 import CategoryTitle from '../CategoryTitle/CategoryTitle';
 
 interface CategoryThumbnailProps {
     id: number,
     name: string,
-    stateStore: Store
+    siteInfo: SiteInfo
 }
 
-const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name, stateStore }) => {
+const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name, siteInfo }) => {
     const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
 
     if (!thumbnailImageUrl) {
-        getCategoryImage(id, stateStore.siteInfo.siteUrl)
+        getCategoryImage(id, siteInfo.siteUrl)
             .then(imageUrl => {
                 setThumbnailImageUrl(imageUrl);
             });

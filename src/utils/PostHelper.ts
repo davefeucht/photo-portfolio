@@ -3,7 +3,8 @@ import { runInAction } from 'mobx';
 import { getPost } from './Api';
 import {
     Post,
-    Store
+    Store,
+    VisiblePost
 } from './types';
 
 export const getPostInfo = (postId: string, stateStore: Store) => {
@@ -13,7 +14,8 @@ export const getPostInfo = (postId: string, stateStore: Store) => {
     });
 };
 
-export const getNextPost = (postId: string, currentCategoryPosts: Post[]) => {
+// TODO: See why these two methods are not always working OK
+export const getNextPost = (postId: number, currentCategoryPosts: Post[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const nextIndex = currentIndex + 1;
     const numberOfPosts = currentCategoryPosts.length;
@@ -24,7 +26,7 @@ export const getNextPost = (postId: string, currentCategoryPosts: Post[]) => {
     return nextId;
 };
 
-export const getPreviousPost = (postId: string, currentCategoryPosts: Post[]) => {
+export const getPreviousPost = (postId: number, currentCategoryPosts: Post[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const previousIndex = currentIndex - 1;
     if (previousIndex < 0) {
@@ -34,7 +36,7 @@ export const getPreviousPost = (postId: string, currentCategoryPosts: Post[]) =>
     return previousId;
 };
 
-const getPostSize = (screenWidth: number, screenHeight: number, imageWidth: number, imageHeight: number, stateStore: Store) => {
+const getPostSize = (screenWidth: number, screenHeight: number, imageWidth: number, imageHeight: number) => {
     const postTitlebar = document.querySelector('.post-titlebar');
     const postFooter = document.querySelector('.post-footer');
     const screenAspectRatio = screenWidth / screenHeight;
@@ -58,11 +60,6 @@ const getPostSize = (screenWidth: number, screenHeight: number, imageWidth: numb
     rect.image_height = height;
     rect.height = height + postTitlebar.clientHeight + postFooter.clientHeight;
 
-    runInAction(() => {
-        stateStore.visiblePost.width = width;
-        stateStore.visiblePost.height = height;
-    });
-
     return rect;
 };
 
@@ -77,11 +74,15 @@ const getPostPosition = (screenWidth: number, screenHeight: number, postWidth: n
     return position;
 };
 
-export const setPostRect = (image: HTMLImageElement, screenWidth: number, screenHeight: number, stateStore: Store) => {
+export const setPostRect = (image: HTMLImageElement, screenWidth: number, screenHeight: number, visiblePost: VisiblePost) => {
     const postElement = document.querySelector('.post') as HTMLElement;
     const imageElement = document.querySelector('.post-image > img') as HTMLElement;
     const backgroundElement = document.querySelector('.post-background') as HTMLElement;
-    const rect = getPostSize(screenWidth, screenHeight, image.width, image.height, stateStore);
+    const rect = getPostSize(screenWidth, screenHeight, image.width, image.height);
+    runInAction(() => {
+        visiblePost.width = rect.width;
+        visiblePost.height = rect.height;
+    });
     imageElement.style.width = `${rect.width}px`;
     imageElement.style.height = `${rect.image_height}px`;
     postElement.style.width = `${rect.width}px`;

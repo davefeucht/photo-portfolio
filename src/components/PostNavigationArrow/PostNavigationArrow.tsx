@@ -8,19 +8,18 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { Store } from '../../utils/types';
-
 interface PostNavigationArrowProps {
-    stateStore: Store,
+    imageHeight: number,
     direction: string,
-    postId: string
+    postId: number
 }
 
-const PostNavigationArrow: React.FC<PostNavigationArrowProps> = ({ stateStore, direction, postId }) => {
+const PostNavigationArrow: React.FC<PostNavigationArrowProps> = ({ imageHeight = 0, direction, postId }) => {
     const { categoryId } = useParams();
 
-    // TODO: calc this based on a height variable, not just a hard-coded 41
-    const top = stateStore.visiblePost.height ? (stateStore.visiblePost.height / 2) - (41) : 0;
+    // TODO: calculate these based on a variable somewhere - they are navigationArrowHeight - (postHeaderHight + postFooterHeight)
+    // What we want here is actually the height of just the image and not the whole modal
+    const top = (imageHeight / 2) - 41;
     const divStyle = direction === 'previous' ? { top: `${top}px`, left: '0px' } : { top: `${top}px`, right: '0px' };
     const classNames = ['post-navigation-arrow', postId ? 'active' : 'disabled', direction];
 

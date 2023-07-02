@@ -8,37 +8,39 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 
-import { Store } from '../../utils/types';
+import { Post as PostState, ScreenInfo } from '../../utils/types';
 import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
 import PostThumbnail from '../PostThumbnail/PostThumbnail';
 
 interface PostsProps {
-    stateStore: Store
+    maxItemsPerPage: number,
+    screenInfo: ScreenInfo,
+    currentCategoryPosts: PostState[]
 }
 
-const Posts: React.FC<PostsProps> = ({ stateStore }) => {
+const Posts: React.FC<PostsProps> = ({ maxItemsPerPage, screenInfo, currentCategoryPosts }) => {
     const [currentPageIndex, setCurrentPageIndex] = useState(1);
 
-    const startIndex = (currentPageIndex - 1) * stateStore.maxItemsPerPage;
-    const endIndex = startIndex + stateStore.maxItemsPerPage;
+    const startIndex = (currentPageIndex - 1) * maxItemsPerPage;
+    const endIndex = startIndex + maxItemsPerPage;
 
     const setRows = () => {
-        const numberOfColumns = parseInt(document.body.style.getPropertyValue('--number-of-columns'));
-        const numberOfPosts = stateStore.maxItemsPerPage;
+        const numberOfColumns = parseInt(document.body.style.getPropertyValue('--number-of-columns')) || 1;
+        const numberOfPosts = maxItemsPerPage;
         document.body.style.setProperty('--number-of-rows', `${numberOfPosts / numberOfColumns}`);
     };
 
     useEffect(() => {
         setRows();
-    }, [stateStore.screenInfo.width, stateStore.screenInfo.height]);
+    }, [screenInfo.width, screenInfo.height]);
 
     return (
         <div className="posts">
-            {stateStore.currentCategoryPosts.slice(startIndex, endIndex)
+            {currentCategoryPosts.slice(startIndex, endIndex)
                 .map((post, index) => {
-                    return (<PostThumbnail key={post.id.toString()} stateStore={stateStore} id={post.id} index={index + startIndex} />);
+                    return (<PostThumbnail key={post.id.toString()} id={post.id} thumbnailImage={currentCategoryPosts[index].thumbnail_image} />);
                 })}
-            <PaginationNavigation totalPages={stateStore.currentCategoryPosts.length / stateStore.maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={content => { setCurrentPageIndex(content); }} />
+            <PaginationNavigation totalPages={currentCategoryPosts.length / maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={content => { setCurrentPageIndex(content); }} />
         </div>
     );
 };

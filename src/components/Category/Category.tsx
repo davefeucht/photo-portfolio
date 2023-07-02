@@ -13,38 +13,64 @@ import {
 } from 'react-router-dom';
 
 import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api';
-import { Store } from '../../utils/types';
+import {
+    Category as CategoryState,
+    ImageData,
+    Post as PostState,
+    ScreenInfo,
+    SiteInfo
+} from '../../utils/types';
 import Posts from '../Posts/Posts';
 import SectionHeader from '../SectionHeader/SectionHeader';
 
 interface CategoryProps {
-    stateStore: Store
+    maxItemsPerPage: number,
+    siteInfo: SiteInfo,
+    screenInfo: ScreenInfo,
+    currentCategoryPosts: PostState[],
+    currentCategoryData: CategoryState,
+    setCategoryPosts: (a: PostState[]) => void,
+    setCategoryData: (a: CategoryState) => void,
+    setThumbnailImageUrl: (a: ImageData) => void
 }
 
-const Category: React.FC<CategoryProps> = ({ stateStore }) => {
+const Category: React.FC<CategoryProps> = ({
+    maxItemsPerPage,
+    siteInfo,
+    screenInfo,
+    currentCategoryPosts,
+    currentCategoryData,
+    setCategoryPosts,
+    setCategoryData,
+    setThumbnailImageUrl
+}) => {
     const { categoryId } = useParams();
 
     useEffect(() => {
-        getPosts(parseInt(categoryId), stateStore.siteInfo.siteUrl)
+        getPosts(parseInt(categoryId), siteInfo.siteUrl)
             .then(posts => {
-                stateStore.setCategoryPosts(posts);
-                stateStore.currentCategoryPosts.forEach((post, index) => {
-                    getPostThumbnail(post.featured_media, stateStore.siteInfo.siteUrl)
+                setCategoryPosts(posts);
+                currentCategoryPosts.forEach((post, index) => {
+                    getPostThumbnail(post.featured_media, siteInfo.siteUrl)
                         .then(thumbUrl => {
-                            stateStore.setThumbnailImageUrl({ post_index: index, image_url: thumbUrl });
+                            setThumbnailImageUrl({ post_index: index, image_url: thumbUrl });
                         });
                 });
             });
-        getCategoryInfo(parseInt(categoryId), stateStore.siteInfo.siteUrl)
+        getCategoryInfo(parseInt(categoryId), siteInfo.siteUrl)
             .then(categoryInfo => {
-                stateStore.setCategoryData(categoryInfo);
+                setCategoryData(categoryInfo);
             });
     }, [categoryId]);
 
     return (
         <div className="category">
-            <SectionHeader title={stateStore.currentCategoryData.name} />
-            <Posts stateStore={stateStore} />
+            <SectionHeader title={currentCategoryData.name} />
+            <Posts
+                maxItemsPerPage={maxItemsPerPage}
+                screenInfo={screenInfo}
+                currentCategoryPosts={currentCategoryPosts}
+            />
             <Outlet />
         </div>
     );

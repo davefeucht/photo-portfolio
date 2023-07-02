@@ -3,7 +3,7 @@
 exports[`PostNavigationArrow displays 1`] = `
 <div
   class="post-navigation-arrow active previous"
-  style="top: 0px; left: 0px;"
+  style="top: 209px; left: 0px;"
 >
   <a
     href="/category/undefined/post/35"

@@ -10,22 +10,26 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { getPage } from '../../utils/Api';
-import { Store } from '../../utils/types';
+import {
+    Page as PageState,
+    SiteInfo
+} from '../../utils/types';
 import PageContent from '../PageContent/PageContent';
 import SectionHeader from '../SectionHeader/SectionHeader';
 
 interface PageProps {
-    stateStore: Store
+    currentPageData: PageState,
+    siteInfo: SiteInfo,
+    setPageData: (a: PageState) => void
 }
 
-const Page: React.FC<PageProps> = ({ stateStore }) => {
+const Page: React.FC<PageProps> = ({ currentPageData, siteInfo, setPageData }) => {
     const { pageId } = useParams();
-    const { currentPageData } = stateStore;
 
     useEffect(() => {
-        getPage(parseInt(pageId), stateStore.siteInfo.siteUrl)
+        getPage(parseInt(pageId), siteInfo.siteUrl)
             .then(page => {
-                stateStore.setPageData(page);
+                setPageData(page);
             });
     }, [pageId]);
 

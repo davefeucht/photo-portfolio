@@ -82,19 +82,54 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
                 <Routes>
                     <Route
                         path="/"
-                        element={<Categories stateStore={stateStore} />}
+                        element={(
+                            <Categories
+                                maxItemsPerPage={stateStore.maxItemsPerPage}
+                                screenInfo={stateStore.screenInfo}
+                                categoryList={stateStore.categoryList}
+                                siteInfo={stateStore.siteInfo}
+                            />
+                        )}
                     />
                     <Route
                         path="page/:pageId"
-                        element={<Page key={pageId} stateStore={stateStore} />}
+                        element={(
+                            <Page
+                                key={pageId}
+                                currentPageData={stateStore.currentPageData}
+                                siteInfo={stateStore.siteInfo}
+                                setPageData={stateStore.setPageData}
+                            />
+                        )}
                     />
                     <Route
                         path="category/:categoryId"
-                        element={<Category key={categoryId} stateStore={stateStore} />}
+                        element={(
+                            <Category
+                                key={categoryId}
+                                maxItemsPerPage={stateStore.maxItemsPerPage}
+                                siteInfo={stateStore.siteInfo}
+                                screenInfo={stateStore.screenInfo}
+                                currentCategoryPosts={stateStore.currentCategoryPosts}
+                                currentCategoryData={stateStore.currentCategoryData}
+                                setCategoryPosts={stateStore.setCategoryPosts}
+                                setCategoryData={stateStore.setCategoryData}
+                                setThumbnailImageUrl={stateStore.setThumbnailImageUrl}
+                            />
+                        )}
                     >
                         <Route
                             path="post/:postId"
-                            element={<Post stateStore={stateStore} />}
+                            element={(
+                                <Post
+                                    screenInfo={stateStore.screenInfo}
+                                    siteInfo={stateStore.siteInfo}
+                                    visiblePost={stateStore.visiblePost}
+                                    currentCategoryPosts={stateStore.currentCategoryPosts}
+                                    clearVisiblePostTagNames={stateStore.clearVisiblePostTagNames}
+                                    setCurrentPost={stateStore.setCurrentPost}
+                                />
+                            )}
                         />
                     </Route>
                 </Routes>

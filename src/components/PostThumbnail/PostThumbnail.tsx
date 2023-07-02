@@ -8,16 +8,17 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { Store } from '../../utils/types';
-
 interface PostThumbnailProps {
-    stateStore: Store,
-    id: string,
-    index: number
+    id: number,
+    thumbnailImage: string
 }
 
-const PostThumbnail: React.FC<PostThumbnailProps> = ({ stateStore, id, index }) => {
-    const divStyle = { backgroundImage: `url(${stateStore.currentCategoryPosts[index].thumbnail_image ? stateStore.currentCategoryPosts[index].thumbnail_image : ''})` };
+/*
+ * currentCategoryPosts
+*/
+
+const PostThumbnail: React.FC<PostThumbnailProps> = ({ id, thumbnailImage = '' }) => {
+    const divStyle = { backgroundImage: `url(${thumbnailImage})` };
     const location = useLocation();
 
     return (

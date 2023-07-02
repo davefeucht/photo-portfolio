@@ -7,16 +7,14 @@ import './PostFooter.css';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { Store } from '../../utils/types';
-
 interface PostFooterProps {
-    stateStore: Store
+    tagNames: string[]
 }
 
-const PostFooter: React.FC<PostFooterProps> = ({ stateStore }) => {
+const PostFooter: React.FC<PostFooterProps> = ({ tagNames }) => {
     return (
         <div className="post-footer">
-            <div className="labels">{stateStore.visiblePost.tagNames.join(', ')}</div>
+            <div className="labels">{tagNames.join(', ')}</div>
         </div>
     );
 };
