@@ -30,6 +30,7 @@ const Posts: React.FC<PostsProps> = ({ maxItemsPerPage, screenInfo, currentCateg
         document.body.style.setProperty('--number-of-rows', `${numberOfPosts / numberOfColumns}`);
     };
 
+    // TODO: Need to reset page index to 1 when a new category is loaded
     useEffect(() => {
         setCurrentPageIndex(1);
     }, [currentCategoryPosts]);
