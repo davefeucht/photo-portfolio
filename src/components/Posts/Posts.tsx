@@ -36,8 +36,6 @@ const Posts: React.FC<PostsProps> = ({
         document.body.style.setProperty('--number-of-rows', `${numberOfPosts / numberOfColumns}`);
     };
 
-    // TODO: Need to reset page index to 1 when a new category is loaded
-    // useEffect is not triggered when elements of currentCategoryPosts are changed, so need to work something out there
     useEffect(() => {
         setCurrentPageIndex(1);
     }, [categoryId]);
