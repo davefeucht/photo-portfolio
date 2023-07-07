@@ -15,10 +15,16 @@ import PostThumbnail from '../PostThumbnail/PostThumbnail';
 interface PostsProps {
     maxItemsPerPage: number,
     screenInfo: ScreenInfo,
+    categoryId: number,
     currentCategoryPosts: PostState[]
 }
 
-const Posts: React.FC<PostsProps> = ({ maxItemsPerPage, screenInfo, currentCategoryPosts }) => {
+const Posts: React.FC<PostsProps> = ({
+    maxItemsPerPage,
+    screenInfo,
+    categoryId,
+    currentCategoryPosts
+}) => {
     const [currentPageIndex, setCurrentPageIndex] = useState(1);
 
     const startIndex = (currentPageIndex - 1) * maxItemsPerPage;
@@ -31,9 +37,10 @@ const Posts: React.FC<PostsProps> = ({ maxItemsPerPage, screenInfo, currentCateg
     };
 
     // TODO: Need to reset page index to 1 when a new category is loaded
+    // useEffect is not triggered when elements of currentCategoryPosts are changed, so need to work something out there
     useEffect(() => {
         setCurrentPageIndex(1);
-    }, [currentCategoryPosts]);
+    }, [categoryId]);
 
     useEffect(() => {
         setRows();
