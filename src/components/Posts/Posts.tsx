@@ -38,9 +38,19 @@ const Posts: React.FC<PostsProps> = ({ maxItemsPerPage, screenInfo, currentCateg
         <div className="posts">
             {currentCategoryPosts.slice(startIndex, endIndex)
                 .map((post, index) => {
-                    return (<PostThumbnail key={post.id.toString()} id={post.id} thumbnailImage={currentCategoryPosts[index].thumbnail_image} />);
+                    return (
+                        <PostThumbnail
+                            key={post.id.toString()}
+                            id={post.id}
+                            thumbnailImage={currentCategoryPosts[index].thumbnail_image}
+                        />
+                    );
                 })}
-            <PaginationNavigation totalPages={currentCategoryPosts.length / maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={content => { setCurrentPageIndex(content); }} />
+            <PaginationNavigation
+                totalPages={currentCategoryPosts.length / maxItemsPerPage}
+                currentPageIndex={currentPageIndex}
+                navigationFunction={content => { setCurrentPageIndex(content); }}
+            />
         </div>
     );
 };
