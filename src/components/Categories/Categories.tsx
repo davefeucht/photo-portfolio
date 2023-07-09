@@ -45,7 +45,7 @@ const Categories: React.FC<CategoriesProps> = ({
         <div className="category-list">
             {categoryList.slice(startIndex, endIndex)
                 .map(category => {
-                    return (<CategoryThumbnail key={category.id.toString()} id={category.id} name={category.name} siteInfo={siteInfo} />);
+                    return (<CategoryThumbnail key={category.id.toString()} id={category.id} name={category.name} />);
                 })}
             <PaginationNavigation totalPages={categoryList.length / maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={(content: number) => { setCurrentPageIndex(content); }} />
         </div>

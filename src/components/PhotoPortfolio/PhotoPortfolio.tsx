@@ -99,7 +99,6 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
                                 <Page
                                     key={pageId}
                                     currentPageData={stateStore.currentPageData}
-                                    siteInfo={stateStore.siteInfo}
                                     setPageData={stateStore.setPageData}
                                 />
                             )}
@@ -124,7 +123,6 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
                                 element={(
                                     <Post
                                         screenInfo={stateStore.screenInfo}
-                                        siteInfo={stateStore.siteInfo}
                                         visiblePost={stateStore.visiblePost}
                                         currentCategoryPosts={stateStore.currentCategoryPosts}
                                         clearVisiblePostTagNames={stateStore.clearVisiblePostTagNames}

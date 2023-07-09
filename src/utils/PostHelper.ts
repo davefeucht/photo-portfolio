@@ -1,20 +1,10 @@
 import { runInAction } from 'mobx';
 
-import { getPost } from './Api';
 import {
     Post,
-    Store,
     VisiblePost
 } from './types';
 
-export const getPostInfo = (postId: string, stateStore: Store) => {
-    const parsedPostId = parseInt(postId);
-    runInAction(() => {
-        getPost(parsedPostId, stateStore.siteInfo.siteUrl);
-    });
-};
-
-// TODO: See why these two methods are not always working OK
 export const getNextPost = (postId: number, currentCategoryPosts: Post[]) => {
     const currentIndex = currentCategoryPosts.findIndex(post => post.id === postId);
     const nextIndex = currentIndex + 1;

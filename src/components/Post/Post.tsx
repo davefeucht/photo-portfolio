@@ -7,19 +7,24 @@ import './Post.css';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import {
+    useContext,
+    useEffect,
+    useRef,
+    useState
+} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { getPost, getPostImage, getTagNames } from '../../utils/Api';
+import { ApiContext } from '../../utils/ApiContext';
 import {
     getNextPost,
     getPreviousPost,
     setPostRect
 } from '../../utils/PostHelper';
 import {
+    API,
     Post as PostState,
     ScreenInfo,
-    SiteInfo,
     VisiblePost
 } from '../../utils/types';
 import PostFooter from '../PostFooter/PostFooter';
@@ -30,7 +35,6 @@ const image = document.createElement('img');
 
 interface PostProps {
     screenInfo: ScreenInfo,
-    siteInfo: SiteInfo,
     visiblePost: VisiblePost,
     currentCategoryPosts: PostState[],
     clearVisiblePostTagNames: () => void,
@@ -39,7 +43,6 @@ interface PostProps {
 
 const Post: React.FC<PostProps> = ({
     screenInfo,
-    siteInfo,
     visiblePost,
     currentCategoryPosts,
     clearVisiblePostTagNames,
@@ -49,6 +52,8 @@ const Post: React.FC<PostProps> = ({
     const { categoryId = '-1', postId = '-1' } = useParams();
     const navigate = useNavigate();
     const imageRef = useRef<HTMLImageElement>(null);
+    const api = useContext(ApiContext) as API;
+    const { getPost, getPostImage, getTagNames } = api;
 
     const closeModalHandler = () => {
         navigate(`/category/${categoryId}`);
@@ -72,16 +77,16 @@ const Post: React.FC<PostProps> = ({
         let url = '';
         if (postId) {
             clearVisiblePostTagNames();
-            getPost(parseInt(postId), siteInfo.siteUrl)
+            getPost(parseInt(postId))
                 .then((post: PostState) => {
                     return post;
                 })
                 .then((newPost: PostState) => {
-                    getTagNames(newPost.tags, siteInfo.siteUrl)
+                    getTagNames(newPost.tags)
                         .then(tags => {
                             tagNames = tags;
                         });
-                    getPostImage(newPost.featured_media, siteInfo.siteUrl)
+                    getPostImage(newPost.featured_media)
                         .then((imageUrl: string) => {
                             url = imageUrl;
                             setCurrentPost(newPost, tagNames, url);
