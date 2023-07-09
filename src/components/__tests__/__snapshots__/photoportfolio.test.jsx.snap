@@ -17,7 +17,7 @@ exports[`PhotoPortfolio displays 1`] = `
     </div>
     <div>
       <h1>
-        Though a Pinhole
+        Through a Pinhole
       </h1>
     </div>
   </div>
@@ -33,18 +33,26 @@ exports[`PhotoPortfolio displays 1`] = `
         <div
           class="title"
         >
-          Some category
+          Some other category
         </div>
       </div>
       <div
         class="posts"
       >
         <a
-          href="/category/35/post/foo"
+          href="/category/35/post/887"
         >
           <div
             class="post-thumbnail"
-            style="background-image: url(http://foo);"
+            style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+          />
+        </a>
+        <a
+          href="/category/35/post/889"
+        >
+          <div
+            class="post-thumbnail"
+            style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
           />
         </a>
         <div
