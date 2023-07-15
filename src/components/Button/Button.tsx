@@ -10,22 +10,22 @@ import * as React from 'react';
 import { ButtonType } from '../../utils/types';
 
 interface ButtonProps {
-    disabled: boolean,
+    disabled?: boolean,
     form: string,
     id: string,
     text: string,
-    type: ButtonType,
-    variant: 'primary' | 'secondary',
+    type?: ButtonType,
+    variant?: 'primary' | 'secondary',
     onClick: (event: React.MouseEvent) => void
 }
 
 const Button: React.FC<ButtonProps> = ({
     id,
     form,
-    disabled,
+    disabled = false,
     text,
     type = 'button',
-    variant,
+    variant = 'primary',
     onClick
 }) => {
     return (

@@ -1,5 +1,6 @@
 .form-button {
-    border: 1px solid white;
+    height: $form-input-height;
+    border: 1px solid black;
     border-radius: $form-input-border-radius;
 
     & .primary {

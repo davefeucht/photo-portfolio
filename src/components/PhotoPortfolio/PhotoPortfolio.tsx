@@ -15,6 +15,7 @@ import {
     useParams
 } from 'react-router-dom';
 
+import ContactPage from '../../static_pages/ContactPage';
 import { getCategories, getPages } from '../../utils/Api';
 import { Store } from '../../utils/types';
 import Categories from '../Categories/Categories';
@@ -89,6 +90,12 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
                                 categoryList={stateStore.categoryList}
                                 siteInfo={stateStore.siteInfo}
                             />
+                        )}
+                    />
+                    <Route
+                        path="/contact"
+                        element={(
+                            <ContactPage />
                         )}
                     />
                     <Route

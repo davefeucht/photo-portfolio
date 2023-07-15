@@ -1,3 +1,7 @@
 .form-input {
+    display: block;
+    width: 40vw;
+    margin: $form-input-margin;
+    height: $form-input-height;
     border-radius: $form-input-border-radius;
 }

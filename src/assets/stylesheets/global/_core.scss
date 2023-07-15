@@ -1,0 +1,31 @@
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    --number-of-columns: 5;
+    --number-of-rows: 2;
+    --modal-transition-teim: 300ms;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+}
+
+/* Set form elements to inherit styling */
+button,
+input,
+select,
+textarea {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 100%;
+}
+

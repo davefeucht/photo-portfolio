@@ -13,8 +13,8 @@ interface TextAreaProps {
     cols: number,
     placeholder: string,
     form: string,
-    required: boolean,
-    disabled: boolean,
+    required?: boolean,
+    disabled?: boolean,
     value: string,
     onChange: (content: string) => void
 }
@@ -25,8 +25,8 @@ const TextArea: React.FC<TextAreaProps> = ({
     cols,
     placeholder,
     form,
-    required,
-    disabled,
+    required = true,
+    disabled = false,
     value,
     onChange
 }) => {
@@ -37,7 +37,7 @@ const TextArea: React.FC<TextAreaProps> = ({
 
     return (
         <textarea
-            className="form-textArea"
+            className="form-textarea"
             id={id}
             rows={rows}
             cols={cols}
