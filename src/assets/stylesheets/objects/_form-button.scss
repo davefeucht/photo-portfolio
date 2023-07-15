@@ -1,0 +1,14 @@
+.form-button {
+    border: 1px solid white;
+    border-radius: $form-input-border-radius;
+
+    & .primary {
+        color: var(--template-white);
+        background-color: var(--template-blue);
+    }
+
+    & .secondary {
+        color: var(--template-black);
+        background-color: var(--template-light-grey)
+    }
+}

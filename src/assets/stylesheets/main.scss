@@ -1,4 +1,9 @@
 //Import partials
 
 @import 'colors';
-@import 'building_blocks';
+@import 'settings';
+
+@import 'objects/form-button';
+@import 'objects/form-input';
+@import 'objects/form-label';
+@import 'objects/form-textarea';
