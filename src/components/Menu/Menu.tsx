@@ -38,10 +38,15 @@ const Menu: React.FC<MenuProps> = ({ stateStore }) => {
                     Info
                     <ul>
                         {pages.map(page => {
-                            return (
-                                <li key={`li_${page.title.rendered}`} onClick={() => toggleMenuState()}><MenuLink key={`${page.title.rendered}_${page.id}`} href={`page/${page.id}`} text={page.title.rendered} /></li>
-                            );
+                            let element = null;
+                            if (page.title.rendered !== 'Contact') {
+                                element = <li key={`li_${page.title.rendered}`} onClick={() => toggleMenuState()}><MenuLink key={`${page.title.rendered}_${page.id}`} href={`page/${page.id}`} text={page.title.rendered} /></li>;
+                            }
+                            return element;
                         })}
+                        <li onClick={() => toggleMenuState()}>
+                            <MenuLink href="contact" text="Contact" />
+                        </li>
                     </ul>
                 </li>
             </ul>

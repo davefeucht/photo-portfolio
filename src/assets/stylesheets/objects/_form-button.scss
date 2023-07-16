@@ -1,14 +1,14 @@
 .form-button {
     height: $form-input-height;
-    border: 1px solid black;
+    border: 1px solid var(--template-white);
     border-radius: $form-input-border-radius;
 
-    & .primary {
+    &.primary {
         color: var(--template-white);
         background-color: var(--template-blue);
     }
 
-    & .secondary {
+    &.secondary {
         color: var(--template-black);
         background-color: var(--template-light-grey)
     }

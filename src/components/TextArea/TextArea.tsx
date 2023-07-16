@@ -46,10 +46,9 @@ const TextArea: React.FC<TextAreaProps> = ({
             form={form}
             required={required}
             disabled={disabled}
+            value={value}
             onChange={handleChange}
-        >
-            {value}
-        </textarea>
+        />
     );
 };
 

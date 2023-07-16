@@ -1,5 +1,4 @@
 .form-textarea {
-    border-radius: $form-input-border-radius;
-    width: 40vw;
+    @include input-general;
     height: $form-textarea-height;
 }

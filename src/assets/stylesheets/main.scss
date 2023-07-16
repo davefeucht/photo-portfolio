@@ -6,12 +6,11 @@
 @import 'settings/colors';
 @import 'settings/size';
 
+@import 'helpers/mixins';
+
 @import 'objects/static-page';
 @import 'objects/form';
 @import 'objects/form-button';
 @import 'objects/form-input';
-@import 'objects/form-label';
 @import 'objects/form-textarea';
 @import 'objects/button-row';
-
-@import 'objects/contact-form';
