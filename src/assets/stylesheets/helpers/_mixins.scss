@@ -1,4 +1,5 @@
 @mixin input-general {
+    display: block;
     border-radius: $form-input-border-radius;
     margin: $form-input-margin;
     width: 40vw;

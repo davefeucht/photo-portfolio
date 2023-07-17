@@ -7,12 +7,15 @@ import Label from '../components/Label/Label';
 import Paragraph from '../components/Paragraph/Paragraph';
 import TextArea from '../components/TextArea/TextArea';
 
-const ContactForm = () => {
+interface ContactFormProps {
+    explanatoryText: string
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ explanatoryText }) => {
     const [emailValue, setEmailValue] = useState<string>('');
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [messageContent, setMessageContent] = useState<string>('');
-    /* TODO: Figure out how to get the contact page text from the backend and pass it here to the Paragraph component */
 
     const handleSubmit = (event: React.MouseEvent) => {
         event.preventDefault();
@@ -25,7 +28,8 @@ const ContactForm = () => {
             name="contactform"
             autoComplete="off"
         >
-            <Paragraph id="contactinfo" text="Foo" />
+            <Paragraph id="contactinfo" text={explanatoryText} />
+            <hr />
             <Label htmlFor="firstname" text="First Name" />
             <Input
                 id="firstname"
@@ -56,6 +60,7 @@ const ContactForm = () => {
                 value={emailValue}
                 onChange={setEmailValue}
             />
+            <Label htmlFor="contactmessage" text="Message" />
             <TextArea
                 id="contactmessage"
                 form="contactform"
