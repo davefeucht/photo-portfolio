@@ -49,17 +49,17 @@ const Category: React.FC<CategoryProps> = ({
     useEffect(() => {
         if (categoryId) {
             getPosts(parseInt(categoryId), siteInfo.siteUrl)
-                .then(posts => {
+                .then((posts: PostState[]) => {
                     setCategoryPosts(posts);
                     currentCategoryPosts.forEach((post, index) => {
                         getPostThumbnail(post.featured_media, siteInfo.siteUrl)
-                            .then(thumbUrl => {
+                            .then((thumbUrl: string) => {
                                 setThumbnailImageUrl({ post_index: index, image_url: thumbUrl });
                             });
                     });
                 });
             getCategoryInfo(parseInt(categoryId), siteInfo.siteUrl)
-                .then(categoryInfo => {
+                .then((categoryInfo: CategoryState) => {
                     setCategoryData(categoryInfo);
                 });
         }

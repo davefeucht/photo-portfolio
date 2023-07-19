@@ -1,10 +1,22 @@
 import axios from 'axios';
 
+import {
+    CategoriesResponse,
+    CategoryResponse,
+    MediaResponse,
+    PageResponse,
+    PagesResponse,
+    PostResponse,
+    PostsResponse,
+    SiteInfoResponse,
+    TagNameResponse
+} from './types';
+
 export const getPostThumbnail = async (featuredImage: number, siteUrl: string) => {
     const getPostThumbnailURI = `https://${siteUrl}/wp-json/wp/v2/media/${featuredImage}`;
     const response = await axios.get(getPostThumbnailURI);
     const size = response.data.media_details.sizes.large ? 'large' : 'full';
-    const thumbUrl = response.data.media_details.sizes[size].source_url;
+    const thumbUrl: string = response.data.media_details.sizes[size].source_url;
 
     return thumbUrl;
 };
@@ -12,18 +24,17 @@ export const getPostThumbnail = async (featuredImage: number, siteUrl: string) =
 export const getSiteInfo = async (siteUrl: string) => {
     const getSiteInformationURI = `https://${siteUrl}/wp-json/`;
 
-    const response = await axios.get(getSiteInformationURI);
+    const response: SiteInfoResponse = await axios.get(getSiteInformationURI);
     const siteName = response.data.name;
 
     return siteName;
 };
 
 export const getCategories = async (siteUrl: string) => {
-    let categories = [];
     const getCategoriesURI = `https://${siteUrl}/wp-json/wp/v2/categories?exclude=175`;
 
-    const response = await axios.get(getCategoriesURI);
-    categories = response.data;
+    const response: CategoriesResponse = await axios.get(getCategoriesURI);
+    const categories = response.data;
 
     return categories;
 };
@@ -65,7 +76,7 @@ export const getCategoryImage = async (categoryId: number, siteUrl: string) => {
 
 export const getPosts = async (categoryId: number, siteUrl: string) => {
     const getPostsURI = `https://${siteUrl}/wp-json/wp/v2/posts?categories=${categoryId}&per_page=20`;
-    const response = await axios.get(getPostsURI);
+    const response: PostsResponse = await axios.get(getPostsURI);
     const posts = response.data;
 
     return posts;
@@ -73,7 +84,7 @@ export const getPosts = async (categoryId: number, siteUrl: string) => {
 
 export const getPost = async (postId: number, siteUrl: string) => {
     const getPostURI = `https://${siteUrl}/wp-json/wp/v2/posts/${postId}`;
-    const response = await axios.get(getPostURI);
+    const response: PostResponse = await axios.get(getPostURI);
     const post = response.data;
 
     return post;
@@ -81,7 +92,7 @@ export const getPost = async (postId: number, siteUrl: string) => {
 
 export const getCategoryInfo = async (categoryId: number, siteUrl: string) => {
     const getPostsCategoryURI = `https://${siteUrl}/wp-json/wp/v2/categories/${categoryId}`;
-    const response = await axios.get(getPostsCategoryURI);
+    const response: CategoryResponse = await axios.get(getPostsCategoryURI);
     const categoryData = response.data;
 
     return categoryData;
@@ -89,8 +100,8 @@ export const getCategoryInfo = async (categoryId: number, siteUrl: string) => {
 
 export const getPostImage = async (image: number, siteUrl: string) => {
     const getPostImageURI = `https://${siteUrl}/wp-json/wp/v2/media/${image}`;
-    const response = await axios.get(getPostImageURI);
-    const fullImageUrl = response.data.media_details.sizes.full.source_url;
+    const response: MediaResponse = await axios.get(getPostImageURI);
+    const fullImageUrl = response.data.media_details.sizes.full?.source_url ?? '';
 
     return fullImageUrl;
 };
@@ -99,7 +110,7 @@ export const getTagNames = async (tags: number[], siteUrl: string) => {
     const tagNames: string[] = [];
     const tagPromises = tags.map(async tagId => {
         return axios.get(`https://${siteUrl}/wp-json/wp/v2/tags/${tagId}`)
-            .then(response => {
+            .then((response: TagNameResponse) => {
                 tagNames.push(response.data.name);
             });
     });
@@ -111,7 +122,7 @@ export const getTagNames = async (tags: number[], siteUrl: string) => {
 
 export const getPages = async (siteUrl: string) => {
     const getPagesURI = `https://${siteUrl}/wp-json/wp/v2/pages`;
-    const response = await axios.get(getPagesURI);
+    const response: PagesResponse = await axios.get(getPagesURI);
     const pages = response.data;
 
     return pages;
@@ -119,7 +130,7 @@ export const getPages = async (siteUrl: string) => {
 
 export const getPage = async (pageId: number, siteUrl: string) => {
     const getPagesURI = `https://${siteUrl}/wp-json/wp/v2/pages/${pageId}`;
-    const response = await axios.get(getPagesURI);
+    const response: PageResponse = await axios.get(getPagesURI);
     const page = response.data;
 
     return page;

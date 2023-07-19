@@ -50,7 +50,11 @@ const Posts: React.FC<PostsProps> = ({
                 .map((post, index) => {
                     return (<PostThumbnail key={post.id.toString()} id={post.id} thumbnailImage={currentCategoryPosts[startIndex + index].thumbnail_image} />);
                 })}
-            <PaginationNavigation totalPages={currentCategoryPosts.length / maxItemsPerPage} currentPageIndex={currentPageIndex} navigationFunction={content => { setCurrentPageIndex(content); }} />
+            <PaginationNavigation
+                totalPages={currentCategoryPosts.length / maxItemsPerPage}
+                currentPageIndex={currentPageIndex}
+                navigationFunction={content => { setCurrentPageIndex(content); }}
+            />
         </div>
     );
 };
