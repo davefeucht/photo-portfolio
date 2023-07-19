@@ -44,7 +44,7 @@ const Category: React.FC<CategoryProps> = ({
     setCategoryData,
     setThumbnailImageUrl
 }) => {
-    const { categoryId } = useParams();
+    const { categoryId = '' } = useParams();
 
     useEffect(() => {
         if (categoryId) {
@@ -71,6 +71,7 @@ const Category: React.FC<CategoryProps> = ({
             <Posts
                 maxItemsPerPage={maxItemsPerPage}
                 screenInfo={screenInfo}
+                categoryId={parseInt(categoryId)}
                 currentCategoryPosts={currentCategoryPosts}
             />
             <Outlet />
