@@ -42,7 +42,7 @@ const Category: React.FC<CategoryProps> = ({
     setCategoryData,
     setThumbnailImageUrl
 }) => {
-    const { categoryId } = useParams();
+    const { categoryId = '0' } = useParams();
     const api = useContext(ApiContext) as API;
     const { getPosts, getPostThumbnail, getCategoryInfo } = api;
 
