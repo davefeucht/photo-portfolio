@@ -16,8 +16,8 @@ import {
 } from 'react-router-dom';
 
 import ContactPage from '../../static_pages/ContactPage';
-import { getCategories, getPages } from '../../utils/Api';
-import { Store } from '../../utils/types';
+import { ApiContext } from '../../utils/ApiContext';
+import { API, Store } from '../../utils/types';
 import Categories from '../Categories/Categories';
 import Category from '../Category/Category';
 import Footer from '../Footer/Footer';
@@ -27,10 +27,11 @@ import Post from '../Post/Post';
 import TitleBar from '../TitleBar/TitleBar';
 
 interface PhotoPortfolioProps {
-    stateStore: Store
+    stateStore: Store,
+    api: API
 }
 
-const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
+const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
     const { categoryId, pageId } = useParams();
 
     const setScreenSize = () => {
@@ -50,11 +51,11 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
 
     useEffect(() => {
         window.addEventListener('resize', setScreenSize.bind(this));
-        getCategories(stateStore.siteInfo.siteUrl)
+        api.getCategories()
             .then(categories => {
                 stateStore.setCategoryList(categories);
             });
-        getPages(stateStore.siteInfo.siteUrl)
+        api.getPages()
             .then(pages => {
                 stateStore.setPages(pages);
             });
@@ -77,60 +78,58 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
     }, []);
 
     return (
-        <div className="app">
-            <TitleBar stateStore={stateStore} />
-            <div className="photo-portfolio">
-                <Routes>
-                    <Route
-                        path="/"
-                        element={(
-                            <Categories
-                                maxItemsPerPage={stateStore.maxItemsPerPage}
-                                screenInfo={stateStore.screenInfo}
-                                categoryList={stateStore.categoryList}
-                                siteInfo={stateStore.siteInfo}
-                            />
-                        )}
-                    />
-                    <Route
-                        path="/contact"
-                        element={(
-                            <ContactPage />
-                        )}
-                    />
-                    <Route
-                        path="page/:pageId"
-                        element={(
-                            <Page
-                                key={pageId}
-                                currentPageData={stateStore.currentPageData}
-                                siteInfo={stateStore.siteInfo}
-                                setPageData={stateStore.setPageData}
-                            />
-                        )}
-                    />
-                    <Route
-                        path="category/:categoryId"
-                        element={(
-                            <Category
-                                key={categoryId}
-                                maxItemsPerPage={stateStore.maxItemsPerPage}
-                                siteInfo={stateStore.siteInfo}
-                                screenInfo={stateStore.screenInfo}
-                                currentCategoryPosts={stateStore.currentCategoryPosts}
-                                currentCategoryData={stateStore.currentCategoryData}
-                                setCategoryPosts={stateStore.setCategoryPosts}
-                                setCategoryData={stateStore.setCategoryData}
-                                setThumbnailImageUrl={stateStore.setThumbnailImageUrl}
-                            />
-                        )}
-                    >
+        <ApiContext.Provider value={api}>
+            <div className="app">
+                <TitleBar stateStore={stateStore} />
+                <div className="photo-portfolio">
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={(
+                                <Categories
+                                    maxItemsPerPage={stateStore.maxItemsPerPage}
+                                    screenInfo={stateStore.screenInfo}
+                                    categoryList={stateStore.categoryList}
+                                    siteInfo={stateStore.siteInfo}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/contact"
+                            element={(
+                                <ContactPage />
+                            )}
+                        />
+                        <Route
+                            path="page/:pageId"
+                            element={(
+                                <Page
+                                    key={pageId}
+                                    currentPageData={stateStore.currentPageData}
+                                    setPageData={stateStore.setPageData}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="category/:categoryId"
+                            element={(
+                                <Category
+                                    key={categoryId}
+                                    maxItemsPerPage={stateStore.maxItemsPerPage}
+                                    screenInfo={stateStore.screenInfo}
+                                    currentCategoryPosts={stateStore.currentCategoryPosts}
+                                    currentCategoryData={stateStore.currentCategoryData}
+                                    setCategoryPosts={stateStore.setCategoryPosts}
+                                    setCategoryData={stateStore.setCategoryData}
+                                    setThumbnailImageUrl={stateStore.setThumbnailImageUrl}
+                                />
+                            )}
+                        />
                         <Route
                             path="post/:postId"
                             element={(
                                 <Post
                                     screenInfo={stateStore.screenInfo}
-                                    siteInfo={stateStore.siteInfo}
                                     visiblePost={stateStore.visiblePost}
                                     currentCategoryPosts={stateStore.currentCategoryPosts}
                                     clearVisiblePostTagNames={stateStore.clearVisiblePostTagNames}
@@ -138,12 +137,12 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
                                 />
                             )}
                         />
-                    </Route>
-                </Routes>
+                    </Routes>
+                </div>
+                <Menu stateStore={stateStore} />
+                <Footer />
             </div>
-            <Menu stateStore={stateStore} />
-            <Footer />
-        </div>
+        </ApiContext.Provider>
     );
 };
 

@@ -4,6 +4,8 @@ import { act } from 'react-dom/test-utils';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import StateStore from '../../StateStore/store';
+import { ApiContext } from '../../utils/ApiContext';
+import WordpressAPI from '../../utils/WordpressAPI';
 import Page from '../Page/Page';
 
 const siteInfo = {
@@ -11,38 +13,30 @@ const siteInfo = {
     siteUrl: 'throughapinhole.com'
 };
 
-const page = {
-    id: 150,
-    content: {
-        rendered: 'Contact me!'
-    },
-    title: {
-        rendered: 'Contact'
-    }
-};
-
-jest.mock('../../utils/Api', () => ({
-    getPage: () => Promise.resolve(page)
-}));
+jest.mock('../../utils/WordpressAPI');
 
 test('Page displays', async () => {
     const store = new StateStore();
+    const api = new WordpressAPI(store.siteInfo.siteUrl);
+    const page = await api.getPage();
     let container;
     await act(async () => {
         container = render(
             <MemoryRouter initialEntries={['/page/150']}>
-                <Routes>
-                    <Route
-                        path="page/:pageId"
-                        element={(
-                            <Page
-                                currentPageData={page}
-                                siteInfo={siteInfo}
-                                setPageData={store.setPageData}
-                            />
-                        )}
-                    />
-                </Routes>
+                <ApiContext.Provider value={api}>
+                    <Routes>
+                        <Route
+                            path="page/:pageId"
+                            element={(
+                                <Page
+                                    currentPageData={page}
+                                    siteInfo={siteInfo}
+                                    setPageData={store.setPageData}
+                                />
+                            )}
+                        />
+                    </Routes>
+                </ApiContext.Provider>
             </MemoryRouter>
         ).container;
     });

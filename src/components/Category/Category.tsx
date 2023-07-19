@@ -6,26 +6,25 @@ import './Category.css';
 
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import {
     Outlet,
     useParams
 } from 'react-router-dom';
 
-import { getCategoryInfo, getPosts, getPostThumbnail } from '../../utils/Api';
+import { ApiContext } from '../../utils/ApiContext';
 import {
+    API,
     Category as CategoryState,
     ImageData,
     Post as PostState,
-    ScreenInfo,
-    SiteInfo
+    ScreenInfo
 } from '../../utils/types';
 import Posts from '../Posts/Posts';
 import SectionHeader from '../SectionHeader/SectionHeader';
 
 interface CategoryProps {
     maxItemsPerPage: number,
-    siteInfo: SiteInfo,
     screenInfo: ScreenInfo,
     currentCategoryPosts: PostState[],
     currentCategoryData: CategoryState,
@@ -36,7 +35,6 @@ interface CategoryProps {
 
 const Category: React.FC<CategoryProps> = ({
     maxItemsPerPage,
-    siteInfo,
     screenInfo,
     currentCategoryPosts,
     currentCategoryData,
@@ -44,22 +42,24 @@ const Category: React.FC<CategoryProps> = ({
     setCategoryData,
     setThumbnailImageUrl
 }) => {
-    const { categoryId } = useParams();
+    const { categoryId = '0' } = useParams();
+    const api = useContext(ApiContext) as API;
+    const { getPosts, getPostThumbnail, getCategoryInfo } = api;
 
     useEffect(() => {
         if (categoryId) {
-            getPosts(parseInt(categoryId), siteInfo.siteUrl)
-                .then(posts => {
+            getPosts(parseInt(categoryId))
+                .then((posts: PostState[]) => {
                     setCategoryPosts(posts);
                     currentCategoryPosts.forEach((post, index) => {
-                        getPostThumbnail(post.featured_media, siteInfo.siteUrl)
-                            .then(thumbUrl => {
+                        getPostThumbnail(post.featured_media)
+                            .then((thumbUrl: string) => {
                                 setThumbnailImageUrl({ post_index: index, image_url: thumbUrl });
                             });
                     });
                 });
-            getCategoryInfo(parseInt(categoryId), siteInfo.siteUrl)
-                .then(categoryInfo => {
+            getCategoryInfo(parseInt(categoryId))
+                .then((categoryInfo: CategoryState) => {
                     setCategoryData(categoryInfo);
                 });
         }
@@ -71,6 +71,7 @@ const Category: React.FC<CategoryProps> = ({
             <Posts
                 maxItemsPerPage={maxItemsPerPage}
                 screenInfo={screenInfo}
+                categoryId={parseInt(categoryId)}
                 currentCategoryPosts={currentCategoryPosts}
             />
             <Outlet />

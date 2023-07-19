@@ -38,6 +38,50 @@ export interface ImageData {
     image_url: string
 }
 
+interface MediaSize {
+    file: string,
+    width: number,
+    height: number,
+    mime_type: string,
+    source_url: string
+}
+
+type Media = 'image' | 'video' | 'text' | 'application' | 'audio';
+
+export interface MediaResponse {
+    data: {
+        alt_text: string,
+        author: number,
+        caption: {
+            rendered: string
+        },
+        comment_status: string,
+        date: string,
+        date_gmt: string,
+        description: {
+            rendered: string
+        },
+        guid: {
+            rendered: string
+        },
+        id: number,
+        link: string,
+        media_details: {
+            width: number,
+            height: number,
+            file: string,
+            sizes: {
+                full?: MediaSize,
+                large?: MediaSize,
+                medium?: MediaSize,
+                medium_large?: MediaSize,
+                thumbnail?: MediaSize
+            },
+            media_type: Media
+        }
+    }
+}
+
 export interface Category {
     id: number,
     count: number,
@@ -47,6 +91,14 @@ export interface Category {
     slug: string,
     taxonomy: string,
     parent: number
+}
+
+export interface CategoryResponse {
+    data: Category
+}
+
+export interface CategoriesResponse {
+    data: Category[]
 }
 
 export interface VisiblePost {
@@ -75,6 +127,21 @@ export interface Post {
     thumbnail_image: string
 }
 
+export interface PostResponse {
+    data: Post
+}
+
+export interface PostsResponse {
+    data: Post[]
+}
+
+export interface TagNameResponse {
+    data: {
+        name: string,
+        link: string
+    }
+}
+
 export interface Page {
     id: number,
     link: string,
@@ -87,6 +154,14 @@ export interface Page {
     featured_media: number
 }
 
+export interface PageResponse {
+    data: Page
+}
+
+export interface PagesResponse {
+    data: Page[]
+}
+
 export interface ScreenInfo {
     width: number,
     height: number
@@ -95,6 +170,35 @@ export interface ScreenInfo {
 export interface SiteInfo {
     siteName: string,
     siteUrl: string
+}
+
+export interface SiteInfoResponse {
+    data: {
+        description: string,
+        gmt_offset: string,
+        home: string,
+        name: string,
+        site_icon: number,
+        site_icon_url: string,
+        site_logo: number,
+        timezone_string: string,
+        url: string
+    }
+}
+
+export interface API {
+    siteUrl: string,
+    getPostThumbnail(featuredImage: number): Promise<string>,
+    getSiteInfo(): Promise<string>,
+    getCategories(): Promise<Category[]>,
+    getCategoryImage(categoryId: number): Promise<string>,
+    getPosts(categoryId: number): Promise<Post[]>,
+    getPost(postId: number): Promise<Post>,
+    getCategoryInfo(categoryId: number): Promise<Category>,
+    getPostImage(image: number): Promise<string>,
+    getTagNames(tags: number[]): Promise<string[]>,
+    getPages(): Promise<Page[]>,
+    getPage(pageId: number): Promise<Page>
 }
 
 export interface Store {

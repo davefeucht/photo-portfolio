@@ -6,10 +6,10 @@ import './TitleBar.css';
 
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
-import { getSiteInfo } from '../../utils/Api';
-import { Store } from '../../utils/types';
+import { ApiContext } from '../../utils/ApiContext';
+import { API, Store } from '../../utils/types';
 
 interface TitleBarProps {
     stateStore: Store
@@ -17,13 +17,15 @@ interface TitleBarProps {
 
 const TitleBar: React.FC<TitleBarProps> = ({ stateStore }) => {
     const { menuState } = stateStore;
+    const api = useContext(ApiContext) as API;
+    const { getSiteInfo } = api;
 
     const toggleMenu = () => {
         stateStore.setMenuState(stateStore.menuState === 'closed' ? 'open' : 'closed');
     };
 
     useEffect(() => {
-        getSiteInfo(stateStore.siteInfo.siteUrl)
+        getSiteInfo()
             .then(siteName => {
                 stateStore.setSiteName(siteName);
                 document.title = siteName;

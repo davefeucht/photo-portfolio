@@ -6,24 +6,25 @@ import './CategoryThumbnail.css';
 
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { getCategoryImage } from '../../utils/Api';
-import { SiteInfo } from '../../utils/types';
+import { ApiContext } from '../../utils/ApiContext';
+import { API } from '../../utils/types';
 import CategoryTitle from '../CategoryTitle/CategoryTitle';
 
 interface CategoryThumbnailProps {
     id: number,
-    name: string,
-    siteInfo: SiteInfo
+    name: string
 }
 
-const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name, siteInfo }) => {
+const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name }) => {
     const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
+    const api = useContext(ApiContext) as API;
+    const { getCategoryImage } = api;
 
     if (!thumbnailImageUrl) {
-        getCategoryImage(id, siteInfo.siteUrl)
+        getCategoryImage(id)
             .then(imageUrl => {
                 setThumbnailImageUrl(imageUrl);
             });
