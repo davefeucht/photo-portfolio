@@ -71,6 +71,7 @@ const Category: React.FC<CategoryProps> = ({
             <Posts
                 maxItemsPerPage={maxItemsPerPage}
                 screenInfo={screenInfo}
+                categoryId={parseInt(categoryId)}
                 currentCategoryPosts={currentCategoryPosts}
             />
             <Outlet />
