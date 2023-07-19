@@ -160,6 +160,21 @@ export interface SiteInfoResponse {
     }
 }
 
+export interface API {
+    siteUrl: string,
+    getPostThumbnail(featuredImage: number): Promise<string>,
+    getSiteInfo(): Promise<string>,
+    getCategories(): Promise<Category[]>,
+    getCategoryImage(categoryId: number): Promise<string>,
+    getPosts(categoryId: number): Promise<Post[]>,
+    getPost(postId: number): Promise<Post>,
+    getCategoryInfo(categoryId: number): Promise<Category>,
+    getPostImage(image: number): Promise<string>,
+    getTagNames(tags: number[]): Promise<string[]>,
+    getPages(): Promise<Page[]>,
+    getPage(pageId: number): Promise<Page>
+}
+
 export interface Store {
     menuState: string,
     applicationRoot: HTMLElement
