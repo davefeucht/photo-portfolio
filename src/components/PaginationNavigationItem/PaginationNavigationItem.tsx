@@ -22,7 +22,7 @@ const PaginationNavigationItem: React.FC<PaginationNavigationItemProps> = ({
             onClick={navigationFunction ? () => navigationFunction(parseInt(content)) : undefined}
         >
             {content}
-            {!isLast ? ' • ' : ''}
+            {!isLast ? ' | ' : ''}
         </div>
     );
 };

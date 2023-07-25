@@ -5,6 +5,6 @@ exports[`PaginationNavigationItem displays 1`] = `
   class="pagination-navigation__item selected"
 >
   1
-   • 
+   | 
 </div>
 `;
