@@ -118,7 +118,7 @@ exports[`PhotoPortfolio displays 1`] = `
         <ul>
           <li>
             <a
-              href="/page/150"
+              href="/contact"
             >
               <div
                 class="menu-link"
