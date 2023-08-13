@@ -4,7 +4,7 @@ module.exports = Object.assign({}, webpackConfig, {
     mode: 'development',
     devServer: {
         historyApiFallback: true,
-        https: true,
+        server: 'https',
         host: '0.0.0.0',
         port: 8080,
         static: [
