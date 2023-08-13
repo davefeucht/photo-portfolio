@@ -1,0 +1,4 @@
+.form-textarea {
+    @include input-general;
+    height: $form-textarea-height;
+}

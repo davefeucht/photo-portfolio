@@ -15,6 +15,7 @@ import {
     useParams
 } from 'react-router-dom';
 
+import ContactPage from '../../static_pages/ContactPage';
 import { ApiContext } from '../../utils/ApiContext';
 import { API, Store } from '../../utils/types';
 import Categories from '../Categories/Categories';
@@ -94,6 +95,12 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
                             )}
                         />
                         <Route
+                            path="/contact"
+                            element={(
+                                <ContactPage adminEmail={stateStore.siteInfo.adminEmail} />
+                            )}
+                        />
+                        <Route
                             path="page/:pageId"
                             element={(
                                 <Page
@@ -117,20 +124,19 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
                                     setThumbnailImageUrl={stateStore.setThumbnailImageUrl}
                                 />
                             )}
-                        >
-                            <Route
-                                path="post/:postId"
-                                element={(
-                                    <Post
-                                        screenInfo={stateStore.screenInfo}
-                                        visiblePost={stateStore.visiblePost}
-                                        currentCategoryPosts={stateStore.currentCategoryPosts}
-                                        clearVisiblePostTagNames={stateStore.clearVisiblePostTagNames}
-                                        setCurrentPost={stateStore.setCurrentPost}
-                                    />
-                                )}
-                            />
-                        </Route>
+                        />
+                        <Route
+                            path="post/:postId"
+                            element={(
+                                <Post
+                                    screenInfo={stateStore.screenInfo}
+                                    visiblePost={stateStore.visiblePost}
+                                    currentCategoryPosts={stateStore.currentCategoryPosts}
+                                    clearVisiblePostTagNames={stateStore.clearVisiblePostTagNames}
+                                    setCurrentPost={stateStore.setCurrentPost}
+                                />
+                            )}
+                        />
                     </Routes>
                 </div>
                 <Menu stateStore={stateStore} />

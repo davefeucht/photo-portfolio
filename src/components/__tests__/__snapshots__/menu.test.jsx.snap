@@ -22,7 +22,19 @@ exports[`Menu displays 1`] = `
     </li>
     <li>
       Info
-      <ul />
+      <ul>
+        <li>
+          <a
+            href="/contact"
+          >
+            <div
+              class="menu-link"
+            >
+              Contact
+            </div>
+          </a>
+        </li>
+      </ul>
     </li>
   </ul>
 </div>

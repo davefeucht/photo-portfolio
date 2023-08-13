@@ -1,0 +1,16 @@
+@mixin input-general {
+    display: block;
+    border-radius: $form-input-border-radius;
+    margin: $form-input-margin;
+    width: 40vw;
+
+    &:required:valid {
+        border: none;
+        outline: 2px solid green;
+    }
+
+    &:required:invalid {
+        border: none;
+        outline: 2px solid red;
+    }
+}

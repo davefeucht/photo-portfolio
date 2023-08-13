@@ -1,0 +1,4 @@
+.form-input {
+    @include input-general;
+    height: $form-input-height;
+}

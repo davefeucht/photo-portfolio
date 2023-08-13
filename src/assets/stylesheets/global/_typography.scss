@@ -1,0 +1,19 @@
+html {
+    font-family: "museo-sans", "sans-serif";
+    color: var(--template-white);
+}
+
+p {
+    font-size: 1.4rem;
+    margin: 5px 0;
+}
+
+textarea,
+input {
+    font-family: inherit;
+    font-size: 1.3rem;
+}
+
+label {
+    font-size: 1.4rem;
+}
