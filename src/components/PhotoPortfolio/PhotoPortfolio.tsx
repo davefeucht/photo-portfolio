@@ -97,7 +97,7 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
                         <Route
                             path="/contact"
                             element={(
-                                <ContactPage />
+                                <ContactPage adminEmail={stateStore.siteInfo.adminEmail} />
                             )}
                         />
                         <Route

@@ -8,10 +8,11 @@ import Paragraph from '../components/Paragraph/Paragraph';
 import TextArea from '../components/TextArea/TextArea';
 
 interface ContactFormProps {
+    adminEmail: string,
     explanatoryText: string
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ explanatoryText }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ adminEmail, explanatoryText }) => {
     const [emailValue, setEmailValue] = useState<string>('');
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
@@ -19,6 +20,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ explanatoryText }) => {
 
     const handleSubmit = (event: React.MouseEvent) => {
         event.preventDefault();
+        /* eslint-disable-next-line no-console */
+        console.log(adminEmail);
     };
 
     return (

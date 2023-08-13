@@ -168,6 +168,7 @@ export interface ScreenInfo {
 }
 
 export interface SiteInfo {
+    adminEmail: string,
     siteName: string,
     siteUrl: string
 }

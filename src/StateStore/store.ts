@@ -22,6 +22,7 @@ class stateStore implements Store {
     };
 
     siteInfo: {
+        adminEmail: string,
         siteName: string,
         siteUrl: string
     };
@@ -50,6 +51,7 @@ class stateStore implements Store {
         };
 
         this.siteInfo = {
+            adminEmail: 'poetas@gmail.com',
             siteName: 'Through a Pinhole',
             siteUrl: 'throughapinhole.com'
         };
