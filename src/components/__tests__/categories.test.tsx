@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import * as React from 'react';
-import { act } from 'react-dom/test-utils';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import StateStore from '../../StateStore/store';
