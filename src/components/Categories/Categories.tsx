@@ -16,15 +16,13 @@ import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
 interface CategoriesProps {
     maxItemsPerPage: number,
     screenInfo: ScreenInfo,
-    categoryList: Category[],
-    siteInfo: SiteInfo
+    categoryList: Category[]
 }
 
 const Categories: React.FC<CategoriesProps> = ({
     maxItemsPerPage,
     screenInfo,
-    categoryList,
-    siteInfo
+    categoryList
 }) => {
     const [currentPageIndex, setCurrentPageIndex] = useState<number>(1);
 

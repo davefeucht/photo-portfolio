@@ -8,84 +8,98 @@ exports[`PaginationNavigation displays 1`] = `
     class="pagination-navigation__content"
   >
     <div
+      aria-label="pagination"
       class="pagination-navigation__item selected"
     >
       1
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       2
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       3
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       4
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       5
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       6
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       7
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       8
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       9
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       10
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       11
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       12
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       13
        | 
     </div>
     <div
+      aria-label="pagination"
       class="pagination-navigation__item deselected"
     >
       14

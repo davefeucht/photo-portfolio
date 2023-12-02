@@ -18,6 +18,7 @@ const PaginationNavigationItem: React.FC<PaginationNavigationItemProps> = ({
 }) => {
     return (
         <div
+            aria-label="pagination"
             className={`pagination-navigation__item ${selectedState}`}
             onClick={navigationFunction ? () => navigationFunction(parseInt(content)) : undefined}
         >

@@ -62,6 +62,7 @@ exports[`PhotoPortfolio displays 1`] = `
             class="pagination-navigation__content"
           >
             <div
+              aria-label="pagination"
               class="pagination-navigation__item selected"
             >
               1
