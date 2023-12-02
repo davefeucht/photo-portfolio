@@ -7,7 +7,7 @@ exports[`CategoryThumbnail displays 1`] = `
   <div
     aria-label="category-Test-Category"
     class="category-thumbnail"
-    style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+    style="background-image: url();"
   >
     <div
       class="category-title"
