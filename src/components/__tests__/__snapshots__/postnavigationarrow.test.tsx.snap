@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostNavigationArrow displays 1`] = `
+<div
+  class="post-navigation-arrow active previous"
+  style="top: 209px; left: 0px;"
+>
+  <a
+    href="/category/undefined/post/35"
+  >
+    <div
+      class="arrow"
+    >
+      <img
+        src="./assets/images/chevron.svg"
+      />
+    </div>
+  </a>
+</div>
+`;
