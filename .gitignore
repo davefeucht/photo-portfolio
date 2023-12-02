@@ -3,3 +3,13 @@ build
 node_modules
 *.log
 *.png
+.vscode
+
+# yarn
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
