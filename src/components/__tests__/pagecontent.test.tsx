@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import PageContent from 'components/PageContent/PageContent';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import PageContent from '../PageContent/PageContent';
 
 const content = 'This content should be displayed in the page because that is how it works';
 

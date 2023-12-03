@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import MenuLink from 'components/MenuLink/MenuLink';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import MenuLink from '../MenuLink/MenuLink';
 
 const href = '/page/150';
 const text = 'Contact';

@@ -1,11 +1,10 @@
 import { render } from '@testing-library/react';
+import Page from 'components/Page/Page';
 import * as React from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-
-import StateStore from '../../StateStore/store';
-import { ApiContext } from '../../utils/ApiContext';
-import WordpressAPI from '../../utils/WordpressAPI';
-import Page from '../Page/Page';
+import StateStore from 'StateStore/store';
+import { ApiContext } from 'utils/ApiContext';
+import WordpressAPI from 'utils/WordpressAPI';
 
 jest.mock('../../utils/WordpressAPI');
 

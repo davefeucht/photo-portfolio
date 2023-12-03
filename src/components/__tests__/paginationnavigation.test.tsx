@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import PaginationNavigation from 'components/PaginationNavigation/PaginationNavigation';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
 
 const totalPages = 14;
 const currentPageIndex = 1;

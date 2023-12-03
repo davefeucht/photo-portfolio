@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import PaginationNavigationItem from 'components/PaginationNavigationItem/PaginationNavigationItem';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import PaginationNavigationItem from '../PaginationNavigationItem/PaginationNavigationItem';
 
 const content = '1';
 const selectedState = 'selected';
