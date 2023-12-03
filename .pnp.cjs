@@ -35,6 +35,7 @@ const RAW_RUNTIME_STATE =
           ["@testing-library/jest-dom", "npm:5.16.5"],\
           ["@testing-library/react", "virtual:6c5c1806745e3c563c99539a9016de822acba0ff581073b91020142303906dc5309edf19317317b82067c955b27430e7fb5c64637dc50d1ba857898d1827a13a#npm:14.0.0"],\
           ["@testing-library/user-event", "virtual:6c5c1806745e3c563c99539a9016de822acba0ff581073b91020142303906dc5309edf19317317b82067c955b27430e7fb5c64637dc50d1ba857898d1827a13a#npm:14.4.3"],\
+          ["@types/jest", "npm:29.5.10"],\
           ["@types/react", "npm:18.2.14"],\
           ["@types/react-dom", "npm:18.2.6"],\
           ["@types/react-router-dom", "npm:5.3.3"],\
@@ -8042,7 +8043,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["eslint-plugin-jest", "virtual:6c5c1806745e3c563c99539a9016de822acba0ff581073b91020142303906dc5309edf19317317b82067c955b27430e7fb5c64637dc50d1ba857898d1827a13a#npm:27.2.2"],\
           ["@types/eslint", null],\
-          ["@types/jest", null],\
+          ["@types/jest", "npm:29.5.10"],\
           ["@types/typescript-eslint__eslint-plugin", null],\
           ["@typescript-eslint/eslint-plugin", "virtual:6c5c1806745e3c563c99539a9016de822acba0ff581073b91020142303906dc5309edf19317317b82067c955b27430e7fb5c64637dc50d1ba857898d1827a13a#npm:5.60.1"],\
           ["@typescript-eslint/utils", "virtual:26c32185e58cebe8d6089117dfb2aed4c3d399afa4d14135cd77ce0997ee78ffb2f63363b9096801d60953905598036de1f75951ec02ff21735b7ee174b5621b#npm:5.62.0"],\
@@ -12786,6 +12787,7 @@ const RAW_RUNTIME_STATE =
           ["@testing-library/jest-dom", "npm:5.16.5"],\
           ["@testing-library/react", "virtual:6c5c1806745e3c563c99539a9016de822acba0ff581073b91020142303906dc5309edf19317317b82067c955b27430e7fb5c64637dc50d1ba857898d1827a13a#npm:14.0.0"],\
           ["@testing-library/user-event", "virtual:6c5c1806745e3c563c99539a9016de822acba0ff581073b91020142303906dc5309edf19317317b82067c955b27430e7fb5c64637dc50d1ba857898d1827a13a#npm:14.4.3"],\
+          ["@types/jest", "npm:29.5.10"],\
           ["@types/react", "npm:18.2.14"],\
           ["@types/react-dom", "npm:18.2.6"],\
           ["@types/react-router-dom", "npm:5.3.3"],\

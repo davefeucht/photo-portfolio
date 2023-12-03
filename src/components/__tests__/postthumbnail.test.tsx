@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import PostThumbnail from 'components/PostThumbnail/PostThumbnail';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import PostThumbnail from '../PostThumbnail/PostThumbnail';
 
 const thumbnailImage = 'some_url';
 const postId = 35;

@@ -1,11 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import Categories from 'components/Categories/Categories';
 import * as React from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-
-import StateStore from '../../StateStore/store';
-import { ApiContext } from '../../utils/ApiContext';
-import WordpressAPI from '../../utils/WordpressAPI';
-import Categories from '../Categories/Categories';
+import StateStore from 'StateStore/store';
+import { ApiContext } from 'utils/ApiContext';
+import WordpressAPI from 'utils/WordpressAPI';
 
 const screenInfo = {
     width: 500,

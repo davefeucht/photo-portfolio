@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import PostTitlebar from 'components/PostTitlebar/PostTitlebar';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import PostTitlebar from '../PostTitlebar/PostTitlebar';
 
 const postTitle = 'Some Post';
 

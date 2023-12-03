@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import PostNavigationArrow from 'components/PostNavigationArrow/PostNavigationArrow';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow';
 
 const imageHeight = 500;
 const direction = 'previous';

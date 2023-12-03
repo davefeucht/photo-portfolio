@@ -1,9 +1,8 @@
 import { render } from '@testing-library/react';
+import Posts from 'components/Posts/Posts';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import { Post as PostState } from '../../utils/types';
-import Posts from '../Posts/Posts';
+import { Post as PostState } from 'utils/types';
 
 const screenInfo = {
     width: 500,
