@@ -7,20 +7,14 @@ module.exports = {
     filename: "bundle.js"
   },
   resolve: {
-    extensions: ['.ts', '.js', '.tsx', '.jsx']
+    extensions: ['.ts', '.js', '.tsx', '.jsx'],
+    modules: ['node_modules', path.resolve(__dirname, 'src')]
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-          test: /\.jsx?$/,
-          include: [path.join(__dirname, 'src')],
-          loader: 'babel-loader',
-          options: { configFile: path.resolve(__dirname, './babel.config.json') }
+        test: /\.(js|ts|jsx|tsx)?$/,
+        use: 'ts-loader'
       },
       { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },

@@ -7,10 +7,12 @@
     "extends": [
         "eslint-config-airbnb",
         "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
         "plugin:json/recommended"
     ],
-    "parser": "@babel/eslint-parser",
+    "parser": "@typescript-eslint/parser",
     "settings": {
         "react": {
             "version": "17"
@@ -29,19 +31,8 @@
         "json",
         "react",
         "react-hooks",
-        "simple-import-sort"
-    ],
-
-    "overrides": [
-        {
-            "files": ["*.ts", "*.tsx"],
-            "extends": [
-                "plugin:@typescript-eslint/eslint-recommended",
-                "plugin:@typescript-eslint/recommended"
-            ],
-            "parser": "@typescript-eslint/parser",
-            "plugins": ["@typescript-eslint"]
-        }
+        "simple-import-sort",
+        "@typescript-eslint"
     ],
     "rules": {
         "indent": [

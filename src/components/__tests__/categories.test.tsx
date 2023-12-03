@@ -37,7 +37,7 @@ test('Category list displays', async () => {
         </MemoryRouter>
     );
     const categoryThumb = await screen.findByLabelText(`category-${categories[0].name.split(' ').join('-')}`);
-    await waitFor(() => expect(categoryThumb).toHaveStyle('background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg)'));
+    await waitFor(() => expect(categoryThumb.style.backgroundImage).toEqual('url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg)'));
     expect(container.firstChild).toMatchSnapshot();
     categories.forEach(category => {
         expect(screen.getByText(category.name));

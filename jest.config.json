@@ -3,7 +3,7 @@
     "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"],
     "testEnvironment": "jest-environment-jsdom",
     "transform": {
-        "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+        "^.+\\.(js|jsx|ts|tsx)$": "ts-jest"
     },
     "moduleNameMapper": {
         "\\.(css|scss)$": "identity-obj-proxy"
