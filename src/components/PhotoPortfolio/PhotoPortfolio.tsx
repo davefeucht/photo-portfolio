@@ -89,7 +89,6 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
                                     maxItemsPerPage={stateStore.maxItemsPerPage}
                                     screenInfo={stateStore.screenInfo}
                                     categoryList={stateStore.categoryList}
-                                    siteInfo={stateStore.siteInfo}
                                 />
                             )}
                         />

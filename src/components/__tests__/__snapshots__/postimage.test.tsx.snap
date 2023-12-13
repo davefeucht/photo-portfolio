@@ -4,6 +4,8 @@ exports[`PostImage displays 1`] = `
 <div
   class="post-image"
 >
-  <img />
+  <img
+    src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
+  />
 </div>
 `;

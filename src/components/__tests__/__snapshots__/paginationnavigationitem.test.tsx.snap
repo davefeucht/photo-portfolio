@@ -2,6 +2,7 @@
 
 exports[`PaginationNavigationItem displays 1`] = `
 <div
+  aria-label="pagination"
   class="pagination-navigation__item selected"
 >
   1

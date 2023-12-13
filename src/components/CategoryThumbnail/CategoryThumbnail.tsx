@@ -34,7 +34,7 @@ const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name }) => {
 
     return (
         <Link to={`/category/${id}`}>
-            <div style={divStyle} className="category-thumbnail">
+            <div style={divStyle} className="category-thumbnail" aria-label={`category-${name.split(' ').join('-')}`}>
                 <CategoryTitle title={name} />
             </div>
         </Link>

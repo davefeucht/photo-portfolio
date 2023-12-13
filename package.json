@@ -38,10 +38,12 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-simple-import-sort": "10.0.0",
+    "husky": "8.0.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "29.5.0",
     "jest-cli": "29.5.0",
     "jest-environment-jsdom": "29.5.0",
+    "lint-staged": "15.1.0",
     "msw": "1.2.2",
     "npm-check-updates": "16.10.13",
     "sass": "1.63.6",
@@ -63,7 +65,14 @@
     "build:dev": "node_modules/.bin/webpack --config webpack.dev.config.js",
     "build:prod": "node_modules/.bin/webpack --config webpack.prod.config.js",
     "start": "node_modules/.bin/webpack serve --hot --config webpack.dev.config.js",
-    "update-dependencies": "ncu -u"
+    "update-dependencies": "ncu -u",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+        "eslint --fix"
+    ]
   },
   "author": "Dave Feucht",
   "license": "ISC",
