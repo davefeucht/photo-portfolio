@@ -9,6 +9,7 @@ jobs:
       image: ubuntu-2004:2023.04.2
     steps:
       - checkout
+      - run: corepack enable
       - run: yarn install
       - run: yarn build:prod
       - persist_to_workspace:
