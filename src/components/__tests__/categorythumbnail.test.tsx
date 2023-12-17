@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import CategoryThumbnail from 'components/CategoryThumbnail/CategoryThumbnail';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
@@ -21,5 +21,5 @@ test('CategoryThumbnail displays', async () => {
             </ApiContext.Provider>
         </MemoryRouter>
     );
-    expect(container.firstChild).toMatchSnapshot();
+    await waitFor(() => expect(container.firstChild).toMatchSnapshot());
 });
