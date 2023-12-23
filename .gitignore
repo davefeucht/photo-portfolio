@@ -3,3 +3,14 @@ build
 node_modules
 *.log
 *.png
+.vscode
+
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.cjs
+.pnp.loader.mjs

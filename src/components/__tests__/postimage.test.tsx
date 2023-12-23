@@ -1,9 +1,8 @@
 import { render } from '@testing-library/react';
+import PostImage from 'components/PostImage/PostImage';
 import * as React from 'react';
 import { useRef } from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import PostImage from '../PostImage/PostImage';
 
 const previousPostId = 34;
 const nextPostId = 36;

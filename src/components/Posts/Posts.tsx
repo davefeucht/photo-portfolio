@@ -4,13 +4,12 @@
 
 import './Posts.css';
 
+import PaginationNavigation from 'components/PaginationNavigation/PaginationNavigation';
+import PostThumbnail from 'components/PostThumbnail/PostThumbnail';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-
-import { Post as PostState, ScreenInfo } from '../../utils/types';
-import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
-import PostThumbnail from '../PostThumbnail/PostThumbnail';
+import { Post as PostState, ScreenInfo } from 'utils/types';
 
 interface PostsProps {
     maxItemsPerPage: number,

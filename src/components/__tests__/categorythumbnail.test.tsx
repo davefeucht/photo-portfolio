@@ -1,11 +1,10 @@
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
+import CategoryThumbnail from 'components/CategoryThumbnail/CategoryThumbnail';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import StateStore from '../../StateStore/store';
-import { ApiContext } from '../../utils/ApiContext';
-import WordpressAPI from '../../utils/WordpressAPI';
-import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail';
+import StateStore from 'StateStore/store';
+import { ApiContext } from 'utils/ApiContext';
+import WordpressAPI from 'utils/WordpressAPI';
 
 const id = 5;
 const name = 'Test Category';
@@ -22,5 +21,5 @@ test('CategoryThumbnail displays', async () => {
             </ApiContext.Provider>
         </MemoryRouter>
     );
-    expect(container.firstChild).toMatchSnapshot();
+    await waitFor(() => expect(container.firstChild).toMatchSnapshot());
 });

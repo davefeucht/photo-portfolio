@@ -1,11 +1,18 @@
 {
     "verbose": true,
     "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"],
-    "testEnvironment": "jest-environment-jsdom",
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "modulePaths": ["<rootDir>"],
+    "moduleFileExtensions": ["ts", "js", "tsx", "jsx"],
     "transform": {
-        "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+        "^.+\\.(js|jsx|ts|tsx)$": "ts-jest"
     },
     "moduleNameMapper": {
-        "\\.(css|scss)$": "identity-obj-proxy"
+        "\\.(css|scss)$": "identity-obj-proxy",
+        "assets/(.*)$": "<rootDir>/src/assets/$1",
+        "components/(.*)$": "<rootDir>/src/components/$1",
+        "StateStore/(.*)$": "<rootDir>/src/StateStore/$1",
+        "utils/(.*)$": "<rootDir>/src/utils/$1"
     }
 }

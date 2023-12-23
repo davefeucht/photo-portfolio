@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import CategoryTitle from 'components/CategoryTitle/CategoryTitle';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import CategoryTitle from '../CategoryTitle/CategoryTitle';
 
 const name = 'Test Category';
 

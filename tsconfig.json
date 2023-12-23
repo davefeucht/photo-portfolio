@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
       "outDir": "./build/",
+      "baseUrl": "./src",
 
       "noImplicitAny": true,
       "strictNullChecks": true,
@@ -8,11 +9,17 @@
       "alwaysStrict": true,
 
       "noEmitOnError": true,
+      "esModuleInterop": true,
       "module": "es6",
       "target": "es5",
       "jsx": "react",
       "allowJs": true,
       "sourceMap": true,
-      "moduleResolution": "node"
+      "moduleResolution": "node",
+
+      "lib": [
+        "DOM",
+        "ESNext"
+      ]
     }
   }

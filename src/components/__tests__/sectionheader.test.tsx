@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import SectionHeader from 'components/SectionHeader/SectionHeader';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import SectionHeader from '../SectionHeader/SectionHeader';
 
 const title = 'Some Section';
 

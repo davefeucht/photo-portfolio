@@ -1,11 +1,10 @@
 import { render } from '@testing-library/react';
+import Post from 'components/Post/Post';
 import * as React from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-
-import StateStore from '../../StateStore/store';
-import { ApiContext } from '../../utils/ApiContext';
-import WordpressAPI from '../../utils/WordpressAPI';
-import Post from '../Post/Post';
+import StateStore from 'StateStore/store';
+import { ApiContext } from 'utils/ApiContext';
+import WordpressAPI from 'utils/WordpressAPI';
 
 const screenInfo = {
     width: 500,
