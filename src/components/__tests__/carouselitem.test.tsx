@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import CarouselItem from 'components/CarouselItem/CarouselItem';
 import * as React from 'react';
 
