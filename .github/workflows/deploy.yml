@@ -1,0 +1,39 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    environment:
+        name: production
+        url: https://throughapinhole.com
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Enable corepack
+      run: corepack enable
+    - name: Install dependencies
+      run: yarn install
+    - name: Build for production
+      run: yarn build:prod
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh/
+        echo "${{ secrets.DEPLOY_PRIV_KEY }}" > ~/.ssh/id_rsa
+        echo "${{ secrets.DEPLOY_PUB_KEY }}" > ~/.ssh/id_rsa.pub
+        chmod 600 ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa.pub
+        ssh-keyscan -H ${{ secrets.DEPLOY_HOSTNAME }} >> ~/.ssh/known_hosts
+    - name: copy builds to server
+      run: |
+        scp ./build/bundle.min.js ./build/bundle.min.js.LICENSE.txt "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_SERVER }}:/WordPress_01/"
