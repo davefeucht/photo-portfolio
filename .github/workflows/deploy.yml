@@ -1,15 +1,20 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+    types:
+      - closed
 jobs:
-  production:
+  deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
     environment:
         name: production
         url: https://throughapinhole.com
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -24,13 +29,20 @@ jobs:
     - name: Build for production
       run: yarn build:prod
     - name: Setup SSH
+      env:
+        PRIV_KEY: ${{ secrets.DEPLOY_PRIV_KEY }}
+        PUB_KEY: ${{ secrets.DEPLOY_PUB_KEY }}
+        HOSTNAME: ${{ secrets.DEPLOY_HOSTNAME }}
       run: |
         mkdir -p ~/.ssh/
-        echo "${{ secrets.DEPLOY_PRIV_KEY }}" > ~/.ssh/id_rsa
-        echo "${{ secrets.DEPLOY_PUB_KEY }}" > ~/.ssh/id_rsa.pub
+        echo "$PRIV_KEY" > ~/.ssh/id_rsa
+        echo "$PUB_KEY" > ~/.ssh/id_rsa.pub
         chmod 600 ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa.pub
-        ssh-keyscan -H ${{ secrets.DEPLOY_HOSTNAME }} >> ~/.ssh/known_hosts
+        ssh-keyscan -H $HOSTNAME >> ~/.ssh/known_hosts
     - name: copy builds to server
+      env:
+        DEPLOY_USERNAME: ${{ secrets.DEPLOY_USERNAME }}
+        DEPLOY_HOSTNAME: ${{ secrets.DEPLOY_HOSTNAME }}
       run: |
-        scp ./build/bundle.min.js ./build/bundle.min.js.LICENSE.txt "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_SERVER }}:/WordPress_01/"
+        scp ./build/bundle.min.js ./build/bundle.min.js.LICENSE.txt "$DEPLOY_USERNAME@$DEPLOY_HOSTNAME:/WordPress_01/"
