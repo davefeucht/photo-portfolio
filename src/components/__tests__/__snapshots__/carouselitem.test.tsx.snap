@@ -12,9 +12,9 @@ exports[`Tests CarouselItem component CarouselItem renders 1`] = `
     <div
       class="carousel-item__title"
     >
-      <span>
+      <div>
         Image
-      </span>
+      </div>
     </div>
   </div>
 </div>
