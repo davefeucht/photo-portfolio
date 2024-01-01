@@ -1,0 +1,30 @@
+.carousel-item {
+    position: relative;
+    width: 35vw;
+    border: 1px solid #000000;
+}
+
+.carousel-item__title {
+    position: absolute;
+    opacity: 0;
+    font-size: 200%;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    transition: opacity 0.2s ease-in;
+}
+
+.carousel-item__title div {
+    padding-left: 5px;
+}
+
+.carousel-item:hover .carousel-item__title {
+    opacity: 1;
+}
+
+.carousel-item__image {
+    display: block;
+    max-width: 100%;
+}
