@@ -14,7 +14,7 @@ interface TitleProps {
 const Title: React.FC<TitleProps> = ({ title }) => {
     return (
         <div className="carousel-item__title">
-            <span>{title}</span>
+            <div>{title}</div>
         </div>
     );
 };
