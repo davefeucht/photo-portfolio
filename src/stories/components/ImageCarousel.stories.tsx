@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import Image1 from 'stories/static/Image1.jpg';
+import Image2 from 'stories/static/Image2.jpg';
+import Image3 from 'stories/static/Image3.jpg';
 
 import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 
@@ -28,16 +31,16 @@ export const Primary: Story = {
     args: {
         items: [
             {
-                title: 'Foo',
-                imageUrl: 'https://throughapinhole.com/wp-content/uploads/2015/05/17301105226_36808ff398_o.jpg'
+                title: 'Image1',
+                imageUrl: Image1
             },
             {
-                title: 'Bar',
-                imageUrl: 'https://throughapinhole.com/wp-content/uploads/2015/05/17675903310_0e167b43d9_o.jpg'
+                title: 'Image2',
+                imageUrl: Image2
             },
             {
-                title: 'Doom',
-                imageUrl: 'https://throughapinhole.com/wp-content/uploads/2015/05/17326681651_7fa623328c_o.jpg'
+                title: 'Image3',
+                imageUrl: Image3
             }
         ]
     }

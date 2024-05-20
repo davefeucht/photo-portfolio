@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import Image1 from 'stories/static/Image1.jpg';
 
 import CarouselItem from '../../components/CarouselItem/CarouselItem';
 
@@ -29,7 +30,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
     args: {
-        title: 'Foo',
-        imageUrl: 'https://throughapinhole.com/wp-content/uploads/2022/01/5054A3FC-D229-4C61-804D-494247BA38F2-1024x655.jpeg'
+        title: 'Image1',
+        imageUrl: Image1
     }
 };

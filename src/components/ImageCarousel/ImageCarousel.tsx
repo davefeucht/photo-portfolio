@@ -27,13 +27,11 @@ const ImageCarousel: React.FC<Props> = ({ items }) => {
         };
     }, []);
 
-    useEffect(() => {
-        console.log(displayItems);
-    }, [displayItems]);
-
     return (
         <div className="image-carousel">
-            {displayItems.map(item => <CarouselItem key={`carousel-item_${item.imageUrl}_${item.title}`} imageUrl={item.imageUrl} title={item.title} />)}
+            {displayItems.map(item => {
+                return (<div className="fade carousel-item-container" key={`carousel-item_${item.imageUrl}_${item.title}`}><CarouselItem imageUrl={item.imageUrl} title={item.title} /></div>);
+            })}
         </div>
     );
 };
