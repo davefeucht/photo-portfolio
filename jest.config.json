@@ -1,6 +1,6 @@
 {
     "verbose": true,
-    "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"],
+    "setupFilesAfterEnv": ["<rootDir>/test/setup-jest.ts"],
     "preset": "ts-jest",
     "testEnvironment": "jsdom",
     "modulePaths": ["<rootDir>"],

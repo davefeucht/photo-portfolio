@@ -14,7 +14,7 @@ const PageContent: React.FC<PageContentProps> = ({ content }) => {
     return (
         <div
             className="page__content"
-            /* eslint-disable-next-line react/no-danger */
+
             dangerouslySetInnerHTML={{ __html: content }}
         />
     );

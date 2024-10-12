@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 
-import { Category, ScreenInfo, SiteInfo } from '../../utils/types';
+import { Category, ScreenInfo } from '../../utils/types';
 import CategoryThumbnail from '../CategoryThumbnail/CategoryThumbnail';
 import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
 
