@@ -1,5 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
-import { dirname,join } from "path";
+import { dirname, join, resolve } from "path";
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -10,7 +10,6 @@ function getAbsolutePath(value: string): any {
 }
 const config: StorybookConfig = {
     stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-
     addons: [
         getAbsolutePath("@storybook/addon-links"),
         getAbsolutePath("@storybook/addon-essentials"),
@@ -27,10 +26,20 @@ const config: StorybookConfig = {
         }
     },
 
-    docs: {},
+    docs: {
+        defaultName: "Documentation"
+    },
 
-    typescript: {
-        reactDocgen: "react-docgen-typescript"
+    webpackFinal: async config => {
+        if (!config.resolve) {
+            config.resolve = {};
+        }
+
+        config.resolve.modules = [
+            ...(config.resolve?.modules ?? []),
+            resolve(__dirname, "../src")
+        ]
+        return config;
     }
 };
 export default config;

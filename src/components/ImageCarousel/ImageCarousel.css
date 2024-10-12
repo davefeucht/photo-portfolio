@@ -1,0 +1,21 @@
+.image-carousel {
+    position: relative; 
+}
+
+.fade {
+    animation-duration: 4s;
+    animation-name: fade;
+    animation-iteration-count: infinite;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+    }
+}

@@ -2,7 +2,7 @@ import './CarouselItem.css';
 
 import * as React from 'react';
 
-interface Props {
+export interface CarouselItemProps {
     imageUrl: string;
     title: string;
 }
@@ -19,7 +19,7 @@ const Title: React.FC<TitleProps> = ({ title }) => {
     );
 };
 
-const CarouselItem: React.FC<Props> = ({ imageUrl, title }) => {
+const CarouselItem: React.FC<CarouselItemProps> = ({ imageUrl, title }) => {
     return (
         <div
             className="carousel-item"
