@@ -18,7 +18,7 @@ const meta = {
     // More on argTypes: https://storybook.js.org/docs/api/argtypes
     argTypes: {
         delay: {
-            description: 'Delay before refreshing images in the carousel'
+            description: 'Delay in milliseconds before refreshing images in the carousel'
         },
         items: {
             description: 'Items to display in the carousel'
