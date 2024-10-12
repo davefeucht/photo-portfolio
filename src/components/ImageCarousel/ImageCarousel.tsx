@@ -5,10 +5,11 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 
 interface Props {
-    items: CarouselItemProps[]
+    delay: number;
+    items: CarouselItemProps[];
 }
 
-const ImageCarousel: React.FC<Props> = ({ items }) => {
+const ImageCarousel: React.FC<Props> = ({ delay, items }) => {
     const [displayItems, setDisplayItems] = useState<CarouselItemProps[]>([...items]);
 
     useEffect(() => {
@@ -20,7 +21,7 @@ const ImageCarousel: React.FC<Props> = ({ items }) => {
 
                 return newItems;
             });
-        }, 4000);
+        }, delay);
 
         return () => {
             clearInterval(carouselInterval);

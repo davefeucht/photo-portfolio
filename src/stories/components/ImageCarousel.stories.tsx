@@ -17,6 +17,9 @@ const meta = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/api/argtypes
     argTypes: {
+        delay: {
+            description: 'Delay before refreshing images in the carousel'
+        },
         items: {
             description: 'Items to display in the carousel'
         }
@@ -29,6 +32,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
     args: {
+        delay: 4000,
         items: [
             {
                 title: 'Image1',
