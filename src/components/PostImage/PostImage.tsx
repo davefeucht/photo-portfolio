@@ -14,11 +14,10 @@ interface PostImageProps {
     imageUrl: string,
     imageHeight: number,
     previousPost: number,
-    nextPost: number,
-    ref: React.ForwardedRef<HTMLImageElement>
+    nextPost: number
 }
 
-const PostImage: React.FC<PostImageProps> = forwardRef(({
+const PostImage = forwardRef<HTMLImageElement, PostImageProps>(({
     imageUrl,
     imageHeight,
     previousPost,
