@@ -26,7 +26,6 @@ export default [{
         '**/node_modules/',
         '**/build/',
         '**/.tmp/',
-        '**/test/',
         '**/package-lock.json',
         '**/webpack*',
     ],

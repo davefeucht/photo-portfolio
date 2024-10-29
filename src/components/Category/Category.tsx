@@ -11,68 +11,31 @@ import {
     Outlet,
     useParams
 } from 'react-router-dom';
+import { StoreContext } from 'utils/StoreContext';
 
-import { ApiContext } from '../../utils/ApiContext';
-import {
-    API,
-    Category as CategoryState,
-    ImageData,
-    Post as PostState,
-    ScreenInfo
-} from '../../utils/types';
+import { Store } from '../../utils/types';
 import Posts from '../Posts/Posts';
 import SectionHeader from '../SectionHeader/SectionHeader';
 
-interface CategoryProps {
-    maxItemsPerPage: number,
-    screenInfo: ScreenInfo,
-    currentCategoryPosts: PostState[],
-    currentCategoryData: CategoryState,
-    setCategoryPosts: (a: PostState[]) => void,
-    setCategoryData: (a: CategoryState) => void,
-    setThumbnailImageUrl: (a: ImageData) => void
-}
-
-const Category: React.FC<CategoryProps> = ({
-    maxItemsPerPage,
-    screenInfo,
-    currentCategoryPosts,
-    currentCategoryData,
-    setCategoryPosts,
-    setCategoryData,
-    setThumbnailImageUrl
-}) => {
+const Category: React.FC = () => {
     const { categoryId = '0' } = useParams();
-    const api = useContext(ApiContext) as API;
-    const { getPosts, getPostThumbnail, getCategoryInfo } = api;
+    const store = useContext(StoreContext) as Store;
 
     useEffect(() => {
+        // Set current category ID to state store, and let it fetch category posts when this ID changes
         if (categoryId) {
-            getPosts(parseInt(categoryId))
-                .then((posts: PostState[]) => {
-                    setCategoryPosts(posts);
-                    currentCategoryPosts.forEach((post, index) => {
-                        getPostThumbnail(post.featured_media)
-                            .then((thumbUrl: string) => {
-                                setThumbnailImageUrl({ post_index: index, image_url: thumbUrl });
-                            });
-                    });
-                });
-            getCategoryInfo(parseInt(categoryId))
-                .then((categoryInfo: CategoryState) => {
-                    setCategoryData(categoryInfo);
-                });
+            store.getPosts(parseInt(categoryId));
         }
     }, [categoryId]);
 
     return (
         <div className="category">
-            <SectionHeader title={currentCategoryData.name} />
+            <SectionHeader title={store.currentCategoryData.name} />
             <Posts
-                maxItemsPerPage={maxItemsPerPage}
-                screenInfo={screenInfo}
+                maxItemsPerPage={store.maxItemsPerPage}
+                screenInfo={store.screenInfo}
                 categoryId={parseInt(categoryId)}
-                currentCategoryPosts={currentCategoryPosts}
+                currentCategoryPosts={store.currentCategoryPosts}
             />
             <Outlet />
         </div>

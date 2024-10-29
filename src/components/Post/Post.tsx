@@ -14,46 +14,26 @@ import {
     useState
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { StoreContext } from 'utils/StoreContext';
 
-import { ApiContext } from '../../utils/ApiContext';
 import {
     getNextPost,
     getPreviousPost,
     setPostRect
 } from '../../utils/PostHelper';
-import {
-    API,
-    Post as PostState,
-    ScreenInfo,
-    VisiblePost
-} from '../../utils/types';
+import { Store } from '../../utils/types';
 import PostFooter from '../PostFooter/PostFooter';
 import PostImage from '../PostImage/PostImage';
 import PostTitlebar from '../PostTitlebar/PostTitlebar';
 
 const image = document.createElement('img');
 
-interface PostProps {
-    screenInfo: ScreenInfo,
-    visiblePost: VisiblePost,
-    currentCategoryPosts: PostState[],
-    clearVisiblePostTagNames: () => void,
-    setCurrentPost: (a: PostState, b: string[], c: string) => void
-}
-
-const Post: React.FC<PostProps> = ({
-    screenInfo,
-    visiblePost,
-    currentCategoryPosts,
-    clearVisiblePostTagNames,
-    setCurrentPost
-}) => {
+const Post: React.FC = () => {
     const [imageHeight, setImageHeight] = useState<number>(0);
     const { categoryId = '-1', postId = '-1' } = useParams();
     const navigate = useNavigate();
     const imageRef = useRef<HTMLImageElement>(null);
-    const api = useContext(ApiContext) as API;
-    const { getPost, getPostImage, getTagNames } = api;
+    const store = useContext(StoreContext) as Store;
 
     const closeModalHandler = () => {
         navigate(`/category/${categoryId}`);
@@ -64,7 +44,7 @@ const Post: React.FC<PostProps> = ({
     };
 
     const updateImage = () => {
-        setPostRect(image, screenInfo.width, screenInfo.height, visiblePost);
+        setPostRect(image, store.screenInfo.width, store.screenInfo.height, store.visiblePost);
     };
 
     image.onload = () => {
@@ -73,31 +53,15 @@ const Post: React.FC<PostProps> = ({
     };
 
     useEffect(() => {
-        let tagNames: string[] = [];
-        let url = '';
         if (postId) {
-            clearVisiblePostTagNames();
-            getPost(parseInt(postId))
-                .then((post: PostState) => {
-                    return post;
-                })
-                .then((newPost: PostState) => {
-                    getTagNames(newPost.tags)
-                        .then(tags => {
-                            tagNames = tags;
-                        });
-                    getPostImage(newPost.featured_media)
-                        .then((imageUrl: string) => {
-                            url = imageUrl;
-                            setCurrentPost(newPost, tagNames, url);
-                        });
-                });
+            store.clearVisiblePostTagNames();
+            store.getPost(parseInt(postId));
         }
     }, [postId]);
 
     useEffect(() => {
-        if (visiblePost.fullImageUrl) {
-            image.src = visiblePost.fullImageUrl;
+        if (store.visiblePost.fullImageUrl) {
+            image.src = store.visiblePost.fullImageUrl;
         }
 
         if (imageRef.current) {
@@ -105,7 +69,7 @@ const Post: React.FC<PostProps> = ({
         }
 
         const disposer = reaction(
-            () => [screenInfo.width, screenInfo.height],
+            () => [store.screenInfo.width, store.screenInfo.height],
             () => updateImage()
         );
 
@@ -117,20 +81,20 @@ const Post: React.FC<PostProps> = ({
             }
             disposer();
         };
-    }, [visiblePost.fullImageUrl]);
+    }, [store.visiblePost.fullImageUrl]);
 
     return (
         <div className="post-background" onClick={closeModalHandler}>
             <div className="post" onClick={stopPropagation}>
-                <PostTitlebar postTitle={visiblePost.postTitle} />
+                <PostTitlebar postTitle={store.visiblePost.postTitle} />
                 <PostImage
-                    imageUrl={visiblePost.fullImageUrl}
+                    imageUrl={store.visiblePost.fullImageUrl}
                     imageHeight={imageHeight}
-                    previousPost={getPreviousPost(parseInt(postId), currentCategoryPosts)}
-                    nextPost={getNextPost(parseInt(postId), currentCategoryPosts)}
+                    previousPost={getPreviousPost(parseInt(postId), store.currentCategoryPosts)}
+                    nextPost={getNextPost(parseInt(postId), store.currentCategoryPosts)}
                     ref={imageRef}
                 />
-                <PostFooter tagNames={visiblePost.tagNames} />
+                <PostFooter tagNames={store.visiblePost.tagNames} />
             </div>
         </div>
     );

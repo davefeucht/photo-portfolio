@@ -6,11 +6,11 @@ import './CategoryThumbnail.css';
 
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { StoreContext } from 'utils/StoreContext';
 
-import { ApiContext } from '../../utils/ApiContext';
-import { API } from '../../utils/types';
+import { Store } from '../../utils/types';
 import CategoryTitle from '../CategoryTitle/CategoryTitle';
 
 interface CategoryThumbnailProps {
@@ -20,15 +20,17 @@ interface CategoryThumbnailProps {
 
 const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name }) => {
     const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
-    const api = useContext(ApiContext) as API;
-    const { getCategoryImage } = api;
+    const store = useContext(StoreContext) as Store;
 
-    if (!thumbnailImageUrl) {
-        getCategoryImage(id)
-            .then(imageUrl => {
-                setThumbnailImageUrl(imageUrl);
-            });
-    }
+    useEffect(() => {
+        const fetchThumbUrl = async (categoryId: number) => {
+            setThumbnailImageUrl(await store.getCategoryImage(categoryId))
+        };
+
+        if (!thumbnailImageUrl) {
+            fetchThumbUrl(id);
+        }
+    }, [id]);
 
     const divStyle = { backgroundImage: `url(${thumbnailImageUrl || ''})` };
 
