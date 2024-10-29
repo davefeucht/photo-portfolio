@@ -11,8 +11,7 @@ import { useParams } from 'react-router-dom';
 import { StoreContext } from 'utils/StoreContext';
 
 import { Store } from '../../utils/types';
-import PageContent from '../PageContent/PageContent';
-import SectionHeader from '../SectionHeader/SectionHeader';
+import PageRenderer from './PageRenderer';
 
 const Page: React.FC = () => {
     const { pageId } = useParams();
@@ -25,10 +24,10 @@ const Page: React.FC = () => {
     }, [pageId]);
 
     return (
-        <div className="page">
-            <SectionHeader title={store.currentPageData.title?.rendered} />
-            <PageContent content={store.currentPageData.content?.rendered} />
-        </div>
+        <PageRenderer
+            title={store.currentPageData.title?.rendered}
+            content={store.currentPageData.content?.rendered}
+        />
     );
 };
 

@@ -8,14 +8,12 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useContext, useEffect } from 'react';
 import {
-    Outlet,
     useParams
 } from 'react-router-dom';
 import { StoreContext } from 'utils/StoreContext';
 
 import { Store } from '../../utils/types';
-import Posts from '../Posts/Posts';
-import SectionHeader from '../SectionHeader/SectionHeader';
+import CategoryRenderer from './CategoryRenderer';
 
 const Category: React.FC = () => {
     const { categoryId = '0' } = useParams();
@@ -29,16 +27,13 @@ const Category: React.FC = () => {
     }, [categoryId]);
 
     return (
-        <div className="category">
-            <SectionHeader title={store.currentCategoryData.name} />
-            <Posts
-                maxItemsPerPage={store.maxItemsPerPage}
-                screenInfo={store.screenInfo}
-                categoryId={parseInt(categoryId)}
-                currentCategoryPosts={store.currentCategoryPosts}
-            />
-            <Outlet />
-        </div>
+        <CategoryRenderer
+            categoryId={parseInt(categoryId)}
+            maxItemsPerPage={store.maxItemsPerPage}
+            currentCategoryData={store.currentCategoryData}
+            currentCategoryPosts={store.currentCategoryPosts}
+            screenInfo={store.screenInfo}
+        />
     );
 };
 

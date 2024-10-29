@@ -7,11 +7,10 @@ import './CategoryThumbnail.css';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { StoreContext } from 'utils/StoreContext';
 
 import { Store } from '../../utils/types';
-import CategoryTitle from '../CategoryTitle/CategoryTitle';
+import CategoryThumbnailRenderer from './CategoryThumbnailRenderer';
 
 interface CategoryThumbnailProps {
     id: number,
@@ -32,14 +31,12 @@ const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name }) => {
         }
     }, [id]);
 
-    const divStyle = { backgroundImage: `url(${thumbnailImageUrl || ''})` };
-
     return (
-        <Link to={`/category/${id}`}>
-            <div style={divStyle} className="category-thumbnail" aria-label={`category-${name.split(' ').join('-')}`}>
-                <CategoryTitle title={name} />
-            </div>
-        </Link>
+        <CategoryThumbnailRenderer
+            id={id}
+            name={name}
+            thumbnailUrl={thumbnailImageUrl}
+        />
     );
 };
 
