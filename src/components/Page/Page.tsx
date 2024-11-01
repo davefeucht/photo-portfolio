@@ -8,39 +8,26 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { StoreContext } from 'utils/StoreContext';
 
-import { ApiContext } from '../../utils/ApiContext';
-import {
-    API,
-    Page as PageState
-} from '../../utils/types';
-import PageContent from '../PageContent/PageContent';
-import SectionHeader from '../SectionHeader/SectionHeader';
+import { Store } from '../../utils/types';
+import PageRenderer from './PageRenderer';
 
-interface PageProps {
-    currentPageData: PageState,
-    setPageData: (a: PageState) => void
-}
-
-const Page: React.FC<PageProps> = ({ currentPageData, setPageData }) => {
+const Page: React.FC = () => {
     const { pageId } = useParams();
-    const api = useContext(ApiContext) as API;
-    const { getPage } = api;
+    const store = useContext(StoreContext) as Store;
 
     useEffect(() => {
         if (pageId) {
-            getPage(parseInt(pageId))
-                .then(page => {
-                    setPageData(page);
-                });
+            store.getPage(parseInt(pageId));
         }
     }, [pageId]);
 
     return (
-        <div className="page">
-            <SectionHeader title={currentPageData.title?.rendered} />
-            <PageContent content={currentPageData.content?.rendered} />
-        </div>
+        <PageRenderer
+            title={store.currentPageData.title?.rendered}
+            content={store.currentPageData.content?.rendered}
+        />
     );
 };
 

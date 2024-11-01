@@ -15,7 +15,7 @@ exports[`Post displays 1`] = `
       <div
         class="title"
       >
-        foo
+        Post 1
       </div>
       <div
         class="close-button"
@@ -40,7 +40,7 @@ exports[`Post displays 1`] = `
       class="post-image"
     >
       <img
-        src="http://foo"
+        src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
         style="height: 400px;"
       />
     </div>
@@ -50,7 +50,7 @@ exports[`Post displays 1`] = `
       <div
         class="labels"
       >
-        moe, curly
+        something, somethingelse
       </div>
     </div>
   </div>

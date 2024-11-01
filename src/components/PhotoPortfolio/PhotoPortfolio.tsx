@@ -14,9 +14,9 @@ import {
     Routes,
     useParams
 } from 'react-router-dom';
+import { StoreContext } from 'utils/StoreContext';
 
-import { ApiContext } from '../../utils/ApiContext';
-import { API, Store } from '../../utils/types';
+import { Store } from '../../utils/types';
 import Categories from '../Categories/Categories';
 import Category from '../Category/Category';
 import Footer from '../Footer/Footer';
@@ -26,11 +26,10 @@ import Post from '../Post/Post';
 import TitleBar from '../TitleBar/TitleBar';
 
 interface PhotoPortfolioProps {
-    stateStore: Store,
-    api: API
+    stateStore: Store
 }
 
-const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
+const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
     const { categoryId, pageId } = useParams();
 
     const setScreenSize = () => {
@@ -50,14 +49,8 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
 
     useEffect(() => {
         window.addEventListener('resize', setScreenSize.bind(this));
-        api.getCategories()
-            .then(categories => {
-                stateStore.setCategoryList(categories);
-            });
-        api.getPages()
-            .then(pages => {
-                stateStore.setPages(pages);
-            });
+        stateStore.getCategories();
+        stateStore.getPages();
 
         setScreenSize();
         setColumns(stateStore.screenInfo.width, stateStore.screenInfo.height);
@@ -77,9 +70,9 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
     }, []);
 
     return (
-        <ApiContext.Provider value={api}>
+        <StoreContext.Provider value={stateStore}>
             <div className="app">
-                <TitleBar stateStore={stateStore} />
+                <TitleBar />
                 <div className="photo-portfolio">
                     <Routes>
                         <Route
@@ -95,38 +88,19 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
                         <Route
                             path="page/:pageId"
                             element={(
-                                <Page
-                                    key={pageId}
-                                    currentPageData={stateStore.currentPageData}
-                                    setPageData={stateStore.setPageData}
-                                />
+                                <Page key={pageId} />
                             )}
                         />
                         <Route
                             path="category/:categoryId"
                             element={(
-                                <Category
-                                    key={categoryId}
-                                    maxItemsPerPage={stateStore.maxItemsPerPage}
-                                    screenInfo={stateStore.screenInfo}
-                                    currentCategoryPosts={stateStore.currentCategoryPosts}
-                                    currentCategoryData={stateStore.currentCategoryData}
-                                    setCategoryPosts={stateStore.setCategoryPosts}
-                                    setCategoryData={stateStore.setCategoryData}
-                                    setThumbnailImageUrl={stateStore.setThumbnailImageUrl}
-                                />
+                                <Category key={categoryId} />
                             )}
                         >
                             <Route
                                 path="post/:postId"
                                 element={(
-                                    <Post
-                                        screenInfo={stateStore.screenInfo}
-                                        visiblePost={stateStore.visiblePost}
-                                        currentCategoryPosts={stateStore.currentCategoryPosts}
-                                        clearVisiblePostTagNames={stateStore.clearVisiblePostTagNames}
-                                        setCurrentPost={stateStore.setCurrentPost}
-                                    />
+                                    <Post />
                                 )}
                             />
                         </Route>
@@ -135,7 +109,7 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore, api }) => {
                 <Menu stateStore={stateStore} />
                 <Footer />
             </div>
-        </ApiContext.Provider>
+        </StoreContext.Provider>
     );
 };
 

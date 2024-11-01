@@ -3,7 +3,7 @@ import Categories from 'components/Categories/Categories';
 import * as React from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import StateStore from 'StateStore/store';
-import { ApiContext } from 'utils/ApiContext';
+import { StoreContext } from 'utils/StoreContext';
 import WordpressAPI from 'utils/WordpressAPI';
 
 const screenInfo = {
@@ -20,7 +20,7 @@ test('Category list displays', async () => {
     store.setCategoryList(categories);
     const { container } = render(
         <MemoryRouter>
-            <ApiContext.Provider value={api}>
+            <StoreContext.Provider value={store}>
                 <Routes>
                     <Route
                         path="/"
@@ -33,7 +33,7 @@ test('Category list displays', async () => {
                         )}
                     />
                 </Routes>
-            </ApiContext.Provider>
+            </StoreContext.Provider>
         </MemoryRouter>
     );
     const categoryThumb = await screen.findByLabelText(`category-${categories[0].name.split(' ').join('-')}`);

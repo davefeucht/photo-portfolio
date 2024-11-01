@@ -6,12 +6,11 @@ import './CategoryThumbnail.css';
 
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { StoreContext } from 'utils/StoreContext';
 
-import { ApiContext } from '../../utils/ApiContext';
-import { API } from '../../utils/types';
-import CategoryTitle from '../CategoryTitle/CategoryTitle';
+import { Store } from '../../utils/types';
+import CategoryThumbnailRenderer from './CategoryThumbnailRenderer';
 
 interface CategoryThumbnailProps {
     id: number,
@@ -20,24 +19,24 @@ interface CategoryThumbnailProps {
 
 const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name }) => {
     const [thumbnailImageUrl, setThumbnailImageUrl] = useState('');
-    const api = useContext(ApiContext) as API;
-    const { getCategoryImage } = api;
+    const store = useContext(StoreContext) as Store;
 
-    if (!thumbnailImageUrl) {
-        getCategoryImage(id)
-            .then(imageUrl => {
-                setThumbnailImageUrl(imageUrl);
-            });
-    }
+    useEffect(() => {
+        const fetchThumbUrl = async (categoryId: number) => {
+            setThumbnailImageUrl(await store.getCategoryImage(categoryId))
+        };
 
-    const divStyle = { backgroundImage: `url(${thumbnailImageUrl || ''})` };
+        if (!thumbnailImageUrl) {
+            fetchThumbUrl(id);
+        }
+    }, [id]);
 
     return (
-        <Link to={`/category/${id}`}>
-            <div style={divStyle} className="category-thumbnail" aria-label={`category-${name.split(' ').join('-')}`}>
-                <CategoryTitle title={name} />
-            </div>
-        </Link>
+        <CategoryThumbnailRenderer
+            id={id}
+            name={name}
+            thumbnailUrl={thumbnailImageUrl}
+        />
     );
 };
 

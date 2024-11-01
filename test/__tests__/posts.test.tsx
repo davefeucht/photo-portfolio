@@ -15,7 +15,7 @@ const posts: PostState[] = [
         link: '',
         modified: '',
         slug: '',
-        type: '',
+        type: 'post',
         featured_media: 142,
         categories: [220],
         title: {
@@ -34,7 +34,7 @@ const posts: PostState[] = [
         link: '',
         modified: '',
         slug: '',
-        type: '',
+        type: 'post',
         featured_media: 145,
         categories: [220],
         title: {

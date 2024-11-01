@@ -7,29 +7,20 @@ import './TitleBar.css';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useContext, useEffect } from 'react';
+import { StoreContext } from 'utils/StoreContext';
 
-import { ApiContext } from '../../utils/ApiContext';
-import { API, Store } from '../../utils/types';
+import { Store } from '../../utils/types';
 
-interface TitleBarProps {
-    stateStore: Store
-}
-
-const TitleBar: React.FC<TitleBarProps> = ({ stateStore }) => {
-    const { menuState } = stateStore;
-    const api = useContext(ApiContext) as API;
-    const { getSiteInfo } = api;
+const TitleBar: React.FC = () => {
+    const store = useContext(StoreContext) as Store;
+    const { menuState } = store;
 
     const toggleMenu = () => {
-        stateStore.setMenuState(stateStore.menuState === 'closed' ? 'open' : 'closed');
+        store.setMenuState(store.menuState === 'closed' ? 'open' : 'closed');
     };
 
     useEffect(() => {
-        getSiteInfo()
-            .then(siteName => {
-                stateStore.setSiteName(siteName);
-                document.title = siteName;
-            });
+        store.getSiteInfo();
     }, []);
 
     return (
@@ -38,7 +29,7 @@ const TitleBar: React.FC<TitleBarProps> = ({ stateStore }) => {
                 <img src="./assets/images/hamburger_icon.svg" style={{ border: 0 }} />
             </div>
             <div>
-                <h1>{stateStore.siteInfo.siteName}</h1>
+                <h1>{store.siteInfo.siteName}</h1>
             </div>
         </div>
     );

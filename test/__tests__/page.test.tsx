@@ -1,33 +1,31 @@
-import { render } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import Page from 'components/Page/Page';
 import * as React from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import StateStore from 'StateStore/store';
-import { ApiContext } from 'utils/ApiContext';
-import WordpressAPI from 'utils/WordpressAPI';
+import { StoreContext } from 'utils/StoreContext';
 
-jest.mock('../../utils/WordpressAPI');
+import { pages } from '../data/testData';
+
+jest.mock('../../src/utils/WordpressAPI');
 
 test('Page displays', async () => {
     const store = new StateStore();
-    const api = new WordpressAPI(store.siteInfo.siteUrl);
-    const page = await api.getPage(150);
     const { container } = render(
-        <MemoryRouter initialEntries={['/page/150']}>
-            <ApiContext.Provider value={api}>
+        <MemoryRouter initialEntries={['/page/1']}>
+            <StoreContext.Provider value={store}>
                 <Routes>
                     <Route
                         path="page/:pageId"
                         element={(
-                            <Page
-                                currentPageData={page}
-                                setPageData={store.setPageData}
-                            />
+                            <Page />
                         )}
                     />
                 </Routes>
-            </ApiContext.Provider>
+            </StoreContext.Provider>
         </MemoryRouter>
     );
+
+    await waitFor(() => expect(screen.getByText(pages[0].title.rendered)).toBeInTheDocument());
     expect(container.firstChild).toMatchSnapshot();
 });
