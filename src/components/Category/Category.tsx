@@ -22,6 +22,7 @@ const Category: React.FC = () => {
     useEffect(() => {
         // Set current category ID to state store, and let it fetch category posts when this ID changes
         if (categoryId) {
+            store.setCurrentCategoryId(parseInt(categoryId));
             store.getPosts(parseInt(categoryId));
         }
     }, [categoryId]);
@@ -30,7 +31,7 @@ const Category: React.FC = () => {
         <CategoryRenderer
             categoryId={parseInt(categoryId)}
             maxItemsPerPage={store.maxItemsPerPage}
-            currentCategoryData={store.currentCategoryData}
+            categoryName={store.currentCategoryName}
             currentCategoryPosts={store.currentCategoryPosts}
             screenInfo={store.screenInfo}
         />

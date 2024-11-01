@@ -1,20 +1,24 @@
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import Category from 'components/Category/Category';
 import * as React from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import StateStore from 'StateStore/store';
 import { StoreContext } from 'utils/StoreContext';
 
-jest.mock('../../utils/WordpressAPI');
+import { categories } from '../data/testData';
 
-const setCategoryPostsMock = jest.fn();
-const setCategoryDataMock = jest.fn();
-const setThumbnailImageUrlMock = jest.fn();
+jest.mock('../../src/utils/WordpressAPI');
+
+beforeEach(() => {
+    jest.clearAllMocks();
+});
 
 test('Category displays', async () => {
     const store = new StateStore();
+    store.setCategoryList(categories)
+
     const { container } = render(
-        <MemoryRouter initialEntries={['/category/35']}>
+        <MemoryRouter initialEntries={['/category/1']}>
             <StoreContext.Provider value={store}>
                 <Routes>
                     <Route
@@ -27,10 +31,6 @@ test('Category displays', async () => {
             </StoreContext.Provider>
         </MemoryRouter>
     );
-    await waitFor(() => {
-        expect(setCategoryPostsMock).toHaveBeenCalledTimes(1);
-        expect(setCategoryDataMock).toHaveBeenCalledTimes(1);
-        expect(setThumbnailImageUrlMock).toHaveBeenCalledTimes(2);
-    });
+    await waitFor(() => expect(screen.getByText(categories[0].name)).toBeInTheDocument());
     expect(container.firstChild).toMatchSnapshot();
 });

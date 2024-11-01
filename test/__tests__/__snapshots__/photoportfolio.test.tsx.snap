@@ -25,24 +25,39 @@ exports[`PhotoPortfolio displays 1`] = `
     class="photo-portfolio"
   >
     <div
-      class="category"
+      class="category-list"
     >
-      <div
-        class="section-header"
+      <a
+        href="/category/1"
       >
         <div
-          class="title"
-        />
-      </div>
-      <div
-        class="posts"
-      >
-        <div
-          class="pagination-navigation"
+          aria-label="category-Category-1"
+          class="category-thumbnail"
+          style="background-image: url();"
         >
           <div
-            class="pagination-navigation__content"
-          />
+            class="category-title"
+          >
+            <div
+              class="category-title-text"
+            >
+              Category 1
+            </div>
+          </div>
+        </div>
+      </a>
+      <div
+        class="pagination-navigation"
+      >
+        <div
+          class="pagination-navigation__content"
+        >
+          <div
+            aria-label="pagination"
+            class="pagination-navigation__item selected"
+          >
+            1
+          </div>
         </div>
       </div>
     </div>
@@ -64,11 +79,35 @@ exports[`PhotoPortfolio displays 1`] = `
       </li>
       <li>
         Categories
-        <ul />
+        <ul>
+          <li>
+            <a
+              href="/category/1"
+            >
+              <div
+                class="menu-link"
+              >
+                Category 1
+              </div>
+            </a>
+          </li>
+        </ul>
       </li>
       <li>
         Info
-        <ul />
+        <ul>
+          <li>
+            <a
+              href="/page/1"
+            >
+              <div
+                class="menu-link"
+              >
+                Page 1
+              </div>
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>

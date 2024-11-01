@@ -1,13 +1,14 @@
 import Posts from 'components/Posts/Posts';
 import SectionHeader from 'components/SectionHeader/SectionHeader';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Category, Post, ScreenInfo } from 'utils/types';
+import { Post, ScreenInfo } from 'utils/types';
 
 interface Props {
     categoryId: number;
     maxItemsPerPage: number;
-    currentCategoryData: Category;
+    categoryName?: string;
     currentCategoryPosts: Post[];
     screenInfo: ScreenInfo;
 }
@@ -15,13 +16,13 @@ interface Props {
 const CategoryRenderer: React.FC<Props> = ({
     categoryId,
     maxItemsPerPage,
-    currentCategoryData,
+    categoryName,
     currentCategoryPosts,
     screenInfo
 }) => {
     return (
         <div className="category">
-            <SectionHeader title={currentCategoryData.name} />
+            <SectionHeader title={categoryName ?? ""} />
             <Posts
                 maxItemsPerPage={maxItemsPerPage}
                 screenInfo={screenInfo}
@@ -33,4 +34,4 @@ const CategoryRenderer: React.FC<Props> = ({
     );
 };
 
-export default CategoryRenderer;
+export default observer(CategoryRenderer);

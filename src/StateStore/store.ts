@@ -26,8 +26,8 @@ class stateStore implements Store {
     };
     visiblePost: VisiblePost;
     categoryList: Category[];
+    currentCategoryId: number;
     currentCategoryPosts: Post[];
-    currentCategoryData: Category;
     pages: Page[];
     currentPageData: Page;
     maxItemsPerPage: number;
@@ -59,16 +59,7 @@ class stateStore implements Store {
 
         this.categoryList = [];
         this.currentCategoryPosts = [];
-        this.currentCategoryData = {
-            id: 0,
-            count: 0,
-            description: '',
-            link: '',
-            name: '',
-            slug: '',
-            taxonomy: '',
-            parent: 0
-        };
+        this.currentCategoryId = 0;
         this.pages = [];
         this.currentPageData = {
             id: 0,
@@ -193,9 +184,14 @@ class stateStore implements Store {
         });
     };
 
-    setCategoryData = (categoryData: Category) => {
-        this.currentCategoryData = categoryData;
-    };
+    setCurrentCategoryId = (categoryId: number) => {
+        this.currentCategoryId = categoryId;
+    }
+
+    get currentCategoryName() {
+        const currentCategory = this.categoryList.find(category => category.id === this.currentCategoryId);
+        return (currentCategory?.name ?? 'No Title');
+    }
 
     setThumbnailImageUrl = (imageData: ImageData) => {
         this.currentCategoryPosts[imageData.post_index].thumbnail_image = imageData.image_url;
@@ -215,6 +211,13 @@ class stateStore implements Store {
 
         this.visiblePost = visiblePostData;
     };
+
+    setScreenInfo = (width: number, height: number) => {
+        this.screenInfo = {
+            width,
+            height
+        };
+    }
 
     setPages = (pages: Page[]) => {
         pages.forEach(page => {

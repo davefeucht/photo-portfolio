@@ -10,13 +10,13 @@ exports[`Page displays 1`] = `
     <div
       class="title"
     >
-      Contact
+      Page 1
     </div>
   </div>
   <div
     class="page__content"
   >
-    Contact me!
+    This is a page
   </div>
 </div>
 `;

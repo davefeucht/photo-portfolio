@@ -10,22 +10,14 @@ exports[`Category displays 1`] = `
     <div
       class="title"
     >
-      Some other category
+      Category 1
     </div>
   </div>
   <div
     class="posts"
   >
     <a
-      href="/category/35/post/887"
-    >
-      <div
-        class="post-thumbnail"
-        style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
-      />
-    </a>
-    <a
-      href="/category/35/post/889"
+      href="/category/1/post/1"
     >
       <div
         class="post-thumbnail"
