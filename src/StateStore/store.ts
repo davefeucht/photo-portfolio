@@ -4,6 +4,7 @@ import WordpressAPI from 'utils/WordpressAPI';
 import {
     Category,
     ImageData,
+    MenuState,
     Page,
     Post,
     Store,
@@ -12,9 +13,9 @@ import {
 
 configure({ enforceActions: 'observed' });
 
-class stateStore implements Store {
+class StateStore implements Store {
     api: WordpressAPI;
-    menuState: string;
+    menuState: MenuState;
     applicationRoot: HTMLElement;
     screenInfo: {
         width: number,
@@ -140,7 +141,7 @@ class stateStore implements Store {
         this.setPageData(page);
     }
 
-    setMenuState = (state: string) => {
+    setMenuState = (state: MenuState) => {
         this.menuState = state;
     };
 
@@ -230,4 +231,4 @@ class stateStore implements Store {
     };
 }
 
-export default stateStore;
+export default StateStore;

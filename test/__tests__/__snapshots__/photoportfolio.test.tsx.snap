@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PhotoPortfolio displays 1`] = `
+exports[`Photo Portfolio Renders properly 1`] = `
 <div
   class="app"
 >

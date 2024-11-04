@@ -1,5 +1,7 @@
 import { Category, Page, Post, SiteInfo } from "utils/types";
 
+export const imageUrl = 'https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg';
+
 export const siteInfo: SiteInfo = {
     siteName: 'Through a Pinhole',
     siteUrl: 'throughapinhole.com'

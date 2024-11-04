@@ -3,6 +3,7 @@ build
 node_modules
 *.log
 *.png
+coverage
 .vscode
 
 # yarn

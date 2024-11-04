@@ -22,6 +22,8 @@ interface MediaSize {
 
 type Media = 'image' | 'video' | 'text' | 'application' | 'audio';
 
+export type MenuState = 'closed' | 'open';
+
 export interface MediaResponse {
     data: {
         alt_text: string,
