@@ -2,7 +2,7 @@ import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import WordpressAPI from 'utils/WordpressAPI';
 
-import { categories, imageUrl, posts, siteInfo } from '../data/testData';
+import { categories, imageUrl, pages, posts, siteInfo, tagNames } from '../data/testData';
 
 const axiosMock = new AxiosMockAdapter(axios);
 const siteUrl = 'throughapinhole.com';
@@ -91,5 +91,72 @@ describe("API", () => {
         const returnedPost = await api.getPost(posts[0].id);
 
         expect(returnedPost).toEqual(posts[0]);
+    });
+
+    it('Should get the category info by id', async () => {
+        const api = new WordpressAPI(siteUrl);
+
+        axiosMock.onGet(`https://${siteUrl}/wp-json/wp/v2/categories/${categories[0].id}`).reply(200, categories[0]);
+
+        const returnedCategory = await api.getCategoryInfo(categories[0].id);
+
+        expect(returnedCategory).toEqual(categories[0]);
+    });
+
+    it('Should get post image', async () => {
+        const api = new WordpressAPI(siteUrl);
+
+        axiosMock.onGet(`https://${siteUrl}/wp-json/wp/v2/media/${posts[0].featured_media}`).reply(200, {
+            media_details: {
+                sizes: {
+                    full: {
+                        source_url: imageUrl
+                    },
+                    large: {
+                        source_url: imageUrl
+                    },
+                    medium: {
+                        source_url: imageUrl
+                    }
+                }
+            }
+        });
+
+        const returnedImageUrl = await api.getPostImage(posts[0].featured_media);
+
+        expect(returnedImageUrl).toEqual(imageUrl);
+    });
+
+    it('Should get tag names for tags', async () => {
+        const api = new WordpressAPI(siteUrl);
+        const tags = [0, 1];
+
+        tags.forEach(tag => {
+            axiosMock.onGet(`https://${siteUrl}/wp-json/wp/v2/tags/${tag}`).reply(200, { name: tagNames[tag] });
+        });
+
+        const returnedTagNames = await api.getTagNames(tags);
+
+        expect(returnedTagNames).toEqual(tagNames);
+    });
+
+    it('Should get the pages', async () => {
+        const api = new WordpressAPI(siteUrl);
+
+        axiosMock.onGet(`https://${siteUrl}/wp-json/wp/v2/pages`).reply(200, pages);
+
+        const returnedPages = await api.getPages();
+
+        expect(returnedPages).toEqual(pages);
+    });
+
+    it('Should get a page based on id', async () => {
+        const api = new WordpressAPI(siteUrl);
+
+        axiosMock.onGet(`https://${siteUrl}/wp-json/wp/v2/pages/${pages[0].id}`).reply(200, pages[0]);
+
+        const returnedPage = await api.getPage(pages[0].id);
+
+        expect(returnedPage).toEqual(pages[0]);
     });
 });
