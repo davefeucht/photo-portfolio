@@ -41,6 +41,25 @@ export const posts: Post[] = [
         categories: [1],
         tags: [0],
         thumbnail_image: 'http://media/1'
+    },
+    {
+        id: 2,
+        link: 'http://post/2',
+        modified: 'now',
+        slug: 'post2',
+        type: 'post',
+        title: {
+            rendered: 'Post 2'
+        },
+        content: {
+            rendered: 'This is a post',
+            protected: false
+        },
+        author: 0,
+        featured_media: 2,
+        categories: [1],
+        tags: [0],
+        thumbnail_image: 'http://media/2'
     }
 ];
 

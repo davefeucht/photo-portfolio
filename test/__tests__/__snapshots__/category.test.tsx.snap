@@ -24,6 +24,14 @@ exports[`Category displays 1`] = `
         style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
       />
     </a>
+    <a
+      href="/category/1/post/2"
+    >
+      <div
+        class="post-thumbnail"
+        style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+      />
+    </a>
     <div
       class="pagination-navigation"
     >
