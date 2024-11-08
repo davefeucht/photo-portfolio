@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import PostImage from 'components/PostImage/PostImage';
 import * as React from 'react';
 import { useRef } from 'react';
@@ -17,9 +17,27 @@ const WrapperComponent: React.FC = () => {
     );
 };
 
-test('PostImage displays', async () => {
-    const { container } = render(
-        <WrapperComponent />
-    );
-    expect(container.firstChild).toMatchSnapshot();
+describe('PostImage', () => {
+    it('PostImage displays', async () => {
+        const { container } = render(
+            <WrapperComponent />
+        );
+        expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('Shows navigation arrows on hover', async () => {
+        render(
+            <WrapperComponent />
+        );
+
+        const postImage = screen.getByLabelText('post-image');
+
+        fireEvent.mouseOver(postImage);
+
+        await waitFor(() => expect(screen.getByLabelText('navigation-arrow-previous')).toBeInTheDocument());
+
+        fireEvent.mouseOut(postImage);
+
+        await waitFor(() => expect(screen.queryByLabelText('navigation-arrow-previous')).toBeNull());
+    });
 });

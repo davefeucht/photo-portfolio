@@ -1,6 +1,7 @@
 const webpackConfig = require('./webpack.config');
+const { merge } = require('webpack-merge');
 
-module.exports = Object.assign({}, webpackConfig, {
+module.exports = merge(webpackConfig, {
     mode: 'development',
     devServer: {
         historyApiFallback: true,

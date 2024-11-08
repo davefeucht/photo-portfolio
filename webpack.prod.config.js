@@ -1,7 +1,8 @@
 const path = require('path');
 const webpackConfig = require('./webpack.config');
+const { merge } = require('webpack-merge');
 
-module.exports = Object.assign({}, webpackConfig, {
+module.exports = merge(webpackConfig, {
     mode: 'production',
     output: {
         path: path.resolve(__dirname, 'build'),

@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PostImage displays 1`] = `
+exports[`PostImage PostImage displays 1`] = `
 <div
+  aria-label="post-image"
   class="post-image"
 >
   <img

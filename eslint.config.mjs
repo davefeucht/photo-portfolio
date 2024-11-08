@@ -27,8 +27,8 @@ export default [{
         '**/build/',
         '**/.tmp/',
         '**/package-lock.json',
-        '**/webpack*',
-    ],
+        '**/webpack*'
+    ]
 }, ...compat.extends(
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
@@ -39,13 +39,13 @@ export default [{
         react,
         'react-hooks': fixupPluginRules(reactHooks),
         'simple-import-sort': simpleImportSort,
-        '@typescript-eslint': typescriptEslint,
+        '@typescript-eslint': typescriptEslint
     },
 
     languageOptions: {
         globals: {
             ...globals.browser,
-            ...jest.environments.globals.globals,
+            ...jest.environments.globals.globals
         },
 
         parser: tsParser,
@@ -55,34 +55,34 @@ export default [{
         parserOptions: {
             ecmaFeatures: {
                 jsx: true,
-                modules: true,
-            },
-        },
+                modules: true
+            }
+        }
     },
 
     settings: {
         react: {
-            version: '18',
-        },
+            version: '18'
+        }
     },
 
     rules: {
         indent: [2, 4, {
-            SwitchCase: 1,
+            SwitchCase: 1
         }],
 
         'comma-dangle': ['error', 'never'],
 
         'no-trailing-spaces': ['error', {
-            ignoreComments: true,
+            ignoreComments: true
         }],
 
         'max-len': 0,
 
         'spaced-comment': ['error', 'always', {
             block: {
-                balanced: true,
-            },
+                balanced: true
+            }
         }],
 
         'no-case-declarations': 0,
@@ -108,7 +108,7 @@ export default [{
         'import/no-extraneous-dependencies': 0,
 
         'no-unused-expressions': ['error', {
-            allowShortCircuit: true,
+            allowShortCircuit: true
         }],
 
         'no-async-promise-executor': 0,
@@ -127,14 +127,14 @@ export default [{
         'react/prop-types': 0,
 
         'react/jsx-filename-extension': ['error', {
-            extensions: ['.tsx', '.jsx'],
+            extensions: ['.tsx', '.jsx']
         }],
 
         'react/require-default-props': 0,
 
         'react/function-component-definition': ['error', {
             namedComponents: ['arrow-function'],
-            unnamedComponents: ['arrow-function'],
+            unnamedComponents: ['arrow-function']
         }],
 
         'jsx-a11y/click-events-have-key-events': 0,
@@ -145,6 +145,7 @@ export default [{
         'simple-import-sort/imports': 'error',
         'simple-import-sort/exports': 'error',
 
-        '@typescript-eslint/no-explicit-any': 0
+        '@typescript-eslint/no-explicit-any': 0,
+        '@typescript-eslint/ban-ts-comment': 0
     }
 }];

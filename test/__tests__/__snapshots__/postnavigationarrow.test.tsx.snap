@@ -2,6 +2,7 @@
 
 exports[`PostNavigationArrow displays 1`] = `
 <div
+  aria-label="navigation-arrow-previous"
   class="post-navigation-arrow active previous"
   style="top: 209px; left: 0px;"
 >

@@ -4,6 +4,7 @@ import WordpressAPI from 'utils/WordpressAPI';
 
 import { categories, imageUrl, pages, posts, siteInfo, tagNames } from '../data/testData';
 
+// @ts-ignore it seems the type definitions for AxiosMockAdapter do not match Axios
 const axiosMock = new AxiosMockAdapter(axios);
 const siteUrl = 'throughapinhole.com';
 

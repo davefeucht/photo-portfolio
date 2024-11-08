@@ -10,11 +10,12 @@ import { Link, useParams } from 'react-router-dom';
 
 interface PostNavigationArrowProps {
     imageHeight: number,
-    direction: string,
+    direction: 'next' | 'previous',
     postId: number
 }
 
 const PostNavigationArrow: React.FC<PostNavigationArrowProps> = ({ imageHeight = 0, direction, postId }) => {
+    console.log(direction);
     const { categoryId } = useParams();
 
     // TODO: calculate these based on a variable somewhere - they are navigationArrowHeight - (postHeaderHight + postFooterHeight)
@@ -37,7 +38,7 @@ const PostNavigationArrow: React.FC<PostNavigationArrowProps> = ({ imageHeight =
     };
 
     return (
-        <div className={classNames.join(' ')} style={divStyle}>
+        <div aria-label={`navigation-arrow-${direction}`} className={classNames.join(' ')} style={divStyle}>
             {getContent()}
         </div>
     );

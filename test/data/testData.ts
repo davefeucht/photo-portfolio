@@ -1,4 +1,4 @@
-import { Category, Page, Post, SiteInfo } from "utils/types";
+import { Category, Page, Post, SiteInfo, VisiblePost } from "utils/types";
 
 export const imageUrl = 'https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg';
 
@@ -81,3 +81,14 @@ export const pages: Page[] = [
         featured_media: 1
     }
 ]
+
+export const visiblePost: VisiblePost = {
+    postId: 1,
+    postTitle: "Post 1",
+    tags: [0, 1],
+    tagNames: tagNames,
+    fullImageUrl: imageUrl,
+    width: 800,
+    height: 600,
+    featured_media: 1
+};

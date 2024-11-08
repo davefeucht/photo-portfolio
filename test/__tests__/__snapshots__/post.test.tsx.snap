@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Post displays 1`] = `
+exports[`Post Post displays 1`] = `
 <div
   class="post-background"
   style="width: 500px; height: 500px;"
@@ -37,6 +37,7 @@ exports[`Post displays 1`] = `
       </div>
     </div>
     <div
+      aria-label="post-image"
       class="post-image"
     >
       <img

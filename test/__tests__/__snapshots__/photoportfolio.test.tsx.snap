@@ -8,6 +8,7 @@ exports[`Photo Portfolio Renders properly 1`] = `
     class="title-bar"
   >
     <div
+      aria-label="hamburger-button"
       class="hamburger-button closed"
     >
       <img
