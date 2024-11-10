@@ -18,9 +18,9 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - name: Enable corepack
@@ -32,14 +32,26 @@ jobs:
 
   coverage:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
     steps:
-        - uses: actions/checkout@v3
-        - uses: ArtiomTr/jest-coverage-report-action@v2
+        - name: Checkout code
+          uses: actions/checkout@v3
+        - name: Install Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v4
+          with:
+            node-version: ${{ matrix.node-version }}
+        - name: Enable corepack
+          run: corepack enable
+        - name: Install dependencies
+          run: yarn install
+        - name: Test Coverage
+          uses: ArtiomTr/jest-coverage-report-action@v2
           with:
             test-script: yarn test-coverage
 
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -48,10 +60,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
