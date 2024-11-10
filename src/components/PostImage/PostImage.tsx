@@ -34,7 +34,7 @@ const PostImage = forwardRef<HTMLImageElement, PostImageProps>(({
     };
 
     return (
-        <div className="post-image" onMouseOver={onMouseOverHandler.bind(this)} onMouseOut={onMouseOutHandler.bind(this)}>
+        <div aria-label="post-image" className="post-image" onMouseOver={onMouseOverHandler.bind(this)} onMouseOut={onMouseOutHandler.bind(this)}>
             {arrowsVisible && <PostNavigationArrow imageHeight={imageHeight} direction="previous" postId={previousPost} />}
             <img ref={ref} src={imageUrl} />
             {arrowsVisible && <PostNavigationArrow imageHeight={imageHeight} direction="next" postId={nextPost} />}

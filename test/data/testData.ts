@@ -1,4 +1,6 @@
-import { Category, Page, Post, SiteInfo } from "utils/types";
+import { Category, Page, Post, SiteInfo, VisiblePost } from "utils/types";
+
+export const imageUrl = 'https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg';
 
 export const siteInfo: SiteInfo = {
     siteName: 'Through a Pinhole',
@@ -39,6 +41,25 @@ export const posts: Post[] = [
         categories: [1],
         tags: [0],
         thumbnail_image: 'http://media/1'
+    },
+    {
+        id: 2,
+        link: 'http://post/2',
+        modified: 'now',
+        slug: 'post2',
+        type: 'post',
+        title: {
+            rendered: 'Post 2'
+        },
+        content: {
+            rendered: 'This is a post',
+            protected: false
+        },
+        author: 0,
+        featured_media: 2,
+        categories: [1],
+        tags: [0],
+        thumbnail_image: 'http://media/2'
     }
 ];
 
@@ -60,3 +81,14 @@ export const pages: Page[] = [
         featured_media: 1
     }
 ]
+
+export const visiblePost: VisiblePost = {
+    postId: 1,
+    postTitle: "Post 1",
+    tags: [0, 1],
+    tagNames: tagNames,
+    fullImageUrl: imageUrl,
+    width: 800,
+    height: 600,
+    featured_media: 1
+};

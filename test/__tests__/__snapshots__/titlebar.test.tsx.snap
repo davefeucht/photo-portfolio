@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Titlebar displays 1`] = `
+exports[`TitleBar Titlebar displays 1`] = `
 <div
   class="title-bar"
 >
   <div
+    aria-label="hamburger-button"
     class="hamburger-button closed"
   >
     <img

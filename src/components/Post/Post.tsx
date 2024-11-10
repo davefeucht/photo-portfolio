@@ -8,20 +8,24 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import {
     useContext,
-    useEffect
+    useEffect,
+    useState
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { StoreContext } from 'utils/StoreContext';
 
 import {
     getNextPost,
-    getPreviousPost
+    getPreviousPost,
+    setPostRect
 } from '../../utils/PostHelper';
 import { Store } from '../../utils/types';
 import PostRenderer from './PostRenderer';
 
 
 const Post: React.FC = () => {
+    const [imageHeight, setImageHeight] = useState<number>(0);
+
     const { categoryId = '-1', postId = '-1' } = useParams();
     const navigate = useNavigate();
     const store = useContext(StoreContext) as Store;
@@ -30,16 +34,21 @@ const Post: React.FC = () => {
         navigate(`/category/${categoryId}`);
     };
 
+    const updateImage = (image: HTMLImageElement, imageHeight: number) => {
+        setPostRect(image, store.screenInfo.width, store.screenInfo.height, store.visiblePost);
+        setImageHeight(imageHeight);
+    };
+
     useEffect(() => {
-        if (postId) {
-            store.clearVisiblePostTagNames();
-            store.getPost(parseInt(postId));
-        }
+        store.clearVisiblePostTagNames();
+        store.getPost(parseInt(postId));
     }, [postId]);
 
     return (
         <PostRenderer
+            imageHeight={imageHeight}
             onClose={closeModalHandler}
+            onImageLoad={updateImage}
             previousPost={getPreviousPost(parseInt(postId), store.currentCategoryPosts)}
             nextPost={getNextPost(parseInt(postId), store.currentCategoryPosts)}
             screenInfo={store.screenInfo}

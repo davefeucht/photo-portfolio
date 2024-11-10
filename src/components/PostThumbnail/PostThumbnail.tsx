@@ -17,7 +17,7 @@ interface PostThumbnailProps {
  * currentCategoryPosts
 */
 
-const PostThumbnail: React.FC<PostThumbnailProps> = ({ id, thumbnailImage = '' }) => {
+const PostThumbnail: React.FC<PostThumbnailProps> = ({ id, thumbnailImage }) => {
     const divStyle = { backgroundImage: `url(${thumbnailImage})` };
     const location = useLocation();
 

@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostRenderer Renders 1`] = `
+<div>
+  <div
+    class="post-background"
+  >
+    <div
+      class="post"
+    >
+      <div
+        class="post-titlebar"
+      >
+        <div
+          class="title"
+        >
+          Post 1
+        </div>
+        <div
+          class="close-button"
+          role="button"
+        >
+          <a
+            href="/category/undefined"
+          >
+            <div
+              class="close-button-content"
+            >
+              <img
+                height="30px"
+                src="./assets/images/close-button.svg"
+                width="30px"
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+      <div
+        aria-label="post-image"
+        class="post-image"
+      >
+        <img
+          src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
+        />
+      </div>
+      <div
+        class="post-footer"
+      >
+        <div
+          class="labels"
+        >
+          something, somethingelse
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

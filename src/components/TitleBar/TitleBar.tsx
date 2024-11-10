@@ -25,7 +25,7 @@ const TitleBar: React.FC = () => {
 
     return (
         <div className="title-bar">
-            <div className={`hamburger-button ${menuState}`} onClick={toggleMenu}>
+            <div aria-label="hamburger-button" className={`hamburger-button ${menuState}`} onClick={toggleMenu}>
                 <img src="./assets/images/hamburger_icon.svg" style={{ border: 0 }} />
             </div>
             <div>

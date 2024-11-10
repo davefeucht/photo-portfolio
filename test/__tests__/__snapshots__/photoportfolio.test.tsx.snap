@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PhotoPortfolio displays 1`] = `
+exports[`Photo Portfolio Renders properly landscape 1`] = `
 <div
   class="app"
 >
@@ -8,6 +8,7 @@ exports[`PhotoPortfolio displays 1`] = `
     class="title-bar"
   >
     <div
+      aria-label="hamburger-button"
       class="hamburger-button closed"
     >
       <img
@@ -34,6 +35,126 @@ exports[`PhotoPortfolio displays 1`] = `
           aria-label="category-Category-1"
           class="category-thumbnail"
           style="background-image: url();"
+        >
+          <div
+            class="category-title"
+          >
+            <div
+              class="category-title-text"
+            >
+              Category 1
+            </div>
+          </div>
+        </div>
+      </a>
+      <div
+        class="pagination-navigation"
+      >
+        <div
+          class="pagination-navigation__content"
+        >
+          <div
+            aria-label="pagination"
+            class="pagination-navigation__item selected"
+          >
+            1
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="menu closed"
+  >
+    <ul>
+      <li>
+        <a
+          href="/"
+        >
+          <div
+            class="menu-link"
+          >
+            Home
+          </div>
+        </a>
+      </li>
+      <li>
+        Categories
+        <ul>
+          <li>
+            <a
+              href="/category/1"
+            >
+              <div
+                class="menu-link"
+              >
+                Category 1
+              </div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Info
+        <ul>
+          <li>
+            <a
+              href="/page/1"
+            >
+              <div
+                class="menu-link"
+              >
+                Page 1
+              </div>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div
+    class="footer"
+  >
+    Theme Copyright @2023 Dave Feucht
+  </div>
+</div>
+`;
+
+exports[`Photo Portfolio Renders properly portrait 1`] = `
+<div
+  class="app"
+>
+  <div
+    class="title-bar"
+  >
+    <div
+      aria-label="hamburger-button"
+      class="hamburger-button closed"
+    >
+      <img
+        src="./assets/images/hamburger_icon.svg"
+        style="border: 0px;"
+      />
+    </div>
+    <div>
+      <h1>
+        Through a Pinhole
+      </h1>
+    </div>
+  </div>
+  <div
+    class="photo-portfolio"
+  >
+    <div
+      class="category-list"
+    >
+      <a
+        href="/category/1"
+      >
+        <div
+          aria-label="category-Category-1"
+          class="category-thumbnail"
+          style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
         >
           <div
             class="category-title"

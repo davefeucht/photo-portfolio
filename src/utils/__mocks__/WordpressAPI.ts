@@ -1,6 +1,4 @@
-import { categories, pages, posts, siteInfo, tagNames } from "../../../test/data/testData";
-
-const imageUrl = 'https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg';
+import { categories, imageUrl, pages, posts, siteInfo, tagNames } from "../../../test/data/testData";
 
 export const mockGetSiteInfo = jest.fn(async () => siteInfo.siteName);
 export const mockGetPostImage = jest.fn(async () => imageUrl);

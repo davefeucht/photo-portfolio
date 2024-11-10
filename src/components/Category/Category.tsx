@@ -16,7 +16,7 @@ import { Store } from '../../utils/types';
 import CategoryRenderer from './CategoryRenderer';
 
 const Category: React.FC = () => {
-    const { categoryId = '0' } = useParams();
+    const { categoryId } = useParams();
     const store = useContext(StoreContext) as Store;
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const Category: React.FC = () => {
 
     return (
         <CategoryRenderer
-            categoryId={parseInt(categoryId)}
+            categoryId={store.currentCategoryId}
             maxItemsPerPage={store.maxItemsPerPage}
             categoryName={store.currentCategoryName}
             currentCategoryPosts={store.currentCategoryPosts}
