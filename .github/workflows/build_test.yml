@@ -45,11 +45,10 @@ jobs:
             node-version: ${{ matrix.node-version }}
         - name: Enable corepack
           run: corepack enable
-        - name: Install dependencies
-          run: yarn install
         - name: Test Coverage
           uses: ArtiomTr/jest-coverage-report-action@v2
           with:
+            package-manager: yarn
             test-script: yarn test-coverage
 
   build:
