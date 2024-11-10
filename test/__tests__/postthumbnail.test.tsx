@@ -6,11 +6,13 @@ import { MemoryRouter } from 'react-router-dom';
 const thumbnailImage = 'some_url';
 const postId = 35;
 
-test('PostThumbnail displays', async () => {
-    const { container } = render(
-        <MemoryRouter>
-            <PostThumbnail id={postId} thumbnailImage={thumbnailImage} />
-        </MemoryRouter>
-    );
-    expect(container.firstChild).toMatchSnapshot();
+describe('PostThumbnail', () => {
+    it('PostThumbnail displays', async () => {
+        const { container } = render(
+            <MemoryRouter>
+                <PostThumbnail id={postId} thumbnailImage={thumbnailImage} />
+            </MemoryRouter>
+        );
+        expect(container.firstChild).toMatchSnapshot();
+    });
 });

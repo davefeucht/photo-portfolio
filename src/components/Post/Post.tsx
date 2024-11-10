@@ -39,18 +39,6 @@ const Post: React.FC = () => {
         setImageHeight(imageHeight);
     };
 
-    const updateScreenSize = () => {
-        store.setScreenInfo(window.innerWidth, window.innerHeight);
-    };
-
-    useEffect(() => {
-        window.addEventListener('resize', updateScreenSize);
-
-        return () => {
-            window.removeEventListener('resize', updateScreenSize);
-        }
-    });
-
     useEffect(() => {
         store.clearVisiblePostTagNames();
         store.getPost(parseInt(postId));

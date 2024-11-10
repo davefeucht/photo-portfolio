@@ -74,6 +74,25 @@ describe("API", () => {
         expect(categoryImage).toEqual(imageUrl);
     });
 
+    it('Should get a category image with only medium size', async () => {
+        const api = new WordpressAPI(siteUrl);
+
+        axiosMock.onGet(`https://${siteUrl}/wp-json/wp/v2/posts?categories=${posts[0].categories[0]}`).reply(200, posts.filter(post => post.categories.includes(1)));
+        axiosMock.onGet(`https://${siteUrl}/wp-json/wp/v2/media/${posts[0].featured_media}/`).reply(200, {
+            media_details: {
+                sizes: {
+                    medium: {
+                        source_url: imageUrl
+                    }
+                }
+            }
+        });
+
+        const categoryImage = await api.getCategoryImage(1);
+
+        expect(categoryImage).toEqual(imageUrl);
+    });
+
     it('Should get the posts', async () => {
         const api = new WordpressAPI(siteUrl);
 

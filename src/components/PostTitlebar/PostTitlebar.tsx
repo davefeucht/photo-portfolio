@@ -13,7 +13,7 @@ interface PostTitlebarProps {
     postTitle: string
 }
 
-const PostTitlebar: React.FC<PostTitlebarProps> = ({ postTitle = null }) => {
+const PostTitlebar: React.FC<PostTitlebarProps> = ({ postTitle }) => {
     return (
         <div className="post-titlebar">
             <div className="title">{postTitle}</div>
