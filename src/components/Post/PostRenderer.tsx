@@ -1,7 +1,6 @@
 import PostFooter from 'components/PostFooter/PostFooter';
 import PostImage from 'components/PostImage/PostImage';
 import PostTitlebar from 'components/PostTitlebar/PostTitlebar';
-import { reaction } from 'mobx';
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { ScreenInfo, VisiblePost } from 'utils/types';
@@ -36,6 +35,10 @@ const PostRenderer: React.FC<Props> = ({
     image.onload = onLoad
 
     useEffect(() => {
+        onImageLoad(image, imageRef.current?.clientHeight ?? 0);
+    }, [screenInfo.width, screenInfo.height]);
+
+    useEffect(() => {
         if (visiblePost.fullImageUrl) {
             image.src = visiblePost.fullImageUrl;
         }
@@ -44,18 +47,13 @@ const PostRenderer: React.FC<Props> = ({
             imageRef.current.addEventListener('transitionend', onLoad, true);
         }
 
-        const disposer = reaction(
-            () => [screenInfo.width, screenInfo.height],
-            () => onImageLoad(image, imageRef.current?.clientHeight ?? 0)
-        );
-
         onLoad();
 
         return () => {
             if (imageRef.current) {
                 imageRef.current.removeEventListener('transitionend', onLoad);
             }
-            disposer();
+            // disposer();
         };
     }, [visiblePost.fullImageUrl]);
 

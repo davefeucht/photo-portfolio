@@ -15,7 +15,6 @@ interface PostNavigationArrowProps {
 }
 
 const PostNavigationArrow: React.FC<PostNavigationArrowProps> = ({ imageHeight = 0, direction, postId }) => {
-    console.log(direction);
     const { categoryId } = useParams();
 
     // TODO: calculate these based on a variable somewhere - they are navigationArrowHeight - (postHeaderHight + postFooterHeight)
