@@ -4,6 +4,7 @@
 
 import './Post.css';
 
+import PostRenderer from 'components/Post/PostRenderer';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import {
@@ -12,15 +13,13 @@ import {
     useState
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { StoreContext } from 'utils/StoreContext';
-
 import {
     getNextPost,
     getPreviousPost,
     setPostRect
-} from '../../utils/PostHelper';
-import { Store } from '../../utils/types';
-import PostRenderer from './PostRenderer';
+} from 'utils/PostHelper';
+import { StoreContext } from 'utils/StoreContext';
+import { Store } from 'utils/types';
 
 
 const Post: React.FC = () => {

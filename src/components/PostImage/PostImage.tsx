@@ -4,11 +4,10 @@
 
 import './PostImage.css';
 
+import PostNavigationArrow from 'components/PostNavigationArrow/PostNavigationArrow';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { forwardRef, useState } from 'react';
-
-import PostNavigationArrow from '../PostNavigationArrow/PostNavigationArrow';
 
 interface PostImageProps {
     imageUrl: string,

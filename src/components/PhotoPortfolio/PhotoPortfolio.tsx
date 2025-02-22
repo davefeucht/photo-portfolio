@@ -5,6 +5,12 @@
 
 import './PhotoPortfolio.css';
 
+import Categories from 'components/Categories/Categories';
+import Category from 'components/Category/Category';
+import Menu from 'components/Menu/Menu';
+import Page from 'components/Page/Page';
+import Post from 'components/Post/Post';
+import TitleBar from 'components/TitleBar/TitleBar';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useEffect } from 'react';
@@ -14,15 +20,7 @@ import {
     useParams
 } from 'react-router-dom';
 import { StoreContext } from 'utils/StoreContext';
-
-import { Store } from '../../utils/types';
-import Categories from '../Categories/Categories';
-import Category from '../Category/Category';
-import Footer from '../Footer/Footer';
-import Menu from '../Menu/Menu';
-import Page from '../Page/Page';
-import Post from '../Post/Post';
-import TitleBar from '../TitleBar/TitleBar';
+import { Store } from 'utils/types';
 
 interface PhotoPortfolioProps {
     stateStore: Store
@@ -67,8 +65,6 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
                             path="/"
                             element={(
                                 <Categories
-                                    maxItemsPerPage={stateStore.maxItemsPerPage}
-                                    screenInfo={stateStore.screenInfo}
                                     categoryList={stateStore.categoryList}
                                 />
                             )}
@@ -95,7 +91,6 @@ const PhotoPortfolio: React.FC<PhotoPortfolioProps> = ({ stateStore }) => {
                     </Routes>
                 </div>
                 <Menu stateStore={stateStore} />
-                <Footer />
             </div>
         </StoreContext.Provider>
     );

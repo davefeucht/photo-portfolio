@@ -178,7 +178,7 @@ export interface API {
 }
 
 export interface Store {
-    menuState: string,
+    menuState: 'open' | 'closed',
     applicationRoot: HTMLElement
     screenInfo: ScreenInfo,
     siteInfo: SiteInfo,

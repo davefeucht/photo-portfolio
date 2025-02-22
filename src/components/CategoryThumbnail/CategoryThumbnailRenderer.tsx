@@ -1,4 +1,5 @@
-import CategoryTitle from 'components/CategoryTitle/CategoryTitle';
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from '@mui/material/ImageListItemBar';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -13,13 +14,20 @@ const CategoryThumbnailRenderer: React.FC<Props> = ({
     name,
     thumbnailUrl
 }) => {
-    const divStyle = { backgroundImage: `url(${thumbnailUrl || ''})` };
-
     return (
         <Link to={`/category/${id}`}>
-            <div style={divStyle} className="category-thumbnail" aria-label={`category-${name.split(' ').join('-')}`}>
-                <CategoryTitle title={name} />
-            </div>
+            {thumbnailUrl && (
+                <ImageListItem sx={{ overflow: "hidden" }}>
+                    <img
+                        src={thumbnailUrl}
+                        alt={name}
+                        loading="lazy"
+                    />
+                    <ImageListItemBar
+                        title={name}
+                    />
+                </ImageListItem>
+            )}
         </Link>
     );
 };

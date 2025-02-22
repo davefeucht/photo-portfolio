@@ -1,9 +1,9 @@
 /** ***************
 * MenuLink component implements the a link in the menu of the application
 **************** */
-
 import './MenuLink.css';
 
+import { Typography } from '@mui/material';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ interface MenuLinkProps {
 const MenuLink: React.FC<MenuLinkProps> = ({ href, text }) => {
     return (
         <Link to={`${href}`}>
-            <div className="menu-link">{text}</div>
+            <Typography className="menu-link">{text}</Typography>
         </Link>
     );
 };

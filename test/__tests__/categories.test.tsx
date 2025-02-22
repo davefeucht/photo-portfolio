@@ -6,11 +6,6 @@ import StateStore from 'StateStore/store';
 import { StoreContext } from 'utils/StoreContext';
 import WordpressAPI from 'utils/WordpressAPI';
 
-const screenInfo = {
-    width: 500,
-    height: 500
-};
-
 jest.mock('../../utils/WordpressAPI');
 
 test('Category list displays', async () => {
@@ -26,8 +21,6 @@ test('Category list displays', async () => {
                         path="/"
                         element={(
                             <Categories
-                                maxItemsPerPage={10}
-                                screenInfo={screenInfo}
                                 categoryList={categories}
                             />
                         )}

@@ -4,10 +4,9 @@
 
 import './PostTitlebar.css';
 
+import CloseButton from 'components/CloseButton/CloseButton';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-
-import CloseButton from '../CloseButton/CloseButton';
 
 interface PostTitlebarProps {
     postTitle: string
