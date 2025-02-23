@@ -4,11 +4,6 @@ import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { Post as PostState } from 'utils/types';
 
-const screenInfo = {
-    width: 500,
-    height: 500
-};
-
 const posts: PostState[] = [
     {
         id: 887,
@@ -54,9 +49,6 @@ test('Posts displays', async () => {
     const { container } = render(
         <MemoryRouter>
             <Posts
-                categoryId={220}
-                maxItemsPerPage={10}
-                screenInfo={screenInfo}
                 currentCategoryPosts={posts}
             />
         </MemoryRouter>

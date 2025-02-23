@@ -14,19 +14,13 @@ interface Props {
 }
 
 const CategoryRenderer: React.FC<Props> = ({
-    categoryId,
-    maxItemsPerPage,
     categoryName,
-    currentCategoryPosts,
-    screenInfo
+    currentCategoryPosts
 }) => {
     return (
         <div className="category">
             <SectionHeader title={categoryName ?? ""} />
             <Posts
-                maxItemsPerPage={maxItemsPerPage}
-                screenInfo={screenInfo}
-                categoryId={categoryId}
                 currentCategoryPosts={currentCategoryPosts}
             />
             <Outlet />

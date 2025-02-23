@@ -22,9 +22,9 @@ const Categories: React.FC<CategoriesProps> = ({
     return (
         <ImageList
             gap={0}
-            rowHeight={300}
             cols={4}
-            variant="quilted"
+            variant="standard"
+            rowHeight={(window.innerHeight - 64) / 2}
             sx={{ margin: 0, width: "100vw", height: "100%" }}
         >
             {categoryList.map(category => {
