@@ -13,6 +13,8 @@ module.exports = merge(webpackConfig, {
         globalObject: 'window'
     },
     plugins: [
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
     ]
 });
