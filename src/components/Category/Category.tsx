@@ -29,11 +29,7 @@ const Category: React.FC = () => {
 
     return (
         <CategoryRenderer
-            categoryId={store.currentCategoryId}
-            maxItemsPerPage={store.maxItemsPerPage}
-            categoryName={store.currentCategoryName}
             currentCategoryPosts={store.currentCategoryPosts}
-            screenInfo={store.screenInfo}
         />
     );
 };

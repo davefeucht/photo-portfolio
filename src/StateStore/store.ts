@@ -27,7 +27,7 @@ class StateStore implements Store {
     };
     visiblePost: VisiblePost;
     categoryList: Category[];
-    currentCategoryId: number;
+    currentCategoryId?: number;
     currentCategoryPosts: Post[];
     pages: Page[];
     currentPageData: Page;
@@ -185,13 +185,13 @@ class StateStore implements Store {
         });
     };
 
-    setCurrentCategoryId = (categoryId: number) => {
+    setCurrentCategoryId = (categoryId?: number) => {
         this.currentCategoryId = categoryId;
     }
 
     get currentCategoryName() {
         const currentCategory = this.categoryList.find(category => category.id === this.currentCategoryId);
-        return (currentCategory?.name ?? 'No Title');
+        return (currentCategory?.name ?? '');
     }
 
     setThumbnailImageUrl = (imageData: ImageData) => {

@@ -2,6 +2,8 @@
 * Menu component implements the menu of the application
 **************** */
 
+import "./Menu.css";
+
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Divider, Drawer, IconButton, List, ListItem, Typography } from '@mui/material';
 import { observer } from 'mobx-react';
@@ -16,11 +18,12 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ stateStore }) => {
     const {
-        menuState, toggleMenuState, categoryList, pages
+        menuState, toggleMenuState, setCurrentCategoryId, categoryList, pages
     } = stateStore;
 
     return (
         <Drawer
+            className="menu"
             open={menuState === 'open'}
             onClose={toggleMenuState}
             elevation={10}
@@ -29,13 +32,18 @@ const Menu: React.FC<MenuProps> = ({ stateStore }) => {
             }}
         >
             <Box sx={{ width: "250px" }} role="presentation">
+                <div className="menu__header">
+                    <IconButton onClick={toggleMenuState}>
+                        <CloseIcon color="secondary" />
+                    </IconButton>
+                </div>
                 <List>
                     <ListItem sx={{ justifyContent: "flex-end" }}>
-                        <IconButton onClick={toggleMenuState}>
-                            <CloseIcon color="secondary" />
-                        </IconButton>
                     </ListItem>
-                    <ListItem onClick={() => toggleMenuState()}>
+                    <ListItem onClick={() => {
+                        toggleMenuState();
+                        setCurrentCategoryId(undefined);
+                    }}>
                         <MenuLink href="" text="Home" />
                     </ListItem>
                     <Divider />
@@ -45,7 +53,7 @@ const Menu: React.FC<MenuProps> = ({ stateStore }) => {
                     {categoryList.map(category => {
                         return (
                             <ListItem key={`${category.name}_${category.id}`}>
-                                <MenuLink href={`category/${category.id}`} text={category.name} />
+                                <MenuLink href={`category/${category.id}`} onClick={toggleMenuState} text={category.name} />
                             </ListItem>
                         )
                     })}

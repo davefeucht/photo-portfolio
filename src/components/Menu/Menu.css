@@ -1,0 +1,6 @@
+.menu__header {
+    display: flex;
+    justify-content: flex-end;
+    height: var(--title-bar-height);
+    background-color: var(--template-black);
+}

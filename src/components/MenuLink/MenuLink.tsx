@@ -8,13 +8,14 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 interface MenuLinkProps {
-    href: string,
-    text: string
+    href: string;
+    text: string;
+    onClick?(): void;
 }
 
-const MenuLink: React.FC<MenuLinkProps> = ({ href, text }) => {
+const MenuLink: React.FC<MenuLinkProps> = ({ href, text, onClick }) => {
     return (
-        <Link to={`${href}`}>
+        <Link onClick={() => onClick && onClick()} to={`${href}`}>
             <Typography className="menu-link">{text}</Typography>
         </Link>
     );

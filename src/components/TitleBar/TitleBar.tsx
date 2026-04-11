@@ -38,7 +38,7 @@ const TitleBar: React.FC = () => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    {store.siteInfo.siteName}
+                    {store.siteInfo.siteName} {store.currentCategoryName ? ` ${String.fromCodePoint(8250)} ${store.currentCategoryName}` : ""}
                 </Typography>
             </Toolbar>
         </AppBar>

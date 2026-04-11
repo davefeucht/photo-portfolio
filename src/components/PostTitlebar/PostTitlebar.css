@@ -1,3 +1,10 @@
+.post__titlebar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .post-titlebar {
   background-color: var(--template-blue);
   font-size: min(4vw, 2rem);

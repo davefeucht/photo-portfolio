@@ -10,9 +10,9 @@ import * as React from 'react';
 import { useState } from 'react';
 
 interface PostImageProps {
-    imageUrl: string,
-    previousPost: number,
-    nextPost: number
+    imageUrl: string;
+    previousPost: number;
+    nextPost: number;
 }
 
 const PostImage: React.FC<PostImageProps> = ({
@@ -31,11 +31,11 @@ const PostImage: React.FC<PostImageProps> = ({
     };
 
     return (
-        <div className="post-image" onMouseOver={onMouseOverHandler} onMouseOut={onMouseOutHandler}>
+        <div className="post__image" onMouseOver={onMouseOverHandler} onMouseOut={onMouseOutHandler}>
             {arrowsVisible && <PostNavigationArrow direction="previous" postId={previousPost} />}
             <img
                 src={imageUrl}
-                width={window.innerWidth * 0.70}
+                height={window.innerHeight * 0.80}
             />
             {arrowsVisible && <PostNavigationArrow direction="next" postId={nextPost} />}
         </div>

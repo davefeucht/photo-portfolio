@@ -22,10 +22,11 @@ const PostRenderer: React.FC<Props> = ({
         <Dialog
             open
             onClose={onClose}
-            maxWidth="lg"
+            fullScreen
+            transitionDuration={500}
         >
-            <PostTitlebar postTitle={visiblePost.postTitle} />
-            <DialogContent sx={{ padding: 0, overflow: "hidden" }}>
+            <PostTitlebar postTitle={visiblePost.postTitle} onClose={onClose} />
+            <DialogContent className="post__content">
                 {visiblePost.fullImageUrl && (
                     <PostImage
                         imageUrl={visiblePost.fullImageUrl}
