@@ -1367,7 +1367,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/material-pigment-css@npm:7.3.10":
+"@mui/material-pigment-css@npm:^7.3.10":
   version: 7.3.10
   resolution: "@mui/material-pigment-css@npm:7.3.10"
   dependencies:
@@ -10142,7 +10142,7 @@ __metadata:
     "@eslint/js": "npm:^9.12.0"
     "@mui/icons-material": "npm:^7.3.10"
     "@mui/material": "npm:^7.3.10"
-    "@mui/material-pigment-css": "npm:7.3.10"
+    "@mui/material-pigment-css": "npm:^7.3.10"
     "@storybook/addon-essentials": "npm:^8.3.5"
     "@storybook/addon-interactions": "npm:^8.3.5"
     "@storybook/addon-links": "npm:^8.3.5"
