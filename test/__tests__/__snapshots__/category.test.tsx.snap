@@ -2,50 +2,45 @@
 
 exports[`Category displays 1`] = `
 <div
+  aria-label="Category 1"
   class="category"
 >
-  <div
-    class="section-header"
-  >
-    <div
-      class="title"
-    >
-      Category 1
-    </div>
-  </div>
-  <div
-    class="posts"
+  <ul
+    class="MuiImageList-root MuiImageList-standard css-dwakge-MuiImageList-root"
+    style="grid-template-columns: repeat(3, 1fr); gap: 0;"
   >
     <a
       href="/category/1/post/1"
     >
-      <div
-        class="post-thumbnail"
-        style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
-      />
+      <li
+        aria-label="post: Post 1"
+        class="MuiImageListItem-root MuiImageListItem-standard css-ocyigc-MuiImageListItem-root"
+        style="height: 300px; grid-column-end: span 1; grid-row-end: span 1;"
+      >
+        <img
+          alt="Post 1"
+          class="MuiImageListItem-img"
+          loading="lazy"
+          src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
+        />
+      </li>
     </a>
     <a
       href="/category/1/post/2"
     >
-      <div
-        class="post-thumbnail"
-        style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
-      />
-    </a>
-    <div
-      class="pagination-navigation"
-    >
-      <div
-        class="pagination-navigation__content"
+      <li
+        aria-label="post: Post 2"
+        class="MuiImageListItem-root MuiImageListItem-standard css-ocyigc-MuiImageListItem-root"
+        style="height: 300px; grid-column-end: span 1; grid-row-end: span 1;"
       >
-        <div
-          aria-label="pagination"
-          class="pagination-navigation__item selected"
-        >
-          1
-        </div>
-      </div>
-    </div>
-  </div>
+        <img
+          alt="Post 2"
+          class="MuiImageListItem-img"
+          loading="lazy"
+          src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
+        />
+      </li>
+    </a>
+  </ul>
 </div>
 `;

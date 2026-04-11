@@ -4,10 +4,10 @@ exports[`MenuLink displays 1`] = `
 <a
   href="/page/150"
 >
-  <div
-    class="menu-link"
+  <p
+    class="MuiTypography-root MuiTypography-body1 menu-link css-rizt0-MuiTypography-root"
   >
     Contact
-  </div>
+  </p>
 </a>
 `;

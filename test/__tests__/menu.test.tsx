@@ -17,6 +17,7 @@ describe('Menu', () => {
 
     it('Toggles the menu state when clicked', async () => {
         const store = new StateStore();
+        store.setMenuState("open");
 
         render(
             <MemoryRouter>
@@ -24,11 +25,11 @@ describe('Menu', () => {
             </MemoryRouter>
         );
 
-        expect(store.menuState).toEqual('closed');
+        expect(store.menuState).toEqual('open');
 
         const homeLink = screen.getByText('Home');
         fireEvent.click(homeLink);
 
-        await waitFor(() => expect(store.menuState).toEqual('open'));
+        await waitFor(() => expect(store.menuState).toEqual('closed'));
     });
 });

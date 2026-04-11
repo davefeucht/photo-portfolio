@@ -13,7 +13,7 @@
         "assets/(.*)$": "<rootDir>/src/assets/$1",
         "components/(.*)$": "<rootDir>/src/components/$1",
         "StateStore/(.*)$": "<rootDir>/src/StateStore/$1",
-        "utils/(.*)$": "<rootDir>/src/utils/$1"
+        "^utils/(.*)$": "<rootDir>/src/utils/$1"
     },
     "coverageThreshold": {
         "global": {

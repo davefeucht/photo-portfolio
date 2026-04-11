@@ -4,118 +4,76 @@ exports[`Photo Portfolio Renders properly landscape 1`] = `
 <div
   class="app"
 >
-  <div
-    class="title-bar"
+  <header
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic title-bar css-ptdwpq-MuiPaper-root-MuiAppBar-root"
+    style="--Paper-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);"
   >
     <div
-      aria-label="hamburger-button"
-      class="hamburger-button closed"
+      class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1ygil4i-MuiToolbar-root"
     >
-      <img
-        src="./assets/images/hamburger_icon.svg"
-        style="border: 0px;"
-      />
-    </div>
-    <div>
-      <h1>
+      <button
+        aria-label="hamburger-button"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeLarge hamburger-button closed css-1j9tf9y-MuiButtonBase-root-MuiIconButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+          data-testid="MenuIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z"
+          />
+        </svg>
+      </button>
+      <div
+        class="MuiTypography-root MuiTypography-h6 css-1bv5yfe-MuiTypography-root"
+      >
         Through a Pinhole
-      </h1>
+         
+      </div>
     </div>
-  </div>
+  </header>
   <div
     class="photo-portfolio"
   >
-    <div
-      class="category-list"
+    <ul
+      class="MuiImageList-root MuiImageList-standard css-dwakge-MuiImageList-root"
+      style="grid-template-columns: repeat(4, 1fr); gap: 0;"
     >
       <a
         href="/category/1"
       >
-        <div
-          aria-label="category-Category-1"
-          class="category-thumbnail"
-          style="background-image: url();"
+        <li
+          aria-label="category: Category 1"
+          class="MuiImageListItem-root MuiImageListItem-standard css-ocyigc-MuiImageListItem-root"
+          style="height: 352px; grid-column-end: span 1; grid-row-end: span 1;"
         >
+          <img
+            alt="Category 1"
+            class="MuiImageListItem-img"
+            loading="lazy"
+            src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
+          />
           <div
-            class="category-title"
+            class="MuiImageListItemBar-root MuiImageListItemBar-positionBottom MuiImageListItemBar-actionPositionRight css-hbl0a4-MuiImageListItemBar-root"
           >
             <div
-              class="category-title-text"
-            >
-              Category 1
-            </div>
-          </div>
-        </div>
-      </a>
-      <div
-        class="pagination-navigation"
-      >
-        <div
-          class="pagination-navigation__content"
-        >
-          <div
-            aria-label="pagination"
-            class="pagination-navigation__item selected"
-          >
-            1
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="menu closed"
-  >
-    <ul>
-      <li>
-        <a
-          href="/"
-        >
-          <div
-            class="menu-link"
-          >
-            Home
-          </div>
-        </a>
-      </li>
-      <li>
-        Categories
-        <ul>
-          <li>
-            <a
-              href="/category/1"
+              class="MuiImageListItemBar-titleWrap MuiImageListItemBar-titleWrapBottom css-q8s3vi-MuiImageListItemBar-titleWrap"
             >
               <div
-                class="menu-link"
+                class="MuiImageListItemBar-title css-1sdhmys-MuiImageListItemBar-title"
               >
                 Category 1
               </div>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        Info
-        <ul>
-          <li>
-            <a
-              href="/page/1"
-            >
-              <div
-                class="menu-link"
-              >
-                Page 1
-              </div>
-            </a>
-          </li>
-        </ul>
-      </li>
+            </div>
+          </div>
+        </li>
+      </a>
     </ul>
-  </div>
-  <div
-    class="footer"
-  >
-    Theme Copyright @2023 Dave Feucht
   </div>
 </div>
 `;
@@ -124,118 +82,76 @@ exports[`Photo Portfolio Renders properly portrait 1`] = `
 <div
   class="app"
 >
-  <div
-    class="title-bar"
+  <header
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic title-bar css-ptdwpq-MuiPaper-root-MuiAppBar-root"
+    style="--Paper-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);"
   >
     <div
-      aria-label="hamburger-button"
-      class="hamburger-button closed"
+      class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1ygil4i-MuiToolbar-root"
     >
-      <img
-        src="./assets/images/hamburger_icon.svg"
-        style="border: 0px;"
-      />
-    </div>
-    <div>
-      <h1>
+      <button
+        aria-label="hamburger-button"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeLarge hamburger-button closed css-1j9tf9y-MuiButtonBase-root-MuiIconButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+          data-testid="MenuIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z"
+          />
+        </svg>
+      </button>
+      <div
+        class="MuiTypography-root MuiTypography-h6 css-1bv5yfe-MuiTypography-root"
+      >
         Through a Pinhole
-      </h1>
+         
+      </div>
     </div>
-  </div>
+  </header>
   <div
     class="photo-portfolio"
   >
-    <div
-      class="category-list"
+    <ul
+      class="MuiImageList-root MuiImageList-standard css-dwakge-MuiImageList-root"
+      style="grid-template-columns: repeat(4, 1fr); gap: 0;"
     >
       <a
         href="/category/1"
       >
-        <div
-          aria-label="category-Category-1"
-          class="category-thumbnail"
-          style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+        <li
+          aria-label="category: Category 1"
+          class="MuiImageListItem-root MuiImageListItem-standard css-ocyigc-MuiImageListItem-root"
+          style="height: 368px; grid-column-end: span 1; grid-row-end: span 1;"
         >
+          <img
+            alt="Category 1"
+            class="MuiImageListItem-img"
+            loading="lazy"
+            src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
+          />
           <div
-            class="category-title"
+            class="MuiImageListItemBar-root MuiImageListItemBar-positionBottom MuiImageListItemBar-actionPositionRight css-hbl0a4-MuiImageListItemBar-root"
           >
             <div
-              class="category-title-text"
-            >
-              Category 1
-            </div>
-          </div>
-        </div>
-      </a>
-      <div
-        class="pagination-navigation"
-      >
-        <div
-          class="pagination-navigation__content"
-        >
-          <div
-            aria-label="pagination"
-            class="pagination-navigation__item selected"
-          >
-            1
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="menu closed"
-  >
-    <ul>
-      <li>
-        <a
-          href="/"
-        >
-          <div
-            class="menu-link"
-          >
-            Home
-          </div>
-        </a>
-      </li>
-      <li>
-        Categories
-        <ul>
-          <li>
-            <a
-              href="/category/1"
+              class="MuiImageListItemBar-titleWrap MuiImageListItemBar-titleWrapBottom css-q8s3vi-MuiImageListItemBar-titleWrap"
             >
               <div
-                class="menu-link"
+                class="MuiImageListItemBar-title css-1sdhmys-MuiImageListItemBar-title"
               >
                 Category 1
               </div>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        Info
-        <ul>
-          <li>
-            <a
-              href="/page/1"
-            >
-              <div
-                class="menu-link"
-              >
-                Page 1
-              </div>
-            </a>
-          </li>
-        </ul>
-      </li>
+            </div>
+          </div>
+        </li>
+      </a>
     </ul>
-  </div>
-  <div
-    class="footer"
-  >
-    Theme Copyright @2023 Dave Feucht
   </div>
 </div>
 `;

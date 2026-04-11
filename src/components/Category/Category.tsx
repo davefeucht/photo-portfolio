@@ -29,6 +29,7 @@ const Category: React.FC = () => {
 
     return (
         <CategoryRenderer
+            currentCategoryName={store.currentCategoryName}
             currentCategoryPosts={store.currentCategoryPosts}
         />
     );

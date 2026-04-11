@@ -6,13 +6,15 @@ import { Post } from 'utils/types';
 
 interface Props {
     currentCategoryPosts: Post[];
+    currentCategoryName: string;
 }
 
 const CategoryRenderer: React.FC<Props> = ({
-    currentCategoryPosts
+    currentCategoryPosts,
+    currentCategoryName
 }) => {
     return (
-        <div className="category">
+        <div className="category" aria-label={currentCategoryName}>
             <Posts
                 currentCategoryPosts={currentCategoryPosts}
             />

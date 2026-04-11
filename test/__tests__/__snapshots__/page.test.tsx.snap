@@ -7,11 +7,11 @@ exports[`Page displays 1`] = `
   <div
     class="section-header"
   >
-    <div
-      class="title"
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
     >
       Page 1
-    </div>
+    </p>
   </div>
   <div
     class="page__content"

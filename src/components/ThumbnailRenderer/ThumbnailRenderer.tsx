@@ -18,7 +18,7 @@ const ThumbnailRenderer: React.FC<Props> = ({ id, name, thumbnailUrl, variant })
             state={{ background: location }}
         >
             {thumbnailUrl && (
-                <ImageListItem sx={{ overflow: "hidden" }}>
+                <ImageListItem aria-label={`${variant}: ${name}`} sx={{ overflow: "hidden" }}>
                     <img
                         src={thumbnailUrl}
                         alt={name}

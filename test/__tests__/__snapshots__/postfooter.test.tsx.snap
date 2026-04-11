@@ -4,10 +4,10 @@ exports[`PostFooter displays 1`] = `
 <div
   class="post-footer"
 >
-  <div
-    class="labels"
+  <p
+    class="MuiTypography-root MuiTypography-body1 labels css-rizt0-MuiTypography-root"
   >
     something, somethingelse
-  </div>
+  </p>
 </div>
 `;

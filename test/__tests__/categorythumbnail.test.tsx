@@ -8,7 +8,7 @@ import { StoreContext } from 'utils/StoreContext';
 const id = 5;
 const name = 'Test Category';
 
-jest.mock('../../utils/WordpressAPI');
+jest.mock('utils/WordpressAPI');
 
 test('CategoryThumbnail displays', async () => {
     const store = new StateStore();

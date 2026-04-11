@@ -31,7 +31,7 @@ const PostImage: React.FC<PostImageProps> = ({
     };
 
     return (
-        <div className="post__image" onMouseOver={onMouseOverHandler} onMouseOut={onMouseOutHandler}>
+        <div className="post__image" aria-label="Post Image" onMouseOver={onMouseOverHandler} onMouseOut={onMouseOutHandler}>
             {arrowsVisible && <PostNavigationArrow direction="previous" postId={previousPost} />}
             <img
                 src={imageUrl}

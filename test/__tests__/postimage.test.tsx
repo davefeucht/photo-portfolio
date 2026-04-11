@@ -28,7 +28,7 @@ describe('PostImage', () => {
             <WrapperComponent />
         );
 
-        const postImage = screen.getByLabelText('post-image');
+        const postImage = screen.getByLabelText('Post Image');
 
         fireEvent.mouseOver(postImage);
 
