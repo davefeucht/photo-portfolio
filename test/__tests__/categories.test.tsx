@@ -6,12 +6,7 @@ import StateStore from 'StateStore/store';
 import { StoreContext } from 'utils/StoreContext';
 import WordpressAPI from 'utils/WordpressAPI';
 
-const screenInfo = {
-    width: 500,
-    height: 500
-};
-
-jest.mock('../../utils/WordpressAPI');
+jest.mock('utils/WordpressAPI');
 
 test('Category list displays', async () => {
     const store = new StateStore();
@@ -26,8 +21,6 @@ test('Category list displays', async () => {
                         path="/"
                         element={(
                             <Categories
-                                maxItemsPerPage={10}
-                                screenInfo={screenInfo}
                                 categoryList={categories}
                             />
                         )}
@@ -36,8 +29,7 @@ test('Category list displays', async () => {
             </StoreContext.Provider>
         </MemoryRouter>
     );
-    const categoryThumb = await screen.findByLabelText(`category-${categories[0].name.split(' ').join('-')}`);
-    await waitFor(() => expect(categoryThumb.style.backgroundImage).toEqual('url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg)'));
+    await waitFor(() => expect(screen.getByText(categories[0].name)).toBeInTheDocument());
     expect(container.firstChild).toMatchSnapshot();
     categories.forEach(category => {
         expect(screen.getByText(category.name));

@@ -4,13 +4,12 @@
 
 import './CategoryThumbnail.css';
 
+import ThumbnailRenderer from 'components/ThumbnailRenderer/ThumbnailRenderer';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext } from 'utils/StoreContext';
-
-import { Store } from '../../utils/types';
-import CategoryThumbnailRenderer from './CategoryThumbnailRenderer';
+import { Store } from 'utils/types';
 
 interface CategoryThumbnailProps {
     id: number,
@@ -32,10 +31,11 @@ const CategoryThumbnail: React.FC<CategoryThumbnailProps> = ({ id, name }) => {
     }, [id]);
 
     return (
-        <CategoryThumbnailRenderer
+        <ThumbnailRenderer
             id={id}
             name={name}
             thumbnailUrl={thumbnailImageUrl}
+            variant="category"
         />
     );
 };

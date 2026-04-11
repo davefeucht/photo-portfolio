@@ -178,13 +178,13 @@ export interface API {
 }
 
 export interface Store {
-    menuState: string,
+    menuState: 'open' | 'closed',
     applicationRoot: HTMLElement
     screenInfo: ScreenInfo,
     siteInfo: SiteInfo,
     visiblePost: VisiblePost,
     categoryList: Category[],
-    currentCategoryId: number,
+    currentCategoryId?: number,
     currentCategoryPosts: Post[],
     currentCategoryName: string,
     pages: Page[],
@@ -206,7 +206,7 @@ export interface Store {
     setVisiblePostImage(fullImageUrl: string): void,
     setVisiblePostTags(tagNames: string[]): void,
     clearVisiblePostTagNames(): void,
-    setCurrentCategoryId(categoryId: number): void,
+    setCurrentCategoryId(categoryId?: number): void,
     setCategoryList(categories: Category[]): void,
     setCategoryPosts(posts: Post[]): void,
     setThumbnailImageUrl(imageData: ImageData): void,

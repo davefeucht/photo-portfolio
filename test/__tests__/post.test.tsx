@@ -7,7 +7,7 @@ import { StoreContext } from 'utils/StoreContext';
 
 import { posts } from '../data/testData';
 
-jest.mock('../../utils/WordpressAPI');
+jest.mock('utils/WordpressAPI');
 
 describe("Post", () => {
     it('Post displays', async () => {

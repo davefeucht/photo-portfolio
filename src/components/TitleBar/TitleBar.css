@@ -1,32 +1,5 @@
-@media only screen and (max-width: 500px) {
-  .title-bar {
-    grid-template-columns: 12% 88%
-  }
-}
-
-@media only screen and (min-width: 501px) {
-  .title-bar {
-    grid-template-columns: 5% 95%
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .title-bar {
-    grid-template-columns: 3% 97%
-  }
-}
-
 .title-bar {
   color: var(--template-white);
-  grid-area: header;
-  background: var(--template-dark-gray); 
-  display: grid;
-  grid-template-rows: 100%;
-  align-items: center;
-}
-.title-bar h1 {
-  color: var(--template-white);
-  margin-left: 10px;
 }
 
 .title-bar .hamburger-button {

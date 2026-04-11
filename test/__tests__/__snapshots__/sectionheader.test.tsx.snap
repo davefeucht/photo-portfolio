@@ -4,10 +4,10 @@ exports[`SectionHeader displays 1`] = `
 <div
   class="section-header"
 >
-  <div
-    class="title"
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
   >
     Some Section
-  </div>
+  </p>
 </div>
 `;

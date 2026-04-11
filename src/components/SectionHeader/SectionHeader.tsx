@@ -4,6 +4,7 @@
 
 import './SectionHeader.css';
 
+import { Typography } from '@mui/material';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
@@ -14,7 +15,7 @@ interface SectionHeaderProps {
 const SectionHeader: React.FC<SectionHeaderProps> = ({ title }) => {
     return (
         <div className="section-header">
-            <div className="title">{title ?? 'No Title'}</div>
+            <Typography>{title ?? 'No Title'}</Typography>
         </div>
     );
 };

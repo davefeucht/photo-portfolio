@@ -4,21 +4,26 @@
 
 import './PostTitlebar.css';
 
+import { Close } from '@mui/icons-material';
+import { DialogTitle, IconButton } from '@mui/material';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import CloseButton from '../CloseButton/CloseButton';
-
 interface PostTitlebarProps {
-    postTitle: string
+    postTitle: string;
+    onClose(): void;
 }
 
-const PostTitlebar: React.FC<PostTitlebarProps> = ({ postTitle }) => {
+const PostTitlebar: React.FC<PostTitlebarProps> = ({ postTitle, onClose }) => {
     return (
-        <div className="post-titlebar">
-            <div className="title">{postTitle}</div>
-            <CloseButton />
-        </div>
+        <DialogTitle color="secondary" sx={{ backgroundColor: "var(--template-dark-gray)" }}>
+            <div className="post__titlebar">
+                <div>{postTitle}</div>
+                <IconButton style={{ color: "inherit" }} onClick={onClose}>
+                    <Close />
+                </IconButton>
+            </div>
+        </DialogTitle>
     );
 };
 

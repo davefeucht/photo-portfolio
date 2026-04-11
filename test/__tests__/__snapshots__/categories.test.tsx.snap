@@ -1,41 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Category list displays 1`] = `
-<div
-  class="category-list"
+<ul
+  class="MuiImageList-root MuiImageList-standard css-dwakge-MuiImageList-root"
+  style="grid-template-columns: repeat(4, 1fr); gap: 0;"
 >
   <a
     href="/category/1"
   >
-    <div
-      aria-label="category-Category-1"
-      class="category-thumbnail"
-      style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
+    <li
+      aria-label="category: Category 1"
+      class="MuiImageListItem-root MuiImageListItem-standard css-ocyigc-MuiImageListItem-root"
+      style="height: 352px; grid-column-end: span 1; grid-row-end: span 1;"
     >
+      <img
+        alt="Category 1"
+        class="MuiImageListItem-img"
+        loading="lazy"
+        src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
+      />
       <div
-        class="category-title"
+        class="MuiImageListItemBar-root MuiImageListItemBar-positionBottom MuiImageListItemBar-actionPositionRight css-hbl0a4-MuiImageListItemBar-root"
       >
         <div
-          class="category-title-text"
+          class="MuiImageListItemBar-titleWrap MuiImageListItemBar-titleWrapBottom css-q8s3vi-MuiImageListItemBar-titleWrap"
         >
-          Category 1
+          <div
+            class="MuiImageListItemBar-title css-1sdhmys-MuiImageListItemBar-title"
+          >
+            Category 1
+          </div>
         </div>
       </div>
-    </div>
+    </li>
   </a>
-  <div
-    class="pagination-navigation"
-  >
-    <div
-      class="pagination-navigation__content"
-    >
-      <div
-        aria-label="pagination"
-        class="pagination-navigation__item selected"
-      >
-        1
-      </div>
-    </div>
-  </div>
-</div>
+</ul>
 `;

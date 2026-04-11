@@ -6,13 +6,3 @@
   align-items: center;
   color: var(--template-white);
 }
-
-.section-header > .title {
-  font-size: 120%;
-  font-weight: bold;
-}
-
-.section-header a {
-  color: var(--template-white);
-  text-decoration: none;
-}

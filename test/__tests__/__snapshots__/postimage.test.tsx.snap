@@ -2,10 +2,11 @@
 
 exports[`PostImage PostImage displays 1`] = `
 <div
-  aria-label="post-image"
-  class="post-image"
+  aria-label="Post Image"
+  class="post__image"
 >
   <img
+    height="614.4000000000001"
     src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
   />
 </div>

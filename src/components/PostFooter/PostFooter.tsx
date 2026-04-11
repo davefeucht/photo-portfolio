@@ -4,6 +4,7 @@
 
 import './PostFooter.css';
 
+import { Typography } from '@mui/material';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
@@ -14,7 +15,7 @@ interface PostFooterProps {
 const PostFooter: React.FC<PostFooterProps> = ({ tagNames }) => {
     return (
         <div className="post-footer">
-            <div className="labels">{tagNames.join(', ')}</div>
+            <Typography className="labels">{tagNames.join(', ')}</Typography>
         </div>
     );
 };

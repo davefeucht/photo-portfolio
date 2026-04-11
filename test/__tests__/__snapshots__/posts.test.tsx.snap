@@ -1,38 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Posts displays 1`] = `
-<div
-  class="posts"
+<ul
+  class="MuiImageList-root MuiImageList-standard css-dwakge-MuiImageList-root"
+  style="grid-template-columns: repeat(3, 1fr); gap: 0;"
 >
   <a
     href="/post/887"
   >
-    <div
-      class="post-thumbnail"
-      style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
-    />
+    <li
+      aria-label="post: Some post"
+      class="MuiImageListItem-root MuiImageListItem-standard css-ocyigc-MuiImageListItem-root"
+      style="height: 300px; grid-column-end: span 1; grid-row-end: span 1;"
+    >
+      <img
+        alt="Some post"
+        class="MuiImageListItem-img"
+        loading="lazy"
+        src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
+      />
+    </li>
   </a>
   <a
     href="/post/889"
   >
-    <div
-      class="post-thumbnail"
-      style="background-image: url(https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg);"
-    />
-  </a>
-  <div
-    class="pagination-navigation"
-  >
-    <div
-      class="pagination-navigation__content"
+    <li
+      aria-label="post: Some other post"
+      class="MuiImageListItem-root MuiImageListItem-standard css-ocyigc-MuiImageListItem-root"
+      style="height: 300px; grid-column-end: span 1; grid-row-end: span 1;"
     >
-      <div
-        aria-label="pagination"
-        class="pagination-navigation__item selected"
-      >
-        1
-      </div>
-    </div>
-  </div>
-</div>
+      <img
+        alt="Some other post"
+        class="MuiImageListItem-img"
+        loading="lazy"
+        src="https://throughapinhole.com/wp-content/uploads/2018/07/DSC_1508.jpg"
+      />
+    </li>
+  </a>
+</ul>
 `;

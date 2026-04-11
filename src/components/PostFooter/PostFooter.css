@@ -1,14 +1,11 @@
 .post-footer {
+  display: flex;
+  align-items: center;
+  height: 30px;
   background-color: var(--template-black);
-  font-size: min(3vw, 1rem);
   color: var(--template-white);
-  grid-area: footer;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
-  transition: width var(--modal-transition-time), height var(--modal-transition-time)
 }
 
 .post-footer .labels {
-  margin: auto auto auto 5px;
+  margin-left: 10px;
 }

@@ -31,6 +31,6 @@ test('Category displays', async () => {
             </StoreContext.Provider>
         </MemoryRouter>
     );
-    await waitFor(() => expect(screen.getByText(categories[0].name)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByLabelText("Category 1")).toBeInTheDocument());
     expect(container.firstChild).toMatchSnapshot();
 });

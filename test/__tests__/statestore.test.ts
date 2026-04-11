@@ -2,7 +2,7 @@ import StateStore from "StateStore/store";
 
 import { categories, imageUrl, pages, posts, tagNames } from "../data/testData";
 
-jest.mock('../../utils/WordpressAPI');
+jest.mock('utils/WordpressAPI');
 
 describe('State Store', () => {
     it('Should initialize correctly', () => {

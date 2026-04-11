@@ -6,7 +6,7 @@ import StateStore from 'StateStore/store';
 
 import { categories } from '../data/testData';
 
-jest.mock('../../utils/WordpressAPI');
+jest.mock('utils/WordpressAPI');
 
 describe("Photo Portfolio", () => {
     it('Renders properly landscape', async () => {

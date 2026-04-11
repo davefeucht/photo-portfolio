@@ -4,9 +4,8 @@
 
 import './PaginationNavigation.css';
 
+import PaginationNavigationItem from 'components/PaginationNavigationItem/PaginationNavigationItem';
 import * as React from 'react';
-
-import PaginationNavigationItem from '../PaginationNavigationItem/PaginationNavigationItem';
 
 interface PaginationNavigationProps {
     totalPages: number,

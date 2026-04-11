@@ -1,31 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PostTitlebar displays 1`] = `
-<div
-  class="post-titlebar"
+<h2
+  class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-lmsi3g-MuiTypography-root-MuiDialogTitle-root"
 >
   <div
-    class="title"
+    class="post__titlebar"
   >
-    Some Post
-  </div>
-  <div
-    class="close-button"
-    role="button"
-  >
-    <a
-      href="/category/undefined"
+    <div>
+      Some Post
+    </div>
+    <button
+      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-53g0n7-MuiButtonBase-root-MuiIconButton-root"
+      tabindex="0"
+      type="button"
     >
-      <div
-        class="close-button-content"
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+        data-testid="CloseIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
       >
-        <img
-          height="30px"
-          src="./assets/images/close-button.svg"
-          width="30px"
+        <path
+          d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
         />
-      </div>
-    </a>
+      </svg>
+    </button>
   </div>
-</div>
+</h2>
 `;

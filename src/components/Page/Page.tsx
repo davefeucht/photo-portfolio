@@ -4,14 +4,13 @@
 
 import './Page.css';
 
+import PageRenderer from 'components/Page/PageRenderer';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { StoreContext } from 'utils/StoreContext';
-
-import { Store } from '../../utils/types';
-import PageRenderer from './PageRenderer';
+import { Store } from 'utils/types';
 
 const Page: React.FC = () => {
     const { pageId } = useParams();
