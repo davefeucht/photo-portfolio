@@ -1,6 +1,7 @@
 const path = require('path');
 const webpackConfig = require('./webpack.config');
 const { merge } = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(webpackConfig, {
     mode: 'production',
@@ -11,5 +12,7 @@ module.exports = merge(webpackConfig, {
         libraryTarget: 'umd',
         globalObject: 'window'
     },
-    plugins: []
+    plugins: [
+        new HtmlWebpackPlugin()
+    ]
 });
