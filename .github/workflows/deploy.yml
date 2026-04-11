@@ -45,4 +45,4 @@ jobs:
         DEPLOY_USERNAME: ${{ secrets.DEPLOY_USERNAME }}
         DEPLOY_HOSTNAME: ${{ secrets.DEPLOY_HOSTNAME }}
       run: |
-        scp ./build/bundle.min.js ./build/bundle.min.js.LICENSE.txt "$DEPLOY_USERNAME@$DEPLOY_HOSTNAME:/WordPress_01/"
+        scp ./build/index.html ./build/bundle.min.js ./build/bundle.min.js.LICENSE.txt "$DEPLOY_USERNAME@$DEPLOY_HOSTNAME:/WordPress_01/"
