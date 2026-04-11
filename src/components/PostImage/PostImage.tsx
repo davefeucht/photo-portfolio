@@ -21,7 +21,7 @@ const PostImage: React.FC<PostImageProps> = ({
     nextPost
 }) => {
     const [arrowsVisible, setArrowsVisible] = useState<boolean>(false);
-    const [orientation, setOrientation] = useState<OrientationType>(screen.orientation.type);
+    const [orientation, setOrientation] = useState<OrientationType>(screen.orientation.type ?? "landscape-primary");
     const [width, setWidth] = useState<number>(window.innerWidth);
     const [height, setHeight] = useState<number>(window.innerHeight);
 
@@ -35,7 +35,7 @@ const PostImage: React.FC<PostImageProps> = ({
 
     const calculateOrientation = (event: Event) => {
         const target = event.target as ScreenOrientation;
-        setOrientation(target.type);
+        setOrientation(target.type ?? "landscape-primary");
     }
 
     const getScreenDimensions = (event: Event) => {
