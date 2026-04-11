@@ -4,7 +4,7 @@
 
 import './PostTitlebar.css';
 
-import CloseButton from 'components/CloseButton/CloseButton';
+import { DialogTitle } from '@mui/material';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
@@ -14,10 +14,7 @@ interface PostTitlebarProps {
 
 const PostTitlebar: React.FC<PostTitlebarProps> = ({ postTitle }) => {
     return (
-        <div className="post-titlebar">
-            <div className="title">{postTitle}</div>
-            <CloseButton />
-        </div>
+        <DialogTitle color="secondary" sx={{ backgroundColor: "var(--template-dark-gray)" }}>{postTitle}</DialogTitle>
     );
 };
 

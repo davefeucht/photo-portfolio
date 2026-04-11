@@ -11,11 +11,8 @@ describe("PostRenderer", () => {
             <MemoryRouter initialEntries={['/post/1']}>
                 <PostRenderer
                     onClose={jest.fn()}
-                    onImageLoad={jest.fn()}
-                    imageHeight={300}
                     previousPost={0}
                     nextPost={2}
-                    screenInfo={{ width: 1024, height: 768 }}
                     visiblePost={visiblePost}
                 />
             </MemoryRouter>
@@ -32,11 +29,8 @@ describe("PostRenderer", () => {
             <MemoryRouter initialEntries={['/post/1']}>
                 <PostRenderer
                     onClose={jest.fn()}
-                    onImageLoad={onLoad}
-                    imageHeight={300}
                     previousPost={0}
                     nextPost={2}
-                    screenInfo={{ width: 1024, height: 768 }}
                     visiblePost={visiblePost}
                 />
             </MemoryRouter>
@@ -53,11 +47,8 @@ describe("PostRenderer", () => {
             <MemoryRouter initialEntries={['/post/1']}>
                 <PostRenderer
                     onClose={jest.fn()}
-                    onImageLoad={onLoad}
-                    imageHeight={300}
                     previousPost={0}
                     nextPost={2}
-                    screenInfo={{ width: 1024, height: 768 }}
                     visiblePost={visiblePost}
                 />
             </MemoryRouter>
@@ -69,11 +60,8 @@ describe("PostRenderer", () => {
             <MemoryRouter initialEntries={['/post/1']}>
                 <PostRenderer
                     onClose={jest.fn()}
-                    onImageLoad={onLoad}
-                    imageHeight={300}
                     previousPost={0}
                     nextPost={2}
-                    screenInfo={{ width: 800, height: 600 }}
                     visiblePost={visiblePost}
                 />
             </MemoryRouter>

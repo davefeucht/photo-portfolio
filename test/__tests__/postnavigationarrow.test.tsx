@@ -3,14 +3,13 @@ import PostNavigationArrow from 'components/PostNavigationArrow/PostNavigationAr
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-const imageHeight = 500;
 const direction = 'previous';
 const postId = 35;
 
 test('PostNavigationArrow displays', async () => {
     const { container } = render(
         <MemoryRouter>
-            <PostNavigationArrow imageHeight={imageHeight} direction={direction} postId={postId} />
+            <PostNavigationArrow direction={direction} postId={postId} />
         </MemoryRouter>
     );
     expect(container.firstChild).toMatchSnapshot();
