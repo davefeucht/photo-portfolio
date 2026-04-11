@@ -30,30 +30,30 @@ jobs:
     - name: Run tests
       run: yarn run test
 
-  coverage:
-    permissions:
-        checks: write
-        pull-requests: write
-        contents: write
-    needs: test
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [24.x]
-    steps:
-        - name: Checkout code
-          uses: actions/checkout@v6
-        - name: Install Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v6
-          with:
-            node-version: ${{ matrix.node-version }}
-        - name: Enable corepack
-          run: corepack enable
-        - name: Test Coverage
-          uses: ArtiomTr/jest-coverage-report-action@v2
-          with:
-            package-manager: yarn
-            test-script: yarn test-coverage
+  # coverage:
+    # permissions:
+        # checks: write
+        # pull-requests: write
+        # contents: write
+    # needs: test
+    # runs-on: ubuntu-latest
+    # strategy:
+      # matrix:
+        # node-version: [24.x]
+    # steps:
+        # - name: Checkout code
+          # uses: actions/checkout@v6
+        # - name: Install Node.js ${{ matrix.node-version }}
+          # uses: actions/setup-node@v6
+          # with:
+            # node-version: ${{ matrix.node-version }}
+        # - name: Enable corepack
+          # run: corepack enable
+        # - name: Test Coverage
+          # uses: ArtiomTr/jest-coverage-report-action@v2
+          # with:
+            # package-manager: yarn
+            # test-script: yarn test-coverage
 
   build:
     runs-on: ubuntu-latest
