@@ -1,4 +1,8 @@
 .post__titlebar {
+    background-color: var(--template-dark-gray);
+}
+
+.post__titlebar-content {
   width: 100%;
   display: flex;
   justify-content: space-between;
