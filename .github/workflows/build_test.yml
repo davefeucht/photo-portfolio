@@ -6,7 +6,7 @@ name: React Build/Test
 on:
   push:
     branches: [ master ]
-  pull_request:
+  pull_request_target:
     branches: [ master ]
 
 jobs:
@@ -18,9 +18,9 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - name: Install Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node-version }}
     - name: Enable corepack
@@ -38,9 +38,9 @@ jobs:
         node-version: [24.x]
     steps:
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v6
         - name: Install Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v4
+          uses: actions/setup-node@v6
           with:
             node-version: ${{ matrix.node-version }}
         - name: Enable corepack
@@ -60,10 +60,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Install Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node-version }}
 
