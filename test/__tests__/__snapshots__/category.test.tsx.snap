@@ -15,7 +15,7 @@ exports[`Category displays 1`] = `
       <li
         aria-label="post: Post 1"
         class="MuiImageListItem-root MuiImageListItem-standard css-ocyigc-MuiImageListItem-root"
-        style="height: 300px; grid-column-end: span 1; grid-row-end: span 1;"
+        style="height: 352px; grid-column-end: span 1; grid-row-end: span 1;"
       >
         <img
           alt="Post 1"
@@ -31,7 +31,7 @@ exports[`Category displays 1`] = `
       <li
         aria-label="post: Post 2"
         class="MuiImageListItem-root MuiImageListItem-standard css-ocyigc-MuiImageListItem-root"
-        style="height: 300px; grid-column-end: span 1; grid-row-end: span 1;"
+        style="height: 352px; grid-column-end: span 1; grid-row-end: span 1;"
       >
         <img
           alt="Post 2"
