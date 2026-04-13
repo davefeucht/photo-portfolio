@@ -1,9 +1,0 @@
-.posts {
-  background-color: var(--template-black);
-  height: 100%;
-  grid-area: category-content;
-  display: grid;
-  gap: 3px;
-  grid-template-columns: repeat(var(--number-of-columns), calc(100% / var(--number-of-columns)));
-  grid-template-rows: repeat(var(--number-of-rows), 1fr) 40px;
-}

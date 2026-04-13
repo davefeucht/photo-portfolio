@@ -2,8 +2,6 @@
 * Posts component displays a list of Posts
 **************** */
 
-import './Posts.css';
-
 import { ImageList } from '@mui/material';
 import ThumbnailRenderer from 'components/ThumbnailRenderer/ThumbnailRenderer';
 import { observer } from 'mobx-react';
@@ -20,7 +18,7 @@ const Posts: React.FC<PostsProps> = ({
     return (
         <ImageList
             gap={0}
-            rowHeight={300}
+            rowHeight={(window.innerHeight - 64) / 2}
             cols={3}
             variant="standard"
             sx={{ margin: 0, width: "100vw", height: "100%" }}
